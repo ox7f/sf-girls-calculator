@@ -1,0 +1,14 @@
+export enum Organization {
+  TEST = "Test",
+  ADB = "Airspace Defense Bureau (ADB)",
+  DAB = "Dimension Administration Bureau (DAB)",
+  DOD = "Division of Orbital Defense (DOD)",
+  GAA = "Galactic Assault Agency (GAA)",
+  GSR = "Global Soldier Reserve (GSR)",
+  MEOW = "Madness Eternal From The Old World (MEOW)",
+  NDS = "New Dellum Security (NDS)",
+  RSA = "Rising Sun Association (RSA)",
+  WIO = "Wartime Intelligence Office (WIO)",
+  ZETH = "Zeth",
+  NONE = "None",
+}
