@@ -12,6 +12,4 @@ export enum Size {
   K,
   L,
   M,
-  N,
-  O,
 }

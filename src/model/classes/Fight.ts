@@ -1,4 +1,4 @@
-import { Agent, Target } from "../index";
+import { Agent, Target } from "./index";
 
 export class FightCalculator {
   calculate_damage_agent_individually(
@@ -10,11 +10,31 @@ export class FightCalculator {
     let run_time = 0;
 
     while (run_time <= duration && target.health > 0) {
+      let time_to_attack = (1000 / agent.attack_speed) * 1000;
+
+      // check if the skill can be used
       if (run_time % agent.skill.cooldown === 0) {
-        const effects = agent.activate_skill(run_time, target);
+        agent.skill.effect.apply({
+          agent,
+          team: [agent],
+          target,
+        });
+        agent.skill.effect.begin = run_time;
       }
 
-      agent.attack(target, run_time);
+      // remove skill after effect duration
+      if (run_time === agent.skill.effect.duration + agent.skill.effect.begin) {
+        agent.skill.effect.remove({
+          agent,
+          team: [agent],
+          target,
+        });
+      }
+
+      // check if the agent can attack
+      if (run_time - agent.last_attack_time >= time_to_attack) {
+        agent.attack(target, run_time);
+      }
 
       run_time += 10;
     }
