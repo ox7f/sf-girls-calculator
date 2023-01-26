@@ -14,22 +14,26 @@ export class FightCalculator {
 
       // check if the skill can be used
       if (run_time % agent.skill.cooldown === 0) {
-        agent.skill.effect.apply({
-          agent,
-          team: [agent],
-          target,
+        agent.skill.effects.forEach((e) => {
+          e.apply({
+            agent,
+            team: [agent],
+            target,
+          });
+          e.begin = run_time;
         });
-        agent.skill.effect.begin = run_time;
       }
 
       // remove skill after effect duration
-      if (run_time === agent.skill.effect.duration + agent.skill.effect.begin) {
-        agent.skill.effect.remove({
-          agent,
-          team: [agent],
-          target,
-        });
-      }
+      agent.skill.effects.forEach((e) => {
+        if (run_time === e.duration + e.begin) {
+          e.remove({
+            agent,
+            team: [agent],
+            target,
+          });
+        }
+      });
 
       // check if the agent can attack
       if (run_time - agent.last_attack_time >= time_to_attack) {

@@ -1,6 +1,6 @@
 import { NewEffect } from "./index";
 
 export interface NewSkill {
-  effect: NewEffect;
+  effects: NewEffect[];
   cooldown: number;
 }
