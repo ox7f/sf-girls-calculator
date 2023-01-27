@@ -1056,7 +1056,7 @@ export const Akina = new Agent({
         duration: 5,
         apply: (params: EffectParamType) => {
           const { agent, target } = params;
-          let damage = 80727.2;
+          let damage = 80727.2 + 5 * 1902.6;
 
           // TODO: implement damage over time
           // TODO: calculate skill damage (how does skill damage multiply the damage)
@@ -1162,188 +1162,296 @@ export const Momoko = new Agent({
   },
 });
 
-// export const Meteli = new Agent({
-//   name: Name.Meteli,
-//   organization: Organization.WIO,
-//   cup_size: Size.E,
-//   className: ClassName.Striker,
-//   attack_speed: 1,
-//   normal_attack: 1226,
-//   critical_rate: 0.84,
-//   critical_damage: 2.018,
-//   skill_damage: 1226,
-//   skill: {
-//     // summons a choo-choo train to knock back and deal 78450.7 damage. having 70% chance reset the skill cooldown to 2 second(s) each time this skill casts. cooldown: 10
-//     effects: [{ damage: () => 78450.7 }], // TODO: implement reset functionality
-//     cooldown: 10,
-//   },
-// });
+export const Meteli = new Agent({
+  name: Name.Meteli,
+  organization: Organization.WIO,
+  cup_size: Size.E,
+  className: ClassName.Striker,
+  attack_speed: 1,
+  normal_attack: 1226,
+  critical_rate: 0.84,
+  critical_damage: 2.018,
+  skill_damage: 1226,
+  skill: {
+    // summons a choo-choo train to knock back and deal 78450.7 damage. having 70% chance reset the skill cooldown to 2 second(s) each time this skill casts. cooldown: 10
+    effects: [
+      {
+        apply: (params: EffectParamType) => {
+          const { agent, target } = params;
+          const num = Math.random();
+          let damage = 78450.7;
 
-// export const Hoshiko = new Agent({
-//   name: Name.Hoshiko,
-//   organization: Organization.GSR,
-//   cup_size: Size.M,
-//   className: ClassName.Support,
-//   attack_speed: 2,
-//   normal_attack: 1613,
-//   critical_rate: 0.69,
-//   critical_damage: 2.018,
-//   skill_damage: 1613,
-//   skill: {
-//     // cast a stackable buff on all striker agents, each buff increases attack speed to 110% and damage to 140% for 24 seconds. cooldown: 5
-//     effects: [
-//       {
-//         multiplier: () => ({
-//           attack_speed: () => 5.3,
-//           damage: () => 1.4,
-//         }),
-//         is_valid: (a: Agent) => a.className === ClassName.Striker,
-//         duration: 24,
-//       },
-//     ],
-//     cooldown: 5,
-//   },
-// });
+          // TODO: calculate skill damage (how does skill damage multiply the damage)
+          // damage = (damage / agent.base_skill_damage) * agent.skill_damage
 
-// export const Feme = new Agent({
-//   name: Name.Feme,
-//   organization: Organization.GAA,
-//   cup_size: Size.G,
-//   className: ClassName.Artillery,
-//   attack_speed: 1,
-//   normal_attack: 2099,
-//   critical_rate: 0.94,
-//   critical_damage: 2.028,
-//   skill_damage: 2099,
-//   skill: {
-//     // TODO: update skill description
-//     // increases self damage by 460% and critical rate by 1160% for 12 seconds
-//     effects: [
-//       {
-//         multiplier: () => ({
-//           damage: () => 4.6,
-//           critical_rate: () => 11.6,
-//         }),
-//         is_valid: (a: Agent) => a.name === Name.Feme,
-//         duration: 12,
-//       },
-//     ],
-//     cooldown: 15,
-//   },
-// });
+          if (num < 0.7) {
+            agent.skill.cooldown = 2;
+          } else {
+            agent.skill.cooldown = 10;
+          }
 
-// export const NeveX = new Agent({
-//   name: Name.NeveX,
-//   organization: Organization.GSR,
-//   cup_size: Size.L,
-//   className: ClassName.Support,
-//   attack_speed: 0.5,
-//   normal_attack: 6467,
-//   critical_rate: 0.69,
-//   critical_damage: 2.018,
-//   skill_damage: 6467,
-//   skill: {
-//     // deals 10993.1 damage
-//     // all artillery agents in your team get a critical damage gain of 190% for 14 seconds // TODO: multiplier or fixed?
-//     effects: [
-//       { damage: () => 10993.1 },
-//       {
-//         multiplier: () => ({ critical_damage: () => 1.9 }),
-//         is_valid: (a: Agent) => a.className === ClassName.Artillery,
-//         duration: 14,
-//       },
-//     ],
-//     cooldown: 20,
-//   },
-// });
+          target.takeDamage(damage);
+        },
+        remove: () => {},
+      },
+    ],
+    cooldown: 10,
+  },
+});
 
-// export const Eiko = new Agent({
-//   name: Name.Eiko,
-//   organization: Organization.GSR,
-//   cup_size: Size.F,
-//   className: ClassName.Gunner,
-//   attack_speed: 1,
-//   normal_attack: 2160,
-//   critical_rate: 0.94,
-//   critical_damage: 2.028,
-//   skill_damage: 2160,
-//   skill: {
-//     // deals 58548.4 damage
-//     effects: [{ damage: () => 58548.4 }],
-//     cooldown: 9,
-//   },
-// });
+export const Hoshiko = new Agent({
+  name: Name.Hoshiko,
+  organization: Organization.GSR,
+  cup_size: Size.M,
+  className: ClassName.Support,
+  attack_speed: 2,
+  normal_attack: 1613,
+  critical_rate: 0.69,
+  critical_damage: 2.018,
+  skill_damage: 1613,
+  skill: {
+    // cast a stackable buff on all striker agents, each buff increases attack speed to 110% and damage to 140% for 24 seconds. cooldown: 5
+    effects: [
+      {
+        duration: 24,
+        apply: (params: EffectParamType) => {
+          const { team } = params;
+          team.forEach((a) => {
+            a.attack_speed *= 1.2;
+            a.normal_attack *= 1.4;
+            a.skill_damage *= 1.4;
+          });
+        },
+        remove: (params: EffectParamType) => {
+          const { team } = params;
+          team.forEach((a) => {
+            a.attack_speed /= 1.2;
+            a.normal_attack /= 1.4;
+            a.skill_damage /= 1.4;
+          });
+        },
+      },
+    ],
+    cooldown: 5,
+  },
+});
 
-// export const Goi = new Agent({
-//   name: Name.Goi,
-//   organization: Organization.GAA,
-//   cup_size: Size.G,
-//   className: ClassName.Artillery,
-//   attack_speed: 1.5,
-//   normal_attack: 1394,
-//   critical_rate: 0.94,
-//   critical_damage: 2.028,
-//   skill_damage: 1394,
-//   skill: {
-//     // deals 75294.3 damage
-//     effects: [{ damage: () => 75294.3 }],
-//     cooldown: 10,
-//   },
-// });
+export const Feme = new Agent({
+  name: Name.Feme,
+  organization: Organization.GAA,
+  cup_size: Size.G,
+  className: ClassName.Artillery,
+  attack_speed: 1,
+  normal_attack: 2099,
+  critical_rate: 0.94,
+  critical_damage: 2.028,
+  skill_damage: 2099,
+  skill: {
+    // shoot 2 energy bolts from the ancient sphinx cannon, deals normal attack damage with aoe. increases self damage to 460% and critical rate to 1160% for 12 seconds. cooldown: 15
+    effects: [
+      {
+        duration: 12,
+        apply: (params: EffectParamType) => {
+          const { agent, target } = params;
+          agent.normal_attack *= 4.6;
+          agent.skill_damage *= 4.6;
+          agent.critical_rate *= 11.6;
+          target.takeDamage(agent.normal_attack * 2);
+        },
+        remove: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.normal_attack /= 4.6;
+          agent.skill_damage /= 4.6;
+          agent.critical_rate /= 11.6;
+        },
+      },
+    ],
+    cooldown: 15,
+  },
+});
 
-// export const RihoX = new Agent({
-//   name: Name.RihoX,
-//   organization: Organization.ADB,
-//   cup_size: Size.C,
-//   className: ClassName.Artillery,
-//   attack_speed: 2,
-//   normal_attack: 1057,
-//   critical_rate: 0.84,
-//   critical_damage: 2.018,
-//   skill_damage: 1057,
-//   skill: {
-//     // deals dozens (X * 9515.2) damage // TODO: get number of X
-//     // increases damage by 189% and attack speed by 276% for 12 seconds
-//     effects: [
-//       {
-//         multiplier: () => ({
-//           attack_speed: () => 1.89,
-//           damage: () => 2.76,
-//         }),
-//         is_valid: (a: Agent) => a.name === Name.RihoX,
-//         duration: 12,
-//       },
-//       { damage: () => 9515.2 * 12 },
-//     ],
-//     cooldown: 14,
-//   },
-// });
+export const NeveX = new Agent({
+  name: Name.NeveX,
+  organization: Organization.GSR,
+  cup_size: Size.L,
+  className: ClassName.Support,
+  attack_speed: 0.5,
+  normal_attack: 6467,
+  critical_rate: 0.69,
+  critical_damage: 2.018,
+  skill_damage: 6467,
+  skill: {
+    // deal 10993.1 damage to all enemies, and slow down to 40% for 3 seconds. all artillery agents critical damage gains an additional 190% for 14 seconds. cooldown: 20
+    effects: [
+      {
+        duration: 14,
+        apply: (params: EffectParamType) => {
+          const { team, target } = params;
+          team
+            .filter((a) => a.className === ClassName.Artillery)
+            .forEach((a) => (a.critical_damage += 1.9)); // gain => multiply or fixed?
 
-// export const Setsuna = new Agent({
-//   name: Name.Setsuna,
-//   organization: Organization.GSR,
-//   cup_size: Size.D,
-//   className: ClassName.Striker,
-//   attack_speed: 1,
-//   normal_attack: 1226,
-//   critical_rate: 0.84,
-//   critical_damage: 2.018,
-//   skill_damage: 1226,
-//   skill: {
-//     // deals 16548 damage
-//     // increases damage by 1000% for 7 seconds
-//     effects: [
-//       {
-//         multiplier: () => ({ damage: () => 10 }),
-//         is_valid: (a: Agent) => a.name === Name.Setsuna,
-//         duration: 7,
-//       },
-//       { damage: () => 16548 },
-//     ],
-//     cooldown: 9,
-//   },
-// });
+          let damage = 10993.1;
 
+          // TODO: calculate skill damage (how does skill damage multiply the damage)
+          // damage = (damage / agent.base_skill_damage) * agent.skill_damage
+
+          target.takeDamage(damage);
+        },
+        remove: (params: EffectParamType) => {
+          const { team } = params;
+          team
+            .filter((a) => a.className === ClassName.Artillery)
+            .forEach((a) => (a.critical_damage -= 1.9));
+        },
+      },
+    ],
+    cooldown: 20,
+  },
+});
+
+export const Eiko = new Agent({
+  name: Name.Eiko,
+  organization: Organization.GSR,
+  cup_size: Size.F,
+  className: ClassName.Gunner,
+  attack_speed: 1,
+  normal_attack: 2160,
+  critical_rate: 0.94,
+  critical_damage: 2.028,
+  skill_damage: 2160,
+  skill: {
+    // summon an extraterrestrial attack, dealing 58548.4 damage over 1.5 seconds. cooldown: 9
+    effects: [
+      {
+        apply: (params: EffectParamType) => {
+          const { agent, target } = params;
+          let damage = 58548.4;
+
+          // TODO: calculate skill damage (how does skill damage multiply the damage)
+          // damage = (damage / agent.base_skill_damage) * agent.skill_damage
+
+          target.takeDamage(damage);
+        },
+        remove: () => {},
+      },
+    ],
+    cooldown: 9,
+  },
+});
+
+export const Goi = new Agent({
+  name: Name.Goi,
+  organization: Organization.GAA,
+  cup_size: Size.G,
+  className: ClassName.Artillery,
+  attack_speed: 1.5,
+  normal_attack: 1394,
+  critical_rate: 0.94,
+  critical_damage: 2.028,
+  skill_damage: 1394,
+  skill: {
+    // Launch 3 grenades in a straight line each dealing 25098.1 damage and mini stuns for 0.2 seconds. cooldown: 10
+    effects: [
+      {
+        apply: (params: EffectParamType) => {
+          const { agent, target } = params;
+          let damage = 3 * 25098.1;
+
+          // TODO: calculate skill damage (how does skill damage multiply the damage)
+          // damage = (damage / agent.base_skill_damage) * agent.skill_damage
+
+          target.takeDamage(damage);
+        },
+        remove: () => {},
+      },
+    ],
+    cooldown: 10,
+  },
+});
+
+export const RihoX = new Agent({
+  name: Name.RihoX,
+  organization: Organization.ADB,
+  cup_size: Size.C,
+  className: ClassName.Artillery,
+  attack_speed: 2,
+  normal_attack: 1057,
+  critical_rate: 0.84,
+  critical_damage: 2.018,
+  skill_damage: 1057,
+  skill: {
+    // summons dozens of the giant redhounds, dealing 9515.2 damage to all enemies, and increases self attack damage to 189% and attack speed to 276% for 12 seconds. cooldown: 14
+    effects: [
+      {
+        duration: 12,
+        apply: (params: EffectParamType) => {
+          const { agent, target } = params;
+
+          agent.attack_speed *= 2.76;
+          agent.normal_attack *= 1.89;
+          agent.skill_damage *= 1.89;
+
+          let damage = 9515.2;
+
+          // TODO: calculate skill damage (how does skill damage multiply the damage)
+          // damage = (damage / agent.base_skill_damage) * agent.skill_damage
+
+          target.takeDamage(damage);
+        },
+        remove: (params: EffectParamType) => {
+          const { agent } = params;
+
+          agent.attack_speed /= 2.76;
+          agent.normal_attack /= 1.89;
+          agent.skill_damage /= 1.89;
+        },
+      },
+    ],
+    cooldown: 14,
+  },
+});
+
+export const Setsuna = new Agent({
+  name: Name.Setsuna,
+  organization: Organization.GSR,
+  cup_size: Size.D,
+  className: ClassName.Striker,
+  attack_speed: 1,
+  normal_attack: 1226,
+  critical_rate: 0.84,
+  critical_damage: 2.018,
+  skill_damage: 1226,
+  skill: {
+    // listen to the whisper in 7 seconds. self buff 1000% damage. consistently swing out 5 blade beams and ignite enemies for 3309.6 burn damage every seconds. cooldown: 9
+    effects: [
+      {
+        duration: 7,
+        apply: (params: EffectParamType) => {
+          const { agent, target } = params;
+
+          agent.normal_attack *= 10;
+          agent.skill_damage *= 10;
+
+          let damage = 5 * 3309.6 * 7;
+
+          // TODO: calculate skill damage (how does skill damage multiply the damage)
+          // damage = (damage / agent.base_skill_damage) * agent.skill_damage
+
+          target.takeDamage(damage);
+        },
+        remove: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.normal_attack /= 10;
+          agent.skill_damage /= 10;
+        },
+      },
+    ],
+    cooldown: 9,
+  },
+});
+
+// TODO:
 // export const Hami = new Agent({
 //   name: Name.Hami,
 //   organization: Organization.DOD,
@@ -1356,7 +1464,6 @@ export const Momoko = new Agent({
 //   skill_damage: 2727,
 //   skill: {
 //     // deals 111823 damage
-//     effects: [{ damage: () => 111823 }],
 //     cooldown: 8,
 //   },
 // });
@@ -1374,17 +1481,6 @@ export const Momoko = new Agent({
 //   skill: {
 //     // deals 79768.4 damage
 //     // increases critical rate by 16% and critical damage by 64% for 10 seconds // TODO: multiplier or fixed?
-//     effects: [
-//       {
-//         multiplier: () => ({
-//           critical_rate: () => 1.16,
-//           critical_damage: () => 1.64,
-//         }),
-//         is_valid: (a: Agent) => a.name === Name.Setsuna,
-//         duration: 10,
-//       },
-//       { damage: () => 79768.4 },
-//     ],
 //     cooldown: 11,
 //   },
 // });
@@ -1401,7 +1497,6 @@ export const Momoko = new Agent({
 //   skill_damage: 1226,
 //   skill: {
 //     // deals 147095 damage
-//     effects: [{ damage: () => 147095 }],
 //     cooldown: 10,
 //   },
 // });
@@ -1418,16 +1513,6 @@ export const Momoko = new Agent({
 //   skill_damage: 3264,
 //   skill: {
 //     // increases all artillery agents attack speed by 110% and damage by 140% for 24 seconds
-//     effects: [
-//       {
-//         multiplier: () => ({
-//           attack_speed: () => 1.1,
-//           damage: () => 1.4,
-//         }),
-//         is_valid: (a: Agent) => a.className === ClassName.Artillery,
-//         duration: 24,
-//       },
-//     ],
 //     cooldown: 5,
 //   },
 // });
@@ -1444,16 +1529,6 @@ export const Momoko = new Agent({
 //   skill_damage: 1624,
 //   skill: {
 //     // increases all gunner agents attack speed by 110% and damage by 140% for 24 seconds
-//     effects: [
-//       {
-//         multiplier: () => ({
-//           attack_speed: () => 1.1,
-//           damage: () => 1.4,
-//         }),
-//         is_valid: (a: Agent) => a.className === ClassName.Gunner,
-//         duration: 24,
-//       },
-//     ],
 //     cooldown: 5,
 //   },
 // });
@@ -1469,20 +1544,6 @@ export const Momoko = new Agent({
 //   critical_damage: 2.028,
 //   skill_damage: 613,
 //   skill: {
-//     effects: [
-//       // increases self normal attack damage by 1035% for 11 seconds
-//       {
-//         multiplier: () => ({ damage: () => 10.35 }),
-//         is_valid: (a: Agent) => a.name === Name.Wu,
-//         duration: 11,
-//       },
-//       // increasers strikers critical rate by 30% for 4 seconds
-//       {
-//         fixed: () => ({ critical_rate: () => 0.3 }),
-//         is_valid: (a: Agent) => a.className === ClassName.Striker,
-//         duration: 4,
-//       },
-//     ],
 //     cooldown: 10,
 //   },
 // });
@@ -1500,18 +1561,6 @@ export const Momoko = new Agent({
 //   skill: {
 //     // increases attack speed by 520% for 11 seconds
 //     // increases gunner agents normal attack damage by 133% for 15 seconds
-//     effects: [
-//       {
-//         fixed: () => ({ attack_speed: () => 5.2 }),
-//         is_valid: (a: Agent) => a.name === Name.ZiLong,
-//         duration: 11,
-//       },
-//       {
-//         fixed: () => ({ normal_attack: () => 1.33 }),
-//         is_valid: (a: Agent) => a.className === ClassName.Gunner,
-//         duration: 15,
-//       },
-//     ],
 //     cooldown: 14,
 //   },
 // });
@@ -1529,23 +1578,6 @@ export const Momoko = new Agent({
 //   skill: {
 //     // deals 18897.6 damage
 //     // increases damage by (1 + any agent on the field, except Support) * 34% for 15 seconds // TODO: including enemy team?
-//     effects: [
-//       {
-//         fixed: (a: Agent, t: Target, team?: Agent[]) => ({
-//           damage: () => {
-//             if (team) {
-//               return team.filter(
-//                 (agent) => agent.className !== ClassName.Support
-//               ).length;
-//             }
-//             return 0;
-//           },
-//         }),
-//         is_valid: (a: Agent) => a.name === Name.Ari,
-//         duration: 15,
-//       },
-//       { damage: () => 18897.6 },
-//     ],
 //     cooldown: 14,
 //   },
 // });
@@ -1562,21 +1594,6 @@ export const Momoko = new Agent({
 //   skill_damage: 2160,
 //   skill: {
 //     // increases self damage by 750% and increases all Gunner agents in your team attack rate by 130% and damage by 170% for 10 seconds.
-//     effects: [
-//       {
-//         multiplier: () => ({ damage: () => 7.5 }),
-//         is_valid: (a: Agent) => a.name === Name.Chia,
-//         duration: 10,
-//       },
-//       {
-//         multiplier: () => ({
-//           attack_speed: () => 1.3,
-//           damage: () => 1.7,
-//         }),
-//         is_valid: (a: Agent) => a.name === Name.Chia,
-//         duration: 10,
-//       },
-//     ],
 //     cooldown: 13,
 //   },
 // });
@@ -1593,16 +1610,6 @@ export const Momoko = new Agent({
 //   skill_damage: 2434,
 //   skill: {
 //     // increases self attack speed by 450% and damage by 230% for 11 seconds
-//     effects: [
-//       {
-//         multiplier: () => ({
-//           attack_speed: () => 4.5,
-//           damage: () => 2.3,
-//         }),
-//         is_valid: (a: Agent) => a.name === Name.Shiko,
-//         duration: 11,
-//       },
-//     ],
 //     cooldown: 10,
 //   },
 // });
@@ -1619,7 +1626,6 @@ export const Momoko = new Agent({
 //   skill_damage: 1144,
 //   skill: {
 //     // deals 82354.3 damage
-//     effects: [{ damage: () => 82354.3 }],
 //     cooldown: 15,
 //   },
 // });
@@ -1636,13 +1642,6 @@ export const Momoko = new Agent({
 //   skill_damage: 1160,
 //   skill: {
 //     // increases self skill damage by 2400% for 6 seconds
-//     effects: [
-//       {
-//         multiplier: () => ({ skill_damage: () => 24 }),
-//         is_valid: (a: Agent) => a.name === Name.Bia,
-//         duration: 6,
-//       },
-//     ],
 //     cooldown: 10,
 //   },
 // });
@@ -1659,7 +1658,6 @@ export const Momoko = new Agent({
 //   skill_damage: 1440,
 //   skill: {
 //     // deals 92683.8 damage
-//     effects: [{ damage: () => 92683.8 }],
 //     cooldown: 14,
 //   },
 // });
@@ -1676,16 +1674,6 @@ export const Momoko = new Agent({
 //   skill_damage: 1226,
 //   skill: {
 //     // increase attack speed by 580% and critical rate by 210% for 12 seconds
-//     effects: [
-//       {
-//         multiplier: () => ({
-//           attack_speed: () => 5.8,
-//           critical_rate: () => 2.1,
-//         }),
-//         is_valid: (a: Agent) => a.name === Name.Kiyomi,
-//         duration: 12,
-//       },
-//     ],
 //     cooldown: 20,
 //   },
 // });
@@ -1703,17 +1691,6 @@ export const Momoko = new Agent({
 //   skill: {
 //     // increases attack speed by 635% and damage by 260% for 3 seconds
 //     // deals 4537 damage each second for 4 seconds // TODO: implement damage over time
-//     effects: [
-//       {
-//         multiplier: () => ({
-//           attack_speed: () => 6.35,
-//           damage: () => 2.6,
-//         }),
-//         is_valid: (a: Agent) => a.name === Name.Musuna,
-//         duration: 3,
-//       },
-//       { damage: () => 4537 * 4 },
-//     ],
 //     cooldown: 15,
 //   },
 // });
@@ -1731,16 +1708,6 @@ export const Momoko = new Agent({
 //   skill: {
 //     // increases attack speed by 200% and increases damage by 380% for 12 seconds
 //     // attacks deal also skill damage // TODO: implement attack_mode? attacks deal: (normal_attack | skill_damage | both) damage
-//     effects: [
-//       {
-//         multiplier: () => ({
-//           attack_speed: () => 2,
-//           damage: () => 3.8,
-//         }),
-//         is_valid: (a: Agent) => a.name === Name.Windy,
-//         duration: 12,
-//       },
-//     ],
 //     cooldown: 14,
 //   },
 // });
@@ -1757,16 +1724,6 @@ export const Momoko = new Agent({
 //   skill_damage: 2160,
 //   skill: {
 //     // increases normal attack damage by 480% and critical rate by 1160% for 13 seconds
-//     effects: [
-//       {
-//         multiplier: () => ({
-//           normal_attack: () => 4.8,
-//           critical_rate: () => 11.6,
-//         }),
-//         is_valid: (a: Agent) => a.name === Name.Kotaru,
-//         duration: 13,
-//       },
-//     ],
 //     cooldown: 23,
 //   },
 // });
@@ -1784,14 +1741,6 @@ export const Momoko = new Agent({
 //   skill: {
 //     // increases skill damage for agents with <= D cup breast size by 120% for 4 seconds
 //     // deals 34313.6 damage
-//     effects: [
-//       {
-//         multiplier: () => ({ skill_damage: () => 1.2 }),
-//         is_valid: (a: Agent) => a.cup_size <= Size.D,
-//         duration: 4,
-//       },
-//       { damage: () => 34313.6 },
-//     ],
 //     cooldown: 10,
 //   },
 // });
@@ -1809,14 +1758,6 @@ export const Momoko = new Agent({
 //   skill: {
 //     // ZETH member give each other 33% damage for 6 seconds // TODO: implement this
 //     // deals 169894.8 damage
-//     effects: [
-//       {
-//         multiplier: () => ({ damage: () => 1.33 }),
-//         is_valid: (a: Agent) => a.cup_size <= Size.D,
-//         duration: 6,
-//       },
-//       { damage: () => 169894.8 },
-//     ],
 //     cooldown: 12,
 //   },
 // });
@@ -1834,25 +1775,6 @@ export const Momoko = new Agent({
 //   skill: {
 //     // deals 98063.4 damage over 16 seconds
 //     // increase striker agents damage by 15 + (5% for every support agent) for 7 seconds
-//     effects: [
-//       {
-//         multiplier: (a: Agent, t: Target, team?: Agent[]) => ({
-//           damage: () => {
-//             if (team) {
-//               return (
-//                 1.15 +
-//                 0.05 *
-//                   team.filter((a) => a.className === ClassName.Support).length
-//               );
-//             }
-//             return 1;
-//           },
-//         }),
-//         is_valid: (a: Agent) => a.className === ClassName.Striker,
-//         duration: 7,
-//       },
-//       { damage: () => 98063.4 },
-//     ],
 //     cooldown: 10,
 //   },
 // });
@@ -1869,13 +1791,6 @@ export const Momoko = new Agent({
 //   skill_damage: 680,
 //   skill: {
 //     // increases skill damage by 1200% for 11 seconds
-//     effects: [
-//       {
-//         multiplier: () => ({ skill_damage: () => 12 }),
-//         is_valid: (a: Agent) => a.name === Name.Laura,
-//         duration: 11,
-//       },
-//     ],
 //     cooldown: 10,
 //   },
 // });
@@ -1892,7 +1807,6 @@ export const Momoko = new Agent({
 //   skill_damage: 2099,
 //   skill: {
 //     // deals 25190 damage
-//     effects: [{ damage: () => 25190 }],
 //     cooldown: 3,
 //   },
 // });
@@ -1910,13 +1824,6 @@ export const Momoko = new Agent({
 //   skill: {
 //     // increases attack speed by 200% and damage by 900% for 10 seconds
 //     // deals skill damage // TODO: implement this: attack_mode
-//     effects: [
-//       {
-//         multiplier: () => ({ attack_speed: () => 2, damage: () => 9 }),
-//         is_valid: (a: Agent) => a.name === Name.Ne,
-//         duration: 10,
-//       },
-//     ],
 //     cooldown: 20,
 //   },
 // });
@@ -1934,16 +1841,6 @@ export const Momoko = new Agent({
 //   skill: {
 //     // increases attack speed by 500% and critical damage by 1000% for 10 seconds
 //     // deals skill damage // TODO: implement this: attack_mode
-//     effects: [
-//       {
-//         multiplier: () => ({
-//           attack_speed: () => 5,
-//           critical_damage: () => 10,
-//         }),
-//         is_valid: (a: Agent) => a.name === Name.Uta,
-//         duration: 10,
-//       },
-//     ],
 //     cooldown: 10,
 //   },
 // });
@@ -1961,16 +1858,6 @@ export const Momoko = new Agent({
 //   skill: {
 //     // increases self attack speed by 200% and damage by 500% for 7 seconds
 //     // deals skill damage // TODO: implement this: attack_mode
-//     effects: [
-//       {
-//         multiplier: () => ({
-//           attack_speed: () => 2,
-//           damage: () => 5,
-//         }),
-//         is_valid: (a: Agent) => a.name === Name.Midori,
-//         duration: 7,
-//       },
-//     ],
 //     cooldown: 15,
 //   },
 // });
@@ -1987,13 +1874,6 @@ export const Momoko = new Agent({
 //   skill_damage: 1144,
 //   skill: {
 //     // adds on all agents (her skill damage * 25%)% damage on each hit for 14 seconds // TODO: what the fuck does that mean
-//     effects: [
-//       {
-//         multiplier: (a: Agent) => ({ damage: () => a.skill_damage * 0.25 }),
-//         is_valid: (a: Agent) => a.name !== Name.Sera,
-//         duration: 7,
-//       },
-//     ],
 //     cooldown: 20,
 //   },
 // });
@@ -2011,7 +1891,6 @@ export const Momoko = new Agent({
 //   skill: {
 //     // deals 30075.3 damage
 //     // 75% chance to reset the skill cooldown to 2 seconds // TODO: implement reset skill cooldown
-//     effects: [{ damage: () => 30075.3 }],
 //     cooldown: 14,
 //   },
 // });
@@ -2029,18 +1908,6 @@ export const Momoko = new Agent({
 //   skill: {
 //     // increases normal attack damage by 660% for 12 seconds
 //     // increases critical rate by 40% for artillery agents for 5 seconds
-//     effects: [
-//       {
-//         multiplier: (a: Agent) => ({ normal_attack: () => 6.6 }),
-//         is_valid: (a: Agent) => a.name === Name.ReiJK,
-//         duration: 12,
-//       },
-//       {
-//         multiplier: (a: Agent) => ({ critical_rate: () => 1.4 }),
-//         is_valid: (a: Agent) => a.className === ClassName.Artillery,
-//         duration: 5,
-//       },
-//     ],
 //     cooldown: 15,
 //   },
 // });
@@ -2057,7 +1924,6 @@ export const Momoko = new Agent({
 //   skill_damage: 371,
 //   skill: {
 //     // deals 8892.7 damage
-//     effects: [{ damage: () => 8892.7 }],
 //     cooldown: 10,
 //   },
 // });
@@ -2074,17 +1940,6 @@ export const Momoko = new Agent({
 //   skill_damage: 2099,
 //   skill: {
 //     // "increases damage by 262%, attack speed by 200% and critical rate by 37% for 12 seconds. ",
-//     effects: [
-//       {
-//         multiplier: (a: Agent) => ({
-//           damage: () => 2.62,
-//           attack_speed: () => 2,
-//           critical_rate: () => 1.37,
-//         }),
-//         is_valid: (a: Agent) => a.name === Name.Amikam,
-//         duration: 12,
-//       },
-//     ],
 //     cooldown: 14,
 //   },
 // });
@@ -2103,21 +1958,6 @@ export const Momoko = new Agent({
 //     // TODO: missing skill info
 //     // increases damage by 800% for 10 seconds
 //     // increases critical rate and critical damage by 30% for artillery agents in the team
-//     effects: [
-//       {
-//         multiplier: (a: Agent) => ({ damage: () => 8 }),
-//         is_valid: (a: Agent) => a.name === Name.Iizuna,
-//         duration: 10,
-//       },
-//       {
-//         fixed: (a: Agent) => ({
-//           critical_damage: () => 0.3,
-//           critical_rate: () => 0.3,
-//         }),
-//         is_valid: (a: Agent) => a.className === ClassName.Artillery,
-//         duration: 10,
-//       },
-//     ],
 //     cooldown: 15,
 //   },
 // });
@@ -2134,16 +1974,6 @@ export const Momoko = new Agent({
 //   skill_damage: 4336,
 //   skill: {
 //     // increases attack speed by 400% and damage by 121% for 10 seconds
-//     effects: [
-//       {
-//         multiplier: (a: Agent) => ({
-//           attack_speed: () => 4,
-//           damage: () => 1.21,
-//         }),
-//         is_valid: (a: Agent) => a.name === Name.Tsurumi,
-//         duration: 10,
-//       },
-//     ],
 //     cooldown: 13,
 //   },
 // });
@@ -2161,13 +1991,6 @@ export const Momoko = new Agent({
 //   skill: {
 //     // increases damage by 4200% for 7 seconds
 //     // exposes enemy weak spot for 7 seconds // TODO: implement this
-//     effects: [
-//       {
-//         multiplier: (a: Agent) => ({ damage: () => 42 }),
-//         is_valid: (a: Agent) => a.name === Name.Mora,
-//         duration: 7,
-//       },
-//     ],
 //     cooldown: 20,
 //   },
 // });
@@ -2184,13 +2007,6 @@ export const Momoko = new Agent({
 //   skill_damage: 1226,
 //   skill: {
 //     // increases damage by 1800% for 10 seconds
-//     effects: [
-//       {
-//         multiplier: (a: Agent) => ({ damage: () => 18 }),
-//         is_valid: (a: Agent) => a.name === Name.Masamune,
-//         duration: 10,
-//       },
-//     ],
 //     cooldown: 20,
 //   },
 // });
@@ -2208,18 +2024,6 @@ export const Momoko = new Agent({
 //   skill: {
 //     // increases damage by 200% for 24 seconds
 //     // increases artillery agents damage by 110% for 24 seconds
-//     effects: [
-//       {
-//         multiplier: (a: Agent) => ({ damage: () => 2 }),
-//         is_valid: (a: Agent) => a.name === Name.Masamune,
-//         duration: 24,
-//       },
-//       {
-//         multiplier: (a: Agent) => ({ damage: () => 1.1 }),
-//         is_valid: (a: Agent) => a.className === ClassName.Artillery,
-//         duration: 24,
-//       },
-//     ],
 //     cooldown: 10,
 //   },
 // });
