@@ -17,7 +17,7 @@ export class Agent {
   attack_mode: AttackMode = AttackMode.Normal; // attribute that is used for damage calculation
   last_attack_time: number = 0; // timestamp of the last attack
   attack_counter: number = 0; // number of attacks
-  dealt_damage: number = 0; // damage dealt durning fight
+  dealt_damage: number = 0; // damage dealt during fight
 
   constructor(agent: NewAgent) {
     this.name = agent.name;
