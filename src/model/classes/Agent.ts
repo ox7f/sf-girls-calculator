@@ -1,4 +1,4 @@
-import { Skill, Target } from "./index";
+import { Effect, Skill, Target } from "./index";
 import { NewAgent } from "../interfaces";
 import { AttackMode, ClassName, Name, Organization, Size } from "../../enums";
 
@@ -14,6 +14,7 @@ export class Agent {
   skill_damage: number; // determines the damage of a skill
   skill: Skill;
 
+  applied_effects: Effect[] = []; // list of applied (skill) effects
   attack_mode: AttackMode = AttackMode.Normal; // attribute that is used for damage calculation
   last_attack_time: number = 0; // timestamp of the last attack
   attack_counter: number = 0; // number of attacks
