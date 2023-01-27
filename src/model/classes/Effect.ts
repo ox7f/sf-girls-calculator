@@ -8,7 +8,7 @@ export class Effect {
   remove: EffectFunctionType;
 
   constructor(effect: NewEffect) {
-    this.duration = effect.duration ? effect.duration * 1000 : 0;
+    this.duration = effect.duration ? effect.duration * 1000 : 0; // seconds to ms
     this.apply = effect.apply;
     this.remove = effect.remove;
   }
