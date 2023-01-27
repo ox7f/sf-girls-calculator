@@ -1,11 +1,16 @@
 import { FightCalculator } from "./model/classes";
-import { Neve } from "./data/Agents";
+import { Coco, Yuki } from "./data/Agents";
 import { Dummy_Stage_1 } from "./data/Targets";
 
 const fightCalculator = new FightCalculator({
-  team: [Neve],
+  team: [Yuki, Coco],
   target: Dummy_Stage_1,
   duration: 30,
 });
 
+const startTime = performance.now();
 fightCalculator.fight();
+const endTime = performance.now();
+
+// check performance
+console.log(`took ${endTime - startTime} milliseconds`);

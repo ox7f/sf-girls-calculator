@@ -58,7 +58,7 @@ export const Neve = new Agent({
           // TODO: calculate skill damage (how does skill damage multiply the damage)
           // damage = (damage / agent.base_skill_damage) * agent.skill_damage
 
-          target.takeDamage(damage);
+          target.takeDamage(damage, agent);
         },
         remove: () => {},
       },
@@ -88,7 +88,7 @@ export const Ayu = new Agent({
           // TODO: calculate skill damage (how does skill damage multiply the damage)
           // damage = (damage / agent.base_skill_damage) * agent.skill_damage
 
-          target.takeDamage(damage);
+          target.takeDamage(damage, agent);
         },
         remove: () => {},
       },
@@ -118,7 +118,7 @@ export const Mika = new Agent({
           // TODO: calculate skill damage (how does skill damage multiply the damage)
           // damage = (damage / agent.base_skill_damage) * agent.skill_damage
 
-          target.takeDamage(damage);
+          target.takeDamage(damage, agent);
         },
         remove: () => {},
       },
@@ -148,7 +148,7 @@ export const Sora = new Agent({
           // TODO: calculate skill damage (how does skill damage multiply the damage)
           // damage = (damage / agent.base_skill_damage) * agent.skill_damage
 
-          target.takeDamage(damage);
+          target.takeDamage(damage, agent);
         },
         remove: () => {},
       },
@@ -178,7 +178,7 @@ export const Ember = new Agent({
           // TODO: calculate skill damage (how does skill damage multiply the damage)
           // damage = (damage / agent.base_skill_damage) * agent.skill_damage
 
-          target.takeDamage(damage);
+          target.takeDamage(damage, agent);
         },
         remove: () => {},
       },
@@ -208,7 +208,7 @@ export const Chiharu = new Agent({
           // TODO: calculate skill damage (how does skill damage multiply the damage)
           // damage = (damage / agent.base_skill_damage) * agent.skill_damage
 
-          target.takeDamage(damage);
+          target.takeDamage(damage, agent);
         },
         remove: () => {},
       },
@@ -238,7 +238,7 @@ export const Irina = new Agent({
           // TODO: calculate skill damage (how does skill damage multiply the damage)
           // damage = (damage / agent.base_skill_damage) * agent.skill_damage
 
-          target.takeDamage(damage);
+          target.takeDamage(damage, agent);
         },
         remove: () => {},
       },
@@ -268,7 +268,7 @@ export const Yuuha = new Agent({
           // TODO: calculate skill damage (how does skill damage multiply the damage)
           // damage = (damage / agent.base_skill_damage) * agent.skill_damage
 
-          target.takeDamage(damage);
+          target.takeDamage(damage, agent);
         },
         remove: () => {},
       },
@@ -298,7 +298,7 @@ export const Uzu = new Agent({
           // TODO: calculate skill damage (how does skill damage multiply the damage)
           // damage = (damage / agent.base_skill_damage) * agent.skill_damage
 
-          target.takeDamage(damage);
+          target.takeDamage(damage, agent);
         },
         remove: () => {},
       },
@@ -328,7 +328,7 @@ export const Denka = new Agent({
           // TODO: calculate skill damage (how does skill damage multiply the damage)
           // damage = (damage / agent.base_skill_damage) * agent.skill_damage
 
-          target.takeDamage(damage);
+          target.takeDamage(damage, agent);
         },
         remove: () => {},
       },
@@ -360,7 +360,7 @@ export const Reika = new Agent({
             // damage = (damage / agent.base_skill_damage) * agent.skill_damage
           }
 
-          target.takeDamage(damage);
+          target.takeDamage(damage, agent);
         },
         remove: () => {},
       },
@@ -391,7 +391,7 @@ export const Noa = new Agent({
           // TODO: calculate skill damage (how does skill damage multiply the damage)
           // damage = (damage / agent.base_skill_damage) * agent.skill_damage
 
-          target.takeDamage(damage);
+          target.takeDamage(damage, agent);
         },
         remove: () => {},
       },
@@ -422,7 +422,7 @@ export const Neugena = new Agent({
             damage = agent.skill_damage;
           }
 
-          target.takeDamage(damage);
+          target.takeDamage(damage, agent);
         },
         remove: () => {},
       },
@@ -452,7 +452,7 @@ export const Larisa = new Agent({
           // TODO: calculate skill damage (how does skill damage multiply the damage)
           // damage = (damage / agent.base_skill_damage) * agent.skill_damage
 
-          target.takeDamage(damage);
+          target.takeDamage(damage, agent);
         },
         remove: () => {},
       },
@@ -511,7 +511,7 @@ export const Kotora = new Agent({
           // TODO: calculate skill damage (how does skill damage multiply the damage)
           // damage = (damage / agent.base_skill_damage) * agent.skill_damage
 
-          target.takeDamage(damage);
+          target.takeDamage(damage, agent);
         },
         remove: () => {},
       },
@@ -593,7 +593,7 @@ export const Sara = new Agent({
           // TODO: calculate skill damage (how does skill damage multiply the damage)
           // damage = (damage / agent.base_skill_damage) * agent.skill_damage
 
-          target.takeDamage(damage);
+          target.takeDamage(damage, agent);
         },
         remove: () => {},
       },
@@ -623,7 +623,7 @@ export const Mai = new Agent({
           // TODO: calculate skill damage (how does skill damage multiply the damage)
           // damage = (damage / agent.base_skill_damage) * agent.skill_damage
 
-          target.takeDamage(damage);
+          target.takeDamage(damage, agent);
         },
         remove: () => {},
       },
@@ -655,7 +655,7 @@ export const Tsukiko = new Agent({
           // damage = (damage / agent.base_skill_damage) * agent.skill_damage
 
           target.received_damage_multiplier *= 1.35;
-          target.takeDamage(damage);
+          target.takeDamage(damage, agent);
         },
         remove: (params: EffectParamType) => {
           const { target } = params;
@@ -844,7 +844,7 @@ export const Cadence = new Agent({
           // TODO: calculate skill damage (how does skill damage multiply the damage)
           // damage = (damage / agent.base_skill_damage) * agent.skill_damage
 
-          target.takeDamage(damage);
+          target.takeDamage(damage, agent);
         },
         remove: () => {},
       },
@@ -875,7 +875,7 @@ export const Uni = new Agent({
           // TODO: calculate skill damage (how does skill damage multiply the damage)
           // damage = (damage / agent.base_skill_damage) * agent.skill_damage
 
-          target.takeDamage(damage);
+          target.takeDamage(damage, agent);
         },
         remove: () => {},
       },
@@ -906,7 +906,7 @@ export const Sizuko = new Agent({
           // TODO: calculate skill damage (how does skill damage multiply the damage)
           // damage = (damage / agent.base_skill_damage) * agent.skill_damage
 
-          target.takeDamage(damage);
+          target.takeDamage(damage, agent);
         },
         remove: () => {},
       },
@@ -969,7 +969,7 @@ export const Mei = new Agent({
           // TODO: calculate skill damage (how does skill damage multiply the damage)
           // damage = (damage / agent.base_skill_damage) * agent.skill_damage
 
-          target.takeDamage(damage);
+          target.takeDamage(damage, agent);
         },
         remove: () => {},
       },
@@ -1000,7 +1000,7 @@ export const Riho = new Agent({
           // TODO: calculate skill damage (how does skill damage multiply the damage)
           // damage = (damage / agent.base_skill_damage) * agent.skill_damage
 
-          target.takeDamage(damage);
+          target.takeDamage(damage, agent);
         },
         remove: () => {},
       },
@@ -1030,7 +1030,7 @@ export const Mitsu = new Agent({
           // TODO: calculate skill damage (how does skill damage multiply the damage)
           // damage = (damage / agent.base_skill_damage) * agent.skill_damage
 
-          target.takeDamage(damage);
+          target.takeDamage(damage, agent);
         },
         remove: () => {},
       },
@@ -1062,7 +1062,7 @@ export const Akina = new Agent({
           // TODO: calculate skill damage (how does skill damage multiply the damage)
           // damage = (damage / agent.base_skill_damage) * agent.skill_damage
 
-          target.takeDamage(damage);
+          target.takeDamage(damage, agent);
         },
         remove: () => {},
       },
@@ -1093,7 +1093,7 @@ export const Akari = new Agent({
           // TODO: calculate skill damage (how does skill damage multiply the damage)
           // damage = (damage / agent.base_skill_damage) * agent.skill_damage
 
-          target.takeDamage(damage);
+          target.takeDamage(damage, agent);
         },
         remove: () => {},
       },
@@ -1124,7 +1124,7 @@ export const Sayaka = new Agent({
           // TODO: calculate skill damage (how does skill damage multiply the damage)
           // damage = (damage / agent.base_skill_damage) * agent.skill_damage
 
-          target.takeDamage(damage);
+          target.takeDamage(damage, agent);
         },
         remove: () => {},
       },
@@ -1190,7 +1190,7 @@ export const Meteli = new Agent({
             agent.skill.cooldown = 10;
           }
 
-          target.takeDamage(damage);
+          target.takeDamage(damage, agent);
         },
         remove: () => {},
       },
@@ -1256,7 +1256,7 @@ export const Feme = new Agent({
           agent.normal_attack *= 4.6;
           agent.skill_damage *= 4.6;
           agent.critical_rate *= 11.6;
-          target.takeDamage(agent.normal_attack * 2);
+          target.takeDamage(agent.normal_attack * 2, agent);
         },
         remove: (params: EffectParamType) => {
           const { agent } = params;
@@ -1286,7 +1286,7 @@ export const NeveX = new Agent({
       {
         duration: 14,
         apply: (params: EffectParamType) => {
-          const { team, target } = params;
+          const { agent, team, target } = params;
           team
             .filter((a) => a.className === ClassName.Artillery)
             .forEach((a) => (a.critical_damage += 1.9)); // gain => multiply or fixed?
@@ -1296,7 +1296,7 @@ export const NeveX = new Agent({
           // TODO: calculate skill damage (how does skill damage multiply the damage)
           // damage = (damage / agent.base_skill_damage) * agent.skill_damage
 
-          target.takeDamage(damage);
+          target.takeDamage(damage, agent);
         },
         remove: (params: EffectParamType) => {
           const { team } = params;
@@ -1331,7 +1331,7 @@ export const Eiko = new Agent({
           // TODO: calculate skill damage (how does skill damage multiply the damage)
           // damage = (damage / agent.base_skill_damage) * agent.skill_damage
 
-          target.takeDamage(damage);
+          target.takeDamage(damage, agent);
         },
         remove: () => {},
       },
@@ -1361,7 +1361,7 @@ export const Goi = new Agent({
           // TODO: calculate skill damage (how does skill damage multiply the damage)
           // damage = (damage / agent.base_skill_damage) * agent.skill_damage
 
-          target.takeDamage(damage);
+          target.takeDamage(damage, agent);
         },
         remove: () => {},
       },
@@ -1397,7 +1397,7 @@ export const RihoX = new Agent({
           // TODO: calculate skill damage (how does skill damage multiply the damage)
           // damage = (damage / agent.base_skill_damage) * agent.skill_damage
 
-          target.takeDamage(damage);
+          target.takeDamage(damage, agent);
         },
         remove: (params: EffectParamType) => {
           const { agent } = params;
@@ -1438,7 +1438,7 @@ export const Setsuna = new Agent({
           // TODO: calculate skill damage (how does skill damage multiply the damage)
           // damage = (damage / agent.base_skill_damage) * agent.skill_damage
 
-          target.takeDamage(damage);
+          target.takeDamage(damage, agent);
         },
         remove: (params: EffectParamType) => {
           const { agent } = params;

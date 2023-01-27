@@ -52,11 +52,11 @@ export class FightCalculator {
       run_time += 10;
     }
 
-    console.log("result", {
-      name: this.team.map((a) => a.name).join(", "),
-      attack_counter: this.team.map((a) => a.attack_counter).join(", "),
-      health: this.target.health,
-      damage: starting_health - this.target.health,
+    console.log("result:", {
+      health: Number(this.target.health.toFixed(2)),
+      damage: Number((starting_health - this.target.health).toFixed(2)),
+      time: (this.duration - run_time) / 1000,
     });
+    console.table(this.team, ["name", "attack_counter", "dealt_damage"]);
   }
 }

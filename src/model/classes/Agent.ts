@@ -15,8 +15,9 @@ export class Agent {
   skill: Skill;
 
   attack_mode: AttackMode = AttackMode.Normal; // attribute that is used for damage calculation
-  attack_counter: number = 0; // number of attacks
   last_attack_time: number = 0; // timestamp of the last attack
+  attack_counter: number = 0; // number of attacks
+  dealt_damage: number = 0; // damage dealt durning fight
 
   constructor(agent: NewAgent) {
     this.name = agent.name;
@@ -37,7 +38,7 @@ export class Agent {
     this.last_attack_time = time;
     this.attack_counter++;
 
-    target.takeDamage(total_damage);
+    target.takeDamage(total_damage, this);
   }
 
   calculate_damage(): number {

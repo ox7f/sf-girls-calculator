@@ -1,4 +1,5 @@
 import { NewTarget } from "../interfaces";
+import { Agent } from "./Agent";
 
 export class Target {
   health: number;
@@ -9,7 +10,8 @@ export class Target {
     this.health = health;
   }
 
-  takeDamage(damage: number): void {
+  takeDamage(damage: number, agent: Agent): void {
+    agent.dealt_damage += damage;
     this.health -= damage * this.received_damage_multiplier;
   }
 }
