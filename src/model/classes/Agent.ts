@@ -6,13 +6,14 @@ export class Agent {
   name: Name;
   organization: Organization;
   cup_size: Size;
-  className: ClassName;
+  class: ClassName;
   attack_speed: number; // number of attacks per second
   normal_attack: number; // damage of a "normal" attack (when projectile or weapon hits target)
   critical_rate: number; // probability that a attack will be critical attack
   critical_damage: number; // multiplier of damage for a critical attack
   skill_damage: number; // determines the damage of a skill
   skill: Skill;
+  damage_multiplier: number = 1; // used for damage buffs
 
   applied_effects: Effect[] = []; // list of applied (skill) effects
   attack_mode: AttackMode = AttackMode.Normal; // attribute that is used for damage calculation
@@ -24,7 +25,7 @@ export class Agent {
     this.name = agent.name;
     this.organization = agent.organization;
     this.cup_size = agent.cup_size;
-    this.className = agent.className;
+    this.class = agent.class;
     this.attack_speed = agent.attack_speed * 1000; // seconds to ms
     this.normal_attack = agent.normal_attack;
     this.critical_rate = agent.critical_rate;
@@ -34,7 +35,7 @@ export class Agent {
   }
 
   attack(target: Target, time: number) {
-    let total_damage = this.calculate_damage();
+    let total_damage = this.calculate_damage() * this.damage_multiplier;
 
     this.last_attack_time = time;
     this.attack_counter++;

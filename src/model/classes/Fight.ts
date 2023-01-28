@@ -23,9 +23,14 @@ export class FightCalculator {
         // check if the skill can be used
         if (run_time % agent.skill.cooldown === 0) {
           agent.skill.effects.forEach((e) => {
+            // TODO: wip
+            if (agent.skill.is_stackable) {
+            } else {
+              // TODO: apply effect only when effect not in applied_effects
+            }
+
             e.apply({ agent, team: this.team, target: this.target });
-            e.begin = run_time;
-            agent.applied_effects.push({ ...e });
+            agent.applied_effects.push({ ...e, begin: run_time });
           });
         }
 

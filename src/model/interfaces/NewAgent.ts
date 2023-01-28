@@ -5,7 +5,7 @@ export interface NewAgent {
   name: Name;
   organization: Organization;
   cup_size: Size;
-  className: ClassName;
+  class: ClassName;
   attack_speed: number;
   normal_attack: number;
   critical_rate: number;
