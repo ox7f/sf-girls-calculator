@@ -1,15 +1,16 @@
 import { FightCalculator } from "./model/classes";
-import { Coco, Hoshiko, Yuki } from "./data/Agents";
+// import * as agents from "./data/Agents";
+import { Ayu, Coco, Sora } from "./data/Agents";
 import { Dummy_Stage_1 } from "./data/Targets";
 
 const fightCalculator = new FightCalculator({
-  team: [Yuki, Coco, Hoshiko],
+  team: [Coco, Sora],
   target: Dummy_Stage_1,
   duration: 30,
 });
 
 const startTime = performance.now();
-fightCalculator.fight();
+fightCalculator.run();
 const endTime = performance.now();
 
 // check performance

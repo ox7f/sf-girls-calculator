@@ -43,17 +43,33 @@ export class Agent {
   }
 
   calculate_damage(): number {
+    let damage = 0;
+
     switch (this.attack_mode) {
       case AttackMode.Normal:
-        return this.normal_attack * this.critical_rate * this.critical_damage;
+        damage = this.normal_attack;
+
+        if (Math.random() < this.critical_rate) {
+          damage *= this.critical_damage;
+        }
+
+        return damage;
       case AttackMode.Skill:
-        return this.skill_damage * this.critical_rate * this.critical_damage;
+        damage = this.skill_damage;
+
+        if (Math.random() < this.critical_rate) {
+          damage *= this.critical_damage;
+        }
+
+        return damage;
       case AttackMode.Both:
-        return (
-          (this.normal_attack + this.skill_damage) *
-          this.critical_rate *
-          this.critical_damage
-        );
+        damage = this.normal_attack + this.skill_damage;
+
+        if (Math.random() < this.critical_rate) {
+          damage *= this.critical_damage;
+        }
+
+        return damage;
       default:
         return 0;
     }
