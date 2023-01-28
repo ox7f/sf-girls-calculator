@@ -13,7 +13,6 @@ export class Agent {
   critical_damage: number; // multiplier of damage for a critical attack
   skill_damage: number; // determines the damage of a skill
   skill: Skill;
-  damage_multiplier: number = 1; // used for damage buffs
 
   applied_effects: Effect[] = []; // list of applied (skill) effects
   attack_mode: AttackMode = AttackMode.Normal; // attribute that is used for damage calculation
@@ -35,7 +34,7 @@ export class Agent {
   }
 
   attack(target: Target, time: number) {
-    let total_damage = this.calculate_damage() * this.damage_multiplier;
+    let total_damage = this.calculate_damage();
 
     this.last_attack_time = time;
     this.attack_counter++;

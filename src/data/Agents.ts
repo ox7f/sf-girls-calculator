@@ -21,12 +21,14 @@ export const Yuki = new Agent({
         apply: (params: EffectParamType) => {
           const { agent } = params;
           agent.attack_speed *= 2.2;
-          agent.damage_multiplier *= 15;
+          agent.normal_attack *= 15;
+          agent.skill_damage *= 15;
         },
         remove: (params: EffectParamType) => {
           const { agent } = params;
           agent.attack_speed /= 2.2;
-          agent.damage_multiplier /= 15;
+          agent.normal_attack /= 15;
+          agent.skill_damage /= 15;
         },
       },
     ],
@@ -727,13 +729,19 @@ export const Yukako = new Agent({
           const { team } = params;
           team
             .filter((a) => a.class === ClassName.Gunner)
-            .forEach((a) => (a.damage_multiplier *= 1.5));
+            .forEach((a) => {
+              a.normal_attack *= 1.5;
+              a.skill_damage *= 1.5;
+            });
         },
         remove: (params: EffectParamType) => {
           const { team } = params;
           team
             .filter((a) => a.class === ClassName.Gunner)
-            .forEach((a) => (a.damage_multiplier /= 1.5));
+            .forEach((a) => {
+              a.normal_attack /= 1.5;
+              a.skill_damage /= 1.5;
+            });
         },
       },
     ],
@@ -767,7 +775,10 @@ export const Coco = new Agent({
             return;
           }
 
-          team.forEach((a) => (a.damage_multiplier *= 4.33));
+          team.forEach((a) => {
+            a.normal_attack *= 4.33;
+            a.skill_damage *= 4.33;
+          });
         },
         remove: (params: EffectParamType) => {
           const { team } = params;
@@ -778,7 +789,10 @@ export const Coco = new Agent({
             return;
           }
 
-          team.forEach((a) => (a.damage_multiplier /= 4.33));
+          team.forEach((a) => {
+            a.normal_attack /= 4.33;
+            a.skill_damage /= 4.33;
+          });
         },
       },
     ],
@@ -976,12 +990,14 @@ export const Chihiro = new Agent({
         apply: (params: EffectParamType) => {
           const { agent } = params;
           agent.attack_speed *= 7.15;
-          agent.damage_multiplier *= 1.14;
+          agent.normal_attack *= 1.14;
+          agent.skill_damage *= 1.14;
         },
         remove: (params: EffectParamType) => {
           const { agent } = params;
           agent.attack_speed /= 7.15;
-          agent.damage_multiplier /= 1.14;
+          agent.normal_attack /= 1.14;
+          agent.skill_damage /= 1.14;
         },
       },
     ],
@@ -1279,7 +1295,8 @@ export const Hoshiko = new Agent({
             .filter((a) => a.class === ClassName.Striker)
             .forEach((a) => {
               a.attack_speed *= 1.2;
-              a.damage_multiplier *= 1.4;
+              a.normal_attack *= 1.4;
+              a.skill_damage *= 1.4;
             });
         },
         remove: (params: EffectParamType) => {
@@ -1288,7 +1305,8 @@ export const Hoshiko = new Agent({
             .filter((a) => a.class === ClassName.Striker)
             .forEach((a) => {
               a.attack_speed /= 1.2;
-              a.damage_multiplier /= 1.4;
+              a.normal_attack /= 1.4;
+              a.skill_damage /= 1.4;
             });
         },
       },
@@ -1316,13 +1334,15 @@ export const Feme = new Agent({
         duration: 12,
         apply: (params: EffectParamType) => {
           const { agent, target } = params;
-          agent.damage_multiplier *= 4.6;
+          agent.normal_attack *= 4.6;
+          agent.skill_damage *= 4.6;
           agent.critical_rate *= 11.6;
           target.takeDamage(agent.normal_attack * 2, agent);
         },
         remove: (params: EffectParamType) => {
           const { agent } = params;
-          agent.damage_multiplier /= 4.6;
+          agent.normal_attack /= 4.6;
+          agent.skill_damage /= 4.6;
           agent.critical_rate /= 11.6;
         },
       },
@@ -1458,7 +1478,8 @@ export const RihoX = new Agent({
           const { agent, target } = params;
 
           agent.attack_speed *= 2.76;
-          agent.damage_multiplier *= 1.89;
+          agent.normal_attack *= 1.89;
+          agent.skill_damage *= 1.89;
 
           let damage = 9515.2;
 
@@ -1470,7 +1491,8 @@ export const RihoX = new Agent({
         remove: (params: EffectParamType) => {
           const { agent } = params;
           agent.attack_speed /= 2.76;
-          agent.damage_multiplier /= 1.89;
+          agent.normal_attack /= 1.89;
+          agent.skill_damage /= 1.89;
         },
       },
     ],
@@ -1497,7 +1519,8 @@ export const Setsuna = new Agent({
         duration: 7,
         apply: (params: EffectParamType) => {
           const { agent, target } = params;
-          agent.damage_multiplier *= 10;
+          agent.normal_attack *= 10;
+          agent.skill_damage *= 10;
 
           let damage = 5 * 3309.6 * 7;
 
@@ -1508,7 +1531,8 @@ export const Setsuna = new Agent({
         },
         remove: (params: EffectParamType) => {
           const { agent } = params;
-          agent.damage_multiplier /= 10;
+          agent.normal_attack /= 10;
+          agent.skill_damage /= 10;
         },
       },
     ],
@@ -1645,7 +1669,8 @@ export const Rosalie = new Agent({
             .filter((a) => a.class === ClassName.Artillery)
             .forEach((a) => {
               a.attack_speed *= 1.2;
-              a.damage_multiplier *= 1.4;
+              a.normal_attack *= 1.4;
+              a.skill_damage *= 1.4;
             });
         },
         remove: (params: EffectParamType) => {
@@ -1654,7 +1679,8 @@ export const Rosalie = new Agent({
             .filter((a) => a.class === ClassName.Artillery)
             .forEach((a) => {
               a.attack_speed /= 1.2;
-              a.damage_multiplier /= 1.4;
+              a.normal_attack /= 1.4;
+              a.skill_damage /= 1.4;
             });
         },
       },
@@ -1686,7 +1712,8 @@ export const Toki = new Agent({
             .filter((a) => a.class === ClassName.Gunner)
             .forEach((a) => {
               a.attack_speed *= 1.2;
-              a.damage_multiplier *= 1.4;
+              a.normal_attack *= 1.4;
+              a.skill_damage *= 1.4;
             });
         },
         remove: (params: EffectParamType) => {
@@ -1695,7 +1722,8 @@ export const Toki = new Agent({
             .filter((a) => a.class === ClassName.Gunner)
             .forEach((a) => {
               a.attack_speed /= 1.2;
-              a.damage_multiplier /= 1.4;
+              a.normal_attack /= 1.4;
+              a.skill_damage /= 1.4;
             });
         },
       },
