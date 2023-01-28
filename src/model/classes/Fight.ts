@@ -23,14 +23,25 @@ export class FightCalculator {
         // check if the skill can be used
         if (run_time % agent.skill.cooldown === 0) {
           agent.skill.effects.forEach((e) => {
-            // TODO: wip
             if (agent.skill.is_stackable) {
+              // stackable skill
+              e.apply({ agent, team: this.team, target: this.target });
+              agent.applied_effects.push({ ...e, begin: run_time });
             } else {
-              // TODO: apply effect only when effect not in applied_effects
-            }
+              // non-stackable skill
+              const oldEffect = agent.applied_effects.find(
+                (effect) => effect.apply === e.apply
+              );
 
-            e.apply({ agent, team: this.team, target: this.target });
-            agent.applied_effects.push({ ...e, begin: run_time });
+              if (oldEffect) {
+                // refresh begin time of non-stackable effects
+                oldEffect.begin = run_time;
+              } else {
+                // apply effect
+                e.apply({ agent, team: this.team, target: this.target });
+                agent.applied_effects.push({ ...e, begin: run_time });
+              }
+            }
           });
         }
 
@@ -52,11 +63,20 @@ export class FightCalculator {
       run_time += 10;
     }
 
+    const team_sorted_by_damage = this.team.sort(
+      (a, b) => b.dealt_damage - a.dealt_damage
+    );
+
     console.log("result:", {
       health: Number(this.target.health.toFixed(2)),
       damage: Number((starting_health - this.target.health).toFixed(2)),
       time: (this.duration - run_time) / 1000,
     });
-    console.table(this.team, ["name", "attack_counter", "dealt_damage"]);
+
+    console.table(team_sorted_by_damage, [
+      "name",
+      "attack_counter",
+      "dealt_damage",
+    ]);
   }
 }

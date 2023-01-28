@@ -1,9 +1,9 @@
 import { FightCalculator } from "./model/classes";
-import { Coco, Yuki } from "./data/Agents";
+import { Coco, Hoshiko, Yuki } from "./data/Agents";
 import { Dummy_Stage_1 } from "./data/Targets";
 
 const fightCalculator = new FightCalculator({
-  team: [Yuki, Coco],
+  team: [Yuki, Coco, Hoshiko],
   target: Dummy_Stage_1,
   duration: 30,
 });
