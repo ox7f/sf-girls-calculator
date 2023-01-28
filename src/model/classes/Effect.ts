@@ -7,9 +7,9 @@ export class Effect {
   apply: EffectFunctionType;
   remove: EffectFunctionType;
 
-  constructor(effect: NewEffect) {
-    this.duration = effect.duration ? effect.duration * 1000 : 0; // seconds to ms
-    this.apply = effect.apply;
-    this.remove = effect.remove;
+  constructor({ duration, apply, remove }: NewEffect) {
+    this.duration = duration ? duration * 1000 : 0; // seconds to ms
+    this.apply = apply;
+    this.remove = remove;
   }
 }
