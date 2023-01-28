@@ -14,6 +14,11 @@ export class FightCalculator {
   }
 
   run() {
+    // preparations
+    this.team.forEach((agent) => {
+      agent.critical_rate -= this.target.critical_resistance / 100;
+    });
+
     while (this.time < this.duration && this.target.current_health > 0) {
       this.handle_skills();
       this.handle_attacks();
