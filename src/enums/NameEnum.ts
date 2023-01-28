@@ -80,4 +80,5 @@ export enum Name {
   Mora = "Mora",
   Masamune = "Masamune",
   Chloe = "Chloe",
+  Tyrla = "Tyrla",
 }
