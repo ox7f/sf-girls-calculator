@@ -3,7 +3,7 @@ import { Coco, Yuki } from "./data/Agents";
 import { Dummy_Stage_1 } from "./data/Targets";
 
 const fightCalculator = new FightCalculator({
-  team: [Yuki, Coco],
+  team: [Yuki],
   target: Dummy_Stage_1,
   duration: 30,
 });
@@ -13,4 +13,4 @@ fightCalculator.fight();
 const endTime = performance.now();
 
 // check performance
-console.log(`took ${endTime - startTime} milliseconds`);
+console.log(`execution time: ${endTime - startTime} milliseconds`);
