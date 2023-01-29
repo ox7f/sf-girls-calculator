@@ -1,5 +1,9 @@
 # TODOs
 
-- skill damage needs to be calculated based on skill_damage attribute
-- determine which skill effects are stackable
+- skill logic still missing for some agents
+- fix skill reset functionality
+
+- implement runes and rune-sets
+- implement seekers
+- implement ditto (target with skill tree)
 - implement damage over time
