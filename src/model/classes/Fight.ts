@@ -1,54 +1,42 @@
 import { NewFight } from "../interfaces";
+import { ResultType } from "../types";
 import { Agent, Effect, Target } from "./index";
 
 export class FightCalculator {
-  duration: number; // fight length in seconds
   team: Agent[] = [];
   target: Target;
   time: number = 0;
 
-  constructor({ team, target, duration }: NewFight) {
-    this.duration = duration * 1000; // seconds to ms
+  constructor({ team, target }: NewFight) {
     this.team = team;
     this.target = target;
   }
 
-  run() {
-    // preparations
-    this.team.forEach((agent) => {
-      agent.critical_rate -= this.target.critical_resistance / 100;
-    });
+  run(): ResultType {
+    // TODO: preparations (runes)
+    // this.team.forEach((agent) => {
+    //   // apply lvl 1 swiftness runes (as, as, na)
+    //   agent.attack_speed *= 1.302;
+    //   agent.normal_attack *= 1.9;
+    // });
 
-    while (this.time < this.duration && this.target.current_health > 0) {
+    while (this.time < this.target.duration && this.target.current_health > 0) {
       this.handle_skills();
       this.handle_attacks();
       this.time += 10;
     }
 
-    this.show_results();
-  }
-
-  show_results() {
-    const team_sort_by_damage = this.team.sort(
-      (a, b) => b.dealt_damage - a.dealt_damage
-    );
-
-    console.log(`result:
-      health: ${this.target.current_health}
-      damage: ${this.target.health - this.target.current_health}
-      time:   ${(this.duration - this.time) / 1000},
-    `);
-
-    console.table(team_sort_by_damage, [
-      "name",
-      "attack_counter",
-      "dealt_damage",
-    ]);
+    return {
+      team: this.team,
+      time: this.time,
+      target: this.target,
+    };
   }
 
   handle_attacks() {
     this.team.forEach((agent) => {
-      let time_to_attack = (1000 / agent.attack_speed) * 1000;
+      let time_to_attack =
+        Math.round(((1000 / agent.attack_speed) * 1000) / 10) * 10;
 
       // check if the agent can attack
       if (this.time - agent.last_attack_time >= time_to_attack) {

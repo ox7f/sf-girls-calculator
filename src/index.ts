@@ -1,17 +1,8 @@
-import { FightCalculator } from "./model/classes";
-// import * as agents from "./data/Agents";
-import { Ayu, Coco, Sora } from "./data/Agents";
-import { Dummy_Stage_4 } from "./data/Targets";
-
-const fightCalculator = new FightCalculator({
-  team: [Ayu, Coco, Sora],
-  target: Dummy_Stage_4,
-  duration: 120,
-});
+import { calculateAgentsIndividually } from "./helper";
 
 const startTime = performance.now();
-fightCalculator.run();
+calculateAgentsIndividually();
 const endTime = performance.now();
 
 // check performance
-console.log(`execution time: ${endTime - startTime} milliseconds`);
+console.log(`execution time: ${(endTime - startTime).toFixed(3)} ms`);

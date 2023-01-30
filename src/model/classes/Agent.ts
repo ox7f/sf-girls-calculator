@@ -34,7 +34,7 @@ export class Agent {
   }
 
   attack(target: Target, time: number) {
-    let total_damage = this.calculate_damage();
+    let total_damage = this.calculate_damage(target);
 
     this.last_attack_time = time;
     this.attack_counter++;
@@ -42,14 +42,16 @@ export class Agent {
     target.takeDamage(total_damage, this);
   }
 
-  calculate_damage(): number {
+  // TODO: implement evo tree
+  calculate_damage(target: Target): number {
+    let critical_rate = this.critical_rate - target.critical_resistance / 100;
     let damage = 0;
 
     switch (this.attack_mode) {
       case AttackMode.Normal:
         damage = this.normal_attack;
 
-        if (Math.random() < this.critical_rate) {
+        if (Math.random() < critical_rate) {
           damage *= this.critical_damage;
         }
 
@@ -57,7 +59,7 @@ export class Agent {
       case AttackMode.Skill:
         damage = this.skill_damage;
 
-        if (Math.random() < this.critical_rate) {
+        if (Math.random() < critical_rate) {
           damage *= this.critical_damage;
         }
 
@@ -65,7 +67,7 @@ export class Agent {
       case AttackMode.Both:
         damage = this.normal_attack + this.skill_damage;
 
-        if (Math.random() < this.critical_rate) {
+        if (Math.random() < critical_rate) {
           damage *= this.critical_damage;
         }
 
