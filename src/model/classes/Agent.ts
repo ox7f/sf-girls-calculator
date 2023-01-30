@@ -33,6 +33,7 @@ export class Agent {
     this.skill = new Skill(agent.skill);
   }
 
+  // TODO: implement evo tree
   attack(target: Target, time: number) {
     let total_damage = this.calculate_damage(target);
 
@@ -42,7 +43,6 @@ export class Agent {
     target.takeDamage(total_damage, this);
   }
 
-  // TODO: implement evo tree
   calculate_damage(target: Target): number {
     let critical_rate = this.critical_rate - target.critical_resistance / 100;
     let damage = 0;

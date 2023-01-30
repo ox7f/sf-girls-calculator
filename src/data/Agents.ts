@@ -1,4 +1,4 @@
-import { ClassName, Name, Organization, Size } from "../enums";
+import { AttackMode, ClassName, Name, Organization, Size } from "../enums";
 import { EffectParamType } from "../model/types";
 
 type DamageCalcType = {
@@ -903,13 +903,13 @@ export const Sizuko = {
   },
 };
 
-// TODO: result 1,405,733 (calc: 1,676,087)
+// result 1,405,733 (calc: 1,382,173)
 export const Chihiro = {
   name: Name.Chihiro,
   organization: Organization.ADB,
   cup_size: Size.C,
   class: ClassName.Artillery,
-  attack_speed: 0.6,
+  attack_speed: 0.5,
   normal_attack: 4297,
   critical_rate: 0.74,
   critical_damage: 2.028,
@@ -1058,7 +1058,7 @@ export const Akina = {
   },
 };
 
-// TODO: result 1,100,353 (calc: 1,291,771)
+// result 1,100,353 (calc: 1,291,771) (calculate uses skill 1 more time than game)
 export const Akari = {
   name: Name.Akari,
   organization: Organization.ADB,
@@ -1251,7 +1251,6 @@ export const Feme = {
           agent.normal_attack *= 4.6;
           agent.skill_damage *= 4.6;
           agent.critical_rate *= 11.6;
-          console.log(agent.critical_rate);
           target.takeDamage(agent.normal_attack * 2, agent);
         },
         remove: (params: EffectParamType) => {
@@ -1888,7 +1887,7 @@ export const Kaja = {
   },
 };
 
-// TODO: result 1,785,396 (calc: XXX)
+// TODO: result 1,785,396 (calc: 2,810,680)
 export const Bia = {
   name: Name.Bia,
   organization: Organization.DOD,
@@ -1900,16 +1899,21 @@ export const Bia = {
   critical_damage: 2.018,
   skill_damage: 1160,
   skill: {
-    // trigger the fate's hand for 6 seconds, increases self skill damage to 2400% and eject all of her daggers. cooldown: 10
+    // trigger the fate's hand for 6 seconds,
+    // increases self skill damage to 2400% and eject all of her daggers. cooldown: 10
     name: "Fate's Hand: Retribution",
     effects: [
       {
         duration: 6,
         apply: (params: EffectParamType) => {
-          // TODO:
+          // TODO: implement damage over time
+          const { agent } = params;
+          agent.skill_damage *= 24;
+          applySkillDamage({ damage: 8 * 1160, skill_damage: 1160, params });
         },
         remove: (params: EffectParamType) => {
-          // TODO:
+          const { agent } = params;
+          agent.skill_damage /= 24;
         },
       },
     ],
@@ -1945,7 +1949,7 @@ export const Eri = {
   },
 };
 
-// TODO: result 1,040,481 (calc: 548,022)
+// result 1,040,481 (calc: 1,101,752)
 export const Kiyomi = {
   name: Name.Kiyomi,
   organization: Organization.WIO,
@@ -2000,6 +2004,7 @@ export const Musuna = {
       {
         duration: 3,
         apply: (params: EffectParamType) => {
+          // TODO: implement damave over time
           const { agent } = params;
           agent.attack_speed *= 6.35;
           agent.normal_attack *= 2.6;
@@ -2046,12 +2051,14 @@ export const Windy = {
         duration: 12,
         apply: (params: EffectParamType) => {
           const { agent } = params;
+          agent.attack_mode = AttackMode.Skill;
           agent.attack_speed *= 2;
           agent.normal_attack *= 3.8;
           agent.skill_damage *= 3.8;
         },
         remove: (params: EffectParamType) => {
           const { agent } = params;
+          agent.attack_mode = AttackMode.Normal;
           agent.attack_speed /= 2;
           agent.normal_attack /= 3.8;
           agent.skill_damage /= 3.8;
@@ -2063,7 +2070,7 @@ export const Windy = {
   },
 };
 
-// TODO: result 1,393,460 (calc: 823,392)
+// TODO: result 1,393,460 (calc: 1,565,969)
 export const Kotaru = {
   name: Name.Kotaru,
   organization: Organization.WIO,
@@ -2245,7 +2252,7 @@ export const Victoria = {
   },
 };
 
-// TODO: result 1,771,689 (calc: 146,507)
+// TODO: result 1,771,689 (calc: 2,430,654)
 export const Laura = {
   name: Name.Laura,
   organization: Organization.ADB,
@@ -2255,7 +2262,7 @@ export const Laura = {
   normal_attack: 613,
   critical_rate: 0.84,
   critical_damage: 2.028,
-  skill_damage: 613,
+  skill_damage: 680,
   skill: {
     // enter the ultimate mode, increases self skill damage to 1200% for 11 seconds.
     // everytime Laura enter the ultimate mode, she will cast a global stackable protection to the team
@@ -2266,10 +2273,12 @@ export const Laura = {
         duration: 11,
         apply: (params: EffectParamType) => {
           const { agent } = params;
+          agent.attack_mode = AttackMode.Skill;
           agent.skill_damage *= 12;
         },
         remove: (params: EffectParamType) => {
           const { agent } = params;
+          agent.attack_mode = AttackMode.Normal;
           agent.skill_damage /= 12;
         },
       },
@@ -2307,7 +2316,7 @@ export const Kura = {
   },
 };
 
-// TODO: result 3,066,792 (calc: 1,386,606)
+// result 1,329,982 (calc: 1,386,606)
 export const Ne = {
   name: Name.Ne,
   organization: Organization.GAA,
@@ -2329,12 +2338,14 @@ export const Ne = {
         duration: 10,
         apply: (params: EffectParamType) => {
           const { agent } = params;
+          agent.attack_mode = AttackMode.Skill;
           agent.attack_speed *= 2;
           agent.normal_attack *= 9;
           agent.skill_damage *= 9;
         },
         remove: (params: EffectParamType) => {
           const { agent } = params;
+          agent.attack_mode = AttackMode.Normal;
           agent.attack_speed /= 2;
           agent.normal_attack /= 9;
           agent.skill_damage /= 9;
