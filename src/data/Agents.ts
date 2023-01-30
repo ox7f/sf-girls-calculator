@@ -385,7 +385,7 @@ export const Noa = {
   },
 };
 
-// result 30,211,996 (calc: 26,421,006)
+// result 26,470,866 (calc: 26,421,006)
 export const Neugena = {
   name: Name.Neugena,
   organization: Organization.GSR,
