@@ -13,16 +13,9 @@ export class FightCalculator {
   }
 
   run(): ResultType {
-    // TODO: preparations (runes)
-    // this.team.forEach((agent) => {
-    //   // apply lvl 1 swiftness runes (as, as, na)
-    //   agent.attack_speed *= 1.302;
-    //   agent.normal_attack *= 1.9;
-    // });
-
     while (this.time < this.target.duration && this.target.current_health > 0) {
-      this.handle_skills();
-      this.handle_attacks();
+      this.handle_skill();
+      this.handle_attack();
       this.time += 10;
     }
 
@@ -33,7 +26,7 @@ export class FightCalculator {
     };
   }
 
-  handle_attacks() {
+  handle_attack() {
     this.team.forEach((agent) => {
       let time_to_attack =
         Math.round(((1000 / agent.attack_speed) * 1000) / 10) * 10;
@@ -45,7 +38,7 @@ export class FightCalculator {
     });
   }
 
-  handle_skills() {
+  handle_skill() {
     this.team.forEach((agent) => {
       // check if the skill can be used
       if (this.time % agent.skill.cooldown === 0) {
@@ -82,8 +75,9 @@ export class FightCalculator {
   }
 
   apply_effect(agent: Agent, effect: Effect) {
-    effect.apply({ agent, team: this.team, target: this.target });
-    agent.applied_effects.push({ ...effect, begin: this.time });
+    const { team, target, time } = this;
+    effect.apply({ agent, team, target });
+    agent.applied_effects.push({ ...effect, begin: time });
   }
 
   remove_effect(agent: Agent) {

@@ -15,7 +15,7 @@ export const Dummy_Stage_3 = {
 
 export const Dummy_Stage_4 = {
   health: 86400000,
-  critical_resistance: 100,
+  critical_resistance: 1,
   duration: 120,
 };
 
@@ -26,6 +26,6 @@ export const Dummy_Stage_5 = {
 
 export const Dummy_Stage_6 = {
   health: 116000000,
-  critical_resistance: 140,
+  critical_resistance: 1.4,
   duration: 180,
 };

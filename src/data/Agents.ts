@@ -11,7 +11,7 @@ const applySkillDamage = ({ damage, skill_damage, params }: DamageCalcType) => {
   const { agent, target } = params;
   const multiplier = damage / skill_damage;
 
-  let critical_rate = agent.critical_rate - target.critical_resistance / 100;
+  let critical_rate = agent.critical_rate - target.critical_resistance;
   let dealt_damage = multiplier * agent.skill_damage;
 
   if (Math.random() < critical_rate) {
@@ -2004,7 +2004,7 @@ export const Musuna = {
       {
         duration: 3,
         apply: (params: EffectParamType) => {
-          // TODO: implement damave over time
+          // TODO: implement damage over time
           const { agent } = params;
           agent.attack_speed *= 6.35;
           agent.normal_attack *= 2.6;
@@ -2234,7 +2234,7 @@ export const Victoria = {
           applySkillDamage({ damage: 98063, skill_damage: 613, params });
         },
         remove: (params: EffectParamType) => {
-          const { agent, team, target } = params;
+          const { team } = params;
           const support_num = team.filter(
             (a) => a.class === ClassName.Support
           ).length;
@@ -2473,19 +2473,19 @@ export const Sera = {
   },
 };
 
-// result 648,122 (calc: 720,853)
+// result 2,100,315 (calc: 2,229,000)
 export const Livia = {
   name: Name.Livia,
   organization: Organization.WIO,
   cup_size: Size.J,
   class: ClassName.Gunner,
   attack_speed: 1,
-  normal_attack: 752,
+  normal_attack: 2145,
   critical_rate: 0.69,
   critical_damage: 2.018,
-  skill_damage: 752,
+  skill_damage: 2145,
   skill: {
-    // shoot out a transonic tsunami wave towards to enemies dealing 30065 damage.
+    // shoot out a transonic tsunami wave towards to enemies dealing 85815 damage.
     // having a 75% chance to reset the skill cooldown to 2 seconds everytime this skill casts. cooldown: 14
     name: "Call of the Whale",
     effects: [
@@ -2499,7 +2499,7 @@ export const Livia = {
             agent.skill.cooldown = 14 * 1000;
           }
 
-          applySkillDamage({ damage: 30065, skill_damage: 752, params });
+          applySkillDamage({ damage: 85815, skill_damage: 2145, params });
         },
         remove: () => {},
       },
@@ -2509,7 +2509,7 @@ export const Livia = {
   },
 };
 
-// TODO: result 1,471,659 (calc: 1,383,190)
+// result 1,435,443 (calc: 1,383,190)
 export const ReiJK = {
   name: Name.ReiJK,
   organization: Organization.GSR,
@@ -2629,7 +2629,7 @@ export const Amikam = {
   },
 };
 
-// TODO: result 1,770,875 (calc: 1,009,638)
+// TODO: result 1,640,491 (calc: 1,510,020)
 export const Iizuna = {
   name: Name.Iizuna,
   organization: Organization.GSR,
