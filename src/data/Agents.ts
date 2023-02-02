@@ -57,7 +57,7 @@ export const Yuki = {
   },
 };
 
-// result 323,310 (calc: 355,063) (calculate uses skill 1 more time than game)
+// result 323,310 (calc: 328,635)
 export const Neve = {
   name: Name.Neve,
   organization: Organization.GSR,
@@ -80,7 +80,7 @@ export const Neve = {
       },
     ],
     is_stackable: false,
-    cooldown: 17,
+    cooldown: 18, // + 1 second: calculator uses ability 1x more often than the game
   },
 };
 
@@ -692,7 +692,7 @@ export const Yukako = {
   },
 };
 
-// TODO: result 1,117,403 (calc: 1,304,148.37)
+// result 1,117,403 (calc: 1,095,923)
 export const Coco = {
   name: Name.Coco,
   organization: Organization.DOD,
@@ -703,6 +703,7 @@ export const Coco = {
   critical_rate: 0.74,
   critical_damage: 2.028,
   skill_damage: 2398,
+  apply_skill_time: 1,
   skill: {
     // she will encourage enemies run 200% faster for 1.5 seconds.
     // and if coco is the only support in the team,
@@ -1114,7 +1115,7 @@ export const Sayaka = {
   },
 };
 
-// TODO: result 483,943 (calc: 552,960)
+// result 483,943 (calc: 466,560)
 export const Momoko = {
   name: Name.Momoko,
   organization: Organization.DOD,
@@ -1125,6 +1126,7 @@ export const Momoko = {
   critical_rate: 0.84,
   critical_damage: 2.028,
   skill_damage: 2160,
+  apply_skill_time: 1,
   skill: {
     // increases self attack speed to 530% for 4 seconds.
     // bullet adds a penetration and charming effect,
@@ -1159,6 +1161,7 @@ export const Meteli = {
   critical_rate: 0.84,
   critical_damage: 2.028,
   skill_damage: 1226,
+  apply_skill_time: 1,
   skill: {
     // summons a choo-choo train to knock back and deal 78451 damage. having 70% chance reset the skill cooldown to 2 second(s) each time this skill casts. cooldown: 10
     name: "Meteorite Missile",
@@ -1183,7 +1186,7 @@ export const Meteli = {
   },
 };
 
-// TODO: result 319,317 (calc: 385,507)
+// result 319,317 (calc: 309,696)
 export const Hoshiko = {
   name: Name.Hoshiko,
   organization: Organization.GSR,
@@ -1194,6 +1197,7 @@ export const Hoshiko = {
   critical_rate: 0.69,
   critical_damage: 2.018,
   skill_damage: 1613,
+  apply_skill_time: 1,
   skill: {
     // cast a is_stackable buff on all striker agents,
     // each buff increases attack speed to 110% and damage to 140% for 24 seconds. cooldown: 5
@@ -1228,7 +1232,7 @@ export const Hoshiko = {
   },
 };
 
-// TODO: result 1,777,564 (calc: 2,074,244)
+// result 1,777,564 (calc: 1,782,015)
 export const Feme = {
   name: Name.Feme,
   organization: Organization.GAA,
@@ -1239,6 +1243,7 @@ export const Feme = {
   critical_rate: 0.94,
   critical_damage: 2.038,
   skill_damage: 2099,
+  apply_skill_time: 1,
   skill: {
     // shoot 2 energy bolts from the ancient sphinx cannon, deals normal attack damage with aoe.
     // increases self damage to 460% and critical rate to 1160% for 12 seconds. cooldown: 15
@@ -1247,11 +1252,10 @@ export const Feme = {
       {
         duration: 12,
         apply: (params: EffectParamType) => {
-          const { agent, target } = params;
+          const { agent } = params;
           agent.normal_attack *= 4.6;
           agent.skill_damage *= 4.6;
           agent.critical_rate *= 11.6;
-          target.takeDamage(agent.normal_attack * 2, agent);
         },
         remove: (params: EffectParamType) => {
           const { agent } = params;
@@ -1510,7 +1514,7 @@ export const O = {
   },
 };
 
-// result 1,754,107 (calc: 1,911,034)
+// result 1,754,107 (calc: 1,911,034) (calculate uses skill 1 more time than game)
 export const GaiGai = {
   name: Name.GaiGai,
   organization: Organization.DOD,
@@ -1537,7 +1541,7 @@ export const GaiGai = {
   },
 };
 
-// result 331,279 (calc: 388,416)
+// result 331,279 (calc: 313,344)
 export const Rosalie = {
   name: Name.Rosalie,
   organization: Organization.ADB,
@@ -1548,6 +1552,7 @@ export const Rosalie = {
   critical_rate: 0.84,
   critical_damage: 2.028,
   skill_damage: 3264,
+  apply_skill_time: 1,
   skill: {
     // cast a stackable buff on all artillery agents.
     // each buff increases the attack speed to 110% and damage to 140% for 24 seconds. cooldown: 5
@@ -1582,7 +1587,7 @@ export const Rosalie = {
   },
 };
 
-// result 388,136 (calc: 388,136)
+// result 324,826 (calc: 311,808)
 export const Toki = {
   name: Name.Toki,
   organization: Organization.DOD,
@@ -1593,6 +1598,7 @@ export const Toki = {
   critical_rate: 0.84,
   critical_damage: 2.028,
   skill_damage: 1624,
+  apply_skill_time: 1,
   skill: {
     // cast a stackable buff on all gunner agents.
     // each buff increases the attack speed to 110% and damage to 140% for 24 seconds. cooldown: 5
@@ -1724,7 +1730,8 @@ export const ZiLong = {
   },
 };
 
-// TODO: result 275,862 (calc: 183,495)
+// TODO:
+// result 275,862 (calc: 269,933)
 export const Ari = {
   name: Name.Ari,
   organization: Organization.ZETH,
@@ -1748,10 +1755,8 @@ export const Ari = {
             (a) => a.class !== ClassName.Support
           ).length;
 
-          agent.normal_attack *= (1 + non_support_num) * 0.34;
-          agent.skill_damage *= (1 + non_support_num) * 0.34;
-
-          applySkillDamage({ damage: 4 * 4724, skill_damage: 1050, params });
+          agent.normal_attack *= 1 + non_support_num * 0.34;
+          agent.skill_damage *= 1 + non_support_num * 0.34;
         },
         remove: (params: EffectParamType) => {
           const { agent, team } = params;
@@ -1759,9 +1764,15 @@ export const Ari = {
             (a) => a.class !== ClassName.Support
           ).length;
 
-          agent.normal_attack /= (1 + non_support_num) * 0.34;
-          agent.skill_damage /= (1 + non_support_num) * 0.34;
+          agent.normal_attack /= 1 + non_support_num * 0.34;
+          agent.skill_damage /= 1 + non_support_num * 0.34;
         },
+      },
+      {
+        apply: (params: EffectParamType) => {
+          applySkillDamage({ damage: 4 * 4724, skill_damage: 1050, params });
+        },
+        remove: () => {},
       },
     ],
     is_stackable: false,
@@ -1823,7 +1834,7 @@ export const Chia = {
   },
 };
 
-// TODO: result 1,363,055 (calc: 1,489,121)
+// result 1,363,055 (calc: 1,410,746)
 export const Shiko = {
   name: Name.Shiko,
   organization: Organization.ZETH,
@@ -1834,8 +1845,9 @@ export const Shiko = {
   critical_rate: 0.69,
   critical_damage: 2.018,
   skill_damage: 2434,
+  apply_skill_time: 1,
   skill: {
-    // increases self attack speed to 450% and damage to 230% for 11 seconds. cooldown: 11
+    // increases self attack speed to 450% and damage to 230% for 11 seconds. cooldown: 10
     name: "Atomic Prowess: Sword Strike",
     effects: [
       {
@@ -1984,7 +1996,7 @@ export const Kiyomi = {
   },
 };
 
-// TODO: result 1,376,219 (calc: 1,059,129)
+// result 1,376,219 (calc: 1,316,980)
 export const Musuna = {
   name: Name.Musuna,
   organization: Organization.WIO,
@@ -1995,6 +2007,7 @@ export const Musuna = {
   critical_rate: 0.84,
   critical_damage: 2.028,
   skill_damage: 2160,
+  apply_skill_time: 0.5,
   skill: {
     // increases self attack speed to 635% and attack damage to 260% for 3 seconds.
     // bullet adds a penetration, slow and burn effect, slow enemy to 80% and ignite the enemy for 4 seconds,
@@ -2004,7 +2017,6 @@ export const Musuna = {
       {
         duration: 3,
         apply: (params: EffectParamType) => {
-          // TODO: implement damage over time
           const { agent } = params;
           agent.attack_speed *= 6.35;
           agent.normal_attack *= 2.6;
@@ -2021,7 +2033,7 @@ export const Musuna = {
         duration: 4,
         apply: (params: EffectParamType) => {
           // TODO: implement damage over time
-          const { agent, target } = params;
+          applySkillDamage({ damage: 4 * 4537, skill_damage: 2160, params });
         },
         remove: () => {},
       },
@@ -2031,7 +2043,7 @@ export const Musuna = {
   },
 };
 
-// TODO: result 1,494,406 (calc: 1,673,421)
+// result 1,494,406 (calc: 1,538,730)
 export const Windy = {
   name: Name.Windy,
   organization: Organization.GAA,
@@ -2042,6 +2054,7 @@ export const Windy = {
   critical_rate: 0.69,
   critical_damage: 2.018,
   skill_damage: 2085,
+  apply_skill_time: 1,
   skill: {
     // bullets will now penetrate targets and deals skill damage.
     // increases attack speed to 200% and increases damage to 380% for 12 seconds. cooldown: 14
@@ -2070,7 +2083,7 @@ export const Windy = {
   },
 };
 
-// TODO: result 1,393,460 (calc: 1,565,969)
+// result 1,393,460 (calc: 1,460,319)
 export const Kotaru = {
   name: Name.Kotaru,
   organization: Organization.WIO,
@@ -2081,6 +2094,7 @@ export const Kotaru = {
   critical_rate: 0.94,
   critical_damage: 2.038,
   skill_damage: 2160,
+  apply_skill_time: 1,
   skill: {
     // enter request pay raise mode, doing more kick than usual.
     // increase self normal attack damage to 480% and critical rate to 1160% for 13 seconds. cooldown: 23
@@ -2105,7 +2119,7 @@ export const Kotaru = {
   },
 };
 
-// TODO: result 587,457 (calc: 630,344)
+// result 587,457 (calc: 617,760)
 export const Karry = {
   name: Name.Karry,
   organization: Organization.NONE,
@@ -2116,6 +2130,7 @@ export const Karry = {
   critical_rate: 0.84,
   critical_damage: 2.028,
   skill_damage: 1144,
+  apply_skill_time: 1,
   skill: {
     // increase skill damage to all agents with D cup breast size or smaller to 120% for 4 seconds.
     // also flings out 16 penetrating meteor hearts in anti-clockwise pattern, each deal 2144.6 damage. cooldown: 10
@@ -2143,7 +2158,8 @@ export const Karry = {
   },
 };
 
-// TODO: result 2,340,578 (calc: 1,844,824)
+// TODO:
+// result 2,340,578 (calc: 2,409,087)
 export const Sato = {
   name: Name.Sato,
   organization: Organization.ZETH,
@@ -2156,7 +2172,7 @@ export const Sato = {
   skill_damage: 1226,
   skill: {
     // each Zeth member give 33% of damage to every Zeth member for 6 seconds.
-    // her heretic shoots out 9 lazer beams, each beam deals 18877 damage. cooldown: 12
+    // her heretic shoots out 9 lazer beams, each beam deals 25107 damage. cooldown: 12
     name: "Heretic Shredder",
     effects: [
       {
@@ -2166,31 +2182,25 @@ export const Sato = {
           const zeth_member = team.filter(
             (a) => a.organization === Organization.ZETH
           );
+          const zeth_member_num = zeth_member.length - 1;
 
-          zeth_member.forEach((za) => {
-            zeth_member
-              // .filter((a) => a.name !== za.name)
-              .forEach((zam) => {
-                zam.normal_attack += 0.33;
-                zam.skill_damage += 0.33;
-              });
+          zeth_member.forEach((a) => {
+            a.normal_attack *= 1 + 0.33 * zeth_member_num;
+            a.skill_damage *= 1 + 0.33 * zeth_member_num;
           });
 
-          applySkillDamage({ damage: 9 * 18877, skill_damage: 1226, params });
+          applySkillDamage({ damage: 9 * 25107, skill_damage: 1226, params });
         },
         remove: (params: EffectParamType) => {
-          const { agent, team, target } = params;
+          const { team } = params;
           const zeth_member = team.filter(
             (a) => a.organization === Organization.ZETH
           );
+          const zeth_member_num = zeth_member.length - 1;
 
-          zeth_member.forEach((za) => {
-            zeth_member
-              .filter((a) => a.name !== za.name)
-              .forEach((zam) => {
-                zam.normal_attack -= 0.33;
-                zam.skill_damage -= 0.33;
-              });
+          zeth_member.forEach((a) => {
+            a.normal_attack /= 1 + 0.33 * zeth_member_num;
+            a.skill_damage /= 1 + 0.33 * zeth_member_num;
           });
         },
       },
@@ -2252,7 +2262,7 @@ export const Victoria = {
   },
 };
 
-// TODO: result 1,771,689 (calc: 2,430,654)
+// result 1,771,689 (calc: 1,762,560)
 export const Laura = {
   name: Name.Laura,
   organization: Organization.ADB,
@@ -2263,6 +2273,7 @@ export const Laura = {
   critical_rate: 0.84,
   critical_damage: 2.028,
   skill_damage: 680,
+  apply_skill_time: 1,
   skill: {
     // enter the ultimate mode, increases self skill damage to 1200% for 11 seconds.
     // everytime Laura enter the ultimate mode, she will cast a global stackable protection to the team
@@ -2283,12 +2294,12 @@ export const Laura = {
         },
       },
     ],
-    is_stackable: true,
+    is_stackable: false,
     cooldown: 10,
   },
 };
 
-// TODO: result 928,459 (calc: 1,257,381)
+// result 928,459 (calc: 1,175,520)
 export const Kura = {
   name: Name.Kura,
   organization: Organization.ZETH,
@@ -2299,6 +2310,7 @@ export const Kura = {
   critical_rate: 0.94,
   critical_damage: 2.038,
   skill_damage: 2099,
+  apply_skill_time: 1,
   skill: {
     // summons three thunder beams from her trident for 8 seconds,
     // total dealing 25190 damage. cooldown: 3
@@ -2306,6 +2318,7 @@ export const Kura = {
     effects: [
       {
         apply: (params: EffectParamType) => {
+          // TODO: implement damage over time
           applySkillDamage({ damage: 25190, skill_damage: 2099, params });
         },
         remove: () => {},
@@ -2357,7 +2370,7 @@ export const Ne = {
   },
 };
 
-// TODO: result 671,734 (calc: 733,148)
+// result 671,734 (calc: 733,148)
 export const Uta = {
   name: Name.Uta,
   organization: Organization.WIO,
@@ -2393,7 +2406,7 @@ export const Uta = {
   },
 };
 
-// TODO: result 1,246,460 (calc: 1,327,755)
+// result 1,246,460 (calc: 1,252,680)
 export const Midori = {
   name: Name.Midori,
   organization: Organization.WIO,
@@ -2404,6 +2417,7 @@ export const Midori = {
   critical_rate: 0.69,
   critical_damage: 2.018,
   skill_damage: 2145,
+  apply_skill_time: 0.75,
   skill: {
     // shift her phase from electron world and release all of her electron to enemy that deals skill damage.
     // increase self attack speed to 200%, damage to 500% for 7 seconds. cooldown: 15
@@ -2430,17 +2444,17 @@ export const Midori = {
   },
 };
 
-// result 132,682 (calc: 136,136)
+// result 378,587 (calc: 388,416)
 export const Sera = {
   name: Name.Sera,
   organization: Organization.NONE,
   cup_size: Size.D,
   class: ClassName.Support,
   attack_speed: 1,
-  normal_attack: 1144,
+  normal_attack: 3264,
   critical_rate: 0.84,
   critical_damage: 2.028,
-  skill_damage: 1144,
+  skill_damage: 3264,
   skill: {
     // cast a non-stackable buff on all friendly agents.
     // add (Sera skill damage * 25%) damage on each hits for 14 seconds. cooldown: 20
@@ -2589,17 +2603,18 @@ export const Rei = {
   },
 };
 
-// TODO: result 1,265,655 (calc: 2,348,896)
+// result 1,265,655 (calc: 1,287,641)
 export const Amikam = {
   name: Name.Amikam,
   organization: Organization.GAA,
   cup_size: Size.E,
   class: ClassName.Artillery,
-  attack_speed: 1.7,
+  attack_speed: 1,
   normal_attack: 2099,
   critical_rate: 0.84,
   critical_damage: 2.028,
   skill_damage: 2099,
+  apply_skill_time: 1,
   skill: {
     // attack rapidly, penetrate targets and disperse in a narrow angle.
     // also increases self attack damage to 262%, attack speed to 200%
@@ -2610,17 +2625,17 @@ export const Amikam = {
         duration: 12,
         apply: (params: EffectParamType) => {
           const { agent } = params;
-          agent.attack_speed *= 2;
           agent.normal_attack *= 2.62;
           agent.skill_damage *= 2.62;
-          agent.critical_rate += 0.37;
+          agent.attack_speed *= 2;
+          agent.critical_rate *= 1.37;
         },
         remove: (params: EffectParamType) => {
           const { agent } = params;
-          agent.attack_speed /= 2;
           agent.normal_attack /= 2.62;
           agent.skill_damage /= 2.62;
-          agent.critical_rate -= 0.37;
+          agent.attack_speed /= 2;
+          agent.critical_rate /= 1.37;
         },
       },
     ],
@@ -2671,7 +2686,7 @@ export const Iizuna = {
   },
 };
 
-// TODO: result 976,415 (calc: 1,297,182)
+// result 976,415 (calc: 962,419)
 export const Tsurumi = {
   name: Name.Tsurumi,
   organization: Organization.RSA,
@@ -2682,6 +2697,7 @@ export const Tsurumi = {
   critical_rate: 0.84,
   critical_damage: 2.028,
   skill_damage: 4336,
+  apply_skill_time: 0.75,
   skill: {
     // increases self attack speed to 400% and attack damage to 121% for 10 seconds.
     // sickle will penetrate through enemy. cooldown: 13
@@ -2708,7 +2724,7 @@ export const Tsurumi = {
   },
 };
 
-// TODO: result 10,441,705 (calc: 11,314,800)
+// result 10,441,705 (calc: 11,314,800)
 export const Mora = {
   name: Name.Mora,
   organization: Organization.DAB,
@@ -2737,7 +2753,6 @@ export const Mora = {
         },
       },
       {
-        // increase damage
         duration: 7,
         apply: (params: EffectParamType) => {
           const { agent } = params;
@@ -2756,7 +2771,7 @@ export const Mora = {
   },
 };
 
-// TODO: result 1,442,717 (calc: 1,565,190)
+// result 1,442,717 (calc: 1,439,640)
 export const Masamune = {
   name: Name.Masamune,
   organization: Organization.RSA,
@@ -2767,6 +2782,7 @@ export const Masamune = {
   critical_rate: 0.94,
   critical_damage: 2.038,
   skill_damage: 1226,
+  apply_skill_time: 1,
   skill: {
     // pull out all of her blades in a flash for 10 seconds.
     // enlarge her attack range 2.5, increase her damage to 1800%. cooldown: 20
@@ -2843,7 +2859,7 @@ export const Chloe = {
   },
 };
 
-// TODO: result 2,256,230 (calc: 2,495,081)
+// result 2,256,230 (calc: 2,350,460)
 export const Tyrla = {
   name: Name.Tyrla,
   organization: Organization.TAP,
@@ -2854,6 +2870,7 @@ export const Tyrla = {
   critical_rate: 0.84,
   critical_damage: 2.028,
   skill_damage: 2099,
+  apply_skill_time: 1,
   skill: {
     // Tyrla begin the kuchipudi dance, increase self damage to 530%
     // and attack speed to 240% for 12 seconds.

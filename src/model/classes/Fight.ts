@@ -2,6 +2,8 @@ import { NewFight } from "../interfaces";
 import { ResultType } from "../types";
 import { Agent, Effect, Target } from "./index";
 
+const Interval = 10;
+
 export class FightCalculator {
   team: Agent[] = [];
   target: Target;
@@ -16,7 +18,7 @@ export class FightCalculator {
     while (this.time < this.target.duration && this.target.current_health > 0) {
       this.handle_skill();
       this.handle_attack();
-      this.time += 10;
+      this.time += Interval;
     }
 
     return {
@@ -30,18 +32,37 @@ export class FightCalculator {
     this.team.forEach((agent) => {
       let time_to_attack =
         Math.round(((1000 / agent.attack_speed) * 1000) / 10) * 10;
+      let can_attack = this.time - agent.last_attack_time >= time_to_attack;
+      let in_animation = agent.has_animation ? this.in_animation(agent) : false;
 
       // check if the agent can attack
-      if (this.time - agent.last_attack_time >= time_to_attack) {
+      if (can_attack && !in_animation) {
         agent.attack(this.target, this.time);
       }
     });
+  }
+
+  in_animation(agent: Agent): boolean {
+    let { apply_skill_remaining_time, remove_skill_remaining_time } = agent;
+
+    if (apply_skill_remaining_time === 0 && remove_skill_remaining_time === 0) {
+      return false;
+    }
+
+    if (apply_skill_remaining_time > 0 || remove_skill_remaining_time > 0) {
+      agent.apply_skill_remaining_time -= Interval;
+      agent.remove_skill_remaining_time -= Interval;
+      return true;
+    } else {
+      return false;
+    }
   }
 
   handle_skill() {
     this.team.forEach((agent) => {
       // check if the skill can be used
       if (this.time % agent.skill.cooldown === 0) {
+        agent.apply_skill_remaining_time = agent.apply_skill_time;
         this.add_effect(agent);
       }
       this.remove_effect(agent);
@@ -83,6 +104,9 @@ export class FightCalculator {
   remove_effect(agent: Agent) {
     agent.applied_effects = agent.applied_effects.filter((effect) => {
       if (this.time === effect.duration + effect.begin) {
+        if (agent.skill.effects.find((e) => e.apply === effect.apply)) {
+          agent.remove_skill_remaining_time = agent.remove_skill_time;
+        }
         this.remove_expired_effect(effect, agent);
         return false;
       }

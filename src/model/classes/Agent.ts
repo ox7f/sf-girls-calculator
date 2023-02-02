@@ -13,9 +13,14 @@ export class Agent {
   critical_damage: number; // multiplier of damage for a critical attack
   skill_damage: number; // determines the damage of a skill
   skill: Skill;
+  apply_skill_time: number; // time to cast a skill (unable to attack during this time)
+  apply_skill_remaining_time: number = 0; // remaining skill cast time
+  remove_skill_time: number; // time to remove a skill (unable to attack during this time)
+  remove_skill_remaining_time: number = 0; // remaining skill remove time
+  has_animation: boolean; // determines if agent has skill cast animation
 
   applied_effects: Effect[] = []; // list of applied (skill) effects
-  attack_mode: AttackMode = AttackMode.Normal; // attribute that is used for damage calculation
+  attack_mode: AttackMode = AttackMode.Normal; // determines attribute that is used for damage calculation
   last_attack_time: number = 0; // timestamp of the last attack
   attack_counter: number = 0; // number of attacks
   dealt_damage: number = 0; // damage dealt during fight
@@ -31,6 +36,14 @@ export class Agent {
     this.critical_damage = agent.critical_damage;
     this.skill_damage = agent.skill_damage;
     this.skill = new Skill(agent.skill);
+    this.apply_skill_time = agent.apply_skill_time
+      ? agent.apply_skill_time * 1000 // seconds to ms
+      : 0;
+    this.remove_skill_time = agent.remove_skill_time
+      ? agent.remove_skill_time * 1000 // seconds to ms
+      : 0;
+
+    this.has_animation = this.apply_skill_time > 0 || this.remove_skill_time > 0;
   }
 
   attack(target: Target, time: number) {

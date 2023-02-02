@@ -8,7 +8,8 @@ export function calculateAgentsIndividually() {
 
   agents.forEach((a) => {
     const target = new Target(Targets.Dummy_Stage_4);
-    const team = [new Agent(a)];
+    const agent = new Agent(a);
+    const team = [agent];
     const fightCalculator = new FightCalculator({ target, team });
     let result = fightCalculator.run();
     results.push(result);

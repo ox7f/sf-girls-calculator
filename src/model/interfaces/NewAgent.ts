@@ -12,4 +12,6 @@ export interface NewAgent {
   critical_damage: number;
   skill_damage: number;
   skill: NewSkill;
+  apply_skill_time?: number;
+  remove_skill_time?: number;
 }

@@ -9,8 +9,9 @@ export function showResults(results: ResultType[]) {
         .reduce((partialSum, x) => partialSum + x, 0)
         .toFixed(2)
     ),
+    attacks: Number(result.team.map((agent) => agent.attack_counter)),
   }));
   // .sort((a, b) => a.damage - b.damage);
 
-  console.table(sortedResults, ["name", "damage", "game"]);
+  console.table(sortedResults, ["name", "damage", "attacks"]);
 }
