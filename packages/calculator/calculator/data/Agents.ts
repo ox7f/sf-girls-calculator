@@ -1,0 +1,2563 @@
+import { NewAgent, NewDamageEffect, NewDOTEffect, NewEffect, NewSkill } from 'calculator/model';
+import { AttackModeEnum, ClassEnum, EffectEnum, NameEnum, OrganizationEnum, SizeEnum } from '../enums';
+import { EffectParamType } from '../model/types';
+
+export const Yuki = {
+  name: NameEnum.Yuki,
+  organization: OrganizationEnum.WIO,
+  cup_size: SizeEnum.C,
+  class: ClassEnum.Striker,
+  attack_speed: 0.5,
+  normal_attack: 975,
+  critical_rate: 0.74,
+  critical_damage: 2.028,
+  skill_damage: 927,
+  skill: {
+    name: 'Precision Assault',
+    description: 'increases the damage to 1500% and attack speed to 220% for 4 seconds. cooldown: 8',
+    effects: [
+      {
+        type: EffectEnum.Self,
+        apply: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.attack_speed *= 2.2;
+          agent.normal_attack *= 15;
+        },
+        remove: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.attack_speed /= 2.2;
+          agent.normal_attack /= 15;
+        },
+        duration: 4
+      } as NewEffect
+    ],
+    is_stackable: false,
+    cooldown: 8
+  } as NewSkill
+} as NewAgent;
+
+export const Neve = {
+  name: NameEnum.Neve,
+  organization: OrganizationEnum.GSR,
+  cup_size: SizeEnum.D,
+  class: ClassEnum.Support,
+  attack_speed: 2,
+  normal_attack: 601,
+  critical_rate: 0.74,
+  critical_damage: 2.028,
+  skill_damage: 569,
+  apply_skill_time: 0.5,
+  skill: {
+    name: 'Absolute Zero',
+    description: 'summons an iceberg dealing 26428 damage and slows down enemies to 50% for 5 seconds. cooldown: 17',
+    effects: [{ type: EffectEnum.Damage, damage: () => 26428 } as NewDamageEffect],
+    is_stackable: false,
+    cooldown: 17
+  } as NewSkill
+} as NewAgent;
+
+export const Ayu = {
+  name: NameEnum.Ayu,
+  organization: OrganizationEnum.WIO,
+  cup_size: SizeEnum.E,
+  class: ClassEnum.Gunner,
+  attack_speed: 2.2,
+  normal_attack: 461,
+  critical_rate: 0.74,
+  critical_damage: 2.028,
+  skill_damage: 379,
+  remove_skill_time: 0.75,
+  skill: {
+    name: 'Raining Bullets',
+    description: 'shoots a piercing laser beam dealing 45536 damage. cooldown: 9',
+    effects: [{ type: EffectEnum.Damage, damage: () => 45536 } as NewDamageEffect],
+    is_stackable: false,
+    cooldown: 9
+  } as NewSkill
+} as NewAgent;
+
+export const Mika = {
+  name: NameEnum.Mika,
+  organization: OrganizationEnum.GAA,
+  cup_size: SizeEnum.G,
+  class: ClassEnum.Striker,
+  attack_speed: 1,
+  normal_attack: 487,
+  critical_rate: 0.84,
+  critical_damage: 2.038,
+  skill_damage: 463,
+  skill: {
+    name: "Ocean's Torrent",
+    description: 'smashes the ground and creates 4 sword-quakes each dealing 11422 damage. cooldown: 11',
+    effects: [{ type: EffectEnum.Damage, damage: () => 4 * 11422 } as NewDamageEffect],
+    is_stackable: false,
+    cooldown: 11
+  } as NewSkill
+} as NewAgent;
+
+export const Sora = {
+  name: NameEnum.Sora,
+  organization: OrganizationEnum.GSR,
+  cup_size: SizeEnum.E,
+  class: ClassEnum.Gunner,
+  attack_speed: 2.2,
+  normal_attack: 461,
+  critical_rate: 0.74,
+  critical_damage: 2.028,
+  skill_damage: 379,
+  skill: {
+    name: 'Death From Above',
+    description: 'shoots two electric bullets, each dealing 27891 damage. cooldown: 8',
+    effects: [{ type: EffectEnum.Damage, damage: () => 2 * 27891 } as NewDamageEffect],
+    is_stackable: false,
+    cooldown: 8
+  } as NewSkill
+} as NewAgent;
+
+export const Ember = {
+  name: NameEnum.Ember,
+  organization: OrganizationEnum.GAA,
+  cup_size: SizeEnum.E,
+  class: ClassEnum.Artillery,
+  attack_speed: 2.2,
+  normal_attack: 399,
+  critical_rate: 0.74,
+  critical_damage: 2.028,
+  skill_damage: 362,
+  skill: {
+    name: 'Dance of Death',
+    description: 'shoots 4 enhanced bullets, each dealing 13991 damage cooldown: 8',
+    effects: [{ type: EffectEnum.Damage, damage: () => 4 * 13991 } as NewDamageEffect],
+    is_stackable: false,
+    cooldown: 8
+  } as NewSkill
+} as NewAgent;
+
+export const Chiharu = {
+  name: NameEnum.Chiharu,
+  organization: OrganizationEnum.GAA,
+  cup_size: SizeEnum.J,
+  class: ClassEnum.Artillery,
+  attack_speed: 1.1,
+  normal_attack: 1248,
+  critical_rate: 0.59,
+  critical_damage: 2.018,
+  skill_damage: 1131,
+  skill: {
+    name: "Dead Man's Curse",
+    description: 'shoots a powerful bullet at the monster with the highest health, dealing 65165 damage. cooldown: 9',
+    effects: [{ type: EffectEnum.Damage, damage: () => 65165 } as NewDamageEffect],
+    is_stackable: false,
+    cooldown: 9
+  } as NewSkill
+} as NewAgent;
+
+export const Irina = {
+  name: NameEnum.Irina,
+  organization: OrganizationEnum.DOD,
+  cup_size: SizeEnum.A,
+  class: ClassEnum.Artillery,
+  attack_speed: 2.2,
+  normal_attack: 627,
+  critical_rate: 0.74,
+  critical_damage: 2.028,
+  skill_damage: 569,
+  skill: {
+    name: 'Rocket Ricochet',
+    description: 'fires 4 missiles at target, each dealing 14230 damage. cooldown: 6',
+    effects: [{ type: EffectEnum.Damage, damage: () => 4 * 14230 } as NewDamageEffect],
+    is_stackable: false,
+    cooldown: 6
+  } as NewSkill
+} as NewAgent;
+
+export const Yuuha = {
+  name: NameEnum.Yuuha,
+  organization: OrganizationEnum.WIO,
+  cup_size: SizeEnum.C,
+  class: ClassEnum.Gunner,
+  attack_speed: 2.2,
+  normal_attack: 733,
+  critical_rate: 0.74,
+  critical_damage: 2.028,
+  skill_damage: 604,
+  skill: {
+    name: 'Dance of the Lotus',
+    description: 'deals 26563 damage and knockbacks all monsters by 1.6 unit distances. cooldown: 16',
+    effects: [{ type: EffectEnum.Damage, damage: () => 26563 } as NewDamageEffect],
+    is_stackable: false,
+    cooldown: 16
+  } as NewSkill
+} as NewAgent;
+
+export const Uzu = {
+  name: NameEnum.Uzu,
+  organization: OrganizationEnum.ADB,
+  cup_size: SizeEnum.J,
+  class: ClassEnum.Support,
+  attack_speed: 1,
+  normal_attack: 1865,
+  critical_rate: 0.59,
+  critical_damage: 2.018,
+  skill_damage: 1766,
+  skill: {
+    name: 'Crushing Embrace',
+    description:
+      'releases her tentacles and deals 57490 damage to the surrounding units, knockbacks enemy for 1 unit distance and applies a 1 second mini-stun. cooldown: 16',
+    effects: [{ type: EffectEnum.Damage, damage: () => 57490 } as NewDamageEffect],
+    is_stackable: false,
+    cooldown: 16
+  } as NewSkill
+} as NewAgent;
+
+export const Denka = {
+  name: NameEnum.Denka,
+  organization: OrganizationEnum.WIO,
+  cup_size: SizeEnum.E,
+  class: ClassEnum.Striker,
+  attack_speed: 1,
+  normal_attack: 760,
+  critical_rate: 0.74,
+  critical_damage: 2.028,
+  skill_damage: 723,
+  skill: {
+    name: 'Devastating Pincer Strike',
+    description: 'shoots 3 electric drills, each dealing 24214 damage. cooldown: 9',
+    effects: [{ type: EffectEnum.Damage, damage: () => 3 * 24214 } as NewDamageEffect],
+    is_stackable: false,
+    cooldown: 9
+  } as NewSkill
+} as NewAgent;
+
+export const Reika = {
+  name: NameEnum.Reika,
+  organization: OrganizationEnum.NDS,
+  cup_size: SizeEnum.I,
+  class: ClassEnum.Gunner,
+  attack_speed: 2.2,
+  normal_attack: 733,
+  critical_rate: 0.84,
+  critical_damage: 2.038,
+  skill_damage: 604,
+  apply_skill_time: 1,
+  skill: {
+    name: 'Might of the Alliance',
+    description: 'launches a rocket towards the target, dealing 86932 damage. cooldown: 9',
+    effects: [{ type: EffectEnum.Damage, damage: () => 86932 } as NewDamageEffect],
+    is_stackable: false,
+    cooldown: 9
+  } as NewSkill
+} as NewAgent;
+
+export const Noa = {
+  name: NameEnum.Noa,
+  organization: OrganizationEnum.NDS,
+  cup_size: SizeEnum.D,
+  class: ClassEnum.Support,
+  attack_speed: 2,
+  normal_attack: 929,
+  critical_rate: 0.74,
+  critical_damage: 2.028,
+  skill_damage: 880,
+  skill: {
+    name: 'Enhanced Plasma Cannon',
+    description:
+      'releases a drone dealing 50922 damage to the target area and slow down to 60% for 6 seconds. cooldown: 15',
+    effects: [{ type: EffectEnum.Damage, damage: () => 50922 } as NewDamageEffect],
+    is_stackable: false,
+    cooldown: 15
+  } as NewSkill
+} as NewAgent;
+
+export const Neugena = {
+  name: NameEnum.Neugena,
+  organization: OrganizationEnum.GSR,
+  cup_size: SizeEnum.D,
+  class: ClassEnum.Gunner,
+  attack_speed: 4.4,
+  normal_attack: 356,
+  critical_rate: 0.74,
+  critical_damage: 2.028,
+  skill_damage: 293,
+  skill: {
+    name: "Hunter's Sense",
+    description:
+      'releases a blasting arrow, dealing (default skill damage * 0.00020)% of enemies current hp in a small area (minimum damage = skill damage). cooldown: 20',
+    effects: [
+      {
+        type: EffectEnum.Damage,
+        damage: (params: EffectParamType) => {
+          const { agent, target } = params;
+          let damage = agent.base_skill_damage * target.current_health * 0.0002;
+
+          if (damage < agent.base_skill_damage) {
+            damage = agent.skill_damage;
+          }
+
+          return damage;
+        }
+      } as NewDamageEffect
+    ],
+    is_stackable: false,
+    cooldown: 20
+  } as NewSkill
+} as NewAgent;
+
+export const Larisa = {
+  name: NameEnum.Larisa,
+  organization: OrganizationEnum.ADB,
+  cup_size: SizeEnum.G,
+  class: ClassEnum.Artillery,
+  attack_speed: 1.1,
+  normal_attack: 1711,
+  critical_rate: 0.84,
+  critical_damage: 2.038,
+  skill_damage: 1552,
+  skill: {
+    name: 'Guardian of the Motherland',
+    description: 'fires a high explosive missile at target locations dealing 69856 damage. cooldown: 11',
+    effects: [{ type: EffectEnum.Damage, damage: () => 69856 } as NewDamageEffect],
+    is_stackable: false,
+    cooldown: 11
+  } as NewSkill
+} as NewAgent;
+
+export const Rui = {
+  name: NameEnum.Rui,
+  organization: OrganizationEnum.GSR,
+  cup_size: SizeEnum.D,
+  class: ClassEnum.Striker,
+  attack_speed: 1,
+  normal_attack: 1014,
+  critical_rate: 0.74,
+  critical_damage: 2.028,
+  skill_damage: 964,
+  skill: {
+    name: "Devil's Contract",
+    description:
+      'enters demonic mode which increases her attack damage to 16382.6, attack range and area for 10 seconds. cooldown: 17',
+    effects: [
+      {
+        type: EffectEnum.Self,
+        apply: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.normal_attack += 16382.8;
+          agent.skill_damage += 16382.8;
+        },
+        remove: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.normal_attack -= 16382.8;
+          agent.skill_damage -= 16382.8;
+        },
+        duration: 10
+      } as NewEffect
+    ],
+    is_stackable: false,
+    cooldown: 17
+  } as NewSkill
+} as NewAgent;
+
+export const Kotora = {
+  name: NameEnum.Kotora,
+  organization: OrganizationEnum.GSR,
+  cup_size: SizeEnum.J,
+  class: ClassEnum.Artillery,
+  attack_speed: 2.2,
+  normal_attack: 832,
+  critical_rate: 0.59,
+  critical_damage: 2.018,
+  skill_damage: 754,
+  skill: {
+    name: 'Roar of the Beast',
+    description:
+      'launches an artillery shell towards the target location, which splits into 4 shells, each dealing 16404 damage. cooldown: 11',
+    effects: [{ type: EffectEnum.Damage, damage: () => 4 * 16404 } as NewDamageEffect],
+    is_stackable: false,
+    cooldown: 11
+  } as NewSkill
+} as NewAgent;
+
+export const Vanessa = {
+  name: NameEnum.Vanessa,
+  organization: OrganizationEnum.DOD,
+  cup_size: SizeEnum.K,
+  class: ClassEnum.Support,
+  attack_speed: 2,
+  normal_attack: 1267,
+  critical_rate: 0.59,
+  critical_damage: 2.018,
+  skill_damage: 1200,
+  skill: {
+    name: 'Banishment of the Beast',
+    description: 'creates an electric cage, stunning enemies for 8 seconds. cooldown: 34',
+    effects: [],
+    is_stackable: false,
+    cooldown: 34
+  } as NewSkill
+} as NewAgent;
+
+export const Aoi = {
+  name: NameEnum.Aoi,
+  organization: OrganizationEnum.WIO,
+  cup_size: SizeEnum.B,
+  class: ClassEnum.Support,
+  attack_speed: 2,
+  normal_attack: 1275,
+  critical_rate: 0.74,
+  critical_damage: 2.028,
+  skill_damage: 1207,
+  apply_skill_time: 1,
+  skill: {
+    name: 'Gamma Blaster',
+    description: 'randomly picks 6 agent(s), add 25% critical rate for 6 seconds. cooldown: 9',
+    effects: [
+      {
+        type: EffectEnum.Team,
+        apply: (params: EffectParamType) => {
+          const { team } = params;
+          team.forEach((agent) => (agent.critical_rate += 0.25));
+        },
+        remove: (params: EffectParamType) => {
+          const { team } = params;
+          team.forEach((agent) => (agent.critical_rate -= 0.25));
+        },
+        duration: 6
+      } as NewEffect
+    ],
+    is_stackable: false,
+    cooldown: 9
+  } as NewSkill
+} as NewAgent;
+
+export const Sara = {
+  name: NameEnum.Sara,
+  organization: OrganizationEnum.GSR,
+  cup_size: SizeEnum.C,
+  class: ClassEnum.Support,
+  attack_speed: 3.1,
+  normal_attack: 856,
+  critical_rate: 0.74,
+  critical_damage: 2.028,
+  skill_damage: 811,
+  skill: {
+    name: 'Paralyzing Stare',
+    description: 'shoots a gigantic snake dealing 56213 damage. cooldown: 11',
+    effects: [{ type: EffectEnum.Damage, damage: () => 56213 } as NewDamageEffect],
+    is_stackable: false,
+    cooldown: 11
+  } as NewSkill
+} as NewAgent;
+
+export const Mai = {
+  name: NameEnum.Mai,
+  organization: OrganizationEnum.DOD,
+  cup_size: SizeEnum.B,
+  class: ClassEnum.Gunner,
+  attack_speed: 2.2,
+  normal_attack: 984,
+  critical_rate: 0.74,
+  critical_damage: 2.028,
+  skill_damage: 811,
+  skill: {
+    name: "Soldier's Will",
+    description: 'shoots bullets rapidly. enemies that were hit wil take 85121 damage once. cooldown: 13',
+    effects: [{ type: EffectEnum.Damage, damage: () => 85121 } as NewDamageEffect],
+    is_stackable: false,
+    cooldown: 13
+  } as NewSkill
+} as NewAgent;
+
+export const Tsukiko = {
+  name: NameEnum.Tsukiko,
+  organization: OrganizationEnum.ADB,
+  cup_size: SizeEnum.F,
+  class: ClassEnum.Artillery,
+  attack_speed: 1.1,
+  normal_attack: 1711,
+  critical_rate: 0.84,
+  critical_damage: 2.038,
+  skill_damage: 1552,
+  skill: {
+    name: 'Bulletstorm',
+    description:
+      'shoots out a devastating sound wave dealing 23285 damage and increases the damage enemies receive by 35% for 9 seconds. cooldown: 38',
+    effects: [
+      {
+        type: EffectEnum.Debuff,
+        apply: (params: EffectParamType) => {
+          const { target } = params;
+          target.damage_taken_multiplier *= 1.35;
+        },
+        remove: (params: EffectParamType) => {
+          const { target } = params;
+          target.damage_taken_multiplier /= 1.35;
+        },
+        duration: 9
+      } as NewEffect,
+      {
+        type: EffectEnum.Damage,
+        damage: () => 23285
+      } as NewDamageEffect
+    ],
+    is_stackable: false,
+    cooldown: 38
+  } as NewSkill
+} as NewAgent;
+
+export const Yukako = {
+  name: NameEnum.Yukako,
+  organization: OrganizationEnum.NDS,
+  cup_size: SizeEnum.A,
+  class: ClassEnum.Gunner,
+  attack_speed: 2.2,
+  normal_attack: 984,
+  critical_rate: 0.74,
+  critical_damage: 2.028,
+  skill_damage: 811,
+  apply_skill_time: 1,
+  skill: {
+    name: "Spirit's Lethal Kiss",
+    description: 'increases the damage of all gunner agents to 150% for 12 seconds. cooldown: 25',
+    effects: [
+      {
+        type: EffectEnum.Team,
+        apply: (params: EffectParamType) => {
+          const { team } = params;
+          team
+            .filter((agent) => agent.class === ClassEnum.Gunner)
+            .forEach((agent) => {
+              agent.normal_attack *= 1.5;
+              agent.skill_damage *= 1.5;
+            });
+        },
+        remove: (params: EffectParamType) => {
+          const { team } = params;
+          team
+            .filter((agent) => agent.class === ClassEnum.Gunner)
+            .forEach((agent) => {
+              agent.normal_attack /= 1.5;
+              agent.skill_damage /= 1.5;
+            });
+        },
+        duration: 12
+      } as NewEffect
+    ],
+    is_stackable: false,
+    cooldown: 25
+  } as NewSkill
+} as NewAgent;
+
+export const Coco = {
+  name: NameEnum.Coco,
+  organization: OrganizationEnum.DOD,
+  cup_size: SizeEnum.B,
+  class: ClassEnum.Support,
+  attack_speed: 1,
+  normal_attack: 2531,
+  critical_rate: 0.74,
+  critical_damage: 2.028,
+  skill_damage: 2398,
+  apply_skill_time: 1,
+  skill: {
+    name: 'Thrashing Paws',
+    description:
+      'she will encourage enemies run 200% faster for 1.5 seconds. and if coco is the only support in the team, she will increases 433% damage of all friendly agents in the team for 7 seconds. cooldown: 6',
+    effects: [
+      {
+        type: EffectEnum.Team,
+        apply: (params: EffectParamType) => {
+          const { team } = params;
+          const not_valid = team.filter((agent) => agent.class === ClassEnum.Support).length > 1;
+
+          if (not_valid) {
+            return;
+          }
+
+          team.forEach((agent) => {
+            agent.normal_attack *= 4.33;
+            agent.skill_damage *= 4.33;
+          });
+        },
+        remove: (params: EffectParamType) => {
+          const { team } = params;
+          const not_valid = team.filter((agent) => agent.class === ClassEnum.Support).length > 1;
+
+          if (not_valid) {
+            return;
+          }
+
+          team.forEach((agent) => {
+            agent.normal_attack /= 4.33;
+            agent.skill_damage /= 4.33;
+          });
+        },
+        duration: 7
+      } as NewEffect
+    ],
+    is_stackable: false,
+    cooldown: 6
+  } as NewSkill
+} as NewAgent;
+
+export const Pan = {
+  name: NameEnum.Pan,
+  organization: OrganizationEnum.WIO,
+  cup_size: SizeEnum.G,
+  class: ClassEnum.Gunner,
+  attack_speed: 4.4,
+  normal_attack: 503,
+  critical_rate: 0.84,
+  critical_damage: 2.038,
+  skill_damage: 414,
+  apply_skill_time: 1,
+  skill: {
+    name: 'Triple-Tap',
+    description:
+      'cast a non-is_stackable buff on all friendly gunner agents. increases critical rate to 20% and critical damage to 120% for 12 seconds. cooldown: 25',
+    effects: [
+      {
+        type: EffectEnum.Team,
+        apply: (params: EffectParamType) => {
+          const { team } = params;
+          team
+            .filter((agent) => agent.class === ClassEnum.Gunner)
+            .forEach((agent) => {
+              agent.critical_rate += 0.2;
+              agent.critical_damage += 1.2;
+            });
+        },
+        remove: (params: EffectParamType) => {
+          const { team } = params;
+          team
+            .filter((agent) => agent.class === ClassEnum.Gunner)
+            .forEach((agent) => {
+              agent.critical_rate -= 0.2;
+              agent.critical_damage -= 1.2;
+            });
+        },
+        duration: 12
+      } as NewEffect
+    ],
+    is_stackable: false,
+    cooldown: 25
+  } as NewSkill
+} as NewAgent;
+
+export const Hitomi = {
+  name: NameEnum.Hitomi,
+  organization: OrganizationEnum.GAA,
+  cup_size: SizeEnum.D,
+  class: ClassEnum.Support,
+  attack_speed: 2,
+  normal_attack: 1603,
+  critical_rate: 0.74,
+  critical_damage: 2.028,
+  skill_damage: 1518,
+  apply_skill_time: 1,
+  skill: {
+    name: 'Cycle of Eternal Pain',
+    description: 'increases the attack speed of all agents to 220% for 7 seconds. cooldown: 19',
+    effects: [
+      {
+        type: EffectEnum.Team,
+        apply: (params: EffectParamType) => {
+          const { team } = params;
+          team.forEach((agent) => (agent.attack_speed *= 2.2));
+        },
+        remove: (params: EffectParamType) => {
+          const { team } = params;
+          team.forEach((agent) => (agent.attack_speed /= 2.2));
+        },
+        duration: 7
+      } as NewEffect
+    ],
+    is_stackable: false,
+    cooldown: 19
+  } as NewSkill
+} as NewAgent;
+
+export const Cadence = {
+  name: NameEnum.Cadence,
+  organization: OrganizationEnum.ADB,
+  cup_size: SizeEnum.D,
+  class: ClassEnum.Artillery,
+  attack_speed: 2.2,
+  normal_attack: 1084,
+  critical_rate: 0.74,
+  critical_damage: 2.028,
+  skill_damage: 983,
+  skill: {
+    name: 'Armament Strike',
+    description: 'calls in laser barrage and deals 68821 damage to all monsters. cooldown: 10',
+    effects: [{ type: EffectEnum.Damage, damage: () => 68821 } as NewDamageEffect],
+    is_stackable: false,
+    cooldown: 10
+  } as NewSkill
+} as NewAgent;
+
+export const Uni = {
+  name: NameEnum.Uni,
+  organization: OrganizationEnum.DOD,
+  cup_size: SizeEnum.K,
+  class: ClassEnum.Support,
+  attack_speed: 4,
+  normal_attack: 797,
+  critical_rate: 0.59,
+  critical_damage: 2.018,
+  skill_damage: 754,
+  remove_skill_time: 1,
+  skill: {
+    name: "Archer's Judgement",
+    description: 'casts an arrow barrage to deal 86411 damage and stuns for 6 seconds. cooldown: 20',
+    effects: [{ type: EffectEnum.Damage, damage: () => 86411 } as NewDamageEffect],
+    is_stackable: false,
+    cooldown: 20
+  } as NewSkill
+} as NewAgent;
+
+export const Sizuko = {
+  name: NameEnum.Sizuko,
+  organization: OrganizationEnum.GAA,
+  cup_size: SizeEnum.K,
+  class: ClassEnum.Striker,
+  attack_speed: 2,
+  normal_attack: 619,
+  critical_rate: 0.59,
+  critical_damage: 2.018,
+  skill_damage: 587,
+  apply_skill_time: 0.5,
+  skill: {
+    name: "Mortician's Touch",
+    description:
+      'throws a soul-scythe, after it attach on the enemy will split into 4 souls, each dealing 35211 damage and inducing fear to the enemy for 4 seconds. cooldown: 18',
+    effects: [{ type: EffectEnum.Damage, damage: () => 4 * 35211 } as NewDamageEffect],
+    is_stackable: false,
+    cooldown: 18
+  } as NewSkill
+} as NewAgent;
+
+export const Chihiro = {
+  name: NameEnum.Chihiro,
+  organization: OrganizationEnum.ADB,
+  cup_size: SizeEnum.C,
+  class: ClassEnum.Artillery,
+  attack_speed: 0.5,
+  normal_attack: 4297,
+  critical_rate: 0.74,
+  critical_damage: 2.028,
+  skill_damage: 3898,
+  skill: {
+    name: 'Shark Bite',
+    description:
+      'bullets will now penetrate targets. increases attack speed to 715% and modifies damage to 114% for 5 seconds. cooldown: 8',
+    effects: [
+      {
+        type: EffectEnum.Self,
+        apply: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.attack_speed *= 7.15;
+          agent.normal_attack *= 1.14;
+          agent.skill_damage *= 1.14;
+        },
+        remove: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.attack_speed /= 7.15;
+          agent.normal_attack /= 1.14;
+          agent.skill_damage /= 1.14;
+        },
+        duration: 5
+      } as NewEffect
+    ],
+    is_stackable: false,
+    cooldown: 8
+  } as NewSkill
+} as NewAgent;
+
+export const Mei = {
+  name: NameEnum.Mei,
+  organization: OrganizationEnum.ADB,
+  cup_size: SizeEnum.G,
+  class: ClassEnum.Striker,
+  attack_speed: 1.5,
+  normal_attack: 858,
+  critical_rate: 0.84,
+  critical_damage: 2.038,
+  skill_damage: 815,
+  skill: {
+    name: 'Ringlets of Death',
+    description: 'throws out a chakram, ricocheting onto 4 enemies, dealing 24463 damage to each enemy. cooldown: 12',
+    effects: [{ type: EffectEnum.Damage, damage: () => 4 * 24463 } as NewDamageEffect],
+    is_stackable: false,
+    cooldown: 12
+  } as NewSkill
+} as NewAgent;
+
+export const Riho = {
+  name: NameEnum.Riho,
+  organization: OrganizationEnum.ADB,
+  cup_size: SizeEnum.C,
+  class: ClassEnum.Gunner,
+  attack_speed: 2.2,
+  normal_attack: 1235,
+  critical_rate: 0.74,
+  critical_damage: 2.028,
+  skill_damage: 1018,
+  skill: {
+    name: 'Furious Flurry',
+    description:
+      'summons a group of giant redhounds at the target location, dealing 76324 damage over 2 seconds. cooldown: 9',
+    effects: [{ type: EffectEnum.Damage, damage: () => 76324 } as NewDamageEffect],
+    is_stackable: false,
+    cooldown: 9
+  } as NewSkill
+} as NewAgent;
+
+export const Mitsu = {
+  name: NameEnum.Mitsu,
+  organization: OrganizationEnum.ADB,
+  cup_size: SizeEnum.D,
+  class: ClassEnum.Artillery,
+  attack_speed: 1.1,
+  normal_attack: 2149,
+  critical_rate: 0.74,
+  critical_damage: 2.028,
+  skill_damage: 1949,
+  skill: {
+    name: 'Soaring Strike',
+    description: 'shoots mega laser beams dealing 77963 damage. cooldown: 14',
+    effects: [{ type: EffectEnum.Damage, damage: () => 77963 } as NewDamageEffect],
+    is_stackable: false,
+    cooldown: 14
+  } as NewSkill
+} as NewAgent;
+
+export const Akina = {
+  name: NameEnum.Akina,
+  organization: OrganizationEnum.DOD,
+  cup_size: SizeEnum.H,
+  class: ClassEnum.Striker,
+  attack_speed: 1,
+  normal_attack: 1287,
+  critical_rate: 0.84,
+  critical_damage: 2.038,
+  skill_damage: 1223,
+  skill: {
+    name: 'Vengeance of the Sun',
+    description:
+      'punches out a fire-fist dealing 80727 damage to an area and ignites the enemy for 5 seconds, dealing 1903 damage every seconds. cooldown 9',
+    effects: [
+      { type: EffectEnum.Damage, damage: () => 80727 } as NewDamageEffect,
+      { type: EffectEnum.DOT, duration: 5, interval: 1, damage: () => 1903 } as NewDOTEffect
+    ],
+    is_stackable: false,
+    cooldown: 9
+  } as NewSkill
+} as NewAgent;
+
+export const Akari = {
+  name: NameEnum.Akari,
+  organization: OrganizationEnum.ADB,
+  cup_size: SizeEnum.C,
+  class: ClassEnum.Support,
+  attack_speed: 1,
+  normal_attack: 2697,
+  critical_rate: 0.74,
+  critical_damage: 2.028,
+  skill_damage: 2697,
+  skill: {
+    name: 'Riposte',
+    description:
+      'summons a damage circle under her feet dealing total 53935 damage in 1 second, then will turn into a healing circle, heal friendly units for total (default skill damage * 7000%) in 3 seconds. cooldown: 7',
+    effects: [{ type: EffectEnum.DOT, duration: 1, interval: 1, damage: () => 53935 } as NewDOTEffect],
+    is_stackable: false,
+    cooldown: 7
+  } as NewSkill
+} as NewAgent;
+
+export const Sayaka = {
+  name: NameEnum.Sayaka,
+  organization: OrganizationEnum.ADB,
+  cup_size: SizeEnum.H,
+  class: ClassEnum.Striker,
+  attack_speed: 1.8,
+  normal_attack: 721,
+  critical_rate: 0.84,
+  critical_damage: 2.038,
+  skill_damage: 686,
+  skill: {
+    name: 'Omen of Dread',
+    description: 'summons 4 lightning birds, each dealing 30682 damage. cooldown: 11',
+    effects: [{ type: EffectEnum.Damage, damage: () => 4 * 30682 } as NewDamageEffect],
+    is_stackable: false,
+    cooldown: 11
+  } as NewSkill
+} as NewAgent;
+
+export const Momoko = {
+  name: NameEnum.Momoko,
+  organization: OrganizationEnum.DOD,
+  cup_size: SizeEnum.A,
+  class: ClassEnum.Gunner,
+  attack_speed: 1,
+  normal_attack: 2160,
+  critical_rate: 0.84,
+  critical_damage: 2.028,
+  skill_damage: 2160,
+  apply_skill_time: 1,
+  skill: {
+    name: 'Piercing Bullet',
+    description:
+      'increases self attack speed to 530% for 4 seconds. bullet adds a penetration and charming effect, which will scare enemy away for 2 seconds. cooldown: 15',
+    effects: [
+      {
+        type: EffectEnum.Self,
+        apply: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.attack_speed *= 5.3;
+        },
+        remove: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.attack_speed /= 5.3;
+        },
+        duration: 4
+      } as NewEffect
+    ],
+    is_stackable: false,
+    cooldown: 15
+  } as NewSkill
+} as NewAgent;
+
+export const Meteli = {
+  name: NameEnum.Meteli,
+  organization: OrganizationEnum.WIO,
+  cup_size: SizeEnum.E,
+  class: ClassEnum.Striker,
+  attack_speed: 1,
+  normal_attack: 1226,
+  critical_rate: 0.84,
+  critical_damage: 2.028,
+  skill_damage: 1226,
+  apply_skill_time: 1,
+  skill: {
+    name: 'Meteorite Missile',
+    description:
+      'summons a choo-choo train to knock back and deal 78451 damage. having 70% chance reset the skill cooldown to 2 second(s) each time this skill casts. cooldown: 10',
+    effects: [
+      {
+        type: EffectEnum.Damage,
+        damage: (params: EffectParamType) => {
+          const { agent } = params;
+
+          if (Math.random() < 0.7) {
+            agent.skill.cooldown = 2 * 1000; // seconds to ms
+          } else {
+            agent.skill.cooldown = 10 * 1000; // seconds to ms
+          }
+
+          return 78451;
+        }
+      } as NewDamageEffect
+    ],
+    is_stackable: false,
+    cooldown: 10
+  } as NewSkill
+} as NewAgent;
+
+export const Hoshiko = {
+  name: NameEnum.Hoshiko,
+  organization: OrganizationEnum.GSR,
+  cup_size: SizeEnum.M,
+  class: ClassEnum.Support,
+  attack_speed: 2,
+  normal_attack: 1613,
+  critical_rate: 0.69,
+  critical_damage: 2.018,
+  skill_damage: 1613,
+  apply_skill_time: 1,
+  skill: {
+    name: 'Crystalline Kaleidoscope Strike',
+    description:
+      'cast a is_stackable buff on all striker agents, each buff increases attack speed to 110% and damage to 140% for 24 seconds. cooldown: 5',
+    effects: [
+      {
+        type: EffectEnum.Team,
+        apply: (params: EffectParamType) => {
+          const { team } = params;
+          team
+            .filter((agent) => agent.class === ClassEnum.Striker)
+            .forEach((agent) => {
+              agent.attack_speed *= 1.2;
+              agent.normal_attack *= 1.4;
+              agent.skill_damage *= 1.4;
+            });
+        },
+        remove: (params: EffectParamType) => {
+          const { team } = params;
+          team
+            .filter((agent) => agent.class === ClassEnum.Striker)
+            .forEach((agent) => {
+              agent.attack_speed /= 1.2;
+              agent.normal_attack /= 1.4;
+              agent.skill_damage /= 1.4;
+            });
+        },
+        duration: 24
+      } as NewEffect
+    ],
+    is_stackable: true,
+    cooldown: 5
+  } as NewSkill
+} as NewAgent;
+
+export const Feme = {
+  name: NameEnum.Feme,
+  organization: OrganizationEnum.GAA,
+  cup_size: SizeEnum.G,
+  class: ClassEnum.Artillery,
+  attack_speed: 1,
+  normal_attack: 2099,
+  critical_rate: 0.94,
+  critical_damage: 2.038,
+  skill_damage: 2099,
+  apply_skill_time: 1,
+  skill: {
+    name: 'Requiem of Pain',
+    description:
+      'shoot 2 energy bolts from the ancient sphinx cannon, deals normal attack damage with aoe. increases self damage to 460% and critical rate to 1160% for 12 seconds. cooldown: 15',
+    effects: [
+      {
+        type: EffectEnum.Self,
+        apply: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.normal_attack *= 4.6;
+          agent.skill_damage *= 4.6;
+          agent.critical_rate *= 11.6;
+        },
+        remove: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.normal_attack /= 4.6;
+          agent.skill_damage /= 4.6;
+          agent.critical_rate /= 11.6;
+        },
+        duration: 12
+      } as NewEffect
+    ],
+    is_stackable: false,
+    cooldown: 15
+  } as NewSkill
+} as NewAgent;
+
+export const NeveX = {
+  name: NameEnum.NeveX,
+  organization: OrganizationEnum.GSR,
+  cup_size: SizeEnum.L,
+  class: ClassEnum.Support,
+  attack_speed: 0.5,
+  normal_attack: 6467,
+  critical_rate: 0.69,
+  critical_damage: 2.018,
+  skill_damage: 6467,
+  skill: {
+    name: 'Avalanche',
+    description:
+      'deal 10993 damage to all enemies, and slow down to 40% for 3 seconds. all artillery agents critical damage gains an additional 190% for 14 seconds. cooldown: 20',
+    effects: [
+      {
+        type: EffectEnum.Team,
+        apply: (params: EffectParamType) => {
+          const { team } = params;
+          team
+            .filter((agent) => agent.class === ClassEnum.Artillery)
+            .forEach((agent) => (agent.critical_damage += 1.9));
+        },
+        remove: (params: EffectParamType) => {
+          const { team } = params;
+          team
+            .filter((agent) => agent.class === ClassEnum.Artillery)
+            .forEach((agent) => (agent.critical_damage -= 1.9));
+        },
+        duration: 14
+      } as NewEffect,
+      { type: EffectEnum.Damage, damage: () => 10993 } as NewDamageEffect
+    ],
+    is_stackable: true,
+    cooldown: 20
+  } as NewSkill
+} as NewAgent;
+
+export const Eiko = {
+  name: NameEnum.Eiko,
+  organization: OrganizationEnum.GSR,
+  cup_size: SizeEnum.F,
+  class: ClassEnum.Gunner,
+  attack_speed: 1,
+  normal_attack: 2160,
+  critical_rate: 0.94,
+  critical_damage: 2.038,
+  skill_damage: 2160,
+  skill: {
+    name: 'Volley of the Beast',
+    description: 'summon an extraterrestrial attack, dealing 58548 damage over 1.5 seconds. cooldown: 9',
+    effects: [{ type: EffectEnum.DOT, duration: 1.5, interval: 0.5, damage: () => 58548 } as NewDOTEffect],
+    is_stackable: false,
+    cooldown: 9
+  } as NewSkill
+} as NewAgent;
+
+export const Goi = {
+  name: NameEnum.Goi,
+  organization: OrganizationEnum.GAA,
+  cup_size: SizeEnum.G,
+  class: ClassEnum.Artillery,
+  attack_speed: 1.5,
+  normal_attack: 1394,
+  critical_rate: 0.94,
+  critical_damage: 2.038,
+  skill_damage: 1394,
+  skill: {
+    name: 'Napalm Massacre',
+    description:
+      'launch 3 grenades in a straight line each dealing 25098 damage and mini stuns for 0.2 seconds. cooldown: 10',
+    effects: [{ type: EffectEnum.Damage, damage: () => 3 * 25098 } as NewDamageEffect],
+    is_stackable: false,
+    cooldown: 10
+  } as NewSkill
+} as NewAgent;
+
+export const RihoX = {
+  name: NameEnum.RihoX,
+  organization: OrganizationEnum.ADB,
+  cup_size: SizeEnum.C,
+  class: ClassEnum.Artillery,
+  attack_speed: 2,
+  normal_attack: 1057,
+  critical_rate: 0.84,
+  critical_damage: 2.028,
+  skill_damage: 1057,
+  skill: {
+    name: "Hunter's Shot",
+    description:
+      'summons dozens of the giant redhounds, dealing 9515 damage to all enemies, and increases self attack damage to 189% and attack speed to 276% for 12 seconds. cooldown: 14',
+    effects: [
+      {
+        type: EffectEnum.Self,
+        duration: 12,
+        apply: (params: EffectParamType) => {
+          const { agent } = params;
+
+          agent.attack_speed *= 2.76;
+          agent.normal_attack *= 1.89;
+          agent.skill_damage *= 1.89;
+        },
+        remove: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.attack_speed /= 2.76;
+          agent.normal_attack /= 1.89;
+          agent.skill_damage /= 1.89;
+        }
+      } as NewEffect,
+      { type: EffectEnum.Damage, damage: () => 9515 } as NewDamageEffect
+    ],
+    is_stackable: false,
+    cooldown: 14
+  } as NewSkill
+} as NewAgent;
+
+export const Setsuna = {
+  name: NameEnum.Setsuna,
+  organization: OrganizationEnum.GSR,
+  cup_size: SizeEnum.D,
+  class: ClassEnum.Striker,
+  attack_speed: 1,
+  normal_attack: 1226,
+  critical_rate: 0.84,
+  critical_damage: 2.028,
+  skill_damage: 1226,
+  skill: {
+    name: "Blade's Whisper",
+    description:
+      'listen to the whisper in 7 seconds. self buff 1000% damage. consistently swing out 5 blade beams and ignite enemies for 3310 burn damage every seconds. cooldown: 9',
+    effects: [
+      {
+        type: EffectEnum.Self,
+        apply: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.normal_attack *= 10;
+          agent.skill_damage *= 10;
+        },
+        remove: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.normal_attack /= 10;
+          agent.skill_damage /= 10;
+        },
+        duration: 7
+      } as NewEffect,
+      { type: EffectEnum.DOT, duration: 7, interval: 1, damage: () => 3310 } as NewDOTEffect
+    ],
+    is_stackable: false,
+    cooldown: 9
+  } as NewSkill
+} as NewAgent;
+
+export const Hami = {
+  name: NameEnum.Hami,
+  organization: OrganizationEnum.DOD,
+  cup_size: SizeEnum.C,
+  class: ClassEnum.Gunner,
+  attack_speed: 0.8,
+  normal_attack: 2727,
+  critical_rate: 0.84,
+  critical_damage: 2.028,
+  skill_damage: 2727,
+  skill: {
+    name: "Hornet's Vengeance",
+    description:
+      'summon 2 giant bumblebees, each of them shoots out laser beam horizontally to the target dealing 55912 damage to any enemies it hits. cooldown: 8',
+    effects: [{ type: EffectEnum.Damage, damage: () => 2 * 55912 } as NewDamageEffect],
+    is_stackable: false,
+    cooldown: 8
+  } as NewSkill
+} as NewAgent;
+
+export const O = {
+  name: NameEnum.O,
+  organization: OrganizationEnum.GSR,
+  cup_size: SizeEnum.C,
+  class: ClassEnum.Artillery,
+  attack_speed: 1,
+  normal_attack: 2099,
+  critical_rate: 0.84,
+  critical_damage: 2.028,
+  skill_damage: 2099,
+  skill: {
+    name: 'Celestial Judgement',
+    description:
+      'blast out pure energy to any enemies in an area, dealing 79768 damage to any enemies it hits, and increases her critical chance to 16% and critical damage to 64% for 10 seconds. cooldown 11',
+    effects: [
+      {
+        type: EffectEnum.Self,
+        apply: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.critical_rate += 0.16;
+          agent.critical_damage += 0.64;
+        },
+        remove: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.critical_rate -= 0.16;
+          agent.critical_damage -= 0.64;
+        },
+        duration: 10
+      } as NewEffect,
+      { type: EffectEnum.Damage, damage: () => 79768 } as NewDamageEffect
+    ],
+    is_stackable: false,
+    cooldown: 11
+  } as NewSkill
+} as NewAgent;
+
+export const GaiGai = {
+  name: NameEnum.GaiGai,
+  organization: OrganizationEnum.DOD,
+  cup_size: SizeEnum.D,
+  class: ClassEnum.Striker,
+  attack_speed: 1,
+  normal_attack: 1226,
+  critical_rate: 0.84,
+  critical_damage: 2.028,
+  skill_damage: 1226,
+  skill: {
+    name: 'Banishing Blade',
+    description: 'cross slash in large area, dealing 147095 damage to any enemies nearby. cooldown: 10',
+    effects: [{ type: EffectEnum.Damage, damage: () => 147095 } as NewDamageEffect],
+    is_stackable: false,
+    cooldown: 10
+  } as NewSkill
+} as NewAgent;
+
+export const Rosalie = {
+  name: NameEnum.Rosalie,
+  organization: OrganizationEnum.ADB,
+  cup_size: SizeEnum.E,
+  class: ClassEnum.Support,
+  attack_speed: 1,
+  normal_attack: 3264,
+  critical_rate: 0.84,
+  critical_damage: 2.028,
+  skill_damage: 3264,
+  apply_skill_time: 1,
+  skill: {
+    name: 'Wrath of the Rose',
+    description:
+      'cast a stackable buff on all artillery agents. each buff increases the attack speed to 110% and damage to 140% for 24 seconds. cooldown: 5',
+    effects: [
+      {
+        type: EffectEnum.Team,
+        apply: (params: EffectParamType) => {
+          const { team } = params;
+          team
+            .filter((agent) => agent.class === ClassEnum.Artillery)
+            .forEach((agent) => {
+              agent.attack_speed *= 1.2;
+              agent.normal_attack *= 1.4;
+              agent.skill_damage *= 1.4;
+            });
+        },
+        remove: (params: EffectParamType) => {
+          const { team } = params;
+          team
+            .filter((agent) => agent.class === ClassEnum.Artillery)
+            .forEach((agent) => {
+              agent.attack_speed /= 1.2;
+              agent.normal_attack /= 1.4;
+              agent.skill_damage /= 1.4;
+            });
+        },
+        duration: 24
+      } as NewEffect
+    ],
+    is_stackable: true,
+    cooldown: 5
+  } as NewSkill
+} as NewAgent;
+
+export const Toki = {
+  name: NameEnum.Toki,
+  organization: OrganizationEnum.DOD,
+  cup_size: SizeEnum.D,
+  class: ClassEnum.Support,
+  attack_speed: 2,
+  normal_attack: 1624,
+  critical_rate: 0.84,
+  critical_damage: 2.028,
+  skill_damage: 1624,
+  apply_skill_time: 1,
+  skill: {
+    name: "Witch's Curse",
+    description:
+      'cast a stackable buff on all gunner agents. each buff increases the attack speed to 110% and damage to 140% for 24 seconds. cooldown: 5',
+    effects: [
+      {
+        type: EffectEnum.Team,
+        apply: (params: EffectParamType) => {
+          const { team } = params;
+          team
+            .filter((agent) => agent.class === ClassEnum.Gunner)
+            .forEach((agent) => {
+              agent.attack_speed *= 1.2;
+              agent.normal_attack *= 1.4;
+              agent.skill_damage *= 1.4;
+            });
+        },
+        remove: (params: EffectParamType) => {
+          const { team } = params;
+          team
+            .filter((agent) => agent.class === ClassEnum.Gunner)
+            .forEach((agent) => {
+              agent.attack_speed /= 1.2;
+              agent.normal_attack /= 1.4;
+              agent.skill_damage /= 1.4;
+            });
+        },
+        duration: 24
+      } as NewEffect
+    ],
+    is_stackable: true,
+    cooldown: 5
+  } as NewSkill
+} as NewAgent;
+
+export const Wu = {
+  name: NameEnum.Wu,
+  organization: OrganizationEnum.GAA,
+  cup_size: SizeEnum.G,
+  class: ClassEnum.Striker,
+  attack_speed: 2,
+  normal_attack: 613,
+  critical_rate: 0.94,
+  critical_damage: 2.038,
+  skill_damage: 613,
+  skill: {
+    name: 'Jungle Drums',
+    description:
+      'release the jungle emperor power, attack will explode with 5 small aoe and increases self normal attack damage to 1035% for 11 seconds. also all striker agents critical rate gains an additional 30% for 4 seconds. cooldown: 10',
+    effects: [
+      {
+        type: EffectEnum.Self,
+        apply: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.normal_attack *= 10.35;
+        },
+        remove: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.normal_attack /= 10.35;
+        },
+        duration: 11
+      } as NewEffect,
+      {
+        type: EffectEnum.Team,
+        apply: (params: EffectParamType) => {
+          const { team } = params;
+          team.filter((agent) => agent.class === ClassEnum.Striker).forEach((agent) => (agent.critical_rate += 0.3));
+        },
+        remove: (params: EffectParamType) => {
+          const { team } = params;
+          team.filter((agent) => agent.class === ClassEnum.Striker).forEach((agent) => (agent.critical_rate -= 0.3));
+        },
+        duration: 4
+      } as NewEffect
+      // {
+      //   // TODO: attack will explode with 5 small aoe => huh?
+      // }
+    ],
+    is_stackable: false,
+    cooldown: 10
+  } as NewSkill
+} as NewAgent;
+
+export const ZiLong = {
+  name: NameEnum.ZiLong,
+  organization: OrganizationEnum.DOD,
+  cup_size: SizeEnum.I,
+  class: ClassEnum.Gunner,
+  attack_speed: 2,
+  normal_attack: 1126,
+  critical_rate: 0.94,
+  critical_damage: 2.038,
+  skill_damage: 1088,
+  skill: {
+    name: "Dragon's Claw",
+    description:
+      'enters true dragon form which increases self attack speed to 520% for 11 seconds. also increases normal damage to 133% for all gunner agents in the team for 15 seconds. cooldown: 14',
+    effects: [
+      {
+        type: EffectEnum.Self,
+        apply: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.attack_speed *= 5.2;
+        },
+        remove: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.attack_speed /= 5.2;
+        },
+        duration: 11
+      } as NewEffect,
+      {
+        type: EffectEnum.Team,
+        apply: (params: EffectParamType) => {
+          const { team } = params;
+          team.filter((agent) => agent.class === ClassEnum.Gunner).forEach((agent) => (agent.normal_attack *= 1.33));
+        },
+        remove: (params: EffectParamType) => {
+          const { team } = params;
+          team.filter((agent) => agent.class === ClassEnum.Gunner).forEach((agent) => (agent.normal_attack /= 1.33));
+        },
+        duration: 15
+      } as NewEffect
+    ],
+    is_stackable: false,
+    cooldown: 14
+  } as NewSkill
+} as NewAgent;
+
+export const Ari = {
+  name: NameEnum.Ari,
+  organization: OrganizationEnum.ZETH,
+  cup_size: SizeEnum.K,
+  class: ClassEnum.Artillery,
+  attack_speed: 2,
+  normal_attack: 1050,
+  critical_rate: 0.69,
+  critical_damage: 2.018,
+  skill_damage: 1050,
+  skill: {
+    name: 'Song of the Demon',
+    description:
+      'Throw out 4 of her lizard swords, each deals 4724 damage to the enemy increases self damage to (1 + any agents on the battlefield, except support) * 34% for 15 seconds. cooldown: 14',
+    effects: [
+      {
+        type: EffectEnum.Self,
+        apply: (params: EffectParamType) => {
+          const { agent, team } = params;
+          const non_support_num = team.filter((agent) => agent.class !== ClassEnum.Support).length;
+          agent.normal_attack *= 1 + non_support_num * 0.34;
+          agent.skill_damage *= 1 + non_support_num * 0.34;
+        },
+        remove: (params: EffectParamType) => {
+          const { agent, team } = params;
+          const non_support_num = team.filter((agent) => agent.class !== ClassEnum.Support).length;
+          agent.normal_attack /= 1 + non_support_num * 0.34;
+          agent.skill_damage /= 1 + non_support_num * 0.34;
+        },
+        duration: 15
+      } as NewEffect,
+      { type: EffectEnum.Damage, damage: () => 4 * 4724 } as NewDamageEffect
+    ],
+    is_stackable: false,
+    cooldown: 14
+  } as NewSkill
+} as NewAgent;
+
+export const Chia = {
+  name: NameEnum.Chia,
+  organization: OrganizationEnum.MEOW,
+  cup_size: SizeEnum.H, // healthy?
+  class: ClassEnum.Gunner,
+  attack_speed: 1.1,
+  normal_attack: 2236,
+  critical_rate: 0.94,
+  critical_damage: 2.038,
+  skill_damage: 2160,
+  skill: {
+    name: 'Fishing of the void',
+    description:
+      'concentrate on fishing for 10 seconds, continuously catching whales and smash that to the enemies face in small area that deals skill damage. increases self damage to 750%, increases gunner attack rate to 130% and damage to 170%. cooldown: 13',
+    effects: [
+      {
+        type: EffectEnum.Self,
+        apply: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.normal_attack *= 7.5;
+          agent.skill_damage *= 7.5;
+        },
+        remove: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.normal_attack /= 7.5;
+          agent.skill_damage /= 7.5;
+        },
+        duration: 10
+      } as NewEffect,
+      {
+        type: EffectEnum.Team,
+        apply: (params: EffectParamType) => {
+          const { team } = params;
+          team
+            .filter((agent) => agent.class === ClassEnum.Gunner)
+            .forEach((agent) => {
+              agent.attack_speed *= 1.3;
+              agent.normal_attack *= 1.7;
+              agent.skill_damage *= 1.7;
+            });
+        },
+        remove: (params: EffectParamType) => {
+          const { team } = params;
+          team
+            .filter((agent) => agent.class === ClassEnum.Gunner)
+            .forEach((agent) => {
+              agent.attack_speed /= 1.3;
+              agent.normal_attack /= 1.7;
+              agent.skill_damage /= 1.7;
+            });
+        },
+        duration: 10
+      } as NewEffect
+    ],
+    is_stackable: false,
+    cooldown: 13
+  } as NewSkill
+} as NewAgent;
+
+export const Shiko = {
+  name: NameEnum.Shiko,
+  organization: OrganizationEnum.ZETH,
+  cup_size: SizeEnum.L,
+  class: ClassEnum.Striker,
+  attack_speed: 0.5,
+  normal_attack: 2434,
+  critical_rate: 0.69,
+  critical_damage: 2.018,
+  skill_damage: 2434,
+  apply_skill_time: 1,
+  skill: {
+    name: 'Atomic Prowess: Sword Strike',
+    description: 'increases self attack speed to 450% and damage to 230% for 11 seconds. cooldown: 10',
+    effects: [
+      {
+        type: EffectEnum.Self,
+        apply: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.attack_speed *= 4.5;
+          agent.normal_attack *= 2.3;
+          agent.skill_damage *= 2.3;
+        },
+        remove: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.attack_speed /= 4.5;
+          agent.normal_attack /= 2.3;
+          agent.skill_damage /= 2.3;
+        },
+        duration: 11
+      } as NewEffect
+    ],
+    is_stackable: false,
+    cooldown: 10
+  } as NewSkill
+} as NewAgent;
+
+export const Kaja = {
+  name: NameEnum.Kaja,
+  organization: OrganizationEnum.WIO,
+  cup_size: SizeEnum.A,
+  class: ClassEnum.Support,
+  attack_speed: 1,
+  normal_attack: 1144,
+  critical_rate: 0.84,
+  critical_damage: 2.028,
+  skill_damage: 1144,
+  skill: {
+    name: "Shepherd's Call",
+    description:
+      'summon all of her 16 little lambs, the lambs will charge forward as triangulate formation, deals 82354 damage and stun the enemies for 3 seconds. cooldown: 15',
+    effects: [{ type: EffectEnum.Damage, damage: () => 82354 } as NewDamageEffect],
+    is_stackable: false,
+    cooldown: 15
+  } as NewSkill
+} as NewAgent;
+
+export const Bia = {
+  name: NameEnum.Bia,
+  organization: OrganizationEnum.DOD,
+  cup_size: SizeEnum.K,
+  class: ClassEnum.Striker,
+  attack_speed: 1,
+  normal_attack: 1160,
+  critical_rate: 0.69,
+  critical_damage: 2.018,
+  skill_damage: 1160,
+  skill: {
+    name: "Fate's Hand: Retribution",
+    description:
+      "trigger the fate's hand for 6 seconds, increases self skill damage to 2400% and eject all of her daggers. cooldown: 10",
+    effects: [
+      {
+        type: EffectEnum.Self,
+        apply: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.skill_damage *= 24;
+        },
+        remove: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.skill_damage /= 24;
+        },
+        duration: 6
+      } as NewEffect,
+      { type: EffectEnum.DOT, duration: 6, interval: 1, damage: () => 8 * 1160 } as NewDOTEffect
+    ],
+    is_stackable: false,
+    cooldown: 10
+  } as NewSkill
+} as NewAgent;
+
+export const Eri = {
+  name: NameEnum.Eri,
+  organization: OrganizationEnum.ADB,
+  cup_size: SizeEnum.F,
+  class: ClassEnum.Gunner,
+  attack_speed: 1.5,
+  normal_attack: 1440,
+  critical_rate: 0.94,
+  critical_damage: 2.038,
+  skill_damage: 1440,
+  skill: {
+    name: "It's all in the science",
+    description: 'fire a total of 9 piercing bullets in a wide arc, each dealing 10298 damage. cooldown: 14',
+    effects: [{ type: EffectEnum.Damage, damage: () => 9 * 10298 } as NewDamageEffect],
+    is_stackable: false,
+    cooldown: 14
+  } as NewSkill
+} as NewAgent;
+
+export const Kiyomi = {
+  name: NameEnum.Kiyomi,
+  organization: OrganizationEnum.WIO,
+  cup_size: SizeEnum.G,
+  class: ClassEnum.Striker,
+  attack_speed: 1,
+  normal_attack: 1226,
+  critical_rate: 0.94,
+  critical_damage: 2.038,
+  skill_damage: 1226,
+  skill: {
+    name: 'Transparency: Crystal Lance',
+    description:
+      'summon a self buff for 12 seconds, increases self attack speed by 580% and self critical rate by 210%, also apply knockback and slow effect on normal attack. cooldown: 20',
+    effects: [
+      {
+        type: EffectEnum.Self,
+        apply: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.attack_speed *= 5.8;
+          agent.critical_rate *= 2.1;
+        },
+        remove: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.attack_speed /= 5.8;
+          agent.critical_rate /= 2.1;
+        },
+        duration: 12
+      } as NewEffect
+    ],
+    is_stackable: false,
+    cooldown: 20
+  } as NewSkill
+} as NewAgent;
+
+export const Musuna = {
+  name: NameEnum.Musuna,
+  organization: OrganizationEnum.WIO,
+  cup_size: SizeEnum.A,
+  class: ClassEnum.Gunner,
+  attack_speed: 1,
+  normal_attack: 2191,
+  critical_rate: 0.84,
+  critical_damage: 2.028,
+  skill_damage: 2160,
+  apply_skill_time: 0.5,
+  skill: {
+    name: 'Shuriken Strike',
+    description:
+      'increases self attack speed to 635% and attack damage to 260% for 3 seconds. bullet adds a penetration, slow and burn effect, slow enemy to 80% and ignite the enemy for 4 seconds, dealing 4537 burn damage every seconds. cooldown: 15',
+    effects: [
+      {
+        type: EffectEnum.Self,
+        apply: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.attack_speed *= 6.35;
+          agent.normal_attack *= 2.6;
+          agent.skill_damage *= 2.6;
+        },
+        remove: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.attack_speed /= 6.35;
+          agent.normal_attack /= 2.6;
+          agent.skill_damage /= 2.6;
+        },
+        duration: 3
+      } as NewEffect,
+      { type: EffectEnum.DOT, duration: 4, interval: 1, damage: () => 4537 } as NewDOTEffect
+    ],
+    is_stackable: false,
+    cooldown: 15
+  } as NewSkill
+} as NewAgent;
+
+export const Windy = {
+  name: NameEnum.Windy,
+  organization: OrganizationEnum.GAA,
+  cup_size: SizeEnum.K,
+  class: ClassEnum.Artillery,
+  attack_speed: 1,
+  normal_attack: 2085,
+  critical_rate: 0.69,
+  critical_damage: 2.018,
+  skill_damage: 2085,
+  apply_skill_time: 1,
+  skill: {
+    name: 'Shuriken Strike',
+    description:
+      'bullets will now penetrate targets and deals skill damage. increases attack speed to 200% and increases damage to 380% for 12 seconds. cooldown: 14',
+    effects: [
+      {
+        type: EffectEnum.Self,
+        apply: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.attack_mode = AttackModeEnum.Skill;
+          agent.attack_speed *= 2;
+          agent.normal_attack *= 3.8;
+          agent.skill_damage *= 3.8;
+        },
+        remove: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.attack_mode = AttackModeEnum.Normal;
+          agent.attack_speed /= 2;
+          agent.normal_attack /= 3.8;
+          agent.skill_damage /= 3.8;
+        },
+        duration: 12
+      } as NewEffect
+    ],
+    is_stackable: false,
+    cooldown: 14
+  } as NewSkill
+} as NewAgent;
+
+export const Kotaru = {
+  name: NameEnum.Kotaru,
+  organization: OrganizationEnum.WIO,
+  cup_size: SizeEnum.I,
+  class: ClassEnum.Gunner,
+  attack_speed: 1,
+  normal_attack: 2160,
+  critical_rate: 0.94,
+  critical_damage: 2.038,
+  skill_damage: 2160,
+  apply_skill_time: 1,
+  skill: {
+    name: 'Blistering Heat Wave',
+    description:
+      'enter request pay raise mode, doing more kick than usual. increase self normal attack damage to 480% and critical rate to 1160% for 13 seconds. cooldown: 23',
+    effects: [
+      {
+        type: EffectEnum.Self,
+        apply: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.normal_attack *= 4.8;
+          agent.critical_rate *= 11.6;
+        },
+        remove: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.normal_attack /= 4.8;
+          agent.critical_rate /= 11.6;
+        },
+        duration: 13
+      } as NewEffect
+    ],
+    is_stackable: false,
+    cooldown: 23
+  } as NewSkill
+} as NewAgent;
+
+export const Karry = {
+  name: NameEnum.Karry,
+  organization: OrganizationEnum.NONE,
+  cup_size: SizeEnum.C,
+  class: ClassEnum.Support,
+  attack_speed: 1,
+  normal_attack: 1144,
+  critical_rate: 0.84,
+  critical_damage: 2.028,
+  skill_damage: 1144,
+  apply_skill_time: 1,
+  skill: {
+    name: "Nature's Call",
+    description:
+      'increase skill damage to all agents with D cup breast size or smaller to 120% for 4 seconds. also flings out 16 penetrating meteor hearts in anti-clockwise pattern, each deal 2144.6 damage. cooldown: 10',
+    effects: [
+      {
+        type: EffectEnum.Team,
+        apply: (params: EffectParamType) => {
+          const { team } = params;
+          team.filter((agent) => agent.cup_size <= SizeEnum.D).forEach((agent) => (agent.skill_damage *= 1.2));
+        },
+        remove: (params: EffectParamType) => {
+          const { team } = params;
+          team.filter((agent) => agent.cup_size <= SizeEnum.D).forEach((agent) => (agent.skill_damage /= 1.2));
+        },
+        duration: 4
+      } as NewEffect,
+      { type: EffectEnum.Damage, damage: () => 16 * 2145 } as NewDamageEffect
+    ],
+    is_stackable: false,
+    cooldown: 10
+  } as NewSkill
+} as NewAgent;
+
+export const Sato = {
+  name: NameEnum.Sato,
+  organization: OrganizationEnum.ZETH,
+  cup_size: SizeEnum.G,
+  class: ClassEnum.Striker,
+  attack_speed: 1,
+  normal_attack: 1226,
+  critical_rate: 0.94,
+  critical_damage: 2.038,
+  skill_damage: 1226,
+  skill: {
+    name: 'Heretic Shredder',
+    description:
+      'each Zeth member give 33% of damage to every Zeth member for 6 seconds. her heretic shoots out 9 lazer beams, each beam deals 25107 damage. cooldown: 12',
+    effects: [
+      {
+        type: EffectEnum.Team,
+        apply: (params: EffectParamType) => {
+          const { team } = params;
+          const zeth_member = team.filter((agent) => agent.organization === OrganizationEnum.ZETH);
+          const zeth_member_num = zeth_member.length - 1;
+          zeth_member.forEach((agent) => {
+            agent.normal_attack *= 1 + 0.33 * zeth_member_num;
+            agent.skill_damage *= 1 + 0.33 * zeth_member_num;
+          });
+        },
+        remove: (params: EffectParamType) => {
+          const { team } = params;
+          const zeth_member = team.filter((agent) => agent.organization === OrganizationEnum.ZETH);
+          const zeth_member_num = zeth_member.length - 1;
+          zeth_member.forEach((agent) => {
+            agent.normal_attack /= 1 + 0.33 * zeth_member_num;
+            agent.skill_damage /= 1 + 0.33 * zeth_member_num;
+          });
+        },
+        duration: 6
+      } as NewEffect,
+      { type: EffectEnum.Damage, damage: () => 9 * 25107 } as NewDamageEffect
+    ],
+    is_stackable: false,
+    cooldown: 12
+  } as NewSkill
+} as NewAgent;
+
+export const Victoria = {
+  name: NameEnum.Victoria,
+  organization: OrganizationEnum.ZETH,
+  cup_size: SizeEnum.H,
+  class: ClassEnum.Striker,
+  attack_speed: 2,
+  normal_attack: 613,
+  critical_rate: 0.94,
+  critical_damage: 2.038,
+  skill_damage: 613,
+  skill: {
+    name: "Dracula's Wrath",
+    description:
+      'swing a cross scythe that deals 98063 damage on the target area for 16 seconds. increase the damage of all striker agents to 15% (+5% for each support on the battlefield) for 7 seconds. cooldown: 10',
+    effects: [
+      {
+        type: EffectEnum.Team,
+        apply: (params: EffectParamType) => {
+          const { team } = params;
+          const support_num = team.filter((agent) => agent.class === ClassEnum.Support).length;
+          team
+            .filter((agent) => agent.class === ClassEnum.Striker)
+            .forEach((agent) => {
+              agent.normal_attack *= 0.15 + support_num * 0.05;
+              agent.skill_damage *= 0.15 + support_num * 0.05;
+            });
+        },
+        remove: (params: EffectParamType) => {
+          const { team } = params;
+          const support_num = team.filter((agent) => agent.class === ClassEnum.Support).length;
+          team
+            .filter((agent) => agent.class === ClassEnum.Striker)
+            .forEach((agent) => {
+              agent.normal_attack /= 0.15 + support_num * 0.05;
+              agent.skill_damage /= 0.15 + support_num * 0.05;
+            });
+        },
+        duration: 7
+      } as NewEffect,
+      { type: EffectEnum.DOT, duration: 16, interval: 1, damage: () => 98063 / 16 } as NewDOTEffect
+    ],
+    is_stackable: false,
+    cooldown: 10
+  } as NewSkill
+} as NewAgent;
+
+export const Laura = {
+  name: NameEnum.Laura,
+  organization: OrganizationEnum.ADB,
+  cup_size: SizeEnum.C,
+  class: ClassEnum.Striker,
+  attack_speed: 2,
+  normal_attack: 613,
+  critical_rate: 0.84,
+  critical_damage: 2.028,
+  skill_damage: 680,
+  apply_skill_time: 1,
+  skill: {
+    name: 'Defensive Anchor: Ultimate Shielding',
+    description:
+      'enter the ultimate mode, increases self skill damage to 1200% for 11 seconds. everytime Laura enter the ultimate mode, she will cast a global stackable protection to the team which block normal attack for (base skill damage * 13%) times. cooldown: 10',
+    effects: [
+      {
+        type: EffectEnum.Self,
+        apply: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.attack_mode = AttackModeEnum.Skill;
+          agent.skill_damage *= 12;
+        },
+        remove: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.attack_mode = AttackModeEnum.Normal;
+          agent.skill_damage /= 12;
+        },
+        duration: 11
+      } as NewEffect
+    ],
+    is_stackable: false,
+    cooldown: 10
+  } as NewSkill
+} as NewAgent;
+
+export const Kura = {
+  name: NameEnum.Kura,
+  organization: OrganizationEnum.ZETH,
+  cup_size: SizeEnum.G,
+  class: ClassEnum.Artillery,
+  attack_speed: 1,
+  normal_attack: 2099,
+  critical_rate: 0.94,
+  critical_damage: 2.038,
+  skill_damage: 2099,
+  apply_skill_time: 1,
+  skill: {
+    name: "Hell's Gate: Alpha Enhanced",
+    description: 'summons three thunder beams from her trident for 8 seconds, total dealing 25190 damage. cooldown: 3',
+    effects: [{ type: EffectEnum.DOT, duration: 8, interval: 1, damage: () => 25190 / 8 } as NewDOTEffect],
+    is_stackable: false,
+    cooldown: 3
+  } as NewSkill
+} as NewAgent;
+
+export const Ne = {
+  name: NameEnum.Ne,
+  organization: OrganizationEnum.GAA,
+  cup_size: SizeEnum.E,
+  class: ClassEnum.Striker,
+  attack_speed: 1,
+  normal_attack: 1226,
+  critical_rate: 0.84,
+  critical_damage: 2.028,
+  skill_damage: 1226,
+  skill: {
+    name: "Berserker's Fury",
+    description:
+      'release all of the fury, dive into the berserker mode and throw out all of her axe to deal skill damage. increase self attack speed to 200%, damage to 900% and enlarger her attack range 2.5 for 10 seconds. cooldown: 20',
+    effects: [
+      {
+        type: EffectEnum.Self,
+        apply: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.attack_mode = AttackModeEnum.Skill;
+          agent.attack_speed *= 2;
+          agent.normal_attack *= 9;
+          agent.skill_damage *= 9;
+        },
+        remove: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.attack_mode = AttackModeEnum.Normal;
+          agent.attack_speed /= 2;
+          agent.normal_attack /= 9;
+          agent.skill_damage /= 9;
+        },
+        duration: 10
+      } as NewEffect
+    ],
+    is_stackable: false,
+    cooldown: 20
+  } as NewSkill
+} as NewAgent;
+
+export const Uta = {
+  name: NameEnum.Uta,
+  organization: OrganizationEnum.WIO,
+  cup_size: SizeEnum.E,
+  class: ClassEnum.Striker,
+  attack_speed: 0.5,
+  normal_attack: 2452,
+  critical_rate: 0.84,
+  critical_damage: 2.028,
+  skill_damage: 2452,
+  skill: {
+    name: 'Aura of Light',
+    description:
+      'go into holy light mode for 10 seconds, increase self attack rate to 500% and critical damage to 1000%. begin to smash the ground around herself with skill damage. cooldown: 10',
+    effects: [
+      {
+        type: EffectEnum.Self,
+        apply: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.attack_speed *= 5;
+          agent.critical_damage *= 10;
+        },
+        remove: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.attack_speed /= 5;
+          agent.critical_damage /= 10;
+        },
+        duration: 10
+      } as NewEffect
+    ],
+    is_stackable: false,
+    cooldown: 10
+  } as NewSkill
+} as NewAgent;
+
+export const Midori = {
+  name: NameEnum.Midori,
+  organization: OrganizationEnum.WIO,
+  cup_size: SizeEnum.J,
+  class: ClassEnum.Gunner,
+  attack_speed: 1,
+  normal_attack: 2145,
+  critical_rate: 0.69,
+  critical_damage: 2.018,
+  skill_damage: 2145,
+  apply_skill_time: 0.75,
+  skill: {
+    name: 'Lashing Tongue',
+    description:
+      'shift her phase from electron world and release all of her electron to enemy that deals skill damage. increase self attack speed to 200%, damage to 500% for 7 seconds. cooldown: 15',
+    effects: [
+      {
+        type: EffectEnum.Self,
+        apply: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.attack_speed *= 2;
+          agent.normal_attack *= 5;
+          agent.skill_damage *= 5;
+        },
+        remove: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.attack_speed /= 2;
+          agent.normal_attack /= 5;
+          agent.skill_damage /= 5;
+        },
+        duration: 7
+      } as NewEffect
+    ],
+    is_stackable: false,
+    cooldown: 15
+  } as NewSkill
+} as NewAgent;
+
+export const Sera = {
+  name: NameEnum.Sera,
+  organization: OrganizationEnum.NONE,
+  cup_size: SizeEnum.D,
+  class: ClassEnum.Support,
+  attack_speed: 1,
+  normal_attack: 3264,
+  critical_rate: 0.84,
+  critical_damage: 2.028,
+  skill_damage: 3264,
+  skill: {
+    name: 'Breath of the Wind',
+    description:
+      'cast a non-stackable buff on all friendly agents. add (Sera skill damage * 25%) damage on each hits for 14 seconds. cooldown: 20',
+    effects: [
+      {
+        type: EffectEnum.Self,
+        apply: (params: EffectParamType) => {
+          const { agent: Sera, team } = params;
+          team
+            .filter((agent) => agent.name !== NameEnum.Sera)
+            .forEach((agent) => {
+              agent.normal_attack *= Sera.skill_damage * 0.25;
+              agent.skill_damage *= Sera.skill_damage * 0.25;
+            });
+        },
+        remove: (params: EffectParamType) => {
+          const { agent: Sera, team } = params;
+          team
+            .filter((agent) => agent.name !== NameEnum.Sera)
+            .forEach((agent) => {
+              agent.normal_attack /= Sera.skill_damage * 0.25;
+              agent.skill_damage /= Sera.skill_damage * 0.25;
+            });
+        },
+        duration: 14
+      } as NewEffect
+    ],
+    is_stackable: false,
+    cooldown: 20
+  } as NewSkill
+} as NewAgent;
+
+export const Livia = {
+  name: NameEnum.Livia,
+  organization: OrganizationEnum.WIO,
+  cup_size: SizeEnum.J,
+  class: ClassEnum.Gunner,
+  attack_speed: 1,
+  normal_attack: 2145,
+  critical_rate: 0.69,
+  critical_damage: 2.018,
+  skill_damage: 2145,
+  skill: {
+    name: 'Call of the Whale',
+    description:
+      'shoot out a transonic tsunami wave towards to enemies dealing 85815 damage. having a 75% chance to reset the skill cooldown to 2 seconds everytime this skill casts. cooldown: 14',
+    effects: [
+      {
+        type: EffectEnum.Damage,
+        damage: (params: EffectParamType) => {
+          const { agent } = params;
+
+          if (Math.random() < 0.75) {
+            agent.skill.cooldown = 2 * 1000; // seconds to ms
+          } else {
+            agent.skill.cooldown = 14 * 1000; // seconds to ms
+          }
+
+          return 85815;
+        }
+      } as NewDamageEffect
+    ],
+    is_stackable: false,
+    cooldown: 14
+  } as NewSkill
+} as NewAgent;
+
+export const ReiJK = {
+  name: NameEnum.ReiJK,
+  organization: OrganizationEnum.GSR,
+  cup_size: SizeEnum.I,
+  class: ClassEnum.Artillery,
+  attack_speed: 2,
+  normal_attack: 1057,
+  critical_rate: 0.94,
+  critical_damage: 2.038,
+  skill_damage: 1057,
+  skill: {
+    name: 'Vanquishing school bag',
+    description:
+      'enters jk rage mode, school bag will explode with small aeo and increases self normal attack damage to 660% for 12 seconds. also increases critical rate by 40% for all artillery agents in the team for 5 seconds. cooldown: 15',
+    effects: [
+      {
+        type: EffectEnum.Self,
+        apply: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.normal_attack *= 6.6;
+        },
+        remove: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.normal_attack /= 6.6;
+        },
+        duration: 12
+      } as NewEffect,
+      {
+        type: EffectEnum.Team,
+        apply: (params: EffectParamType) => {
+          const { team } = params;
+          team
+            .filter((agent) => agent.class === ClassEnum.Artillery && agent.name !== NameEnum.ReiJK)
+            .forEach((agent) => (agent.critical_rate += 0.4));
+        },
+        remove: (params: EffectParamType) => {
+          const { team } = params;
+          team
+            .filter((agent) => agent.class === ClassEnum.Artillery && agent.name !== NameEnum.ReiJK)
+            .forEach((agent) => (agent.critical_rate -= 0.4));
+        },
+        duration: 5
+      } as NewEffect
+    ],
+    is_stackable: false,
+    cooldown: 15
+  } as NewSkill
+} as NewAgent;
+
+export const Rei = {
+  name: NameEnum.Rei,
+  organization: OrganizationEnum.GSR,
+  cup_size: SizeEnum.I,
+  class: ClassEnum.Artillery,
+  attack_speed: 2,
+  normal_attack: 1057,
+  critical_rate: 0.94,
+  critical_damage: 2.038,
+  skill_damage: 1057,
+  skill: {
+    name: 'Bite of the Sabertooth',
+    description: 'shoots multiple laser beams dealing 25373.9 damage. cooldown: 10',
+    effects: [{ type: EffectEnum.Damage, damage: () => 25374 } as NewDamageEffect],
+    is_stackable: false,
+    cooldown: 10
+  } as NewSkill
+} as NewAgent;
+
+export const Amikam = {
+  name: NameEnum.Amikam,
+  organization: OrganizationEnum.GAA,
+  cup_size: SizeEnum.E,
+  class: ClassEnum.Artillery,
+  attack_speed: 1,
+  normal_attack: 2099,
+  critical_rate: 0.84,
+  critical_damage: 2.028,
+  skill_damage: 2099,
+  apply_skill_time: 1,
+  skill: {
+    name: 'Vanquish The Sinners',
+    description:
+      'attack rapidly, penetrate targets and disperse in a narrow angle. also increases self attack damage to 262%, attack speed to 200%  and critical rate to 37% for 12 seconds. cooldown: 14',
+    effects: [
+      {
+        type: EffectEnum.Self,
+        apply: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.normal_attack *= 2.62;
+          agent.skill_damage *= 2.62;
+          agent.attack_speed *= 2;
+          agent.critical_rate *= 1.37;
+        },
+        remove: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.normal_attack /= 2.62;
+          agent.skill_damage /= 2.62;
+          agent.attack_speed /= 2;
+          agent.critical_rate /= 1.37;
+        },
+        duration: 12
+      } as NewEffect
+    ],
+    is_stackable: false,
+    cooldown: 14
+  } as NewSkill
+} as NewAgent;
+
+export const Iizuna = {
+  name: NameEnum.Iizuna,
+  organization: OrganizationEnum.GSR,
+  cup_size: SizeEnum.F,
+  class: ClassEnum.Artillery,
+  attack_speed: 1,
+  normal_attack: 2099,
+  critical_rate: 0.94,
+  critical_damage: 2.038,
+  skill_damage: 2099,
+  skill: {
+    name: 'Fox Fire: Inferno',
+    description:
+      'cast jujutsu for 10 seconds, throw the knife quadruple than usual, deals with skill damage, increase critical rate and critical damage to 30% for all artillery agents in the team and increase self damage to 860%. cooldown: 15',
+    effects: [
+      {
+        type: EffectEnum.Self,
+        apply: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.normal_attack *= 8.6;
+          agent.skill_damage *= 8.6;
+        },
+        remove: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.normal_attack /= 8.6;
+          agent.skill_damage /= 8.6;
+        },
+        duration: 10
+      } as NewEffect,
+      {
+        type: EffectEnum.Team,
+        apply: (params: EffectParamType) => {
+          const { team } = params;
+          team
+            .filter((agent) => agent.class === ClassEnum.Artillery)
+            .forEach((agent) => (agent.critical_damage += 0.3));
+        },
+        remove: (params: EffectParamType) => {
+          const { team } = params;
+          team
+            .filter((agent) => agent.class === ClassEnum.Artillery)
+            .forEach((agent) => (agent.critical_damage -= 0.3));
+        },
+        duration: 10
+      } as NewEffect
+    ],
+    is_stackable: false,
+    cooldown: 15
+  } as NewSkill
+} as NewAgent;
+
+export const Tsurumi = {
+  name: NameEnum.Tsurumi,
+  organization: OrganizationEnum.RSA,
+  cup_size: SizeEnum.A,
+  class: ClassEnum.Gunner,
+  attack_speed: 0.5,
+  normal_attack: 4336,
+  critical_rate: 0.84,
+  critical_damage: 2.028,
+  skill_damage: 4336,
+  apply_skill_time: 0.75,
+  skill: {
+    name: 'Ninjutsu of crane: Thousand Scythe',
+    description:
+      'increases self attack speed to 400% and attack damage to 121% for 10 seconds. sickle will penetrate through enemy. cooldown: 13',
+    effects: [
+      {
+        type: EffectEnum.Self,
+        apply: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.attack_speed *= 4;
+          agent.normal_attack *= 1.21;
+          agent.skill_damage *= 1.21;
+        },
+        remove: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.attack_speed /= 4;
+          agent.normal_attack /= 1.21;
+          agent.skill_damage /= 1.21;
+        },
+        duration: 10
+      } as NewEffect
+    ],
+    is_stackable: false,
+    cooldown: 13
+  } as NewSkill
+} as NewAgent;
+
+export const Mora = {
+  name: NameEnum.Mora,
+  organization: OrganizationEnum.DAB,
+  cup_size: SizeEnum.F,
+  class: ClassEnum.Support,
+  attack_speed: 1,
+  normal_attack: 3592,
+  critical_rate: 0.84,
+  critical_damage: 2.038,
+  skill_damage: 3264,
+  skill: {
+    name: 'Nanobot Catalyst',
+    description:
+      'anything in contract with the nanobot catalyst will expose their weakness for 0.5 seconds. spread out nanobot catalyst around herself for 20 seconds. withing that first 7 seconds, Mora will throw nanobot catalyst more frequently and increase damage to 4200%. cooldown: 20',
+    effects: [
+      {
+        type: EffectEnum.Debuff,
+        apply: (params: EffectParamType) => {
+          const { target } = params;
+          target.weakness_multiplier *= 1.75;
+        },
+        remove: (params: EffectParamType) => {
+          const { target } = params;
+          target.weakness_multiplier /= 1.75;
+        },
+        duration: 20
+      } as NewEffect,
+      {
+        type: EffectEnum.Self,
+        apply: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.normal_attack *= 42;
+          agent.skill_damage *= 42;
+        },
+        remove: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.normal_attack /= 42;
+          agent.skill_damage /= 42;
+        },
+        duration: 7
+      } as NewEffect
+    ],
+    is_stackable: false,
+    cooldown: 20
+  } as NewSkill
+} as NewAgent;
+
+export const Masamune = {
+  name: NameEnum.Masamune,
+  organization: OrganizationEnum.RSA,
+  cup_size: SizeEnum.H,
+  class: ClassEnum.Striker,
+  attack_speed: 1,
+  normal_attack: 1395,
+  critical_rate: 0.94,
+  critical_damage: 2.038,
+  skill_damage: 1226,
+  apply_skill_time: 1,
+  skill: {
+    name: 'Seven blades',
+    description:
+      'pull out all of her blades in a flash for 10 seconds. enlarge her attack range 2.5, increase her damage to 1800%. cooldown: 20',
+    effects: [
+      {
+        type: EffectEnum.Self,
+        duration: 10,
+        apply: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.normal_attack *= 18;
+          agent.skill_damage *= 18;
+        },
+        remove: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.normal_attack /= 18;
+          agent.skill_damage /= 18;
+        }
+      } as NewEffect
+    ],
+    is_stackable: false,
+    cooldown: 20
+  } as NewSkill
+} as NewAgent;
+
+export const Chloe = {
+  name: NameEnum.Chloe,
+  organization: OrganizationEnum.RSA,
+  cup_size: SizeEnum.G,
+  class: ClassEnum.Artillery,
+  attack_speed: 1,
+  normal_attack: 2099,
+  critical_rate: 0.94,
+  critical_damage: 2.028,
+  skill_damage: 2099,
+  skill: {
+    name: 'Abyssal Pilgrimage',
+    description:
+      'dive into darkness, bring it with the deepest power. cast a stackable buff, increase damage to 200% and increase all artillery agents damage to 110% for 24 seconds. cooldown: 10',
+    effects: [
+      {
+        type: EffectEnum.Self,
+        apply: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.normal_attack *= 2;
+          agent.skill_damage *= 2;
+        },
+        remove: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.normal_attack /= 2;
+          agent.skill_damage /= 2;
+        },
+        duration: 24
+      } as NewEffect,
+      {
+        type: EffectEnum.Self,
+        apply: (params: EffectParamType) => {
+          const { team } = params;
+          team
+            .filter((agent) => agent.class === ClassEnum.Artillery && agent.name !== NameEnum.Chloe)
+            .forEach((agent) => {
+              agent.normal_attack *= 1.1;
+              agent.skill_damage *= 1.1;
+            });
+        },
+        remove: (params: EffectParamType) => {
+          const { team } = params;
+          team
+            .filter((agent) => agent.class === ClassEnum.Artillery && agent.name !== NameEnum.Chloe)
+            .forEach((agent) => {
+              agent.normal_attack /= 1.1;
+              agent.skill_damage /= 1.1;
+            });
+        },
+        duration: 24
+      } as NewEffect
+    ],
+    is_stackable: true,
+    cooldown: 10
+  } as NewSkill
+} as NewAgent;
+
+export const Tyrla = {
+  name: NameEnum.Tyrla,
+  organization: OrganizationEnum.TAP,
+  cup_size: SizeEnum.A,
+  class: ClassEnum.Artillery,
+  attack_speed: 1,
+  normal_attack: 2099,
+  critical_rate: 0.84,
+  critical_damage: 2.028,
+  skill_damage: 2099,
+  apply_skill_time: 1,
+  skill: {
+    name: 'Kuchipudi',
+    description:
+      'Tyrla begin the kuchipudi dance, increase self damage to 530% and attack speed to 240% for 12 seconds. she bursts out whatever she got from her arm mech while dancing. cooldown: 16',
+    effects: [
+      {
+        type: EffectEnum.Self,
+        apply: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.normal_attack *= 5.3;
+          agent.skill_damage *= 5.3;
+          agent.attack_speed *= 2.4;
+        },
+        remove: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.normal_attack /= 5.3;
+          agent.skill_damage /= 5.3;
+          agent.attack_speed /= 2.4;
+        },
+        duration: 12
+      } as NewEffect
+    ],
+    is_stackable: false,
+    cooldown: 16
+  } as NewSkill
+} as NewAgent;

@@ -1,9 +1,6 @@
 {
-  "name": "sf-girls-calculator",
-  "author": "ox7f",
-  "license": "ISC",
-  "private": true,
-  "version": "0.0.1",
+  "name": "sf-sf-girls-calculator",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -20,13 +17,16 @@
     "format:frontend": "npm run format --workspace=sf-girls-calculator-frontend",
     "format:calculator": "npm run format --workspace=sf-girls-calculator-calculator"
   },
-  "devDependencies": {
-    "prettier": "^2.8.3"
-  },
+  "private": true,
   "workspaces": {
     "packages": [
       "./packages/*"
     ]
   },
-  "keywords": []
+  "devDependencies": {
+    "prettier": "^2.8.3"
+  },
+  "keywords": [],
+  "author": "ox7f",
+  "license": "ISC"
 }
