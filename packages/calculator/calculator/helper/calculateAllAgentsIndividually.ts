@@ -1,28 +1,32 @@
+import { calculate_team } from './calculateTeam';
 import { Agents, Targets } from '../data';
-// import { NameEnum } from "../enums";
-import { Agent, Fight, ResultType, Target } from '../model';
+import { NewAgent, NewTarget, ResultType } from '../model';
 
-export function calculateAgentsIndividually() {
-  // let agents = transformAgents();
+export function calculate_agents_individually() {
+  const agents = transformAgents();
+  const targets = transformTargets();
   const results: ResultType[] = [];
 
-  // agents.forEach((a) => {
-  // if (a.name === NameEnum.Yuki) {
-  const target = new Target(Targets.Dummy_Stage_4);
-  const agent = new Agent(Agents.Yuki);
-  const team = [agent]; // new Agent(Agents.Coco)
-  const fightCalculator = new Fight({ target, team });
-  const result = fightCalculator.run();
-  results.push(result);
-  // }
-  // });
+  agents.forEach((a) => {
+    targets.forEach((t) => {
+      const result = calculate_team([a], t);
+      results.push(result);
+    });
+  });
+
+  return results;
 }
 
-// function transformAgents() {
-//   const allAgents: AllAgents<NewAgent> = Agents;
-//   return Object.keys(allAgents).map((key) => allAgents[key]);
-// }
+function transformAgents() {
+  const allAgents: AllObjects<NewAgent> = Agents;
+  return Object.keys(allAgents).map((key) => allAgents[key]);
+}
 
-// interface AllAgents<T> {
-//   [index: string]: T;
-// }
+function transformTargets() {
+  const allTargets: AllObjects<NewTarget> = Targets;
+  return Object.keys(allTargets).map((key) => allTargets[key]);
+}
+
+interface AllObjects<T> {
+  [index: string]: T;
+}

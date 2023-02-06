@@ -29,9 +29,5 @@ export function is_in_animation(agent: Agent): boolean {
     agent.remove_skill_remaining_time -= globalThis.Interval;
   }
 
-  if (apply_skill_remaining_time > 0 || remove_skill_remaining_time > 0) {
-    return true;
-  } else {
-    return false;
-  }
+  return apply_skill_remaining_time > 0 || remove_skill_remaining_time > 0;
 }

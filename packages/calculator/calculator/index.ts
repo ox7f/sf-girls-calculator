@@ -1,8 +1,10 @@
+globalThis.Interval = 10;
+
 import * as EverythingData from './data';
 import * as EverythingHelper from './helper';
 
 export const { Agents, Targets } = EverythingData;
-export const { calculateTeam } = EverythingHelper;
+export const { calculate_team } = EverythingHelper;
 
 export { Agent, Effect, Fight, Skill, Target } from './model';
 export { NewAgent, NewEffect, NewDamageEffect, NewDOTEffect, NewFight, NewSkill, NewTarget } from './model';

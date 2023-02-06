@@ -1,6 +1,4 @@
-import { Agent, Target } from './index';
-import { NewFight } from '../interfaces';
-import { ResultType } from '../types';
+import { Agent, Target, NewFight, ResultType } from '../../model';
 import { handle_attack, handle_skill } from '../../helper';
 
 export class Fight {

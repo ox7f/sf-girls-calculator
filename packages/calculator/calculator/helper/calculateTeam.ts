@@ -1,11 +1,8 @@
-import { Agent, Fight, Target } from '../model';
+import { Agent, Fight, NewAgent, NewTarget, Target } from '../model';
 
-type paramType = {
-  target: Target;
-  team: Agent[];
-};
-
-export function calculateTeam({ target, team }: paramType) {
+export function calculate_team(new_team: NewAgent[], new_target: NewTarget) {
+  const target = new Target(new_target);
+  const team = new_team.map((agent: NewAgent) => new Agent(agent));
   const fightCalculator = new Fight({ target, team });
   const result = fightCalculator.run();
   return result;

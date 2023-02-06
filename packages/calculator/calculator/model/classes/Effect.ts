@@ -1,5 +1,4 @@
-import { NewDamageEffect, NewDOTEffect, NewEffect } from '../interfaces';
-import { DamageEffectFunctionType, EffectFunctionType } from '../types';
+import { DamageEffectFunctionType, EffectFunctionType, NewDamageEffect, NewDOTEffect, NewEffect } from '../../model';
 import { EffectEnum } from '../../enums';
 
 export class Effect {
@@ -29,8 +28,8 @@ export class DamageEffect {
 
 export class DOTEffect {
   type: EffectEnum;
-  duration = 0;
-  interval = 0;
+  duration: number;
+  interval: number; // time interval for dot
   damage: DamageEffectFunctionType;
   begin = 0;
 

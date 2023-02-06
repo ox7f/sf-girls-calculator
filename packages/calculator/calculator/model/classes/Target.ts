@@ -1,5 +1,4 @@
-import { NewTarget } from '../interfaces';
-import { Agent } from './Agent';
+import { Agent, NewTarget } from '../../model';
 
 export class Target {
   name: string;
@@ -18,9 +17,9 @@ export class Target {
     this.critical_resistance = critical_resistance ?? 0;
   }
 
-  takeDamage(attack_damage: number, agent: Agent): void {
-    const dealt_damage = attack_damage * this.damage_taken_multiplier * this.weakness_multiplier;
-    agent.dealt_damage += dealt_damage;
-    this.current_health -= dealt_damage;
+  take_damage(attack_damage: number, agent: Agent): void {
+    const damage = attack_damage * this.damage_taken_multiplier * this.weakness_multiplier;
+    agent.damage_dealt += damage;
+    this.current_health -= damage;
   }
 }

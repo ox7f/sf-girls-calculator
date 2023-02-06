@@ -1,7 +1,6 @@
-import { Effect, Skill, Target } from './index';
-import { NewAgent } from '../interfaces';
+import { DOTEffect, Effect, Skill, Target, NewAgent } from '../../model';
 import { AttackModeEnum, ClassEnum, NameEnum, OrganizationEnum, SizeEnum } from '../../enums';
-import { get_critical_damage } from '../../helper';
+import { calculate_critical_damage } from '../../helper';
 
 export class Agent {
   name: NameEnum;
@@ -16,47 +15,57 @@ export class Agent {
   base_skill_damage = 0;
   skill: Skill;
 
+  applied_effects: Array<Effect | DOTEffect> = []; // list of skill (self buff, team buff) and dot effects
+  attack_mode: AttackModeEnum = AttackModeEnum.Normal; // determines attribute that is used for damage calculation
+
   apply_skill_time: number; // time to cast a skill (unable to attack during this time)
-  apply_skill_remaining_time = 0; // remaining skill cast time
   remove_skill_time: number; // time to remove a skill (unable to attack during this time)
+  apply_skill_remaining_time = 0; // remaining skill cast time
   remove_skill_remaining_time = 0; // remaining skill remove time
   has_animation: boolean; // determines if agent has skill cast animation
 
-  applied_effects: Effect[] = []; // list of applied (skill) effects
-  attack_mode: AttackModeEnum = AttackModeEnum.Normal; // determines attribute that is used for damage calculation
-  last_attack_time = 0; // timestamp of the last attack
   attack_counter = 0; // number of attacks
-  dealt_damage = 0; // damage dealt during fight
+  damage_dealt = 0; // damage dealt during fight
+  last_attack_time = 0; // timestamp of the last attack
 
-  constructor(agent: NewAgent) {
-    this.name = agent.name;
-    this.organization = agent.organization;
-    this.cup_size = agent.cup_size;
-    this.class = agent.class;
-    this.attack_speed = agent.attack_speed * 1000; // seconds to ms
-    this.normal_attack = agent.normal_attack;
-    this.critical_rate = agent.critical_rate;
-    this.critical_damage = agent.critical_damage;
-    this.skill_damage = agent.skill_damage;
-    this.base_skill_damage = agent.skill_damage;
-    this.skill = new Skill(agent.skill);
-    this.apply_skill_time = agent.apply_skill_time
-      ? agent.apply_skill_time * 1000 // seconds to ms
-      : 0;
-    this.remove_skill_time = agent.remove_skill_time
-      ? agent.remove_skill_time * 1000 // seconds to ms
-      : 0;
+  constructor({
+    name,
+    organization,
+    cup_size,
+    class: className,
+    attack_speed,
+    normal_attack,
+    critical_rate,
+    critical_damage,
+    skill_damage,
+    skill,
+    apply_skill_time = 0,
+    remove_skill_time = 0
+  }: NewAgent) {
+    this.name = name;
+    this.organization = organization;
+    this.cup_size = cup_size;
+    this.class = className;
+    this.attack_speed = attack_speed * 1000; // seconds to ms
+    this.normal_attack = normal_attack;
+    this.critical_rate = critical_rate;
+    this.critical_damage = critical_damage;
+    this.skill_damage = skill_damage;
+    this.base_skill_damage = skill_damage;
+    this.skill = new Skill(skill);
+    this.apply_skill_time = apply_skill_time;
+    this.remove_skill_time = remove_skill_time;
 
     this.has_animation = this.apply_skill_time > 0 || this.remove_skill_time > 0;
   }
 
   attack(target: Target, time: number) {
-    const total_damage = this.calculate_damage(target);
+    const damage = this.calculate_damage(target);
 
     this.last_attack_time = time;
     this.attack_counter++;
 
-    target.takeDamage(total_damage, this);
+    target.take_damage(damage, this);
   }
 
   calculate_damage(target: Target): number {
@@ -74,6 +83,6 @@ export class Agent {
         damage = this.normal_attack + this.skill_damage;
     }
 
-    return get_critical_damage(damage, critical_rate, this.critical_damage);
+    return calculate_critical_damage(damage, critical_rate, this.critical_damage);
   }
 }

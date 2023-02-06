@@ -22,11 +22,13 @@ export const Yuki = {
           const { agent } = params;
           agent.attack_speed *= 2.2;
           agent.normal_attack *= 15;
+          agent.skill_damage *= 15;
         },
         remove: (params: EffectParamType) => {
           const { agent } = params;
           agent.attack_speed /= 2.2;
           agent.normal_attack /= 15;
+          agent.skill_damage /= 15;
         },
         duration: 4
       } as NewEffect

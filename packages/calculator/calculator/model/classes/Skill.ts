@@ -1,5 +1,4 @@
-import { Effect, DamageEffect, DOTEffect } from './index';
-import { NewDamageEffect, NewDOTEffect, NewEffect, NewSkill } from '../interfaces';
+import { Effect, DamageEffect, DOTEffect, NewDamageEffect, NewDOTEffect, NewEffect, NewSkill } from '../../model';
 import { EffectEnum } from '../../enums';
 
 export class Skill {
@@ -18,9 +17,7 @@ export class Skill {
     this.effects = effects.map((effect) => {
       switch (effect.type) {
         case EffectEnum.Self:
-          return new Effect(effect as NewEffect);
         case EffectEnum.Team:
-          return new Effect(effect as NewEffect);
         case EffectEnum.Debuff:
           return new Effect(effect as NewEffect);
         case EffectEnum.Damage:

@@ -1,21 +1,20 @@
-import { handle_dot_effect, handle_effect, remove_expired_effect } from './index';
-import { Agent, Fight } from '../model';
-import { EffectEnum } from '../enums';
+import { handle_dot, use_skill, remove_expired } from './index';
+import { Agent, DOTEffect, Fight } from '../model';
 
 export function handle_skill(fight: Fight) {
   const { team, time } = fight;
 
   team.forEach((agent) => {
     if (can_use_skill(time, agent)) {
-      handle_effect(agent, fight);
+      use_skill(agent, fight);
       set_skill_apply_animation_time(agent);
     }
 
     if (has_dot_effect(agent)) {
-      handle_dot_effect(agent, fight);
+      handle_dot(agent, fight);
     }
 
-    remove_expired_effect(agent, fight);
+    remove_expired(agent, fight);
   });
 }
 
@@ -24,7 +23,7 @@ export function can_use_skill(time: number, agent: Agent): boolean {
 }
 
 export function has_dot_effect(agent: Agent): boolean {
-  return agent.skill.effects.filter((effect) => effect.type === EffectEnum.DOT).length > 0;
+  return agent.skill.effects.filter((effect) => effect instanceof DOTEffect).length > 0;
 }
 
 export function set_skill_apply_animation_time(agent: Agent) {
