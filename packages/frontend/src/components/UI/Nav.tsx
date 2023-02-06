@@ -1,4 +1,4 @@
-function Nav() {
+const Nav: React.FC = () => {
   return (
     <>
       <nav className="container-fluid">
@@ -38,6 +38,6 @@ function Nav() {
       </nav>
     </>
   );
-}
+};
 
 export default Nav;

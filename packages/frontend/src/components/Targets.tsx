@@ -9,11 +9,11 @@ const Targets: React.FC = () => {
   }
 
   return (
-    <>
+    <article>
       {targets.map((target) => (
         <Target key={target.key} {...target.values} />
       ))}
-    </>
+    </article>
   );
 };
 

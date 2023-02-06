@@ -4,7 +4,7 @@ interface CardInterface {
   footer: string;
 }
 
-function Card({ header, body, footer }: CardInterface) {
+const Card: React.FC<CardInterface> = ({ header, body, footer }: CardInterface) => {
   return (
     <article>
       <header>
@@ -18,6 +18,6 @@ function Card({ header, body, footer }: CardInterface) {
       </footer>
     </article>
   );
-}
+};
 
 export default Card;

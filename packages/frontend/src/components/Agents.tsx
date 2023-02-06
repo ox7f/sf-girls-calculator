@@ -9,11 +9,11 @@ const Agents: React.FC = () => {
   }
 
   return (
-    <>
+    <article>
       {agents.map((agent) => (
         <Agent key={agent.key} {...agent.values} />
       ))}
-    </>
+    </article>
   );
 };
 

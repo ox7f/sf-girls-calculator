@@ -1,6 +1,6 @@
 import { Nav } from './index';
 
-function Header() {
+const Header: React.FC = () => {
   return (
     <header>
       <Nav />
