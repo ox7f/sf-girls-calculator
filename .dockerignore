@@ -5,6 +5,7 @@
 .env
 config
 build
+dist
 node_modules
 docker-compose.yaml
 Dockerfile
