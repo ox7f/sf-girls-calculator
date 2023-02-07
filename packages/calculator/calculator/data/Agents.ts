@@ -4,6 +4,7 @@ import { EffectParamType } from '../model/types';
 
 export const Yuki = {
   name: NameEnum.Yuki,
+  title: 'Valkyrie',
   organization: OrganizationEnum.WIO,
   cup_size: SizeEnum.C,
   class: ClassEnum.Striker,
@@ -40,6 +41,7 @@ export const Yuki = {
 
 export const Neve = {
   name: NameEnum.Neve,
+  title: 'Frostbite',
   organization: OrganizationEnum.GSR,
   cup_size: SizeEnum.D,
   class: ClassEnum.Support,
@@ -60,6 +62,7 @@ export const Neve = {
 
 export const Ayu = {
   name: NameEnum.Ayu,
+  title: 'Spectre',
   organization: OrganizationEnum.WIO,
   cup_size: SizeEnum.E,
   class: ClassEnum.Gunner,
@@ -80,6 +83,7 @@ export const Ayu = {
 
 export const Mika = {
   name: NameEnum.Mika,
+  title: 'Maelstrom',
   organization: OrganizationEnum.GAA,
   cup_size: SizeEnum.G,
   class: ClassEnum.Striker,
@@ -99,6 +103,7 @@ export const Mika = {
 
 export const Sora = {
   name: NameEnum.Sora,
+  title: 'Harpy',
   organization: OrganizationEnum.GSR,
   cup_size: SizeEnum.E,
   class: ClassEnum.Gunner,
@@ -118,6 +123,7 @@ export const Sora = {
 
 export const Ember = {
   name: NameEnum.Ember,
+  title: 'The Maniac',
   organization: OrganizationEnum.GAA,
   cup_size: SizeEnum.E,
   class: ClassEnum.Artillery,
@@ -137,6 +143,7 @@ export const Ember = {
 
 export const Chiharu = {
   name: NameEnum.Chiharu,
+  title: 'Corsair',
   organization: OrganizationEnum.GAA,
   cup_size: SizeEnum.J,
   class: ClassEnum.Artillery,
@@ -156,6 +163,7 @@ export const Chiharu = {
 
 export const Irina = {
   name: NameEnum.Irina,
+  title: 'Honeybee',
   organization: OrganizationEnum.DOD,
   cup_size: SizeEnum.A,
   class: ClassEnum.Artillery,
@@ -175,6 +183,7 @@ export const Irina = {
 
 export const Yuuha = {
   name: NameEnum.Yuuha,
+  title: 'Lotus',
   organization: OrganizationEnum.WIO,
   cup_size: SizeEnum.C,
   class: ClassEnum.Gunner,
@@ -194,6 +203,7 @@ export const Yuuha = {
 
 export const Uzu = {
   name: NameEnum.Uzu,
+  title: 'Abyss',
   organization: OrganizationEnum.ADB,
   cup_size: SizeEnum.J,
   class: ClassEnum.Support,
@@ -214,6 +224,7 @@ export const Uzu = {
 
 export const Denka = {
   name: NameEnum.Denka,
+  title: 'Groundhog',
   organization: OrganizationEnum.WIO,
   cup_size: SizeEnum.E,
   class: ClassEnum.Striker,
@@ -233,6 +244,7 @@ export const Denka = {
 
 export const Reika = {
   name: NameEnum.Reika,
+  title: 'Iris',
   organization: OrganizationEnum.NDS,
   cup_size: SizeEnum.I,
   class: ClassEnum.Gunner,
@@ -253,6 +265,7 @@ export const Reika = {
 
 export const Noa = {
   name: NameEnum.Noa,
+  title: 'The Professor',
   organization: OrganizationEnum.NDS,
   cup_size: SizeEnum.D,
   class: ClassEnum.Support,
@@ -273,6 +286,7 @@ export const Noa = {
 
 export const Neugena = {
   name: NameEnum.Neugena,
+  title: 'bucktail',
   organization: OrganizationEnum.GSR,
   cup_size: SizeEnum.D,
   class: ClassEnum.Gunner,
@@ -307,6 +321,7 @@ export const Neugena = {
 
 export const Larisa = {
   name: NameEnum.Larisa,
+  title: 'Katyusha',
   organization: OrganizationEnum.ADB,
   cup_size: SizeEnum.G,
   class: ClassEnum.Artillery,
@@ -326,6 +341,7 @@ export const Larisa = {
 
 export const Rui = {
   name: NameEnum.Rui,
+  title: 'Femme Fatale',
   organization: OrganizationEnum.GSR,
   cup_size: SizeEnum.D,
   class: ClassEnum.Striker,
@@ -361,6 +377,7 @@ export const Rui = {
 
 export const Kotora = {
   name: NameEnum.Kotora,
+  title: 'Tiger',
   organization: OrganizationEnum.GSR,
   cup_size: SizeEnum.J,
   class: ClassEnum.Artillery,
@@ -381,6 +398,7 @@ export const Kotora = {
 
 export const Vanessa = {
   name: NameEnum.Vanessa,
+  title: 'Belle',
   organization: OrganizationEnum.DOD,
   cup_size: SizeEnum.K,
   class: ClassEnum.Support,
@@ -400,6 +418,7 @@ export const Vanessa = {
 
 export const Aoi = {
   name: NameEnum.Aoi,
+  title: 'Astro',
   organization: OrganizationEnum.WIO,
   cup_size: SizeEnum.B,
   class: ClassEnum.Support,
@@ -433,6 +452,7 @@ export const Aoi = {
 
 export const Sara = {
   name: NameEnum.Sara,
+  title: 'Medusa',
   organization: OrganizationEnum.GSR,
   cup_size: SizeEnum.C,
   class: ClassEnum.Support,
@@ -452,6 +472,7 @@ export const Sara = {
 
 export const Mai = {
   name: NameEnum.Mai,
+  title: 'White Lion',
   organization: OrganizationEnum.DOD,
   cup_size: SizeEnum.B,
   class: ClassEnum.Gunner,
@@ -471,6 +492,7 @@ export const Mai = {
 
 export const Tsukiko = {
   name: NameEnum.Tsukiko,
+  title: 'Arsenal',
   organization: OrganizationEnum.ADB,
   cup_size: SizeEnum.F,
   class: ClassEnum.Artillery,
@@ -508,6 +530,7 @@ export const Tsukiko = {
 
 export const Yukako = {
   name: NameEnum.Yukako,
+  title: 'The Ghost',
   organization: OrganizationEnum.NDS,
   cup_size: SizeEnum.A,
   class: ClassEnum.Gunner,
@@ -551,6 +574,7 @@ export const Yukako = {
 
 export const Coco = {
   name: NameEnum.Coco,
+  title: 'Bearclaw',
   organization: OrganizationEnum.DOD,
   cup_size: SizeEnum.B,
   class: ClassEnum.Support,
@@ -603,6 +627,7 @@ export const Coco = {
 
 export const Pan = {
   name: NameEnum.Pan,
+  title: 'Liberty',
   organization: OrganizationEnum.WIO,
   cup_size: SizeEnum.G,
   class: ClassEnum.Gunner,
@@ -647,6 +672,7 @@ export const Pan = {
 
 export const Hitomi = {
   name: NameEnum.Hitomi,
+  title: 'Kairos',
   organization: OrganizationEnum.GAA,
   cup_size: SizeEnum.D,
   class: ClassEnum.Support,
@@ -680,6 +706,7 @@ export const Hitomi = {
 
 export const Cadence = {
   name: NameEnum.Cadence,
+  title: 'Cerberus',
   organization: OrganizationEnum.ADB,
   cup_size: SizeEnum.D,
   class: ClassEnum.Artillery,
@@ -699,6 +726,7 @@ export const Cadence = {
 
 export const Uni = {
   name: NameEnum.Uni,
+  title: 'Cupid',
   organization: OrganizationEnum.DOD,
   cup_size: SizeEnum.K,
   class: ClassEnum.Support,
@@ -719,6 +747,7 @@ export const Uni = {
 
 export const Sizuko = {
   name: NameEnum.Sizuko,
+  title: 'Reaper',
   organization: OrganizationEnum.GAA,
   cup_size: SizeEnum.K,
   class: ClassEnum.Striker,
@@ -740,6 +769,7 @@ export const Sizuko = {
 
 export const Chihiro = {
   name: NameEnum.Chihiro,
+  title: 'Thresher',
   organization: OrganizationEnum.ADB,
   cup_size: SizeEnum.C,
   class: ClassEnum.Artillery,
@@ -777,6 +807,7 @@ export const Chihiro = {
 
 export const Mei = {
   name: NameEnum.Mei,
+  title: 'Amethyst',
   organization: OrganizationEnum.ADB,
   cup_size: SizeEnum.G,
   class: ClassEnum.Striker,
@@ -796,6 +827,7 @@ export const Mei = {
 
 export const Riho = {
   name: NameEnum.Riho,
+  title: 'Artemis',
   organization: OrganizationEnum.ADB,
   cup_size: SizeEnum.C,
   class: ClassEnum.Gunner,
@@ -816,6 +848,7 @@ export const Riho = {
 
 export const Mitsu = {
   name: NameEnum.Mitsu,
+  title: 'Delta',
   organization: OrganizationEnum.ADB,
   cup_size: SizeEnum.D,
   class: ClassEnum.Artillery,
@@ -835,6 +868,7 @@ export const Mitsu = {
 
 export const Akina = {
   name: NameEnum.Akina,
+  title: 'The Dragon',
   organization: OrganizationEnum.DOD,
   cup_size: SizeEnum.H,
   class: ClassEnum.Striker,
@@ -858,6 +892,7 @@ export const Akina = {
 
 export const Akari = {
   name: NameEnum.Akari,
+  title: 'Tinker',
   organization: OrganizationEnum.ADB,
   cup_size: SizeEnum.C,
   class: ClassEnum.Support,
@@ -878,6 +913,7 @@ export const Akari = {
 
 export const Sayaka = {
   name: NameEnum.Sayaka,
+  title: 'Crow',
   organization: OrganizationEnum.ADB,
   cup_size: SizeEnum.H,
   class: ClassEnum.Striker,
@@ -897,6 +933,7 @@ export const Sayaka = {
 
 export const Momoko = {
   name: NameEnum.Momoko,
+  title: 'Mouse',
   organization: OrganizationEnum.DOD,
   cup_size: SizeEnum.A,
   class: ClassEnum.Gunner,
@@ -931,6 +968,7 @@ export const Momoko = {
 
 export const Meteli = {
   name: NameEnum.Meteli,
+  title: 'Nebula',
   organization: OrganizationEnum.WIO,
   cup_size: SizeEnum.E,
   class: ClassEnum.Striker,
@@ -967,6 +1005,7 @@ export const Meteli = {
 
 export const Hoshiko = {
   name: NameEnum.Hoshiko,
+  title: 'Zircon',
   organization: OrganizationEnum.GSR,
   cup_size: SizeEnum.M,
   class: ClassEnum.Support,
@@ -1013,6 +1052,7 @@ export const Hoshiko = {
 
 export const Feme = {
   name: NameEnum.Feme,
+  title: 'Jackal',
   organization: OrganizationEnum.GAA,
   cup_size: SizeEnum.G,
   class: ClassEnum.Artillery,
@@ -1051,6 +1091,7 @@ export const Feme = {
 
 export const NeveX = {
   name: NameEnum.NeveX,
+  title: 'Frostbite: Alpha',
   organization: OrganizationEnum.GSR,
   cup_size: SizeEnum.L,
   class: ClassEnum.Support,
@@ -1089,6 +1130,7 @@ export const NeveX = {
 
 export const Eiko = {
   name: NameEnum.Eiko,
+  title: 'Cottontail',
   organization: OrganizationEnum.GSR,
   cup_size: SizeEnum.F,
   class: ClassEnum.Gunner,
@@ -1108,6 +1150,7 @@ export const Eiko = {
 
 export const Goi = {
   name: NameEnum.Goi,
+  title: 'Ruiner',
   organization: OrganizationEnum.GAA,
   cup_size: SizeEnum.G,
   class: ClassEnum.Artillery,
@@ -1128,6 +1171,7 @@ export const Goi = {
 
 export const RihoX = {
   name: NameEnum.RihoX,
+  title: 'Artemis: Alpha',
   organization: OrganizationEnum.ADB,
   cup_size: SizeEnum.C,
   class: ClassEnum.Artillery,
@@ -1167,6 +1211,7 @@ export const RihoX = {
 
 export const Setsuna = {
   name: NameEnum.Setsuna,
+  title: 'Sabotage',
   organization: OrganizationEnum.GSR,
   cup_size: SizeEnum.D,
   class: ClassEnum.Striker,
@@ -1203,6 +1248,7 @@ export const Setsuna = {
 
 export const Hami = {
   name: NameEnum.Hami,
+  title: 'Sting',
   organization: OrganizationEnum.DOD,
   cup_size: SizeEnum.C,
   class: ClassEnum.Gunner,
@@ -1223,6 +1269,7 @@ export const Hami = {
 
 export const O = {
   name: NameEnum.O,
+  title: 'Andromeda',
   organization: OrganizationEnum.GSR,
   cup_size: SizeEnum.C,
   class: ClassEnum.Artillery,
@@ -1259,6 +1306,7 @@ export const O = {
 
 export const GaiGai = {
   name: NameEnum.GaiGai,
+  title: 'Panda',
   organization: OrganizationEnum.DOD,
   cup_size: SizeEnum.D,
   class: ClassEnum.Striker,
@@ -1278,6 +1326,7 @@ export const GaiGai = {
 
 export const Rosalie = {
   name: NameEnum.Rosalie,
+  title: 'Lust',
   organization: OrganizationEnum.ADB,
   cup_size: SizeEnum.E,
   class: ClassEnum.Support,
@@ -1324,6 +1373,7 @@ export const Rosalie = {
 
 export const Toki = {
   name: NameEnum.Toki,
+  title: 'The Witch',
   organization: OrganizationEnum.DOD,
   cup_size: SizeEnum.D,
   class: ClassEnum.Support,
@@ -1370,6 +1420,7 @@ export const Toki = {
 
 export const Wu = {
   name: NameEnum.Wu,
+  title: 'Emperor',
   organization: OrganizationEnum.GAA,
   cup_size: SizeEnum.G,
   class: ClassEnum.Striker,
@@ -1418,6 +1469,7 @@ export const Wu = {
 
 export const ZiLong = {
   name: NameEnum.ZiLong,
+  title: 'Leviathan',
   organization: OrganizationEnum.DOD,
   cup_size: SizeEnum.I,
   class: ClassEnum.Gunner,
@@ -1463,6 +1515,7 @@ export const ZiLong = {
 
 export const Ari = {
   name: NameEnum.Ari,
+  title: 'Blood Lizard',
   organization: OrganizationEnum.ZETH,
   cup_size: SizeEnum.K,
   class: ClassEnum.Artillery,
@@ -1501,6 +1554,7 @@ export const Ari = {
 
 export const Chia = {
   name: NameEnum.Chia,
+  title: 'Nora Kun',
   organization: OrganizationEnum.MEOW,
   cup_size: SizeEnum.H, // healthy?
   class: ClassEnum.Gunner,
@@ -1560,6 +1614,7 @@ export const Chia = {
 
 export const Shiko = {
   name: NameEnum.Shiko,
+  title: 'Dragonfly',
   organization: OrganizationEnum.ZETH,
   cup_size: SizeEnum.L,
   class: ClassEnum.Striker,
@@ -1597,6 +1652,7 @@ export const Shiko = {
 
 export const Kaja = {
   name: NameEnum.Kaja,
+  title: 'Shepherd',
   organization: OrganizationEnum.WIO,
   cup_size: SizeEnum.A,
   class: ClassEnum.Support,
@@ -1617,6 +1673,7 @@ export const Kaja = {
 
 export const Bia = {
   name: NameEnum.Bia,
+  title: 'Halo',
   organization: OrganizationEnum.DOD,
   cup_size: SizeEnum.K,
   class: ClassEnum.Striker,
@@ -1651,6 +1708,7 @@ export const Bia = {
 
 export const Eri = {
   name: NameEnum.Eri,
+  title: 'Phaze',
   organization: OrganizationEnum.ADB,
   cup_size: SizeEnum.F,
   class: ClassEnum.Gunner,
@@ -1670,6 +1728,7 @@ export const Eri = {
 
 export const Kiyomi = {
   name: NameEnum.Kiyomi,
+  title: 'Shimmer',
   organization: OrganizationEnum.WIO,
   cup_size: SizeEnum.G,
   class: ClassEnum.Striker,
@@ -1705,6 +1764,7 @@ export const Kiyomi = {
 
 export const Musuna = {
   name: NameEnum.Musuna,
+  title: 'Ruby',
   organization: OrganizationEnum.WIO,
   cup_size: SizeEnum.A,
   class: ClassEnum.Gunner,
@@ -1744,6 +1804,7 @@ export const Musuna = {
 
 export const Windy = {
   name: NameEnum.Windy,
+  title: 'Death Wing',
   organization: OrganizationEnum.GAA,
   cup_size: SizeEnum.K,
   class: ClassEnum.Artillery,
@@ -1784,6 +1845,7 @@ export const Windy = {
 
 export const Kotaru = {
   name: NameEnum.Kotaru,
+  title: 'Fire Fly',
   organization: OrganizationEnum.WIO,
   cup_size: SizeEnum.I,
   class: ClassEnum.Gunner,
@@ -1820,6 +1882,7 @@ export const Kotaru = {
 
 export const Karry = {
   name: NameEnum.Karry,
+  title: 'Stardust',
   organization: OrganizationEnum.NONE,
   cup_size: SizeEnum.C,
   class: ClassEnum.Support,
@@ -1855,6 +1918,7 @@ export const Karry = {
 
 export const Sato = {
   name: NameEnum.Sato,
+  title: 'Chimera',
   organization: OrganizationEnum.ZETH,
   cup_size: SizeEnum.G,
   class: ClassEnum.Striker,
@@ -1899,6 +1963,7 @@ export const Sato = {
 
 export const Victoria = {
   name: NameEnum.Victoria,
+  title: 'Vampire',
   organization: OrganizationEnum.ZETH,
   cup_size: SizeEnum.H,
   class: ClassEnum.Striker,
@@ -1945,6 +2010,7 @@ export const Victoria = {
 
 export const Laura = {
   name: NameEnum.Laura,
+  title: 'Tempest',
   organization: OrganizationEnum.ADB,
   cup_size: SizeEnum.C,
   class: ClassEnum.Striker,
@@ -1981,6 +2047,7 @@ export const Laura = {
 
 export const Kura = {
   name: NameEnum.Kura,
+  title: 'Imp',
   organization: OrganizationEnum.ZETH,
   cup_size: SizeEnum.G,
   class: ClassEnum.Artillery,
@@ -2001,6 +2068,7 @@ export const Kura = {
 
 export const Ne = {
   name: NameEnum.Ne,
+  title: 'Berserk',
   organization: OrganizationEnum.GAA,
   cup_size: SizeEnum.E,
   class: ClassEnum.Striker,
@@ -2040,6 +2108,7 @@ export const Ne = {
 
 export const Uta = {
   name: NameEnum.Uta,
+  title: 'Cathedral',
   organization: OrganizationEnum.WIO,
   cup_size: SizeEnum.E,
   class: ClassEnum.Striker,
@@ -2075,6 +2144,7 @@ export const Uta = {
 
 export const Midori = {
   name: NameEnum.Midori,
+  title: 'Hopper',
   organization: OrganizationEnum.WIO,
   cup_size: SizeEnum.J,
   class: ClassEnum.Gunner,
@@ -2113,6 +2183,7 @@ export const Midori = {
 
 export const Sera = {
   name: NameEnum.Sera,
+  title: 'Zephyr',
   organization: OrganizationEnum.NONE,
   cup_size: SizeEnum.D,
   class: ClassEnum.Support,
@@ -2156,6 +2227,7 @@ export const Sera = {
 
 export const Livia = {
   name: NameEnum.Livia,
+  title: 'Majesty',
   organization: OrganizationEnum.WIO,
   cup_size: SizeEnum.J,
   class: ClassEnum.Gunner,
@@ -2191,6 +2263,7 @@ export const Livia = {
 
 export const ReiJK = {
   name: NameEnum.ReiJK,
+  title: 'Sabertooth: Beta',
   organization: OrganizationEnum.GSR,
   cup_size: SizeEnum.I,
   class: ClassEnum.Artillery,
@@ -2240,6 +2313,7 @@ export const ReiJK = {
 
 export const Rei = {
   name: NameEnum.Rei,
+  title: 'Sabertooth',
   organization: OrganizationEnum.GSR,
   cup_size: SizeEnum.I,
   class: ClassEnum.Artillery,
@@ -2259,6 +2333,7 @@ export const Rei = {
 
 export const Amikam = {
   name: NameEnum.Amikam,
+  title: 'Penance',
   organization: OrganizationEnum.GAA,
   cup_size: SizeEnum.E,
   class: ClassEnum.Artillery,
@@ -2299,6 +2374,7 @@ export const Amikam = {
 
 export const Iizuna = {
   name: NameEnum.Iizuna,
+  title: 'Kitsune',
   organization: OrganizationEnum.GSR,
   cup_size: SizeEnum.F,
   class: ClassEnum.Artillery,
@@ -2350,6 +2426,7 @@ export const Iizuna = {
 
 export const Tsurumi = {
   name: NameEnum.Tsurumi,
+  title: 'Bakoninnin',
   organization: OrganizationEnum.RSA,
   cup_size: SizeEnum.A,
   class: ClassEnum.Gunner,
@@ -2388,6 +2465,7 @@ export const Tsurumi = {
 
 export const Mora = {
   name: NameEnum.Mora,
+  title: 'Eureka',
   organization: OrganizationEnum.DAB,
   cup_size: SizeEnum.F,
   class: ClassEnum.Support,
@@ -2435,6 +2513,7 @@ export const Mora = {
 
 export const Masamune = {
   name: NameEnum.Masamune,
+  title: 'Bontenmaru',
   organization: OrganizationEnum.RSA,
   cup_size: SizeEnum.H,
   class: ClassEnum.Striker,
@@ -2471,6 +2550,7 @@ export const Masamune = {
 
 export const Chloe = {
   name: NameEnum.Chloe,
+  title: 'Dunkel Segnen',
   organization: OrganizationEnum.RSA,
   cup_size: SizeEnum.G,
   class: ClassEnum.Artillery,
@@ -2528,6 +2608,7 @@ export const Chloe = {
 
 export const Tyrla = {
   name: NameEnum.Tyrla,
+  title: 'Armstrong',
   organization: OrganizationEnum.TAP,
   cup_size: SizeEnum.A,
   class: ClassEnum.Artillery,
