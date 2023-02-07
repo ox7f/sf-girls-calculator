@@ -6,10 +6,11 @@
   "version": "0.0.1",
   "description": "math stuff",
   "main": "dist/index.js",
+  "type": "module",
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
-    "start": "npm run build && node dist/index.js",
+    "start": "npm run build && node --experimental-specifier-resolution=node dist/index.js",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint ./calculator/**/*",
     "typecheck": "tsc -b",
     "format": "prettier --write calculator"

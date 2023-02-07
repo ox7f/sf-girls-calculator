@@ -5,6 +5,7 @@
   "private": true,
   "version": "0.0.1",
   "description": "frontend for calculator",
+  "main": "dist/index.js",
   "type": "module",
   "scripts": {
     "dev": "vite",

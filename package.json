@@ -19,7 +19,9 @@
     "format": "npm run format:calculator && npm run format:frontend",
     "format:frontend": "npm run format --workspace=sf-girls-calculator-frontend",
     "format:calculator": "npm run format --workspace=sf-girls-calculator-calculator",
-    "start": "npm run dev --workspace=sf-girls-calculator-frontend"
+    "start:calculator": "npm run start --workspace=sf-girls-calculator-calculator",
+    "start:frontend": "npm run dev --workspace=sf-girls-calculator-frontend",
+    "preview:frontend": "npm run preview --workspace=sf-girls-calculator-frontend"
   },
   "devDependencies": {
     "prettier": "^2.8.3"

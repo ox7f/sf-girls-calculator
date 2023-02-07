@@ -33,6 +33,7 @@ export function add_damage(agent: Agent, effect: DamageEffect | DOTEffect, fight
 
   let damage = multiplier * skill_damage;
   damage = calculate_critical_damage(damage, critical_chance, critical_damage);
+  damage = Math.round(damage);
   target.take_damage(damage, agent);
 }
 
@@ -49,14 +50,14 @@ export function add_dot(agent: Agent, effect: DOTEffect, fight: Fight) {
   agent.applied_effects.push(new_dot_effect);
 }
 
-export function get_active_dots(agent: Agent, time: number) {
+export function get_active_dots(agent: Agent, time: number): DOTEffect[] {
   return agent.applied_effects.filter(
     (effect) => effect instanceof DOTEffect && is_dot_active(effect, time) && time % effect.interval === 0
   ) as DOTEffect[];
 }
 
-export function is_dot_active(effect: DOTEffect, time: number) {
-  return time >= effect.begin && time <= effect.begin + effect.duration;
+export function is_dot_active(effect: DOTEffect, time: number): boolean {
+  return time > effect.begin && time <= effect.begin + effect.duration;
 }
 
 export function apply_stackable(effect: Effect, agent: Agent, fight: Fight) {

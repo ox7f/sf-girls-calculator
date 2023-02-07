@@ -4,9 +4,30 @@ import * as EverythingData from './data';
 import * as EverythingHelper from './helper';
 
 export const { Agents, Targets } = EverythingData;
-export const { calculate_team } = EverythingHelper;
+export const { calculate_team, bruteforce_team, calculate_agents_individually } = EverythingHelper;
 
-export { Agent, Effect, Fight, Skill, Target } from './model';
-export { NewAgent, NewEffect, NewDamageEffect, NewDOTEffect, NewFight, NewSkill, NewTarget } from './model';
-export { DamageEffectFunctionType, EffectFunctionType, EffectParamType, ResultType } from './model';
-export { AttackModeEnum, ClassEnum, EffectEnum, NameEnum, OrganizationEnum, SizeEnum } from './enums';
+export { Agent, Effect, Fight, Skill, Target } from './model/index';
+export { NewAgent, NewEffect, NewDamageEffect, NewDOTEffect, NewFight, NewSkill, NewTarget } from './model/index';
+export { DamageEffectFunctionType, EffectFunctionType, EffectParamType, ResultType } from './model/index';
+export { AttackModeEnum, ClassEnum, EffectEnum, NameEnum, OrganizationEnum, SizeEnum } from './enums/index';
+
+// ----------------------------- ONLY FOR DEBUGGING -----------------------------
+// import { NameEnum } from './enums/Name';
+
+// type tableType = {
+//   name: NameEnum;
+//   target: string;
+//   damage: number;
+// };
+
+// const table: tableType[] = [];
+
+// calculate_agents_individually().forEach((result) => {
+//   table.push({
+//     name: result.team[0].name,
+//     target: result.target.name,
+//     damage: result.team[0].damage_dealt
+//   });
+// });
+
+// console.table(table, ['name', 'target', 'damage']);
