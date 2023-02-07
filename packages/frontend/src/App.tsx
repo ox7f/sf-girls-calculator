@@ -3,17 +3,19 @@ import { Agents, Targets, Result } from './components';
 
 const App: React.FC = () => {
   return (
-    <div className="container-fluid">
+    <>
       <Header />
 
-      <main>
-        <Result />
-        <Targets />
-        <Agents />
-      </main>
+      <div className="container">
+        <main>
+          <Result />
+          <Targets />
+          <Agents />
+        </main>
+      </div>
 
       <Footer />
-    </div>
+    </>
   );
 };
 

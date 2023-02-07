@@ -1,5 +1,6 @@
-export { calculate_agents_individually } from './calculateAllAgentsIndividually';
+export { bruteforce_team } from './bruteforceTeam';
 export { calculate_team } from './calculateTeam';
+export { calculate_agents_individually } from './calculateAllAgentsIndividually';
 export { calculate_critical_damage } from './getCriticalDamage';
 
 export { handle_attack, is_in_animation } from './handleAttack';

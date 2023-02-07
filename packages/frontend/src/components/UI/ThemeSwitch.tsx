@@ -12,17 +12,17 @@ const ThemeSwitch: React.FC = () => {
 
         <ul role="listbox">
           <li>
-            <a href="#" data-theme-switcher="auto" onClick={changeTheme}>
+            <a href="#" onClick={changeTheme}>
               Auto
             </a>
           </li>
           <li>
-            <a href="#" data-theme-switcher="light" onClick={changeTheme}>
+            <a href="#" onClick={changeTheme}>
               Light
             </a>
           </li>
           <li>
-            <a href="#" data-theme-switcher="dark" onClick={changeTheme}>
+            <a href="#" onClick={changeTheme}>
               Dark
             </a>
           </li>
