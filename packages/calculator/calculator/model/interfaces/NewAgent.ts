@@ -3,6 +3,7 @@ import { ClassEnum, NameEnum, OrganizationEnum, SizeEnum } from '../../enums';
 
 export interface NewAgent {
   name: NameEnum;
+  title: string;
   organization: OrganizationEnum;
   cup_size: SizeEnum;
   class: ClassEnum;

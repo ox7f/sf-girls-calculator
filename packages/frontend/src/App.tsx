@@ -3,10 +3,10 @@ import { Agents, Targets, Result } from './components';
 
 const App: React.FC = () => {
   return (
-    <>
+    <div>
       <Header />
 
-      <div className="container">
+      <div className="container" style={{ paddingTop: '5rem' }}>
         <main>
           <Result />
           <Targets />
@@ -15,7 +15,7 @@ const App: React.FC = () => {
       </div>
 
       <Footer />
-    </>
+    </div>
   );
 };
 

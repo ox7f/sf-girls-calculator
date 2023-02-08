@@ -1,5 +1,4 @@
-import { NewAgent } from 'sf-girls-calculator-calculator';
-import { Card } from './UI';
+import { ClassEnum, NewAgent } from 'sf-girls-calculator-calculator';
 
 import { useAtom } from 'jotai';
 import { selectedAgentsAtom } from './atoms';
@@ -17,15 +16,52 @@ const Agent: React.FC<NewAgent> = (agent: NewAgent) => {
     }
   };
 
+  const getClassName = () => {
+    switch (agent.class) {
+      case ClassEnum.Artillery:
+        return 'tag--danger';
+      case ClassEnum.Gunner:
+        return 'tag--info';
+      case ClassEnum.Striker:
+        return 'tag--warning';
+      case ClassEnum.Support:
+        return 'tag--success';
+    }
+  };
+
   return (
-    <Card
-      header={agent.name}
-      body={`${agent.skill.name}: ${agent.skill.description}`}
-      footer={agent.class}
-      checked={checked}
-      disabled={disabled}
-      onChange={() => selectAgent(agent)}
-    />
+    <div className="col" style={{ minWidth: '300px' }}>
+      <div className="card">
+        <div className="card__container">
+          <div className="card__image"></div>
+          <div className="card__title-container">
+            <p className="title">{agent.name}</p>
+            <span className="subtitle">{agent.title.toUpperCase()}</span>
+          </div>
+        </div>
+
+        <div className="card__body content">
+          <p>Located two hours south of Sydney in the Southern Highland of New South Wales...</p>
+        </div>
+
+        <div className="card__footer content">
+          <div className="u-text-center">
+            <div className={`tag tag--sm ${getClassName()}`}>{agent.class}</div>
+          </div>
+        </div>
+
+        <div className="card__action-bar u-center">
+          <button
+            disabled={disabled}
+            className={`hover-grow ${checked ? 'btn-success animated pulse' : 'btn-transparent outline'}`}
+            onClick={() => selectAgent(agent)}
+          >
+            {checked ? 'Selected' : 'Select'}
+          </button>
+          <button className="hover-grow btn-transparent outline">Edit</button>
+        </div>
+      </div>
+    </div>
   );
 };
 

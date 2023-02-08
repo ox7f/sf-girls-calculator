@@ -19,14 +19,22 @@ const Targets: React.FC = () => {
 
   return (
     <article>
-      <select onChange={selectHandler} defaultValue={''}>
-        <option disabled value={''}>
-          Select Target
-        </option>
-        {targets.map((target, index) => (
-          <option key={index}>{target.name}</option>
-        ))}
-      </select>
+      <div className="row level">
+        <div className="col-xs-3 level-item">
+          <p className="m-0">Target:</p>
+        </div>
+        <div className="col-xs-9 level-item input-control">
+          <select className="select" placeholder="Choose one" onChange={selectHandler} defaultValue={''}>
+            <option disabled value={''}>
+              Select Target
+            </option>
+
+            {targets.map((target, index) => (
+              <option key={index}>{target.name}</option>
+            ))}
+          </select>
+        </div>
+      </div>
     </article>
   );
 };

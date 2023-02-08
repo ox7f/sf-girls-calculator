@@ -20,28 +20,24 @@ const Result: React.FC = () => {
   };
 
   return (
-    <article>
+    <div className="u-center" style={{ width: '80%' }}>
       {result && (
         <>
-          <span style={{ float: 'left' }}>
-            Remaining Time: {(result.target.duration - result.time) / 1000} second(s)
-          </span>
-          <span style={{ float: 'right' }}>
-            Remaining HP: {(result.target.health - result.target.current_health).toFixed()}
-          </span>
+          <span>Remaining Time: {(result.target.duration - result.time) / 1000} second(s)</span>
+          <span>Remaining HP: {(result.target.health - result.target.current_health).toFixed(2)}</span>
 
-          <table>
+          <table className="table">
             <thead>
               <tr>
-                <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Damage</th>
-                <th scope="col">%</th>
+                <th>#</th>
+                <th>Name</th>
+                <th>Damage</th>
+                <th>%</th>
               </tr>
             </thead>
             <tbody>
               {result.team.map((agent, index) => (
-                <tr>
+                <tr key={index}>
                   <th scope="row">{index + 1}</th>
                   <td>{agent.name}</td>
                   <td>{agent.damage_dealt.toFixed(2)}</td>
@@ -51,20 +47,23 @@ const Result: React.FC = () => {
             </tbody>
             <tfoot>
               <tr>
-                <th scope="col">&sum;</th>
-                <td scope="col"></td>
-                <td scope="col">{totalDamage.toFixed()}</td>
-                <td scope="col">100</td>
+                <th>&sum;</th>
+                <td></td>
+                <td>{totalDamage.toFixed(2)}</td>
+                <td>100</td>
               </tr>
             </tfoot>
           </table>
         </>
       )}
 
-      <button type="submit" disabled={disabled} className="outline" onClick={calculate}>
+      <button
+        className={`${disabled ? 'btn-transparent outline' : 'btn-success hover-grow animated pulse'}`}
+        onClick={calculate}
+      >
         Calculate
       </button>
-    </article>
+    </div>
   );
 };
 

@@ -22,9 +22,11 @@ const Agents: React.FC = () => {
         Reset
       </button>
 
-      {agents.map((agent) => (
-        <Agent key={agent.key} {...agent.values} />
-      ))}
+      <div className="row">
+        {agents.map((agent) => (
+          <Agent key={agent.key} {...agent.values} />
+        ))}
+      </div>
     </article>
   );
 };
