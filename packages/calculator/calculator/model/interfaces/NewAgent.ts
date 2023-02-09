@@ -5,6 +5,7 @@ export interface NewAgent {
   name: NameEnum;
   title: string;
   organization: OrganizationEnum;
+  bio: string;
   cup_size: SizeEnum;
   class: ClassEnum;
   attack_speed: number;

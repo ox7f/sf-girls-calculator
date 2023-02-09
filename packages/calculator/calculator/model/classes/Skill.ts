@@ -8,7 +8,7 @@ export class Skill {
   is_stackable: boolean; // determines if skill is stackable
   cooldown: number; // cooldown of skill
 
-  constructor({ name, description, effects, is_stackable, cooldown }: NewSkill) {
+  constructor({ name, description, effects, is_stackable = false, cooldown }: NewSkill) {
     this.name = name;
     this.description = description;
     this.is_stackable = is_stackable;
