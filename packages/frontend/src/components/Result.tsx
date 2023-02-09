@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useAtomValue } from 'jotai';
+import { useAtom } from 'jotai';
 import { calculate_team, ResultType } from 'sf-girls-calculator-calculator';
 
 import { selectedAgentsAtom, selectedTargetAtom } from './atoms';
@@ -7,9 +7,14 @@ import { selectedAgentsAtom, selectedTargetAtom } from './atoms';
 const Result: React.FC = () => {
   const [result, setResult] = useState<ResultType | null>(null);
   const [totalDamage, setTotalDamage] = useState<number>(0);
-  const selectedAgents = useAtomValue(selectedAgentsAtom);
-  const selectedTarget = useAtomValue(selectedTargetAtom);
+  const [selectedAgents, setSelectedAgents] = useAtom(selectedAgentsAtom);
+  const [selectedTarget, setSelectedTarget] = useAtom(selectedTargetAtom);
   const disabled = selectedAgents.length === 0 || selectedTarget === null;
+
+  const reset = () => {
+    setSelectedAgents([]);
+    setSelectedTarget(null);
+  };
 
   const calculate = () => {
     if (!disabled) {
@@ -24,7 +29,7 @@ const Result: React.FC = () => {
       {result && (
         <>
           <span>Remaining Time: {(result.target.duration - result.time) / 1000} second(s)</span>
-          <span>Remaining HP: {(result.target.health - result.target.current_health).toFixed(2)}</span>
+          <span>Remaining HP: {result.target.current_health.toFixed(2)}</span>
 
           <table className="table">
             <thead>
@@ -50,7 +55,7 @@ const Result: React.FC = () => {
                 <th>&sum;</th>
                 <td></td>
                 <td>{totalDamage.toFixed(2)}</td>
-                <td>100</td>
+                <td></td>
               </tr>
             </tfoot>
           </table>
@@ -62,6 +67,9 @@ const Result: React.FC = () => {
         onClick={calculate}
       >
         Calculate
+      </button>
+      <button type="submit" className="btn-transparent secondary outline" onClick={reset}>
+        Reset
       </button>
     </div>
   );

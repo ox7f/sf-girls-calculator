@@ -1,39 +1,55 @@
+import { ChangeEvent, useEffect, useState } from 'react';
+import { useAtom } from 'jotai';
 import { NewTarget, Targets as TargetsData } from 'sf-girls-calculator-calculator';
 
-import { useSetAtom } from 'jotai';
 import { selectedTargetAtom } from './atoms';
-import { ChangeEvent } from 'react';
+import Select from './UI/Select';
+
+interface selectTarget {
+  label: string;
+  value: string;
+  object: NewTarget;
+}
 
 const Targets: React.FC = () => {
-  const setSelectedTarget = useSetAtom(selectedTargetAtom);
-  const targets: NewTarget[] = [];
+  const [targetValue, setTargetValue] = useState('');
+  const [selectedTarget, setSelectedTarget] = useAtom(selectedTargetAtom);
+  const selectOptions: selectTarget[] = [];
 
-  for (const [, value] of Object.entries(TargetsData)) {
-    targets.push(value);
+  for (const [key, value] of Object.entries(TargetsData)) {
+    selectOptions.push({
+      label: value.name,
+      value: key,
+      object: value
+    });
   }
 
+  useEffect(() => {
+    if (!selectedTarget) {
+      setTargetValue('');
+    }
+  }, [selectedTarget]);
+
   const selectHandler = (event: ChangeEvent<HTMLSelectElement>) => {
-    const target = targets.find((target) => target.name === event.target.value) ?? null;
-    setSelectedTarget(target);
+    const target = selectOptions.find((option) => option.value === event.target.value);
+
+    if (target) {
+      setSelectedTarget(target.object);
+      setTargetValue(target.value);
+    }
   };
 
   return (
     <article>
-      <div className="row level">
-        <div className="col-xs-3 level-item">
-          <p className="m-0">Target:</p>
-        </div>
-        <div className="col-xs-9 level-item input-control">
-          <select className="select" placeholder="Choose one" onChange={selectHandler} defaultValue={''}>
-            <option disabled value={''}>
-              Select Target
-            </option>
-
-            {targets.map((target, index) => (
-              <option key={index}>{target.name}</option>
-            ))}
-          </select>
-        </div>
+      <div className="level-item input-control u-center" style={{ width: '80%' }}>
+        <Select
+          label={'Target:'}
+          value={targetValue}
+          options={selectOptions}
+          defaultLabel={'Select Target'}
+          placeholder={'Select Target'}
+          onChangeHandler={selectHandler}
+        />
       </div>
     </article>
   );
