@@ -16,6 +16,10 @@ const Agent: React.FC<NewAgent> = (agent: NewAgent) => {
     }
   };
 
+  const openModal = () => {
+    console.log('TODO');
+  };
+
   const getClassName = () => {
     switch (agent.class) {
       case ClassEnum.Artillery:
@@ -30,18 +34,27 @@ const Agent: React.FC<NewAgent> = (agent: NewAgent) => {
   };
 
   return (
-    <div className="col" style={{ minWidth: '300px' }}>
+    <div className="col" style={{ minWidth: '350px', maxWidth: '350px' }}>
       <div className="card">
-        <div className="card__container">
-          <div className="card__image"></div>
+        <div className="card__container ">
+          <div
+            className="card__image"
+            style={{
+              backgroundSize: '120%',
+              backgroundPosition: 'center',
+              backgroundImage: `url(agents/${agent.name.replace(' ', '')}.png)`
+            }}
+          ></div>
           <div className="card__title-container">
             <p className="title">{agent.name}</p>
             <span className="subtitle">{agent.title.toUpperCase()}</span>
           </div>
         </div>
 
-        <div className="card__body content">
-          <p>Located two hours south of Sydney in the Southern Highland of New South Wales...</p>
+        <div className="content">
+          <div className="u-overflow-auto" style={{ height: '150px' }}>
+            <p>{agent.bio ?? 'No Bio - will add it later'}</p>
+          </div>
         </div>
 
         <div className="card__footer content">
@@ -58,7 +71,9 @@ const Agent: React.FC<NewAgent> = (agent: NewAgent) => {
           >
             {checked ? 'Selected' : 'Select'}
           </button>
-          <button className="hover-grow btn-transparent outline">Edit</button>
+          <button className="hover-grow btn-transparent outline" onClick={openModal}>
+            Edit
+          </button>
         </div>
       </div>
     </div>
