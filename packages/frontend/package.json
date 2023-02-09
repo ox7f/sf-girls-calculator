@@ -1,7 +1,6 @@
 {
   "name": "sf-girls-calculator-frontend",
   "author": "ox7f",
-  "license": "ISC",
   "private": true,
   "version": "0.0.1",
   "description": "frontend for calculator",
