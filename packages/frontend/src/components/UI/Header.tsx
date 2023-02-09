@@ -16,7 +16,7 @@ const Header: React.FC = () => {
           <div className="nav-item text-center">
             <a href="https://github.com/ox7f/sf-girls-calculator" target="_blank">
               <FaGithub />
-              <span style={{ paddingLeft: '10px' }}>Beta</span>
+              <span style={{ paddingLeft: '10px' }}>WIP</span>
             </a>
           </div>
         </div>
