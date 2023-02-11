@@ -1577,11 +1577,13 @@ export const Chia = {
         type: EffectEnum.Self,
         apply: (params: EffectParamType) => {
           const { agent } = params;
+          agent.attack_mode = AttackModeEnum.Skill;
           agent.normal_attack *= 7.5;
           agent.skill_damage *= 7.5;
         },
         remove: (params: EffectParamType) => {
           const { agent } = params;
+          agent.attack_mode = AttackModeEnum.Normal;
           agent.normal_attack /= 7.5;
           agent.skill_damage /= 7.5;
         },
@@ -2198,14 +2200,14 @@ export const Sera = {
       'cast a non-stackable buff on all friendly agents. add (Sera skill damage * 25%) damage on each hits for 14 seconds. cooldown: 20',
     effects: [
       {
-        type: EffectEnum.Self,
+        type: EffectEnum.Team,
         apply: (params: EffectParamType) => {
           const { agent: Sera, team } = params;
           team
             .filter((agent) => agent.name !== NameEnum.Sera)
             .forEach((agent) => {
-              agent.normal_attack *= Sera.skill_damage * 0.25;
-              agent.skill_damage *= Sera.skill_damage * 0.25;
+              agent.normal_attack += Sera.skill_damage * 0.25;
+              agent.skill_damage += Sera.skill_damage * 0.25;
             });
         },
         remove: (params: EffectParamType) => {
@@ -2213,8 +2215,8 @@ export const Sera = {
           team
             .filter((agent) => agent.name !== NameEnum.Sera)
             .forEach((agent) => {
-              agent.normal_attack /= Sera.skill_damage * 0.25;
-              agent.skill_damage /= Sera.skill_damage * 0.25;
+              agent.normal_attack -= Sera.skill_damage * 0.25;
+              agent.skill_damage -= Sera.skill_damage * 0.25;
             });
         },
         duration: 14

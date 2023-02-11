@@ -31,3 +31,5 @@ export { AttackModeEnum, ClassEnum, EffectEnum, NameEnum, OrganizationEnum, Size
 // });
 
 // console.table(table, ['name', 'target', 'damage']);
+
+// bruteforce_team();
