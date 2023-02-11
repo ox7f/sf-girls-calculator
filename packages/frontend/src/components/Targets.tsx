@@ -1,9 +1,8 @@
+import { NewTarget, Targets as TargetsData } from 'sf-girls-calculator-calculator';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useAtom } from 'jotai';
-import { NewTarget, Targets as TargetsData } from 'sf-girls-calculator-calculator';
-
-import { selectedTargetAtom } from './atoms';
-import Select from './UI/Select';
+import { SelectedTargetAtom } from './atoms';
+import { Select } from './UI';
 
 interface selectTarget {
   label: string;
@@ -13,7 +12,7 @@ interface selectTarget {
 
 const Targets: React.FC = () => {
   const [targetValue, setTargetValue] = useState('');
-  const [selectedTarget, setSelectedTarget] = useAtom(selectedTargetAtom);
+  const [SelectedTarget, setSelectedTarget] = useAtom(SelectedTargetAtom);
   const selectOptions: selectTarget[] = [];
 
   for (const [key, value] of Object.entries(TargetsData)) {
@@ -25,10 +24,10 @@ const Targets: React.FC = () => {
   }
 
   useEffect(() => {
-    if (!selectedTarget) {
+    if (!SelectedTarget) {
       setTargetValue('');
     }
-  }, [selectedTarget]);
+  }, [SelectedTarget]);
 
   const selectHandler = (event: ChangeEvent<HTMLSelectElement>) => {
     const target = selectOptions.find((option) => option.value === event.target.value);

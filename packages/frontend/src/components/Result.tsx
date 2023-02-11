@@ -1,14 +1,13 @@
+import { calculate_team, ResultType } from 'sf-girls-calculator-calculator';
 import { useState } from 'react';
 import { useAtom } from 'jotai';
-import { calculate_team, ResultType } from 'sf-girls-calculator-calculator';
-
-import { selectedAgentsAtom, selectedTargetAtom } from './atoms';
+import { SelectedAgentsAtom, SelectedTargetAtom } from './atoms';
 
 const Result: React.FC = () => {
   const [result, setResult] = useState<ResultType | null>(null);
   const [totalDamage, setTotalDamage] = useState<number>(0);
-  const [selectedAgents, setSelectedAgents] = useAtom(selectedAgentsAtom);
-  const [selectedTarget, setSelectedTarget] = useAtom(selectedTargetAtom);
+  const [selectedAgents, setSelectedAgents] = useAtom(SelectedAgentsAtom);
+  const [selectedTarget, setSelectedTarget] = useAtom(SelectedTargetAtom);
   const disabled = selectedAgents.length === 0 || selectedTarget === null;
 
   const reset = () => {
