@@ -1,25 +1,19 @@
-import { Agents as AgentsData, NewAgent } from 'sf-girls-calculator-calculator';
-import { useState } from 'react';
-import { useSetAtom } from 'jotai';
-import { AgentsAtomFamily, SelectedAgentsAtom } from './atoms';
+import { NewAgent } from 'sf-girls-calculator-calculator';
+import { useAtom, useAtomValue } from 'jotai';
+import {
+  AgentsAtom,
+  EditingAgent,
+  ModifiedAgentsAtom,
+  SelectedAgentsAtom,
+  transformModifiedAgentToAgent
+} from './atoms';
 import { Agent, AgentModal } from './index';
 
 const Agents: React.FC = () => {
-  const [editAgent, setEditAgent] = useState<NewAgent | null>(null);
-  const setSelectedAgents = useSetAtom(SelectedAgentsAtom);
-  const agents: NewAgent[] = [];
-
-  for (const [, values] of Object.entries(AgentsData)) {
-    agents.push(values);
-    AgentsAtomFamily({
-      name: values.name,
-      attack_speed: values.attack_speed,
-      normal_attack: values.normal_attack,
-      skill_damage: values.skill_damage,
-      critical_rate: values.critical_rate,
-      critical_damage: values.critical_damage
-    });
-  }
+  const agents = useAtomValue(AgentsAtom);
+  const [modifiedAgents, setModifiedAgents] = useAtom(ModifiedAgentsAtom);
+  const [editAgent, setEditAgent] = useAtom(EditingAgent);
+  const [selectedAgents, setSelectedAgents] = useAtom(SelectedAgentsAtom);
 
   const select = (agent: NewAgent) => {
     setSelectedAgents((prev) => {
@@ -31,17 +25,60 @@ const Agents: React.FC = () => {
     });
   };
 
-  const edit = (agent: NewAgent | null) => {
+  const startEditing = (name = '') => {
+    const agent = modifiedAgents.find((a) => a.name === name) ?? null;
     setEditAgent(agent);
   };
 
+  const save = () => {
+    const newModifiedAgents = modifiedAgents.map((p) => {
+      if (p.name === editAgent?.name) {
+        return editAgent;
+      }
+      return p;
+    });
+
+    const newSelectedAgents = selectedAgents.map((p) => {
+      if (p.name === editAgent?.name) {
+        return transformModifiedAgentToAgent(p, editAgent);
+      }
+      return p;
+    });
+
+    setSelectedAgents(newSelectedAgents);
+    setModifiedAgents(newModifiedAgents);
+
+    localStorage.setItem('modified_agents', JSON.stringify(newModifiedAgents));
+
+    startEditing();
+  };
+
+  const cancel = () => {
+    startEditing();
+  };
+
+  const isSelectedList = agents.map((agent) => {
+    return selectedAgents.filter((a) => a.name === agent.name).length !== 0;
+  });
+
+  const isDisabledList = agents.map((agent, index) => {
+    return selectedAgents.length > 5 && !isSelectedList[index];
+  });
+
   return (
     <article>
-      {editAgent && <AgentModal name={editAgent.name} cancel={() => edit(null)} />}
+      <AgentModal cancel={cancel} save={save} />
 
       <div className="row u-center">
-        {agents.map((agent) => (
-          <Agent key={agent.name} agent={agent} select={() => select(agent)} edit={() => edit(agent)} />
+        {agents.map((agent, index) => (
+          <Agent
+            key={index}
+            agent={agent}
+            isSelected={isSelectedList[index]}
+            isDisabled={isDisabledList[index]}
+            select={() => select(agent)}
+            edit={() => startEditing(agent.name)}
+          />
         ))}
       </div>
     </article>

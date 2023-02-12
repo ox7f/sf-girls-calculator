@@ -1,5 +1,4 @@
-import { Footer, Header } from './components/UI';
-import { Agents, Targets, Result } from './components';
+import { Agents, Targets, Result, Footer, Header } from './components';
 
 const App: React.FC = () => {
   return (

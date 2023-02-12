@@ -1,20 +1,18 @@
 import { ClassEnum, NewAgent } from 'sf-girls-calculator-calculator';
-import { ChangeEvent, useState } from 'react';
-import { useAtom, useAtomValue } from 'jotai';
-import { AgentAtomType, AgentsAtomFamily, SelectedAgentsAtom } from './atoms';
+import { ChangeEvent } from 'react';
+import { useAtom } from 'jotai';
+import { EditingAgent } from './atoms';
 import { Modal } from './UI';
 
 interface AgentInterface {
   agent: NewAgent;
+  isSelected?: boolean;
+  isDisabled?: boolean;
   select: () => void;
   edit: () => void;
 }
 
-const Agent: React.FC<AgentInterface> = ({ agent, select, edit }) => {
-  const SelectedAgents = useAtomValue(SelectedAgentsAtom);
-  const checked = SelectedAgents.filter((a) => a.name === agent.name).length > 0;
-  const disabled = SelectedAgents.length > 5 && !checked;
-
+const Agent: React.FC<AgentInterface> = ({ agent, isSelected = false, isDisabled = false, select, edit }) => {
   const getClassName = () => {
     switch (agent.class) {
       case ClassEnum.Artillery:
@@ -30,42 +28,51 @@ const Agent: React.FC<AgentInterface> = ({ agent, select, edit }) => {
 
   return (
     <div className="col" style={{ minWidth: '350px', maxWidth: '350px' }}>
-      <div className="card">
-        <div className="card__container ">
+      <div className="card card--slide-up">
+        <div className="card__container">
           <div
             className="card__image"
             style={{
-              backgroundSize: '120%',
-              backgroundPosition: 'center'
-              // backgroundImage: `url(agents/${agent.name.replace(' ', '')}.png)`
+              backgroundSize: `${
+                agent.name === 'Pan'
+                  ? '60%'
+                  : ['Amikam', 'Chia', 'Feme', 'Iizuna', 'Kaja', 'Karry', 'Pan', 'Rei JK', 'Shiko'].includes(agent.name)
+                  ? '80%'
+                  : '120%'
+              }`,
+              backgroundPosition: 'center',
+              backgroundImage: `url(agents/${agent.name.replace(' ', '')}.png)`
             }}
           ></div>
+        </div>
 
-          <div className="card__title-container">
-            <p className="title">{agent.name}</p>
-            <span className="subtitle">{agent.title.toUpperCase()}</span>
+        <div className="card__mobile-title">
+          <div className="content pl-2 pr-2">
+            <div className="tile">
+              <div className="tile__container row">
+                <div className="col">
+                  <p className="tile__title">{agent.name}</p>
+                  <p className="tile__subtitle">{agent.title}</p>
+                </div>
+              </div>
+              <div className="col pt-1">
+                <div className={`tag tag--sm ${getClassName()}`}>{agent.class}</div>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div className="content">
-          <div className="u-overflow-auto" style={{ height: '150px' }}>
-            <p>{agent.bio ?? 'No Bio - will add it later'}</p>
-          </div>
-        </div>
-
-        <div className="card__footer content">
-          <div className="u-text-center">
-            <div className={`tag tag--sm ${getClassName()}`}>{agent.class}</div>
-          </div>
+        <div className="card__body content" style={{ width: '90%' }}>
+          <p>{agent.bio ?? 'No Bio - will add it later'}</p>
         </div>
 
         <div className="card__action-bar u-center">
           <a onClick={select}>
             <button
-              disabled={disabled}
-              className={`hover-grow ${checked ? 'btn-success animated pulse' : 'btn-transparent outline'}`}
+              disabled={isDisabled}
+              className={`hover-grow ${isSelected ? 'btn-success animated pulse' : 'btn-transparent outline'}`}
             >
-              {checked ? 'Selected' : 'Select'}
+              {isSelected ? 'Selected' : 'Select'}
             </button>
           </a>
           <a href={`#${agent.name}`} onClick={edit}>
@@ -78,33 +85,38 @@ const Agent: React.FC<AgentInterface> = ({ agent, select, edit }) => {
 };
 
 interface AgentModalInterface {
-  name: string;
   cancel: () => void;
+  save: () => void;
 }
 
-export const AgentModal: React.FC<AgentModalInterface> = ({ name, cancel }) => {
-  const [agent, setAgent] = useAtom(AgentsAtomFamily({ name }));
-  const [newAgent, setNewAgent] = useState<AgentAtomType>(agent);
+export const AgentModal: React.FC<AgentModalInterface> = ({ cancel, save }) => {
+  const [editAgent, setEditAgent] = useAtom(EditingAgent);
+
+  if (!editAgent) return null;
+
+  const mappedWording = Object.keys(editAgent)
+    .filter((key) => key !== 'name')
+    .map((key) => {
+      return [
+        key,
+        key
+          .split('_')
+          .map((word) => word[0].toUpperCase() + word.substring(1, word.length))
+          .join(' ')
+      ];
+    }); // [['attack_speed': 'Attack Speed'], ...]
 
   const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    setNewAgent((prev) => {
-      return {
-        ...prev,
-        [event.target.name]: Number(event.target.value)
-      };
+    setEditAgent({
+      ...editAgent,
+      [event.target.name]: Number(event.target.value)
     });
   };
 
-  const save = () => {
-    console.log('SAVE', agent, newAgent);
-    setAgent(newAgent);
-    cancel();
-  };
-
   return (
-    <Modal modalId={name} clickOutside={cancel}>
+    <Modal modalId={editAgent.name} clickOutside={cancel}>
       <div className="modal-header">
-        <a href="#" className="u-pull-right" aria-label="Close">
+        <a className="u-pull-right" aria-label="Close" style={{ cursor: 'pointer' }} onClick={cancel}>
           <span className="icon">
             <svg
               aria-hidden="true"
@@ -128,82 +140,34 @@ export const AgentModal: React.FC<AgentModalInterface> = ({ name, cancel }) => {
 
       <div className="modal-body">
         <div className="r">
-          <h3 className="font-alt font-light u-text-center">{name}</h3>
+          <h3 className="font-alt font-light u-text-center">{editAgent.name}</h3>
         </div>
 
         <div className="space"></div>
 
-        <div className="section-body">
-          <label className="font-bold">Attack Speed</label>
-          <div className="input-control">
+        {mappedWording.map((key) => (
+          <div className="input-control" key={key[0]}>
+            <label className="font-bold">{key[1]}</label>
             <input
               type="number"
-              placeholder="Attack Speed"
-              name="attack_speed"
-              value={newAgent.attack_speed}
+              step={key[0].includes('critical') ? 0.01 : 1}
+              placeholder={key[1]}
+              name={key[0]}
+              value={editAgent[key[0]]}
               onChange={changeHandler}
             />
           </div>
-        </div>
-        <div className="section-body">
-          <label className="font-bold">Normal Attack</label>
-          <div className="input-control">
-            <input
-              type="number"
-              placeholder="Normal Attack"
-              name="normal_attack"
-              value={newAgent.normal_attack}
-              onChange={changeHandler}
-            />
-          </div>
-        </div>
-        <div className="section-body">
-          <label className="font-bold">Skill Damage</label>
-          <div className="input-control">
-            <input
-              type="number"
-              placeholder="Skill Damage"
-              name="skill_damage"
-              value={newAgent.skill_damage}
-              onChange={changeHandler}
-            />
-          </div>
-        </div>
-        <div className="section-body">
-          <label className="font-bold">Critical Rate</label>
-          <div className="input-control">
-            <input
-              type="number"
-              step={0.01}
-              placeholder="Critical Rate"
-              name="critical_rate"
-              value={newAgent.critical_rate}
-              onChange={changeHandler}
-            />
-          </div>
-        </div>
-        <div className="section-body">
-          <label className="font-bold">Critical Damage</label>
-          <div className="input-control">
-            <input
-              type="number"
-              step={0.01}
-              placeholder="Critical Damage"
-              name="critical_damage"
-              value={newAgent.critical_damage}
-              onChange={changeHandler}
-            />
-          </div>
-        </div>
+        ))}
       </div>
 
       <div className="modal-footer">
         <div className="form-section u-text-right">
           <a onClick={cancel}>
-            <button className="btn btn--sm u-inline-block">Cancel</button>
+            <button className="hover-grow btn-transparent outline">Cancel</button>
           </a>
           <a onClick={save}>
-            <button className="btn-info btn--sm u-inline-block">Confirm</button>
+            {/* TODO: disabled when no changes made ? */}
+            <button className="hover-grow btn-success animated pulse">Save</button>
           </a>
         </div>
       </div>
