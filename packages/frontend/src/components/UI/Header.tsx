@@ -1,11 +1,18 @@
+import { Link, useNavigate } from 'react-router-dom';
 import { FaGithub } from 'react-icons/fa';
 
 const Header: React.FC = () => {
+  const navigate = useNavigate();
+
+  const visitHome = () => {
+    navigate('/');
+  };
+
   return (
     <div className="header header-fixed u-unselectable header-animated">
       <div className="header-brand">
         <div className="nav-item no-hover">
-          <a>
+          <a onClick={visitHome}>
             <h6 className="title">SF Girls Calculator</h6>
           </a>
         </div>
@@ -18,6 +25,18 @@ const Header: React.FC = () => {
               <FaGithub />
               <span style={{ paddingLeft: '10px' }}>WIP</span>
             </a>
+
+            <Link to="about">
+              <span>About</span>
+            </Link>
+
+            <Link to="calculator">
+              <span>Calculator</span>
+            </Link>
+
+            <Link to="error">
+              <span>Error</span>
+            </Link>
           </div>
         </div>
 
