@@ -25,15 +25,18 @@ const Header: React.FC = () => {
               <FaGithub />
               <span style={{ paddingLeft: '10px' }}>WIP</span>
             </a>
-
+          </div>
+          <div className="nav-item text-center">
             <Link to="about">
               <span>About</span>
             </Link>
-
+          </div>
+          <div className="nav-item text-center">
             <Link to="calculator">
               <span>Calculator</span>
             </Link>
-
+          </div>
+          <div className="nav-item text-center">
             <Link to="error">
               <span>Error</span>
             </Link>
