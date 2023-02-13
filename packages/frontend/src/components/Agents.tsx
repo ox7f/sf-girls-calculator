@@ -17,7 +17,7 @@ const Agents: React.FC = () => {
 
   const select = (agent: NewAgent) => {
     setSelectedAgents((prev) => {
-      if (prev.includes(agent)) {
+      if (prev.map((p) => p.name).includes(agent.name)) {
         return prev.filter((a) => a.name !== agent.name);
       }
 
