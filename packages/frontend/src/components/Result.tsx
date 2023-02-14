@@ -1,14 +1,14 @@
 import { calculate_team } from 'sf-girls-calculator-calculator';
-import { useState } from 'react';
 import { useAtom } from 'jotai';
-import { ResultAtom, SelectedAgentsAtom, SelectedTargetAtom } from './atoms';
+import { ResultAtom, SelectedAgentsAtom, SelectedTargetAtom, TotalDamageAtom } from './atoms';
+import { Graph } from './index';
 
 const Result: React.FC = () => {
   const [result, setResult] = useAtom(ResultAtom);
+  const [totalDamage, setTotalDamage] = useAtom(TotalDamageAtom);
   const [selectedAgents, setSelectedAgents] = useAtom(SelectedAgentsAtom);
   const [selectedTarget, setSelectedTarget] = useAtom(SelectedTargetAtom);
 
-  const [totalDamage, setTotalDamage] = useState(0);
   const disabled = selectedAgents.length === 0 || selectedTarget === null;
 
   const reset = () => {
@@ -72,6 +72,8 @@ const Result: React.FC = () => {
       <button type="submit" className="btn-transparent secondary outline" onClick={reset}>
         Reset
       </button>
+
+      <Graph />
     </div>
   );
 };

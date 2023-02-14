@@ -68,6 +68,7 @@ export const TargetsAtom = atom<NewTarget[]>(targets);
 export const SelectedTargetAtom = atom<NewTarget | null>(null);
 
 export const ResultAtom = atom<ResultType | null>(null);
+export const TotalDamageAtom = atom(0);
 
 export function transformAgentToModifiedAgent(agent: NewAgent): AgentAtomInterface {
   return {

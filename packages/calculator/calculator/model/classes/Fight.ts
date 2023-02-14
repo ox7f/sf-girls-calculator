@@ -12,7 +12,7 @@ export class Fight {
   }
 
   run(): ResultType {
-    while (this.time < this.target.duration && this.target.current_health > 0) {
+    while (this.time <= this.target.duration && this.target.current_health > 0) {
       handle_skill(this);
       handle_attack(this);
       this.time += globalThis.Interval;
