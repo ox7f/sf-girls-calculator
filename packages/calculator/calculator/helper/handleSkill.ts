@@ -1,5 +1,6 @@
-import { handle_dot, use_skill, remove_expired } from './index';
-import { Agent, DOTEffect, Fight } from '../model';
+import { add_effect, add_damage, handle_dot, remove_expired, has_dot_effect } from './index';
+import { Agent, Effect, Fight } from '../model';
+import { ActionEnum, AttackModeEnum } from '../enums';
 
 export function handle_skill(fight: Fight) {
   const { team, time } = fight;
@@ -22,14 +23,34 @@ export function can_use_skill(time: number, agent: Agent): boolean {
   return time % agent.skill.cooldown === 0;
 }
 
-export function has_dot_effect(agent: Agent): boolean {
-  return agent.skill.effects.filter((effect) => effect instanceof DOTEffect).length > 0;
-}
-
 export function set_skill_apply_animation_time(agent: Agent) {
   agent.apply_skill_remaining_time = agent.apply_skill_time;
 }
 
 export function set_skill_remove_animation_time(agent: Agent) {
   agent.remove_skill_remaining_time = agent.remove_skill_time;
+}
+
+export function use_skill(agent: Agent, fight: Fight) {
+  const { time } = fight;
+
+  agent.skill.effects.forEach((effect) => {
+    agent.history.push({
+      time,
+      damage: 0,
+      total_damage: agent.total_damage,
+      action: {
+        type: ActionEnum.Cast,
+        skill_type: effect.type,
+        attack_mode: AttackModeEnum.None
+      }
+    });
+
+    if (effect instanceof Effect) {
+      add_effect(agent, effect, fight);
+    } else {
+      // DamageEffect || DOTEffect
+      add_damage(agent, effect, fight);
+    }
+  });
 }

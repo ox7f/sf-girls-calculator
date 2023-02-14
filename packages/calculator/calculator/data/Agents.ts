@@ -1568,6 +1568,7 @@ export const Chia = {
   critical_rate: 0.94,
   critical_damage: 2.038,
   skill_damage: 2160,
+  apply_skill_time: 2,
   skill: {
     name: 'Fishing of the void',
     description:

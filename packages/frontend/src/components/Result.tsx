@@ -21,7 +21,7 @@ const Result: React.FC = () => {
     if (!disabled) {
       const result = calculate_team(selectedAgents, selectedTarget);
       setResult(result);
-      setTotalDamage(result.team.reduce((pv, cv) => pv + cv.damage_dealt, 0));
+      setTotalDamage(result.team.reduce((pv, cv) => pv + cv.total_damage, 0));
     }
   };
 
@@ -46,8 +46,8 @@ const Result: React.FC = () => {
                 <tr key={index}>
                   <th scope="row">{index + 1}</th>
                   <td>{agent.name}</td>
-                  <td>{agent.damage_dealt.toFixed(2)}</td>
-                  <td>{((agent.damage_dealt / totalDamage) * 100).toFixed(2)}</td>
+                  <td>{agent.total_damage.toFixed(2)}</td>
+                  <td>{((agent.total_damage / totalDamage) * 100).toFixed(2)}</td>
                 </tr>
               ))}
             </tbody>

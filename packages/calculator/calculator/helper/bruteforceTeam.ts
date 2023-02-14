@@ -1,6 +1,7 @@
-import { Agents, Targets } from '../data';
+import { Targets } from '../data';
 import { NewAgent } from '../model';
 import { calculate_team } from './calculateTeam';
+import { transformAgents } from './transformer';
 
 export function bruteforce_team() {
   // TODO: adjust logic to make it possible to bruteforce more combinations
@@ -59,13 +60,4 @@ function getCombinations(arr: NewAgent[], size: number) {
 
   backtrack(0, []);
   return combinations;
-}
-
-function transformAgents() {
-  const allAgents: AllObjects<NewAgent> = Agents;
-  return Object.keys(allAgents).map((key) => allAgents[key]);
-}
-
-interface AllObjects<T> {
-  [index: string]: T;
 }

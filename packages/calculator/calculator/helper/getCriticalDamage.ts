@@ -3,5 +3,5 @@ export function calculate_critical_damage(damage: number, critical_rate: number,
     damage *= critical_damage;
   }
 
-  return damage;
+  return Math.round(damage);
 }

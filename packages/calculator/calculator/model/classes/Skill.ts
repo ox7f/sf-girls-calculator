@@ -15,16 +15,17 @@ export class Skill {
     this.cooldown = cooldown * 1000; // seconds to ms
 
     this.effects = effects.map((effect) => {
-      switch (effect.type) {
-        case EffectEnum.Self:
-        case EffectEnum.Team:
-        case EffectEnum.Debuff:
-          return new Effect(effect as NewEffect);
-        case EffectEnum.Damage:
-          return new DamageEffect(effect as NewDamageEffect);
-        case EffectEnum.DOT:
-          return new DOTEffect(effect as NewDOTEffect);
+      let new_effect;
+
+      if (effect.type === EffectEnum.DOT) {
+        new_effect = new DOTEffect(effect as NewDOTEffect);
+      } else if (effect.type === EffectEnum.Damage) {
+        new_effect = new DamageEffect(effect as NewDamageEffect);
+      } else {
+        new_effect = new Effect(effect as NewEffect);
       }
+
+      return new_effect;
     });
   }
 }

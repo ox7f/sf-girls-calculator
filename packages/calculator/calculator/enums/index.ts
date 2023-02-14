@@ -1,3 +1,4 @@
+export { ActionEnum } from './Action';
 export { AttackModeEnum } from './AttackMode';
 export { ClassEnum } from './Class';
 export { EffectEnum } from './Effect';
