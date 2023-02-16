@@ -3,8 +3,8 @@ import { Agents, Targets, Result } from '../components';
 const Calculator: React.FC = () => {
   return (
     <main>
-      <Result />
       <Targets />
+      <Result />
       <Agents />
     </main>
   );
