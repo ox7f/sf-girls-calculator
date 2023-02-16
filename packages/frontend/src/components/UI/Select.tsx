@@ -5,39 +5,26 @@ type optionType = {
   value: string;
 };
 
-interface SelectInterface {
+interface SelectI {
   options: optionType[];
   value: string;
-  defaultLabel: string;
-  onChangeHandler: (event: ChangeEvent<HTMLSelectElement>) => void;
-  label?: string;
-  placeholder?: string;
+  firstOption: string;
+  onChange: (event: ChangeEvent<HTMLSelectElement>) => void;
 }
 
-const Select: React.FC<SelectInterface> = ({
-  options,
-  value,
-  defaultLabel,
-  onChangeHandler,
-  label = '',
-  placeholder = ''
-}: SelectInterface) => {
+const Select: React.FC<SelectI> = ({ options, value, firstOption, onChange }: SelectI) => {
   return (
-    <>
-      <label>{label}</label>
+    <select className="select" value={value} onChange={onChange}>
+      <option disabled value={''}>
+        {firstOption}
+      </option>
 
-      <select className="select" placeholder={placeholder} value={value} onChange={onChangeHandler}>
-        <option disabled value={''}>
-          {defaultLabel}
+      {options.map((option, index) => (
+        <option key={index} value={option.value}>
+          {option.label}
         </option>
-
-        {options.map((option, index) => (
-          <option key={index} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </select>
-    </>
+      ))}
+    </select>
   );
 };
 
