@@ -1,12 +1,12 @@
 import { Portal } from './index';
 
-interface props {
+interface ModalI {
   modalId: string;
   children?: React.ReactNode;
   clickOutside?: () => void;
 }
 
-export const Modal: React.FC<props> = ({
+export const Modal: React.FC<ModalI> = ({
   modalId,
   children,
   clickOutside = () => {
