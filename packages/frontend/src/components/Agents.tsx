@@ -1,8 +1,8 @@
 import { NewAgent } from 'sf-girls-calculator-calculator';
 import { useAtom, useAtomValue } from 'jotai';
 import {
-  AgentsAtom,
   EditingAgent,
+  FilteredAgentsAtom,
   ModifiedAgentsAtom,
   SelectedAgentsAtom,
   transformModifiedAgentToAgent
@@ -10,10 +10,10 @@ import {
 import { Agent, AgentModal } from './index';
 
 const Agents: React.FC = () => {
-  const agents = useAtomValue(AgentsAtom);
   const [modifiedAgents, setModifiedAgents] = useAtom(ModifiedAgentsAtom);
   const [editAgent, setEditAgent] = useAtom(EditingAgent);
   const [selectedAgents, setSelectedAgents] = useAtom(SelectedAgentsAtom);
+  const filteredAgents = useAtomValue(FilteredAgentsAtom);
 
   const select = (agent: NewAgent) => {
     setSelectedAgents((prev) => {
@@ -57,11 +57,11 @@ const Agents: React.FC = () => {
     startEditing();
   };
 
-  const isSelectedList = agents.map((agent) => {
+  const isSelectedList = filteredAgents.map((agent) => {
     return selectedAgents.filter((a) => a.name === agent.name).length !== 0;
   });
 
-  const isDisabledList = agents.map((agent, index) => {
+  const isDisabledList = filteredAgents.map((agent, index) => {
     return selectedAgents.length > 5 && !isSelectedList[index];
   });
 
@@ -70,7 +70,7 @@ const Agents: React.FC = () => {
       <AgentModal cancel={cancel} save={save} />
 
       <div className="row u-center">
-        {agents.map((agent, index) => (
+        {filteredAgents.map((agent, index) => (
           <Agent
             key={index}
             agent={agent}

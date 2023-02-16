@@ -1,19 +1,18 @@
 import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { useAtomValue } from 'jotai';
-import { ResultAtom } from './atoms';
+import { ResultAtom } from '../atoms';
 
-interface AgentData {
+type AgentData = {
   name: string;
   damage: number;
   time: number;
-}
+};
 
 const Graph: React.FC = () => {
   const result = useAtomValue(ResultAtom);
+  const data: Array<AgentData[]> = [];
 
   if (!result) return null;
-
-  const data: Array<AgentData[]> = [];
 
   for (const agent of result.team) {
     const index = result.team.indexOf(agent);
@@ -38,12 +37,12 @@ const Graph: React.FC = () => {
   };
 
   return (
-    <div className="u-center" style={{height: '500px', width: '90%'}}>
+    <div className="u-center" style={{ height: '500px', width: '90%' }}>
       <ResponsiveContainer width="100%" height="100%">
         <LineChart>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis allowDuplicatedCategory={false} dataKey="time" type="number" name="Time" unit="s" />
-          <YAxis dataKey="damage" type="number" name="Damage" />
+          <YAxis dataKey="damage" type="number" name="Damage" width={100} />
           <Tooltip label="name" />
           <Legend />
           {result.team.map((agent, index) => (

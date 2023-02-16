@@ -1,7 +1,7 @@
 import { atom } from 'jotai';
 import { Agents, NewAgent, NewTarget, ResultType, Targets } from 'sf-girls-calculator-calculator';
 
-export interface AgentAtomInterface {
+export interface AgentAtomI {
   name: string;
   attack_speed: number;
   normal_attack: number;
@@ -34,7 +34,7 @@ const atomWithLocalStorage = (key: string, initialValue = null) => {
 // TODO: work with types for atomWithLocalStorage and replace the shit down below
 
 const agents: NewAgent[] = [];
-let modifiedAgents: AgentAtomInterface[] = [];
+let modifiedAgents: AgentAtomI[] = [];
 const targets: NewTarget[] = [];
 
 for (const [, values] of Object.entries(Agents)) {
@@ -60,7 +60,8 @@ if (localStorageAgents) {
 }
 
 export const AgentsAtom = atom<NewAgent[]>(agents);
-export const ModifiedAgentsAtom = atom<AgentAtomInterface[]>(modifiedAgents);
+export const ModifiedAgentsAtom = atom<AgentAtomI[]>(modifiedAgents);
+export const FilteredAgentsAtom = atom<NewAgent[]>(agents);
 export const SelectedAgentsAtom = atom<NewAgent[]>([]);
 export const EditingAgent = atomWithLocalStorage('editing_agent', null);
 
@@ -70,7 +71,7 @@ export const SelectedTargetAtom = atom<NewTarget | null>(null);
 export const ResultAtom = atom<ResultType | null>(null);
 export const TotalDamageAtom = atom(0);
 
-export function transformAgentToModifiedAgent(agent: NewAgent): AgentAtomInterface {
+export function transformAgentToModifiedAgent(agent: NewAgent): AgentAtomI {
   return {
     name: agent.name,
     attack_speed: agent.attack_speed,
@@ -81,7 +82,7 @@ export function transformAgentToModifiedAgent(agent: NewAgent): AgentAtomInterfa
   };
 }
 
-export function transformModifiedAgentToAgent(agent: NewAgent, modifiedAgent: AgentAtomInterface): NewAgent {
+export function transformModifiedAgentToAgent(agent: NewAgent, modifiedAgent: AgentAtomI): NewAgent {
   return {
     ...agent,
     attack_speed: modifiedAgent.attack_speed,

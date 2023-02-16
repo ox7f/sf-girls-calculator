@@ -2,9 +2,9 @@ import { ClassEnum, NewAgent } from 'sf-girls-calculator-calculator';
 import { ChangeEvent } from 'react';
 import { useAtom } from 'jotai';
 import { EditingAgent } from './atoms';
-import { Modal } from './UI';
+import { Button, Modal } from './UI';
 
-interface AgentInterface {
+interface AgentI {
   agent: NewAgent;
   isSelected?: boolean;
   isDisabled?: boolean;
@@ -12,7 +12,7 @@ interface AgentInterface {
   edit: () => void;
 }
 
-const Agent: React.FC<AgentInterface> = ({ agent, isSelected = false, isDisabled = false, select, edit }) => {
+const Agent: React.FC<AgentI> = ({ agent, isSelected = false, isDisabled = false, select, edit }) => {
   const getClassName = () => {
     switch (agent.class) {
       case ClassEnum.Artillery:
@@ -68,15 +68,15 @@ const Agent: React.FC<AgentInterface> = ({ agent, isSelected = false, isDisabled
 
         <div className="card__action-bar u-center">
           <a onClick={select}>
-            <button
+            <Button
+              text={isSelected ? 'Selected' : 'Select'}
+              type={isSelected ? 'btn-success' : 'btn-transparent'}
+              isAnimated={isSelected}
               disabled={isDisabled}
-              className={`hover-grow ${isSelected ? 'btn-success animated pulse' : 'btn-transparent outline'}`}
-            >
-              {isSelected ? 'Selected' : 'Select'}
-            </button>
+            />
           </a>
           <a href={`#${agent.name}`} onClick={edit}>
-            <button className="hover-grow btn-transparent outline">Edit</button>
+            <Button text="Edit" type="btn-transparent" />
           </a>
         </div>
       </div>
