@@ -8,6 +8,17 @@ const Header: React.FC = () => {
     navigate('/');
   };
 
+  const menuItems = [
+    {
+      to: 'about',
+      name: 'About'
+    },
+    {
+      to: 'calculator',
+      name: 'Calculator'
+    }
+  ];
+
   return (
     <div className="header header-fixed u-unselectable header-animated">
       <div className="header-brand">
@@ -23,24 +34,16 @@ const Header: React.FC = () => {
           <div className="nav-item text-center">
             <a href="https://github.com/ox7f/sf-girls-calculator" target="_blank">
               <FaGithub />
-              <span style={{ paddingLeft: '10px' }}>WIP</span>
             </a>
           </div>
-          <div className="nav-item text-center">
-            <Link to="about">
-              <span>About</span>
-            </Link>
-          </div>
-          <div className="nav-item text-center">
-            <Link to="calculator">
-              <span>Calculator</span>
-            </Link>
-          </div>
-          <div className="nav-item text-center">
-            <Link to="error">
-              <span>Error</span>
-            </Link>
-          </div>
+
+          {menuItems.map((menuItem, index) => (
+            <div className="nav-item text-center" key={index}>
+              <Link to={menuItem.to} key={menuItem.name}>
+                <span>{menuItem.name}</span>
+              </Link>
+            </div>
+          ))}
         </div>
 
         <div className="nav-right">
