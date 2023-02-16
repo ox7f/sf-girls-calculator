@@ -1,9 +1,9 @@
-import { Agents, Targets, Result } from '../components';
+import { Agents, Options, Result } from '../components';
 
 const Calculator: React.FC = () => {
   return (
     <main>
-      <Targets />
+      <Options />
       <Result />
       <Agents />
     </main>
