@@ -14,8 +14,16 @@ const Header: React.FC = () => {
       name: 'About'
     },
     {
+      to: 'agents',
+      name: 'Agents'
+    },
+    {
       to: 'calculator',
       name: 'Calculator'
+    },
+    {
+      to: 'teamfinder',
+      name: 'Teamfinder'
     }
   ];
 

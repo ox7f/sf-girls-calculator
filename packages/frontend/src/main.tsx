@@ -6,25 +6,33 @@ import { StrictMode } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import App from './App';
-import { About, Calculator, Error, Home } from './pages';
+import { AboutPage, AgentsPage, CalculatorPage, ErrorPage, HomePage, TeamfinderPage } from './pages';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
-    errorElement: <Error />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: '',
-        element: <Home />
+        element: <HomePage />
       },
       {
         path: 'about',
-        element: <About />
+        element: <AboutPage />
+      },
+      {
+        path: 'agents',
+        element: <AgentsPage />
       },
       {
         path: 'calculator',
-        element: <Calculator />
+        element: <CalculatorPage />
+      },
+      {
+        path: 'teamfinder',
+        element: <TeamfinderPage />
       }
     ]
   }

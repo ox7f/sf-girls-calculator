@@ -1,4 +1,6 @@
-export { default as About } from './About';
-export { default as Calculator } from './Calculator';
-export { default as Error } from './Error';
-export { default as Home } from './Home';
+export { default as AboutPage } from './About';
+export { default as AgentsPage } from './Agents';
+export { default as CalculatorPage } from './Calculator';
+export { default as ErrorPage } from './Error';
+export { default as HomePage } from './Home';
+export { default as TeamfinderPage } from './Teamfinder';

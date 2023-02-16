@@ -1,15 +1,8 @@
 import { calculate_team, NewTarget, Targets as TargetsData } from 'sf-girls-calculator-calculator';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useAtom, useSetAtom } from 'jotai';
-import {
-  AgentsAtom,
-  FilteredAgentsAtom,
-  ResultAtom,
-  SelectedAgentsAtom,
-  SelectedTargetAtom,
-  TotalDamageAtom
-} from './atoms';
-import { Button, SearchBar, Select } from './UI';
+import { ResultAtom, SelectedAgentsAtom, SelectedTargetAtom, TotalDamageAtom } from './atoms';
+import { Button, Select } from './UI';
 
 interface SelectTargetI {
   label: string;
@@ -68,14 +61,13 @@ const Targets: React.FC = () => {
 
   return (
     <article>
-      <div className="level-item input-control u-center">
+      <div className="level-item input-control">
         <div className="btn-group w-90p">
+          <div className="space" style={{ width: '5%' }}></div>
           <Button text="Calculate" onClick={calculate} type="btn-success" disabled={disabled} isAnimated={!disabled} />
           <Button text="Reset" onClick={reset} type="secondary" />
           <div className="space" style={{ width: '5%' }}></div>
           <Select firstOption="Select Target" value={targetValue} options={selectOptions} onChange={selectHandler} />
-          <div className="space" style={{ width: '5%' }}></div>
-          <SearchBar atom={FilteredAgentsAtom} sourceAtom={AgentsAtom} />
         </div>
       </div>
     </article>

@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { FaCoffee } from 'react-icons/fa';
+import { Button } from '../components/UI';
 
 const Error: React.FC = () => {
   const navigate = useNavigate();
@@ -21,14 +22,19 @@ const Error: React.FC = () => {
               <FaCoffee size="50" />
             </span>
           </div>
+
           <h6 className="placeholder-title">Oops!</h6>
-          <div className="placeholder-subtitle">Sorry, an unexpected error has occurred.</div>
+
+          <div className="placeholder-subtitle">
+            <p>Sorry, an unexpected error has occurred.</p>
+          </div>
+
           <div className="placeholder-commands u-center">
             <div className="m-1" onClick={refreshPage}>
-              <button className="btn-primary">Refresh</button>
+              <Button text="Refresh" type="btn-primary" />
             </div>
             <div className="m-1" onClick={visitHome}>
-              <button>Home</button>
+              <Button text="Home" />
             </div>
           </div>
         </div>

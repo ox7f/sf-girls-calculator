@@ -1,11 +1,19 @@
-import { Agents, Options, Result } from '../components';
+import { AgentsSelect, Options, Result } from '../components';
 
 const Calculator: React.FC = () => {
   return (
     <main>
       <Options />
-      <Result />
-      <Agents />
+
+      <div className="row">
+        <div className="col-2">
+          <AgentsSelect />
+        </div>
+
+        <div className="col-10">
+          <Result />
+        </div>
+      </div>
     </main>
   );
 };

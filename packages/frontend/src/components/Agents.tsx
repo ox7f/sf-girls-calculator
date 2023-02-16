@@ -10,8 +10,8 @@ import {
 import { Agent, AgentModal } from './index';
 
 const Agents: React.FC = () => {
-  const [modifiedAgents, setModifiedAgents] = useAtom(ModifiedAgentsAtom);
   const [editAgent, setEditAgent] = useAtom(EditingAgent);
+  const [modifiedAgents, setModifiedAgents] = useAtom(ModifiedAgentsAtom);
   const [selectedAgents, setSelectedAgents] = useAtom(SelectedAgentsAtom);
   const filteredAgents = useAtomValue(FilteredAgentsAtom);
 
@@ -82,6 +82,14 @@ const Agents: React.FC = () => {
         ))}
       </div>
     </article>
+  );
+};
+
+export const AgentsSelect: React.FC = () => {
+  return (
+    <div>
+      <p>TODO: implement Multi-Select for Agents</p>
+    </div>
   );
 };
 
