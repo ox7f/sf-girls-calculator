@@ -63,7 +63,7 @@ const Agent: React.FC<AgentI> = ({ agent, isSelected = false, isDisabled = false
         </div>
 
         <div className="card__body content" style={{ width: '90%' }}>
-          <p>{agent.bio ?? 'No Bio - will add it later'}</p>
+          <p className="u-unselectable">{agent.bio ?? 'No Bio - will add it later'}</p>
         </div>
 
         <div className="card__action-bar u-center">
