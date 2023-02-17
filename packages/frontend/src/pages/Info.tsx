@@ -18,6 +18,12 @@ const Info: React.FC = () => {
           images on our website is solely for non-commercial purposes and is meant to enhance the content and user
           experience of the website.
         </p>
+
+        <p>
+          Additionally, please note that this website is purely a frontend and does not save any data on a server. We do
+          not collect or store any personal information from users. The use of this website is solely for informational
+          and educational purposes and is not intended to provide any professional advice or services.
+        </p>
       </article>
     </main>
   );
