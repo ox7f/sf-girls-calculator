@@ -16,11 +16,7 @@ export const SearchBar: React.FC<SearchBarI> = ({ atom, sourceAtom }) => {
     setAtom(source.filter((item) => item.name.toLocaleLowerCase().includes(search)));
   };
 
-  return (
-    <div className="u-center w-90p">
-      <input type="search" className="form-group-input" placeholder="Search" onChange={changeHandler} />
-    </div>
-  );
+  return <input type="search" className="form-group-input" placeholder="Search" onChange={changeHandler} />;
 };
 
 export default SearchBar;

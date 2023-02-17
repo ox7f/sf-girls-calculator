@@ -1,6 +1,8 @@
 import { NewAgent } from 'sf-girls-calculator-calculator';
+import { useEffect } from 'react';
 import { useAtom, useAtomValue } from 'jotai';
 import {
+  AgentsAtom,
   EditingAgent,
   FilteredAgentsAtom,
   ModifiedAgentsAtom,
@@ -8,6 +10,7 @@ import {
   transformModifiedAgentToAgent
 } from './atoms';
 import { Agent, AgentModal } from './index';
+import { Search } from './UI';
 
 const Agents: React.FC = () => {
   const [editAgent, setEditAgent] = useAtom(EditingAgent);
@@ -86,9 +89,41 @@ const Agents: React.FC = () => {
 };
 
 export const AgentsSelect: React.FC = () => {
+  const allAgents = useAtomValue(AgentsAtom);
+  const [filteredAgents, setFilteredAgents] = useAtom(FilteredAgentsAtom);
+  const [selectedAgents, setSelectedAgents] = useAtom(SelectedAgentsAtom);
+
+  useEffect(() => () => setFilteredAgents(allAgents), []);
+
+  const select = (agent: NewAgent) => {
+    setSelectedAgents((prev) => {
+      if (prev.map((p) => p.name).includes(agent.name)) {
+        return prev.filter((a) => a.name !== agent.name);
+      }
+
+      if (prev.length === 6) {
+        return [...prev];
+      }
+
+      return [...prev, agent];
+    });
+  };
+
   return (
     <div>
-      <p>TODO: implement Multi-Select for Agents</p>
+      <Search atom={FilteredAgentsAtom} sourceAtom={AgentsAtom} />
+
+      <ul className="menu u-overflow-y-scroll" style={{ height: '70vh' }}>
+        {filteredAgents.map((agent, index) => {
+          const isSelected = selectedAgents.map((sAgent) => sAgent.name).includes(agent.name);
+
+          return (
+            <li key={index} className={`menu-item ${isSelected ? 'selected' : ''} mr-1`} onClick={() => select(agent)}>
+              <a>{agent.name}</a>
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 };

@@ -1,12 +1,23 @@
+import { useEffect } from 'react';
+import { useAtomValue, useSetAtom } from 'jotai';
 import { Agents } from '../components';
 import { AgentsAtom, FilteredAgentsAtom } from '../components/atoms';
-import { SearchBar } from '../components/UI';
+import { Search } from '../components/UI';
 
 const AgentsPage: React.FC = () => {
+  const allAgents = useAtomValue(AgentsAtom);
+  const setFilteredAgents = useSetAtom(FilteredAgentsAtom);
+
+  useEffect(() => () => setFilteredAgents(allAgents), []);
+
   return (
     <main>
-      <SearchBar atom={FilteredAgentsAtom} sourceAtom={AgentsAtom} />
-      <Agents />
+      <article>
+        <div className="w-90p u-center">
+          <Search atom={FilteredAgentsAtom} sourceAtom={AgentsAtom} />
+        </div>
+        <Agents />
+      </article>
     </main>
   );
 };

@@ -37,27 +37,25 @@ const Graph: React.FC = () => {
   };
 
   return (
-    <div className="u-center" style={{ height: '500px', width: '90%' }}>
-      <ResponsiveContainer width="100%" height="100%">
-        <LineChart>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis allowDuplicatedCategory={false} dataKey="time" type="number" name="Time" unit="s" />
-          <YAxis dataKey="damage" type="number" name="Damage" width={100} />
-          <Tooltip label="name" />
-          <Legend />
-          {result.team.map((agent, index) => (
-            <Line
-              key={index}
-              name={agent.name}
-              data={data[index]}
-              type="basisOpen"
-              dataKey="damage"
-              stroke={getRandomColor()}
-            />
-          ))}
-        </LineChart>
-      </ResponsiveContainer>
-    </div>
+    <ResponsiveContainer width="100%" height="100%">
+      <LineChart>
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis allowDuplicatedCategory={false} dataKey="time" type="number" name="Time" unit="s" />
+        <YAxis dataKey="damage" type="number" name="Damage" width={100} />
+        <Tooltip label="name" />
+        <Legend />
+        {result.team.map((agent, index) => (
+          <Line
+            key={index}
+            name={agent.name}
+            data={data[index]}
+            type="basisOpen"
+            dataKey="damage"
+            stroke={getRandomColor()}
+          />
+        ))}
+      </LineChart>
+    </ResponsiveContainer>
   );
 };
 

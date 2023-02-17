@@ -10,15 +10,15 @@ const Footer: React.FC = () => {
     >
       <h6 className="footer__title uppercase">SF Girls Calculator</h6>
       <p className="subtitle">
-        The source code is licensed <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website
+        The source code is licensed <a className="utb utb-OLR" href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website
         content is licensed{' '}
-        <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+        <a className="utb utb-OLR" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
           CC BY-NC-SA 4.0
         </a>
         .
       </p>
       Made with ❤️ by{' '}
-      <a href="https://github.com/ox7f" target="_blank">
+      <a className="utb utb-OLR" href="https://github.com/ox7f" target="_blank">
         Dalberg
       </a>
     </footer>

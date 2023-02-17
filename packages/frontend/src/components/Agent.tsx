@@ -32,17 +32,19 @@ const Agent: React.FC<AgentI> = ({ agent, isSelected = false, isDisabled = false
         <div className="card__container">
           <div
             className="card__image"
-            style={{
-              backgroundSize: `${
-                agent.name === 'Pan'
-                  ? '60%'
-                  : ['Amikam', 'Chia', 'Feme', 'Iizuna', 'Kaja', 'Karry', 'Pan', 'Rei JK', 'Shiko'].includes(agent.name)
-                  ? '80%'
-                  : '120%'
-              }`,
-              backgroundPosition: 'center',
-              backgroundImage: `url(agents/${agent.name.replace(' ', '')}.png)`
-            }}
+            style={
+              {
+                // backgroundSize: `${
+                //   agent.name === 'Pan'
+                //     ? '60%'
+                //     : ['Amikam', 'Chia', 'Feme', 'Iizuna', 'Kaja', 'Karry', 'Pan', 'Rei JK', 'Shiko'].includes(agent.name)
+                //     ? '80%'
+                //     : '120%'
+                // }`,
+                // backgroundPosition: 'center',
+                // backgroundImage: `url(agents/${agent.name.replace(' ', '')}.png)`
+              }
+            }
           ></div>
         </div>
 
@@ -166,7 +168,6 @@ export const AgentModal: React.FC<AgentModalInterface> = ({ cancel, save }) => {
             <button className="hover-grow btn-transparent outline">Cancel</button>
           </a>
           <a onClick={save}>
-            {/* TODO: disabled when no changes made ? */}
             <button className="hover-grow btn-success animated pulse">Save</button>
           </a>
         </div>

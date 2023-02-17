@@ -15,15 +15,15 @@ const Targets: React.FC = () => {
   const [selectedAgents, setSelectedAgents] = useAtom(SelectedAgentsAtom);
   const setResult = useSetAtom(ResultAtom);
   const setTotalDamage = useSetAtom(TotalDamageAtom);
-  const [targetValue, setTargetValue] = useState('');
+  const [targetValue, setTargetValue] = useState(selectedTarget?.name ?? '');
 
   const disabled = selectedAgents.length === 0 || selectedTarget === null;
   const selectOptions: SelectTargetI[] = [];
 
-  for (const [key, value] of Object.entries(TargetsData)) {
+  for (const [, value] of Object.entries(TargetsData)) {
     selectOptions.push({
       label: value.name,
-      value: key,
+      value: value.name,
       object: value
     });
   }
@@ -60,17 +60,16 @@ const Targets: React.FC = () => {
   };
 
   return (
-    <article>
-      <div className="level-item input-control">
-        <div className="btn-group w-90p">
-          <div className="space" style={{ width: '5%' }}></div>
-          <Button text="Calculate" onClick={calculate} type="btn-success" disabled={disabled} isAnimated={!disabled} />
-          <Button text="Reset" onClick={reset} type="secondary" />
-          <div className="space" style={{ width: '5%' }}></div>
-          <Select firstOption="Select Target" value={targetValue} options={selectOptions} onChange={selectHandler} />
-        </div>
+    <div className="row u-center">
+      <div className="col-4 btn-group u-center">
+        <Button text="Calculate" onClick={calculate} type="btn-success" disabled={disabled} isAnimated={!disabled} />
+        <Button text="Reset" onClick={reset} type="secondary w-16" />
       </div>
-    </article>
+
+      <div className="col-8">
+        <Select firstOption="Select Target" value={targetValue} options={selectOptions} onChange={selectHandler} />
+      </div>
+    </div>
   );
 };
 
