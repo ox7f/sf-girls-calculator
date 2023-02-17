@@ -10,8 +10,8 @@ const Header: React.FC = () => {
 
   const menuItems = [
     {
-      to: 'about',
-      name: 'About'
+      to: 'info',
+      name: 'Info'
     },
     {
       to: 'agents',
@@ -28,41 +28,43 @@ const Header: React.FC = () => {
   ];
 
   return (
-    <div className="header header-fixed u-unselectable header-animated">
-      <div className="header-brand">
-        <div className="nav-item no-hover">
-          <a onClick={visitHome}>
-            <h6 className="title">SF Girls Calculator</h6>
-          </a>
-        </div>
-      </div>
-
-      <div className="header-nav" id="header-menu">
-        <div className="nav-left">
-          <div className="nav-item text-center">
-            <a href="https://github.com/ox7f/sf-girls-calculator" target="_blank">
-              <FaGithub />
+    <header>
+      <div className="header header-fixed u-unselectable header-animated">
+        <div className="header-brand">
+          <div className="nav-item no-hover">
+            <a onClick={visitHome}>
+              <h6 className="title">SF Girls Calculator</h6>
             </a>
           </div>
+        </div>
 
-          {menuItems.map((menuItem, index) => (
-            <div className="nav-item text-center" key={index}>
-              <Link to={menuItem.to} key={menuItem.name}>
-                <span>{menuItem.name}</span>
-              </Link>
+        <div className="header-nav" id="header-menu">
+          <div className="nav-left">
+            <div className="nav-item text-center">
+              <a href="https://github.com/ox7f/sf-girls-calculator" target="_blank">
+                <FaGithub />
+              </a>
             </div>
-          ))}
-        </div>
 
-        <div className="nav-right">
-          <div className="nav-item">
-            <a href="https://www.buymeacoffee.com/ox7f" target="_blank">
-              <img src="/buymeacoffee.png" alt="Buy Me A Coffee" style={{ height: '36px', width: '130px' }} />
-            </a>
+            {menuItems.map((menuItem, index) => (
+              <div className="nav-item text-center" key={index}>
+                <Link to={menuItem.to} key={menuItem.name}>
+                  <span>{menuItem.name}</span>
+                </Link>
+              </div>
+            ))}
+          </div>
+
+          <div className="nav-right">
+            <div className="nav-item">
+              <a href="https://www.buymeacoffee.com/ox7f" target="_blank">
+                <img src="/buymeacoffee.png" alt="Buy Me A Coffee" style={{ height: '36px', width: '130px' }} />
+              </a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 
