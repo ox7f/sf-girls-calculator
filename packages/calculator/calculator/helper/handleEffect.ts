@@ -80,7 +80,8 @@ export function apply_non_stackable(effect: Effect, agent: Agent, fight: Fight) 
 }
 
 export function apply(agent: Agent, effect: Effect, fight: Fight) {
-  const { team, target } = fight;
+  const { team, target, time } = fight;
+  effect.begin = time;
   effect.apply({ agent, team, target });
   agent.applied_effects.push(effect);
 }
