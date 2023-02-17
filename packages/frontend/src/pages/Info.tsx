@@ -12,7 +12,7 @@ const Info: React.FC = () => {
           <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
             CC BY-NC-SA 4.0
           </a>
-          ). We have complied with the terms of this license and give proper attribution to the original author of each
+          ). We have complied with the terms of this license and give proper attribution to the original creator of each
           image. If you are the owner of any of the images used on this website and believe that it has been used
           without proper attribution, please contact us immediately and we will rectify the situation. The use of these
           images on our website is solely for non-commercial purposes and is meant to enhance the content and user
