@@ -20,7 +20,7 @@ const Info: React.FC = () => {
         </p>
 
         <p>
-          Additionally, please note that this website is purely a frontend and does not save any data on a server. We do
+          Additionally, please note that this website is purely a frontend, meaning it runs on the client and does not save any data on a server. We do
           not collect or store any personal information from users. The use of this website is solely for informational
           and educational purposes and is not intended to provide any professional advice or services.
         </p>
