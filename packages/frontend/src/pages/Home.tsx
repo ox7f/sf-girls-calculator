@@ -10,7 +10,7 @@ const Home: React.FC = () => {
           </a>
           ! This website is dedicated to helping you maximize your gameplay potential by offering accurate damage
           calculations based on your agents stats. To use the calculator, simply enter the stats of your agents after
-          navigating tp the agents page. Once your stats are entered, navigate to the calculator page where you can
+          navigating to the agents page. Once your stats are entered, navigate to the calculator page where you can
           select your agents and target. With a simple click, you'll receive a detailed damage report. This website also
           offers a teamfinder feature. With the teamfinder, you can select up to 20 agents and our website will
           calculate the strongest team for you. With our user-friendly interface and powerful algorithms, you'll be able
