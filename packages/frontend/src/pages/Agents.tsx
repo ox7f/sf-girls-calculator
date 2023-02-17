@@ -13,7 +13,7 @@ const AgentsPage: React.FC = () => {
   return (
     <main>
       <article>
-        <div className="w-90p u-center">
+        <div className="mx-1 u-center">
           <Search atom={FilteredAgentsAtom} sourceAtom={AgentsAtom} />
         </div>
         <Agents />

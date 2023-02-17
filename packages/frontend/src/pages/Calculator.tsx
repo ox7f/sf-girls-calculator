@@ -4,7 +4,7 @@ const Calculator: React.FC = () => {
   return (
     <main>
       <article>
-        <div className="grid u-gap-2">
+        <div className="grid u-gap-2 mx-1">
           <div className="grid-c-12">
             <Options />
           </div>
