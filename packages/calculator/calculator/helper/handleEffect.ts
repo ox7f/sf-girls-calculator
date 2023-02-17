@@ -81,9 +81,11 @@ export function apply_non_stackable(effect: Effect, agent: Agent, fight: Fight) 
 
 export function apply(agent: Agent, effect: Effect, fight: Fight) {
   const { team, target, time } = fight;
-  effect.begin = time;
-  effect.apply({ agent, team, target });
-  agent.applied_effects.push(effect);
+
+  const newEffect = new Effect({ ...effect, duration: effect.duration / 1000 });
+  newEffect.begin = time;
+  newEffect.apply({ agent, team, target });
+  agent.applied_effects.push(newEffect);
 }
 
 export function remove_expired(agent: Agent, fight: Fight) {
