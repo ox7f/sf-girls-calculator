@@ -60,8 +60,8 @@ const Targets: React.FC = () => {
   };
 
   return (
-    <div className="row u-center">
-      <div className="col-4 btn-group u-center">
+    <div className="btn-group row u-center">
+      <div className="col-4 u-center">
         <Button text="Calculate" onClick={calculate} type="btn-success" disabled={disabled} isAnimated={!disabled} />
         <Button text="Reset" onClick={reset} type="secondary w-16" />
       </div>
