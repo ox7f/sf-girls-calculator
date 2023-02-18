@@ -1,10 +1,21 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaAngleRight } from 'react-icons/fa';
 
 const Home: React.FC = () => {
+  const [width, setWidth] = useState<number>(window.innerWidth);
   const [fadeIn, setFadeIn] = useState(false);
   const [index, setIndex] = useState(0);
   const length = 2;
+  const isMobile = width <= 768;
+
+  useEffect(() => {
+    window.addEventListener('resize', handleWindowSizeChange);
+    return () => window.removeEventListener('resize', handleWindowSizeChange);
+  }, []);
+
+  const handleWindowSizeChange = () => {
+    setWidth(window.innerWidth);
+  };
 
   const handleNext = () => {
     const newIndex = index + 1;
@@ -21,15 +32,17 @@ const Home: React.FC = () => {
     return (
       <div>
         <h1 className="headline-3 title uppercase text-dark pt-10">Hello Commander</h1>
-        <p className="text-lg leading-looser-md tracking-looser-md pt-5 mx-10-md">
-          Our website offers an easy-to-use calculator for the game{' '}
+        <p className={`${isMobile ? 'text-md' : 'text-lg'} leading-looser-md tracking-looser-md pt-5 mx-10-md`}>
+          Here you'll find an easy-to-use calculator for the game{' '}
           <a href="https://www.nutaku.net/games/sf-girls" target="_blank">
             SF Girls
           </a>{' '}
           that helps you maximize your gameplay potential by providing accurate damage calculations based on your
-          agent's stats. The calculator requires you to enter your agent's stats, select the agents and target, and with
-          a click, you'll receive a detailed damage report. Additionally, our teamfinder feature allows you to select up
-          to 20 agents and it will calculate the strongest team for you. With our user-friendly interface and powerful
+          agent's stats.
+          <br />
+          The calculator requires you to enter your agent's stats, select the agents and target, and with a click,
+          you'll receive a detailed damage report. Additionally, our teamfinder feature allows you to select up to 20
+          agents and it will calculate the strongest team for you. With our user-friendly interface and powerful
           algorithms, finding the perfect team is just a few clicks away!
           <br />
           We strive to provide up-to-date information and accurate calculations to help you improve your gameplay. If
@@ -43,7 +56,7 @@ const Home: React.FC = () => {
     return (
       <div>
         <h1 className="headline-3 title uppercase text-dark pt-10">Disclaimer</h1>
-        <p className="text-lg leading-looser-md tracking-looser-md pt-5 mx-10-md">
+        <p className={`${isMobile ? 'text-md' : 'text-lg'} leading-looser-md tracking-looser-md pt-5 mx-10-md`}>
           All images used on this website are sourced from the{' '}
           <a href="https://www.nutaku.net/games/sf-girls" target="_blank">
             Game
@@ -57,10 +70,12 @@ const Home: React.FC = () => {
             CC BY-NC-SA 4.0
           </a>{' '}
           license. We give proper attribution to the original creator of each image and only use them for non-commercial
-          purposes to enhance the user experience. This website is client-sided, meaning we don't save any data on a
-          server or collect personal information from users. Our website is for informational and educational purposes
-          only and doesn't provide any professional advice or services. If you believe any image has been used without
-          proper attribution, please contact us to rectify the situation.
+          purposes to enhance the user experience.
+          <br />
+          This website is client-sided, meaning we don't save any data on a server or collect personal information from
+          users. Our website is for informational and educational purposes only and doesn't provide any professional
+          advice or services. If you believe any image has been used without proper attribution, please contact us to
+          rectify the situation.
         </p>
       </div>
     );
@@ -74,7 +89,7 @@ const Home: React.FC = () => {
           opacity: 0.1,
           backgroundColor: 'rgb(229, 229, 247)',
           backgroundImage: 'linear-gradient(black 1px, transparent 1px), linear-gradient(90deg, black 1px, white 1px)',
-          backgroundSize: '150px 150px, 150px 150px, 10px 10px, 10px 10px',
+          backgroundSize: '50px 50px, 50px 50px, 10px 10px, 10px 10px',
           backgroundPosition: '-2px -2px, -2px -2px, -1px -1px, -1px -1px;'
         }}
       ></div>
