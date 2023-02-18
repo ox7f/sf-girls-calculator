@@ -4,7 +4,7 @@ const Footer: React.FC = () => {
       <div className="divider" />
       <footer className="footer bg-white">
         <h6 className="footer__title uppercase">SF Girls Calculator</h6>
-        <p className="subtitle">
+        <p className="subtitle mx-5">
           The source code is licensed{' '}
           <a className="utb utb-OLR" href="http://opensource.org/licenses/mit-license.php">
             MIT
@@ -15,7 +15,7 @@ const Footer: React.FC = () => {
           </a>
           .
         </p>
-        <p className="subtitle">
+        <p className="subtitle mx-5">
           Made with{' '}
           <svg
             style={{ display: 'inline' }}
