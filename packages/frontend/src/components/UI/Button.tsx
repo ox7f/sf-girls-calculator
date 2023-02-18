@@ -10,8 +10,8 @@ interface ButtonI {
 
 const Button: React.FC<ButtonI> = ({ text, onClick, disabled = false, isAnimated = false, type = '' }) => {
   const className = [
-    'btn btn-animated hover-grow',
-    isAnimated ? 'animated pulse' : '',
+    'btn btn-animated hover-grow animated bounceIn',
+    isAnimated ? 'pulse' : '',
     disabled ? 'btn-transparent outline btn--disabled' : '',
     type
   ].join(' ');
