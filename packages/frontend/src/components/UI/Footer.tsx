@@ -1,17 +1,13 @@
 const Footer: React.FC = () => {
   return (
-    <footer
-      className="footer px-2"
-      style={{
-        background: 'linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(177,177,177,1) 100%)',
-        backgroundRepeat: 'repeat',
-        backgroundSize: 'auto'
-      }}
-    >
+    <footer className="footer px-2 bg-white">
       <h6 className="footer__title uppercase">SF Girls Calculator</h6>
       <p className="subtitle">
-        The source code is licensed <a className="utb utb-OLR" href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website
-        content is licensed{' '}
+        The source code is licensed{' '}
+        <a className="utb utb-OLR" href="http://opensource.org/licenses/mit-license.php">
+          MIT
+        </a>
+        . The website content is licensed{' '}
         <a className="utb utb-OLR" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
           CC BY-NC-SA 4.0
         </a>

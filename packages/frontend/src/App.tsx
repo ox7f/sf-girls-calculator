@@ -3,7 +3,7 @@ import { Footer, Header } from './components';
 
 const App: React.FC = () => {
   return (
-    <div>
+    <div className="container">
       <Header />
       <Outlet />
       <Footer />

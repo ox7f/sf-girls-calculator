@@ -1,18 +1,20 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { FaGithub } from 'react-icons/fa';
+import { useState } from 'react';
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleHamburger = () => {
+    setIsOpen(!isOpen);
+  };
 
   const visitHome = () => {
     navigate('/');
   };
 
   const menuItems = [
-    {
-      to: 'info',
-      name: 'Info'
-    },
     {
       to: 'agents',
       name: 'Agents'
@@ -36,13 +38,21 @@ const Header: React.FC = () => {
               <h6 className="title">SF Girls Calculator</h6>
             </a>
           </div>
+
+          <div className="nav-item nav-btn" id="header-btn" onClick={toggleHamburger}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
         </div>
 
-        <div className="header-nav" id="header-menu">
+        <div className={`header-nav ${isOpen ? 'active' : ''}`} id="header-menu">
           <div className="nav-left">
             <div className="nav-item text-center">
               <a href="https://github.com/ox7f/sf-girls-calculator" target="_blank">
-                <FaGithub />
+                <span className="icon">
+                  <FaGithub />
+                </span>
               </a>
             </div>
 
