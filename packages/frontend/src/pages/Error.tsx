@@ -15,7 +15,7 @@ const Error: React.FC = () => {
 
   return (
     <main>
-      <article>
+      <div className="fullscreen">
         <div className="placeholder u-overlay">
           <div className="u-center-alt">
             <div className="placeholder-icon">
@@ -40,7 +40,7 @@ const Error: React.FC = () => {
             </div>
           </div>
         </div>
-      </article>
+      </div>
     </main>
   );
 };
