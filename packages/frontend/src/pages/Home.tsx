@@ -2,12 +2,19 @@ import { useState } from 'react';
 import { FaAngleRight } from 'react-icons/fa';
 
 const Home: React.FC = () => {
+  const [fadeIn, setFadeIn] = useState(false);
   const [index, setIndex] = useState(0);
   const length = 2;
 
   const handleNext = () => {
     const newIndex = index + 1;
     setIndex(newIndex >= length ? 0 : newIndex);
+    animate();
+  };
+
+  const animate = () => {
+    setFadeIn(true);
+    setTimeout(() => setFadeIn(false), 500);
   };
 
   const getAbout = () => {
@@ -22,8 +29,8 @@ const Home: React.FC = () => {
           that helps you maximize your gameplay potential by providing accurate damage calculations based on your
           agent's stats. The calculator requires you to enter your agent's stats, select the agents and target, and with
           a click, you'll receive a detailed damage report. Additionally, our teamfinder feature allows you to select up
-          to 20 agents and it will calculate the strongest team for you. With our user-friendly interface and
-          powerful algorithms, finding the perfect team is just a few clicks away!
+          to 20 agents and it will calculate the strongest team for you. With our user-friendly interface and powerful
+          algorithms, finding the perfect team is just a few clicks away!
           <br />
           We strive to provide up-to-date information and accurate calculations to help you improve your gameplay. If
           you have any feedback or suggestions, please don't hesitate to contact us.
@@ -73,8 +80,8 @@ const Home: React.FC = () => {
       ></div>
 
       <div className="u-absolute u-z-0 hero fullscreen hero-img parallax-img">
-        <div className="hero-body">
-          <div className="content u-text-center">
+        <div className="hero-body animated fadeIn">
+          <div className={`content u-text-center ${fadeIn ? 'animated fadeIn' : ''}`}>
             {index === 0 ? getAbout() : getDisclaimer()}
 
             <button className="btn btn-transparent " onClick={handleNext}>
