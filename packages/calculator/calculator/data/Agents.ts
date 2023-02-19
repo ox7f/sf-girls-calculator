@@ -14,6 +14,7 @@ export const Yuki = {
   critical_rate: 0.84,
   critical_damage: 2.038,
   skill_damage: 927,
+  base_skill_damage: 927,
   skill: {
     name: 'Precision Assault',
     description: 'increases the damage to 1500% and attack speed to 220% for 4 seconds. cooldown: 8',
@@ -51,6 +52,7 @@ export const Neve = {
   critical_rate: 0.84,
   critical_damage: 2.038,
   skill_damage: 569,
+  base_skill_damage: 569,
   apply_skill_time: 0.5,
   skill: {
     name: 'Absolute Zero',
@@ -72,6 +74,7 @@ export const Ayu = {
   critical_rate: 0.84,
   critical_damage: 2.038,
   skill_damage: 379,
+  base_skill_damage: 379,
   remove_skill_time: 0.75,
   skill: {
     name: 'Raining Bullets',
@@ -93,6 +96,7 @@ export const Mika = {
   critical_rate: 0.84,
   critical_damage: 2.038,
   skill_damage: 463,
+  base_skill_damage: 463,
   skill: {
     name: "Ocean's Torrent",
     description: 'smashes the ground and creates 4 sword-quakes each dealing 11422 damage. cooldown: 11',
@@ -113,6 +117,7 @@ export const Sora = {
   critical_rate: 0.84,
   critical_damage: 2.038,
   skill_damage: 379,
+  base_skill_damage: 379,
   skill: {
     name: 'Death From Above',
     description: 'shoots two electric bullets, each dealing 27891 damage. cooldown: 8',
@@ -133,6 +138,7 @@ export const Ember = {
   critical_rate: 0.84,
   critical_damage: 2.038,
   skill_damage: 362,
+  base_skill_damage: 362,
   skill: {
     name: 'Dance of Death',
     description: 'shoots 4 enhanced bullets, each dealing 13991 damage cooldown: 8',
@@ -153,6 +159,7 @@ export const Chiharu = {
   critical_rate: 0.59,
   critical_damage: 2.018,
   skill_damage: 1131,
+  base_skill_damage: 1131,
   skill: {
     name: "Dead Man's Curse",
     description: 'shoots a powerful bullet at the monster with the highest health, dealing 65165 damage. cooldown: 9',
@@ -173,6 +180,7 @@ export const Irina = {
   critical_rate: 0.84,
   critical_damage: 2.038,
   skill_damage: 569,
+  base_skill_damage: 569,
   skill: {
     name: 'Rocket Ricochet',
     description: 'fires 4 missiles at target, each dealing 14230 damage. cooldown: 6',
@@ -193,6 +201,7 @@ export const Yuuha = {
   critical_rate: 0.84,
   critical_damage: 2.038,
   skill_damage: 604,
+  base_skill_damage: 604,
   skill: {
     name: 'Dance of the Lotus',
     description: 'deals 26563 damage and knockbacks all monsters by 1.6 unit distances. cooldown: 16',
@@ -213,6 +222,7 @@ export const Uzu = {
   critical_rate: 0.59,
   critical_damage: 2.018,
   skill_damage: 1766,
+  base_skill_damage: 1766,
   skill: {
     name: 'Crushing Embrace',
     description:
@@ -234,6 +244,7 @@ export const Denka = {
   critical_rate: 0.84,
   critical_damage: 2.038,
   skill_damage: 723,
+  base_skill_damage: 723,
   skill: {
     name: 'Devastating Pincer Strike',
     description: 'shoots 3 electric drills, each dealing 24214 damage. cooldown: 9',
@@ -254,6 +265,7 @@ export const Reika = {
   critical_rate: 0.84,
   critical_damage: 2.038,
   skill_damage: 604,
+  base_skill_damage: 604,
   apply_skill_time: 1,
   skill: {
     name: 'Might of the Alliance',
@@ -275,6 +287,7 @@ export const Noa = {
   critical_rate: 0.84,
   critical_damage: 2.038,
   skill_damage: 880,
+  base_skill_damage: 880,
   skill: {
     name: 'Enhanced Plasma Cannon',
     description:
@@ -296,6 +309,7 @@ export const Neugena = {
   critical_rate: 0.84,
   critical_damage: 2.038,
   skill_damage: 293,
+  base_skill_damage: 293,
   skill: {
     name: "Hunter's Sense",
     description:
@@ -331,6 +345,7 @@ export const Larisa = {
   critical_rate: 0.84,
   critical_damage: 2.038,
   skill_damage: 1552,
+  base_skill_damage: 1552,
   skill: {
     name: 'Guardian of the Motherland',
     description: 'fires a high explosive missile at target locations dealing 69856 damage. cooldown: 11',
@@ -351,6 +366,7 @@ export const Rui = {
   critical_rate: 0.84,
   critical_damage: 2.038,
   skill_damage: 964,
+  base_skill_damage: 964,
   skill: {
     name: "Devil's Contract",
     description:
@@ -387,6 +403,7 @@ export const Kotora = {
   critical_rate: 0.59,
   critical_damage: 2.018,
   skill_damage: 754,
+  base_skill_damage: 754,
   skill: {
     name: 'Roar of the Beast',
     description:
@@ -408,6 +425,7 @@ export const Vanessa = {
   critical_rate: 0.59,
   critical_damage: 2.018,
   skill_damage: 1200,
+  base_skill_damage: 1200,
   skill: {
     name: 'Banishment of the Beast',
     description: 'creates an electric cage, stunning enemies for 8 seconds. cooldown: 34',
@@ -428,6 +446,7 @@ export const Aoi = {
   critical_rate: 0.84,
   critical_damage: 2.038,
   skill_damage: 1207,
+  base_skill_damage: 1207,
   apply_skill_time: 1,
   skill: {
     name: 'Gamma Blaster',
@@ -462,6 +481,7 @@ export const Sara = {
   critical_rate: 0.84,
   critical_damage: 2.038,
   skill_damage: 811,
+  base_skill_damage: 811,
   skill: {
     name: 'Paralyzing Stare',
     description: 'shoots a gigantic snake dealing 56213 damage. cooldown: 11',
@@ -482,6 +502,7 @@ export const Mai = {
   critical_rate: 0.84,
   critical_damage: 2.038,
   skill_damage: 811,
+  base_skill_damage: 811,
   skill: {
     name: "Soldier's Will",
     description: 'shoots bullets rapidly. enemies that were hit wil take 85121 damage once. cooldown: 13',
@@ -502,6 +523,7 @@ export const Tsukiko = {
   critical_rate: 0.84,
   critical_damage: 2.038,
   skill_damage: 1552,
+  base_skill_damage: 1552,
   skill: {
     name: 'Bulletstorm',
     description:
@@ -540,6 +562,7 @@ export const Yukako = {
   critical_rate: 0.84,
   critical_damage: 2.038,
   skill_damage: 811,
+  base_skill_damage: 811,
   apply_skill_time: 1,
   skill: {
     name: "Spirit's Lethal Kiss",
@@ -584,6 +607,7 @@ export const Coco = {
   critical_rate: 0.84,
   critical_damage: 2.038,
   skill_damage: 2398,
+  base_skill_damage: 2398,
   apply_skill_time: 1,
   skill: {
     name: 'Thrashing Paws',
@@ -637,6 +661,7 @@ export const Pan = {
   critical_rate: 0.84,
   critical_damage: 2.038,
   skill_damage: 414,
+  base_skill_damage: 414,
   apply_skill_time: 1,
   skill: {
     name: 'Triple-Tap',
@@ -682,6 +707,7 @@ export const Hitomi = {
   critical_rate: 0.84,
   critical_damage: 2.038,
   skill_damage: 1518,
+  base_skill_damage: 1518,
   apply_skill_time: 1,
   skill: {
     name: 'Cycle of Eternal Pain',
@@ -716,6 +742,7 @@ export const Cadence = {
   critical_rate: 0.84,
   critical_damage: 2.038,
   skill_damage: 983,
+  base_skill_damage: 983,
   skill: {
     name: 'Armament Strike',
     description: 'calls in laser barrage and deals 68821 damage to all monsters. cooldown: 10',
@@ -736,6 +763,7 @@ export const Uni = {
   critical_rate: 0.59,
   critical_damage: 2.018,
   skill_damage: 754,
+  base_skill_damage: 754,
   remove_skill_time: 1,
   skill: {
     name: "Archer's Judgement",
@@ -757,6 +785,7 @@ export const Sizuko = {
   critical_rate: 0.59,
   critical_damage: 2.018,
   skill_damage: 587,
+  base_skill_damage: 587,
   apply_skill_time: 0.5,
   skill: {
     name: "Mortician's Touch",
@@ -779,6 +808,7 @@ export const Chihiro = {
   critical_rate: 0.84,
   critical_damage: 2.038,
   skill_damage: 3898,
+  base_skill_damage: 3898,
   skill: {
     name: 'Shark Bite',
     description:
@@ -817,6 +847,7 @@ export const Mei = {
   critical_rate: 0.84,
   critical_damage: 2.038,
   skill_damage: 815,
+  base_skill_damage: 815,
   skill: {
     name: 'Ringlets of Death',
     description: 'throws out a chakram, ricocheting onto 4 enemies, dealing 24463 damage to each enemy. cooldown: 12',
@@ -837,6 +868,7 @@ export const Riho = {
   critical_rate: 0.84,
   critical_damage: 2.038,
   skill_damage: 1018,
+  base_skill_damage: 1018,
   skill: {
     name: 'Furious Flurry',
     description:
@@ -858,6 +890,7 @@ export const Mitsu = {
   critical_rate: 0.84,
   critical_damage: 2.038,
   skill_damage: 1949,
+  base_skill_damage: 1949,
   skill: {
     name: 'Soaring Strike',
     description: 'shoots mega laser beams dealing 77963 damage. cooldown: 14',
@@ -878,6 +911,7 @@ export const Akina = {
   critical_rate: 0.84,
   critical_damage: 2.038,
   skill_damage: 1223,
+  base_skill_damage: 1223,
   skill: {
     name: 'Vengeance of the Sun',
     description:
@@ -902,6 +936,7 @@ export const Akari = {
   critical_rate: 0.84,
   critical_damage: 2.038,
   skill_damage: 2697,
+  base_skill_damage: 2697,
   skill: {
     name: 'Riposte',
     description:
@@ -923,6 +958,7 @@ export const Sayaka = {
   critical_rate: 0.84,
   critical_damage: 2.038,
   skill_damage: 686,
+  base_skill_damage: 686,
   skill: {
     name: 'Omen of Dread',
     description: 'summons 4 lightning birds, each dealing 30682 damage. cooldown: 11',
@@ -943,6 +979,7 @@ export const Momoko = {
   critical_rate: 0.94,
   critical_damage: 2.038,
   skill_damage: 2160,
+  base_skill_damage: 2160,
   apply_skill_time: 1,
   skill: {
     name: 'Piercing Bullet',
@@ -978,6 +1015,7 @@ export const Meteli = {
   critical_rate: 0.94,
   critical_damage: 2.038,
   skill_damage: 1226,
+  base_skill_damage: 1226,
   apply_skill_time: 1,
   skill: {
     name: 'Meteorite Missile',
@@ -1015,6 +1053,7 @@ export const Hoshiko = {
   critical_rate: 0.69,
   critical_damage: 2.018,
   skill_damage: 1613,
+  base_skill_damage: 1613,
   apply_skill_time: 1,
   skill: {
     name: 'Crystalline Kaleidoscope Strike',
@@ -1063,6 +1102,7 @@ export const Feme = {
   critical_rate: 0.94,
   critical_damage: 2.038,
   skill_damage: 2099,
+  base_skill_damage: 2099,
   apply_skill_time: 1,
   skill: {
     name: 'Requiem of Pain',
@@ -1102,6 +1142,7 @@ export const NeveX = {
   critical_rate: 0.69,
   critical_damage: 2.018,
   skill_damage: 6467,
+  base_skill_damage: 6467,
   skill: {
     name: 'Avalanche',
     description:
@@ -1142,6 +1183,7 @@ export const Eiko = {
   critical_rate: 0.94,
   critical_damage: 2.038,
   skill_damage: 2160,
+  base_skill_damage: 2160,
   skill: {
     name: 'Volley of the Beast',
     description: 'summon an extraterrestrial attack, dealing 58548 damage over 1.5 seconds. cooldown: 9',
@@ -1162,6 +1204,7 @@ export const Goi = {
   critical_rate: 0.94,
   critical_damage: 2.038,
   skill_damage: 1394,
+  base_skill_damage: 1394,
   skill: {
     name: 'Napalm Massacre',
     description:
@@ -1183,6 +1226,7 @@ export const RihoX = {
   critical_rate: 0.94,
   critical_damage: 2.038,
   skill_damage: 1057,
+  base_skill_damage: 1057,
   skill: {
     name: "Hunter's Shot",
     description:
@@ -1223,6 +1267,7 @@ export const Setsuna = {
   critical_rate: 0.94,
   critical_damage: 2.038,
   skill_damage: 1226,
+  base_skill_damage: 1226,
   skill: {
     name: "Blade's Whisper",
     description:
@@ -1260,6 +1305,7 @@ export const Hami = {
   critical_rate: 0.94,
   critical_damage: 2.038,
   skill_damage: 2727,
+  base_skill_damage: 2727,
   skill: {
     name: "Hornet's Vengeance",
     description:
@@ -1281,6 +1327,7 @@ export const O = {
   critical_rate: 0.94,
   critical_damage: 2.038,
   skill_damage: 2099,
+  base_skill_damage: 2099,
   skill: {
     name: 'Celestial Judgement',
     description:
@@ -1318,6 +1365,7 @@ export const GaiGai = {
   critical_rate: 0.94,
   critical_damage: 2.038,
   skill_damage: 1226,
+  base_skill_damage: 1226,
   skill: {
     name: 'Banishing Blade',
     description: 'cross slash in large area, dealing 147095 damage to any enemies nearby. cooldown: 10',
@@ -1338,6 +1386,7 @@ export const Rosalie = {
   critical_rate: 0.94,
   critical_damage: 2.038,
   skill_damage: 3264,
+  base_skill_damage: 3264,
   apply_skill_time: 1,
   skill: {
     name: 'Wrath of the Rose',
@@ -1386,6 +1435,7 @@ export const Toki = {
   critical_rate: 0.94,
   critical_damage: 2.038,
   skill_damage: 1624,
+  base_skill_damage: 1624,
   apply_skill_time: 1,
   skill: {
     name: "Witch's Curse",
@@ -1434,6 +1484,7 @@ export const Wu = {
   critical_rate: 0.94,
   critical_damage: 2.038,
   skill_damage: 613,
+  base_skill_damage: 613,
   skill: {
     name: 'Jungle Drums',
     description:
@@ -1483,6 +1534,7 @@ export const ZiLong = {
   critical_rate: 0.94,
   critical_damage: 2.038,
   skill_damage: 1088,
+  base_skill_damage: 1088,
   skill: {
     name: "Dragon's Claw",
     description:
@@ -1529,6 +1581,7 @@ export const Ari = {
   critical_rate: 0.69,
   critical_damage: 2.018,
   skill_damage: 1050,
+  base_skill_damage: 1050,
   skill: {
     name: 'Song of the Demon',
     description:
@@ -1568,6 +1621,7 @@ export const Chia = {
   critical_rate: 0.94,
   critical_damage: 2.038,
   skill_damage: 2160,
+  base_skill_damage: 2160,
   apply_skill_time: 2,
   skill: {
     name: 'Fishing of the void',
@@ -1631,6 +1685,7 @@ export const Shiko = {
   critical_rate: 0.69,
   critical_damage: 2.018,
   skill_damage: 2434,
+  base_skill_damage: 2434,
   apply_skill_time: 1,
   skill: {
     name: 'Atomic Prowess: Sword Strike',
@@ -1669,6 +1724,7 @@ export const Kaja = {
   critical_rate: 0.94,
   critical_damage: 2.038,
   skill_damage: 1144,
+  base_skill_damage: 1144,
   skill: {
     name: "Shepherd's Call",
     description:
@@ -1690,6 +1746,7 @@ export const Bia = {
   critical_rate: 0.69,
   critical_damage: 2.018,
   skill_damage: 1160,
+  base_skill_damage: 1160,
   skill: {
     name: "Fate's Hand: Retribution",
     description:
@@ -1725,6 +1782,7 @@ export const Eri = {
   critical_rate: 0.94,
   critical_damage: 2.038,
   skill_damage: 1440,
+  base_skill_damage: 1440,
   skill: {
     name: "It's all in the science",
     description: 'fire a total of 9 piercing bullets in a wide arc, each dealing 10298 damage. cooldown: 14',
@@ -1745,6 +1803,7 @@ export const Kiyomi = {
   critical_rate: 0.94,
   critical_damage: 2.038,
   skill_damage: 1226,
+  base_skill_damage: 1226,
   skill: {
     name: 'Transparency: Crystal Lance',
     description:
@@ -1781,6 +1840,7 @@ export const Musuna = {
   critical_rate: 0.94,
   critical_damage: 2.038,
   skill_damage: 2160,
+  base_skill_damage: 2160,
   apply_skill_time: 0.5,
   skill: {
     name: 'Shuriken Strike',
@@ -1820,6 +1880,7 @@ export const Windy = {
   critical_rate: 0.69,
   critical_damage: 2.018,
   skill_damage: 2085,
+  base_skill_damage: 2085,
   apply_skill_time: 1,
   skill: {
     name: 'Shuriken Strike',
@@ -1861,6 +1922,7 @@ export const Kotaru = {
   critical_rate: 0.94,
   critical_damage: 2.038,
   skill_damage: 2160,
+  base_skill_damage: 2160,
   apply_skill_time: 1,
   skill: {
     name: 'Blistering Heat Wave',
@@ -1898,6 +1960,7 @@ export const Karry = {
   critical_rate: 0.94,
   critical_damage: 2.038,
   skill_damage: 1144,
+  base_skill_damage: 1144,
   apply_skill_time: 1,
   skill: {
     name: "Nature's Call",
@@ -1933,6 +1996,7 @@ export const Sato = {
   critical_rate: 0.94,
   critical_damage: 2.038,
   skill_damage: 1226,
+  base_skill_damage: 1226,
   skill: {
     name: 'Heretic Shredder',
     description:
@@ -1943,7 +2007,7 @@ export const Sato = {
         apply: (params: EffectParamType) => {
           const { team } = params;
           const zeth_member = team.filter((agent) => agent.organization === OrganizationEnum.ZETH);
-          const zeth_member_num = zeth_member.length - 1;
+          const zeth_member_num = zeth_member.length;
           zeth_member.forEach((agent) => {
             agent.normal_attack *= 1 + 0.33 * zeth_member_num;
             agent.skill_damage *= 1 + 0.33 * zeth_member_num;
@@ -1952,7 +2016,7 @@ export const Sato = {
         remove: (params: EffectParamType) => {
           const { team } = params;
           const zeth_member = team.filter((agent) => agent.organization === OrganizationEnum.ZETH);
-          const zeth_member_num = zeth_member.length - 1;
+          const zeth_member_num = zeth_member.length;
           zeth_member.forEach((agent) => {
             agent.normal_attack /= 1 + 0.33 * zeth_member_num;
             agent.skill_damage /= 1 + 0.33 * zeth_member_num;
@@ -1978,6 +2042,7 @@ export const Victoria = {
   critical_rate: 0.94,
   critical_damage: 2.038,
   skill_damage: 613,
+  base_skill_damage: 613,
   skill: {
     name: "Dracula's Wrath",
     description:
@@ -2024,6 +2089,7 @@ export const Laura = {
   critical_rate: 0.94,
   critical_damage: 2.038,
   skill_damage: 680,
+  base_skill_damage: 680,
   apply_skill_time: 1,
   skill: {
     name: 'Defensive Anchor: Ultimate Shielding',
@@ -2061,6 +2127,7 @@ export const Kura = {
   critical_rate: 0.94,
   critical_damage: 2.038,
   skill_damage: 2099,
+  base_skill_damage: 2099,
   apply_skill_time: 1,
   skill: {
     name: "Hell's Gate: Alpha Enhanced",
@@ -2081,6 +2148,7 @@ export const Ne = {
   critical_rate: 0.94,
   critical_damage: 2.038,
   skill_damage: 1226,
+  base_skill_damage: 1226,
   skill: {
     name: "Berserker's Fury",
     description:
@@ -2121,6 +2189,7 @@ export const Uta = {
   critical_rate: 0.94,
   critical_damage: 2.038,
   skill_damage: 2452,
+  base_skill_damage: 2452,
   skill: {
     name: 'Aura of Light',
     description:
@@ -2156,6 +2225,7 @@ export const Midori = {
   critical_rate: 0.69,
   critical_damage: 2.018,
   skill_damage: 2145,
+  base_skill_damage: 2145,
   apply_skill_time: 0.75,
   skill: {
     name: 'Lashing Tongue',
@@ -2195,6 +2265,7 @@ export const Sera = {
   critical_rate: 0.94,
   critical_damage: 2.038,
   skill_damage: 3264,
+  base_skill_damage: 3264,
   skill: {
     name: 'Breath of the Wind',
     description:
@@ -2239,6 +2310,7 @@ export const Livia = {
   critical_rate: 0.69,
   critical_damage: 2.018,
   skill_damage: 2145,
+  base_skill_damage: 2145,
   skill: {
     name: 'Call of the Whale',
     description:
@@ -2275,6 +2347,7 @@ export const ReiJK = {
   critical_rate: 0.94,
   critical_damage: 2.038,
   skill_damage: 1057,
+  base_skill_damage: 1057,
   skill: {
     name: 'Vanquishing school bag',
     description:
@@ -2325,6 +2398,7 @@ export const Rei = {
   critical_rate: 0.94,
   critical_damage: 2.038,
   skill_damage: 1057,
+  base_skill_damage: 1057,
   skill: {
     name: 'Bite of the Sabertooth',
     description: 'shoots multiple laser beams dealing 25373.9 damage. cooldown: 10',
@@ -2345,6 +2419,7 @@ export const Amikam = {
   critical_rate: 0.94,
   critical_damage: 2.038,
   skill_damage: 2099,
+  base_skill_damage: 2099,
   apply_skill_time: 1,
   skill: {
     name: 'Vanquish The Sinners',
@@ -2386,6 +2461,7 @@ export const Iizuna = {
   critical_rate: 0.94,
   critical_damage: 2.038,
   skill_damage: 2099,
+  base_skill_damage: 2099,
   skill: {
     name: 'Fox Fire: Inferno',
     description:
@@ -2437,6 +2513,7 @@ export const Tsurumi = {
   critical_rate: 0.94,
   critical_damage: 2.038,
   skill_damage: 4336,
+  base_skill_damage: 4336,
   apply_skill_time: 0.75,
   skill: {
     name: 'Ninjutsu of crane: Thousand Scythe',
@@ -2475,6 +2552,7 @@ export const Mora = {
   critical_rate: 0.94,
   critical_damage: 2.038,
   skill_damage: 3264,
+  base_skill_damage: 3264,
   skill: {
     name: 'Nanobot Catalyst',
     description:
@@ -2522,6 +2600,7 @@ export const Masamune = {
   critical_rate: 0.94,
   critical_damage: 2.038,
   skill_damage: 1226,
+  base_skill_damage: 1226,
   apply_skill_time: 1,
   skill: {
     name: 'Seven blades',
@@ -2558,6 +2637,7 @@ export const Chloe = {
   critical_rate: 0.94,
   critical_damage: 2.028,
   skill_damage: 2099,
+  base_skill_damage: 2099,
   skill: {
     name: 'Abyssal Pilgrimage',
     description:
@@ -2616,6 +2696,7 @@ export const Tyrla = {
   critical_rate: 0.94,
   critical_damage: 2.038,
   skill_damage: 2099,
+  base_skill_damage: 2099,
   apply_skill_time: 1,
   skill: {
     name: 'Kuchipudi',

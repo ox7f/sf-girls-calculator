@@ -40,6 +40,7 @@ export class Agent {
     critical_rate,
     critical_damage,
     skill_damage,
+    base_skill_damage,
     skill,
     apply_skill_time = 0,
     remove_skill_time = 0
@@ -54,7 +55,7 @@ export class Agent {
     this.critical_rate = critical_rate;
     this.critical_damage = critical_damage;
     this.skill_damage = skill_damage;
-    this.base_skill_damage = skill_damage;
+    this.base_skill_damage = base_skill_damage;
     this.skill = new Skill(skill);
 
     this.apply_skill_time = apply_skill_time * 1000; // seconds to ms
