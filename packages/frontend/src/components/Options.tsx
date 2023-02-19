@@ -63,7 +63,13 @@ const Targets: React.FC = () => {
     <div className="u-center">
       <div className="row btn-group">
         <div className="col-4 u-center">
-          <Button text="Calculate" onClick={calculate} type="btn-success u-z-1" disabled={disabled} isAnimated={!disabled} />
+          <Button
+            text="Calculate"
+            onClick={calculate}
+            type="btn-success u-z-1"
+            disabled={disabled}
+            isAnimated={!disabled}
+          />
           <div className="space w-1" />
           <Button text="Reset" onClick={reset} type="secondary w-16" />
         </div>
