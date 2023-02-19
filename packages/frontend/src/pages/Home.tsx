@@ -89,7 +89,7 @@ const Home: React.FC = () => {
           opacity: 0.1,
           backgroundColor: 'rgb(229, 229, 247)',
           backgroundImage: 'linear-gradient(black 1px, transparent 1px), linear-gradient(90deg, black 1px, white 1px)',
-          backgroundSize: '50px 50px, 50px 50px, 10px 10px, 10px 10px',
+          backgroundSize: '75px 75px, 75px 75px, 10px 10px, 10px 10px',
           backgroundPosition: '-2px -2px, -2px -2px, -1px -1px, -1px -1px;'
         }}
       ></div>

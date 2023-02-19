@@ -12,6 +12,8 @@ const Graph: React.FC = () => {
   const result = useAtomValue(ResultAtom);
   const data: Array<AgentData[]> = [];
 
+  let highestDamage = 0;
+
   if (!result) return null;
 
   for (const agent of result.team) {
@@ -24,6 +26,8 @@ const Graph: React.FC = () => {
         damage: event.total_damage,
         time: event.time / 1000
       });
+
+      if (event.total_damage > highestDamage) highestDamage = event.total_damage;
     }
   }
 
@@ -36,12 +40,16 @@ const Graph: React.FC = () => {
     return color;
   };
 
+  const getWidth = (): number => {
+    return highestDamage < 1000000 ? 60 : highestDamage < 10000000 ? 70 : highestDamage < 100000000 ? 80 : 90;
+  };
+
   return (
     <ResponsiveContainer width="100%" height="100%">
       <LineChart>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis allowDuplicatedCategory={false} dataKey="time" type="number" name="Time" unit="s" />
-        <YAxis dataKey="damage" type="number" name="Damage" width={100} />
+        <YAxis dataKey="damage" type="number" name="Damage" width={getWidth()} />
         <Tooltip label="name" />
         <Legend />
         {result.team.map((agent, index) => (

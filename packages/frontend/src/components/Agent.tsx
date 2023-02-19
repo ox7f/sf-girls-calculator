@@ -6,13 +6,10 @@ import { Button, Modal } from './UI';
 
 interface AgentI {
   agent: NewAgent;
-  isSelected?: boolean;
-  isDisabled?: boolean;
-  select: () => void;
-  edit: () => void;
+  edit: (name: string) => void;
 }
 
-const Agent: React.FC<AgentI> = ({ agent, isSelected = false, isDisabled = false, select, edit }) => {
+const Agent: React.FC<AgentI> = ({ agent, edit }) => {
   const getClassName = () => {
     switch (agent.class) {
       case ClassEnum.Artillery:
@@ -27,25 +24,10 @@ const Agent: React.FC<AgentI> = ({ agent, isSelected = false, isDisabled = false
   };
 
   return (
-    <div className="col" style={{ minWidth: '350px', maxWidth: '350px' }}>
+    <div className="col animated fadeIn" style={{ minWidth: '350px', maxWidth: '20%' }}>
       <div className="card card--slide-up">
         <div className="card__container">
-          <div
-            className="card__image"
-            style={
-              {
-                // backgroundSize: `${
-                //   agent.name === 'Pan'
-                //     ? '60%'
-                //     : ['Amikam', 'Chia', 'Feme', 'Iizuna', 'Kaja', 'Karry', 'Pan', 'Rei JK', 'Shiko'].includes(agent.name)
-                //     ? '80%'
-                //     : '120%'
-                // }`,
-                // backgroundPosition: 'center',
-                // backgroundImage: `url(agents/${agent.name.replace(' ', '')}.png)`
-              }
-            }
-          ></div>
+          <div className="card__image"></div>
         </div>
 
         <div className="card__mobile-title">
@@ -69,15 +51,7 @@ const Agent: React.FC<AgentI> = ({ agent, isSelected = false, isDisabled = false
         </div>
 
         <div className="card__action-bar u-center">
-          <a onClick={select}>
-            <Button
-              text={isSelected ? 'Selected' : 'Select'}
-              type={isSelected ? 'btn-success' : 'btn-transparent'}
-              isAnimated={isSelected}
-              disabled={isDisabled}
-            />
-          </a>
-          <a href={`#${agent.name}`} onClick={edit}>
+          <a href={`#${agent.name}`} onClick={() => edit(agent.name)}>
             <Button text="Edit" type="btn-transparent" />
           </a>
         </div>
@@ -106,7 +80,7 @@ export const AgentModal: React.FC<AgentModalInterface> = ({ cancel, save }) => {
           .map((word) => word[0].toUpperCase() + word.substring(1, word.length))
           .join(' ')
       ];
-    }); // [['attack_speed': 'Attack Speed'], ...]
+    });
 
   const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setEditAgent({

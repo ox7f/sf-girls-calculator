@@ -3,10 +3,10 @@
 const Teamfinder: React.FC = () => {
   return (
     <main>
-      <article>
+      <div className="fullscreen mx-2 pt-10">
         <p>TODO: select up to 20 Agents. Bruteforcing best team...</p>
         {/* <Agents /> */}
-      </article>
+      </div>
     </main>
   );
 };

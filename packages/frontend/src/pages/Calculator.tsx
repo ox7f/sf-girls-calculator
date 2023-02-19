@@ -2,23 +2,21 @@ import { AgentsSelect, Options, Result } from '../components';
 
 const Calculator: React.FC = () => {
   return (
-    <main>
-      <article>
-        <div className="grid u-gap-2 mx-1">
-          <div className="grid-c-12">
-            <Options />
-          </div>
+    <>
+      <div className="mx-1 pt-10">
+        <Options />
+      </div>
 
-          <div className="grid-c-2 grid-r-1">
-            <AgentsSelect />
-          </div>
+      <div className="default-layout tree-nav-body mx-auto mb-0">
+        <AgentsSelect />
 
-          <div className="grid-c-10 grid-r-1">
+        <div className="tree-nav-container h-auto" style={{ flexGrow: 1 }}>
+          <main className="page-layout">
             <Result />
-          </div>
+          </main>
         </div>
-      </article>
-    </main>
+      </div>
+    </>
   );
 };
 

@@ -23,15 +23,19 @@ const Result: React.FC = () => {
 
   return (
     <div>
-      <div className="u-center">
-        <label>Remaining Time: {(result.target.duration - result.time + 10) / 1000} second(s)</label>
-        <label>Remaining HP: {result.target.current_health.toFixed(2)}</label>
-        <Table data={tableData} />
-      </div>
+      <section>
+        <div className="content">
+          <div className="u-center">
+            <label>Remaining Time: {(result.target.duration - result.time + 10) / 1000} second(s)</label>
+            <label>Remaining HP: {result.target.current_health.toFixed(2)}</label>
+            <Table data={tableData} />
+          </div>
 
-      <div style={{ height: '40vh' }}>
-        <Graph />
-      </div>
+          <div style={{ height: '50vh' }}>
+            <Graph />
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

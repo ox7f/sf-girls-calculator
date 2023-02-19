@@ -60,14 +60,16 @@ const Targets: React.FC = () => {
   };
 
   return (
-    <div className="btn-group row u-center">
-      <div className="col-4 u-center">
-        <Button text="Calculate" onClick={calculate} type="btn-success" disabled={disabled} isAnimated={!disabled} />
-        <Button text="Reset" onClick={reset} type="secondary w-16" />
-      </div>
-
-      <div className="col-8">
-        <Select firstOption="Select Target" value={targetValue} options={selectOptions} onChange={selectHandler} />
+    <div className="u-center">
+      <div className="row btn-group">
+        <div className="col-4 u-center">
+          <Button text="Calculate" onClick={calculate} type="btn-success u-z-1" disabled={disabled} isAnimated={!disabled} />
+          <div className="space w-1" />
+          <Button text="Reset" onClick={reset} type="secondary w-16" />
+        </div>
+        <div className="col-8">
+          <Select firstOption="Select Target" value={targetValue} options={selectOptions} onChange={selectHandler} />
+        </div>
       </div>
     </div>
   );

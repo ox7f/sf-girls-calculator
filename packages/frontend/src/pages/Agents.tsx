@@ -12,12 +12,12 @@ const AgentsPage: React.FC = () => {
 
   return (
     <main>
-      <article>
-        <div className="mx-1 u-center">
+      <div className="fullscreen mx-2 pt-10">
+        <div className="mx-1 pb-2">
           <Search atom={FilteredAgentsAtom} sourceAtom={AgentsAtom} />
         </div>
         <Agents />
-      </article>
+      </div>
     </main>
   );
 };
