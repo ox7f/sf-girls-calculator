@@ -21,11 +21,13 @@ const Graph: React.FC = () => {
     data[index] = [];
 
     for (const event of agent.history) {
-      data[index].push({
-        name: agent.name,
-        damage: event.total_damage,
-        time: event.time / 1000
-      });
+      if (event.action.type === 'Attack') {
+        data[index].push({
+          name: agent.name,
+          damage: event.total_damage,
+          time: event.time / 1000
+        });
+      }
 
       if (event.total_damage > highestDamage) highestDamage = event.total_damage;
     }
