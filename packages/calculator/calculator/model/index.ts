@@ -5,6 +5,7 @@ export {
   DamageEffectFunctionType,
   EffectFunctionType,
   EffectParamType,
+  HandleParam,
   HistoryType,
   ResultType
 } from './types';

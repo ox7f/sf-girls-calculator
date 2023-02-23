@@ -1,5 +1,5 @@
 import { DOTEffect, Effect, Skill, Target, NewAgent, HistoryType } from '../../model';
-import { ActionEnum, AttackModeEnum, ClassEnum, EffectEnum, NameEnum, OrganizationEnum, SizeEnum } from '../../enums';
+import { AttackModeEnum, ClassEnum, EffectEnum, NameEnum, OrganizationEnum, SizeEnum } from '../../enums';
 import { calculate_critical_damage } from '../../helper';
 
 export class Agent {
@@ -75,8 +75,7 @@ export class Agent {
       damage,
       total_damage: this.total_damage,
       action: {
-        type: ActionEnum.Attack,
-        skill_type: EffectEnum.None,
+        skill_type: EffectEnum.Damage,
         attack_mode: this.attack_mode
       }
     });
@@ -85,7 +84,7 @@ export class Agent {
   }
 
   calculate_damage(target: Target): number {
-    const critical_rate = this.critical_rate - target.critical_resistance;
+    const critical_chance = this.critical_rate - target.critical_resistance;
     let damage = 0;
 
     switch (this.attack_mode) {
@@ -99,6 +98,6 @@ export class Agent {
         damage = this.normal_attack + this.skill_damage;
     }
 
-    return calculate_critical_damage(damage, critical_rate, this.critical_damage);
+    return calculate_critical_damage(damage, critical_chance, this.critical_damage);
   }
 }

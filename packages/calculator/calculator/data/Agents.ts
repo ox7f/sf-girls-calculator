@@ -2723,3 +2723,42 @@ export const Tyrla = {
     cooldown: 16
   } as NewSkill
 } as NewAgent;
+
+export const Seina = {
+  name: NameEnum.Seina,
+  title: 'Black Hawk',
+  organization: OrganizationEnum.TAP,
+  cup_size: SizeEnum.E,
+  class: ClassEnum.Artillery,
+  attack_speed: 1,
+  normal_attack: 2099,
+  critical_rate: 0.94,
+  critical_damage: 2.038,
+  skill_damage: 2099,
+  base_skill_damage: 2099,
+  apply_skill_time: 1,
+  skill: {
+    name: 'Aerial Armageddon',
+    description:
+      'increase damage to 460 % for 8 seconds. launch out all type of her missiles, her aerosol missiles deals total 29178 over 6 seconds and her guided rockets each deals 7294. cooldown: 12',
+    effects: [
+      {
+        type: EffectEnum.Self,
+        apply: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.normal_attack *= 4.6;
+          agent.skill_damage *= 4.6;
+        },
+        remove: (params: EffectParamType) => {
+          const { agent } = params;
+          agent.normal_attack /= 4.6;
+          agent.skill_damage /= 4.6;
+        },
+        duration: 8
+      } as NewEffect,
+      { type: EffectEnum.Damage, damage: () => 8 * 7294 } as NewDamageEffect,
+      { type: EffectEnum.DOT, duration: 6, interval: 1, damage: () => 29178 / 6 } as NewDOTEffect
+    ],
+    cooldown: 12
+  } as NewSkill
+} as NewAgent;

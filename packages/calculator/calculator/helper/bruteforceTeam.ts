@@ -3,7 +3,7 @@ import { NewAgent } from '../model';
 import { calculate_team } from './calculateTeam';
 import { transformAgents } from './transformer';
 
-export function bruteforce_team() {
+export const bruteforce_team = (/* agents: NewAgents[] */) => {
   // TODO: adjust logic to make it possible to bruteforce more combinations
   const agents = transformAgents().slice(50, 70);
   const combinations = getCombinations(agents, 6);
@@ -13,9 +13,7 @@ export function bruteforce_team() {
   for (const combination of combinations) {
     const result = calculate_team(combination, Targets.Dummy_Stage_4);
 
-    if (!strongestTeam) {
-      strongestTeam = result;
-    }
+    if (!strongestTeam) strongestTeam = result;
 
     if (strongestTeam) {
       const current_damage = result.target.health - result.target.current_health;
@@ -40,7 +38,7 @@ export function bruteforce_team() {
 
   console.log('STRONGEST TEAM', strongestTeam?.team.map((a) => a.name).join(','), strongestTeam?.team);
   console.log('SIMULATED ', combinations.length, ' FIGHTS');
-}
+};
 
 function getCombinations(arr: NewAgent[], size: number) {
   const combinations: NewAgent[][] = [];

@@ -1,6 +1,6 @@
 export enum ClassEnum {
-  Support = 'Support',
-  Striker = 'Striker',
+  Artillery = 'Artillery',
   Gunner = 'Gunner',
-  Artillery = 'Artillery'
+  Striker = 'Striker',
+  Support = 'Support'
 }
