@@ -37,6 +37,8 @@ export const use_skill = ({ agent, fight }: HandleParam) => {
   const { time } = fight;
   const { total_damage } = agent;
 
+  agent.last_attack_time = time;
+
   agent.skill.effects.forEach((effect) => {
     const params = { agent, effect, fight };
     const type = effect.constructor.name;
