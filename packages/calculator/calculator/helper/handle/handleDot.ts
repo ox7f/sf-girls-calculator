@@ -33,7 +33,7 @@ export const is_dot_active = ({ effect, fight }: HandleParam) => {
 export const get_active_dots = ({ agent, fight }: HandleParam) => {
   const active_dots: DOTEffect[] = [];
 
-  agent.applied_effects.forEach((effect) => {
+  agent.applied_effects.forEach((effect: Effect | DOTEffect) => {
     if (effect instanceof DOTEffect && is_dot_active({ effect, agent, fight })) active_dots.push(effect);
   });
 

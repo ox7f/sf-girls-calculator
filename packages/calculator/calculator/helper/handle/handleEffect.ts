@@ -55,7 +55,7 @@ export const apply = ({ agent, effect, fight }: HandleParam) => {
 };
 
 export const remove_expired = ({ agent, fight }: HandleParam) => {
-  agent.applied_effects = agent.applied_effects.filter((effect) => {
+  agent.applied_effects = agent.applied_effects.filter((effect: Effect | DOTEffect) => {
     const params = { agent, effect, fight };
     const expired = is_expired(params);
 
@@ -68,7 +68,7 @@ export const remove_expired = ({ agent, fight }: HandleParam) => {
 export const has_expired = ({ agent, fight }: HandleParam) => {
   let has_expired_effect = false;
 
-  agent.applied_effects.forEach((effect) => {
+  agent.applied_effects.forEach((effect: Effect | DOTEffect) => {
     if (!has_expired_effect && is_expired({ agent, effect, fight })) has_expired_effect = true;
   });
 
@@ -102,5 +102,5 @@ export const is_expired = ({ effect, fight }: HandleParam) => {
 
 export const find_existing = ({ agent, effect }: HandleParam) => {
   if (effect instanceof DamageEffect || effect instanceof DOTEffect || !effect) return;
-  return agent.applied_effects.find((e) => e instanceof Effect && e.apply === effect.apply);
+  return agent.applied_effects.find((e: Effect | DOTEffect) => e instanceof Effect && e.apply === effect.apply);
 };
