@@ -5,7 +5,8 @@ const Home: React.FC = () => {
   const [width, setWidth] = useState<number>(window.innerWidth);
   const [fadeIn, setFadeIn] = useState(false);
   const [index, setIndex] = useState(0);
-  const length = 2;
+
+  const length = 3;
   const isMobile = width <= 768;
 
   useEffect(() => {
@@ -81,6 +82,26 @@ const Home: React.FC = () => {
     );
   };
 
+  const getChangelog = () => {
+    return (
+      <div>
+        <h1 className="headline-3 title uppercase text-dark pt-10">Changelog</h1>
+        <p className={`${isMobile ? 'text-md' : 'text-lg'} leading-looser-md tracking-looser-md pt-5 mx-10-md`}>TODO</p>
+      </div>
+    );
+  };
+
+  const getContent = () => {
+    switch (index) {
+      case 1:
+        return getDisclaimer();
+      case 2:
+        return getChangelog();
+      default:
+        return getAbout();
+    }
+  };
+
   return (
     <main>
       <div
@@ -90,14 +111,14 @@ const Home: React.FC = () => {
           backgroundColor: 'rgb(229, 229, 247)',
           backgroundImage: 'linear-gradient(black 1px, transparent 1px), linear-gradient(90deg, black 1px, white 1px)',
           backgroundSize: '75px 75px, 75px 75px, 10px 10px, 10px 10px',
-          backgroundPosition: '-2px -2px, -2px -2px, -1px -1px, -1px -1px;'
+          backgroundPosition: '-2px -2px, -2px -2px, -1px -1px, -1px -1px'
         }}
       ></div>
 
       <div className="u-absolute u-z-0 hero fullscreen hero-img parallax-img">
         <div className="hero-body animated fadeIn">
           <div className={`content u-text-center ${fadeIn ? 'animated fadeIn' : ''}`}>
-            {index === 0 ? getAbout() : getDisclaimer()}
+            {getContent()}
 
             <button className="btn btn-transparent " onClick={handleNext}>
               <FaAngleRight size={20} />

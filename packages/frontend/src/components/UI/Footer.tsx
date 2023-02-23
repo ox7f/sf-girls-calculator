@@ -1,6 +1,6 @@
 const Footer: React.FC = () => {
   return (
-    <>
+    <div>
       <div className="divider" />
       <footer className="footer bg-white">
         <h6 className="footer__title uppercase">SF Girls Calculator</h6>
@@ -37,7 +37,7 @@ const Footer: React.FC = () => {
           </a>
         </p>
       </footer>
-    </>
+    </div>
   );
 };
 

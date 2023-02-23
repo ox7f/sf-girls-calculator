@@ -15,7 +15,7 @@ export const Modal: React.FC<ModalI> = ({
 }) => {
   return (
     <Portal wrapperId="modal">
-      <div className="modal modal-animated--zoom-in" id={modalId}>
+      <div className="modal modal-animated--zoom-in" id={modalId} style={{ zIndex: '999' }}>
         <a className="modal-overlay close-btn" aria-label="Close" onClick={clickOutside}></a>
         <div className="modal-content" role="document">
           {children}

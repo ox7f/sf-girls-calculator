@@ -11,6 +11,7 @@
 
 - [] changelog on entry page
 - [] frontend (after seekers are implemented): add seeker into sidebar
+- [x] clear button for search
 
 ## nice to have
 
@@ -20,8 +21,7 @@
 ## feedback
 
 - [x] /calculator with demo result (pre selected agent(s) and target)
-- [] edit button in table or in sidebar to adjust agents on the fly
+- [x] edit button in table or in sidebar to adjust agents on the fly
 - [] placeholder and or tooltip info for agent edit modal (crit rate 1 = 100%, 0.80 = 80%)
-- [] reset button resets also edited agents
-- [] update result on every change (agent / target) => no calculate button needed
-
+- [x] reset button resets also edited agents
+- [x] update result on every change (agent / target) => no calculate button needed

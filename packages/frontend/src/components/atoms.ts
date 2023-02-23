@@ -11,7 +11,7 @@ export interface AgentAtomI {
   [key: string]: string | number;
 }
 
-const atomWithLocalStorage = (key: string, initialValue = null) => {
+export const atomWithLocalStorage = (key: string, initialValue = null) => {
   const getInitialValue = () => {
     const item = localStorage.getItem(key);
     if (item !== null) {
@@ -31,8 +31,29 @@ const atomWithLocalStorage = (key: string, initialValue = null) => {
   return derivedAtom;
 };
 
-// TODO: work with types for atomWithLocalStorage and replace the shit down below
+export const transformAgentToModifiedAgent = (agent: NewAgent): AgentAtomI => {
+  return {
+    name: agent.name,
+    attack_speed: agent.attack_speed,
+    normal_attack: agent.normal_attack,
+    skill_damage: agent.skill_damage,
+    critical_rate: agent.critical_rate,
+    critical_damage: agent.critical_damage
+  };
+};
 
+export const transformModifiedAgentToAgent = (agent: NewAgent, modifiedAgent: AgentAtomI): NewAgent => {
+  return {
+    ...agent,
+    attack_speed: modifiedAgent.attack_speed,
+    normal_attack: modifiedAgent.normal_attack,
+    skill_damage: modifiedAgent.skill_damage,
+    critical_rate: modifiedAgent.critical_rate,
+    critical_damage: modifiedAgent.critical_damage
+  };
+};
+
+// TODO: work with types for atomWithLocalStorage and replace the shit down below
 const agents: NewAgent[] = [];
 let modifiedAgents: AgentAtomI[] = [];
 const targets: NewTarget[] = [];
@@ -62,33 +83,11 @@ if (localStorageAgents) {
 export const AgentsAtom = atom<NewAgent[]>(agents);
 export const ModifiedAgentsAtom = atom<AgentAtomI[]>(modifiedAgents);
 export const FilteredAgentsAtom = atom<NewAgent[]>(agents);
-export const SelectedAgentsAtom = atom<NewAgent[]>([]);
-export const EditingAgent = atomWithLocalStorage('editing_agent', null);
+export const SelectedAgentsAtom = atom<NewAgent[]>([agents[0]]);
+export const EditingAgentAtom = atomWithLocalStorage('editing_agent', null);
 
 export const TargetsAtom = atom<NewTarget[]>(targets);
-export const SelectedTargetAtom = atom<NewTarget | null>(null);
+export const SelectedTargetAtom = atom<NewTarget>(targets[3]);
 
 export const ResultAtom = atom<ResultType | null>(null);
 export const TotalDamageAtom = atom(0);
-
-export function transformAgentToModifiedAgent(agent: NewAgent): AgentAtomI {
-  return {
-    name: agent.name,
-    attack_speed: agent.attack_speed,
-    normal_attack: agent.normal_attack,
-    skill_damage: agent.skill_damage,
-    critical_rate: agent.critical_rate,
-    critical_damage: agent.critical_damage
-  };
-}
-
-export function transformModifiedAgentToAgent(agent: NewAgent, modifiedAgent: AgentAtomI): NewAgent {
-  return {
-    ...agent,
-    attack_speed: modifiedAgent.attack_speed,
-    normal_attack: modifiedAgent.normal_attack,
-    skill_damage: modifiedAgent.skill_damage,
-    critical_rate: modifiedAgent.critical_rate,
-    critical_damage: modifiedAgent.critical_damage
-  };
-}

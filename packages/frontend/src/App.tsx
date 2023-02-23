@@ -1,9 +1,11 @@
 import { Outlet } from 'react-router-dom';
-import { Footer, Header } from './components';
+import { AgentModal, Footer, Header } from './components';
 
 const App: React.FC = () => {
   return (
     <div className="container">
+      <AgentModal />
+
       <Header />
       <Outlet />
       <Footer />

@@ -6,7 +6,7 @@ import { StrictMode } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import App from './App';
-import { AgentsPage, CalculatorPage, ErrorPage, HomePage, TeamfinderPage } from './pages';
+import { CalculatorPage, ErrorPage, HomePage, TeamfinderPage } from './pages';
 
 const router = createBrowserRouter([
   {
@@ -17,10 +17,6 @@ const router = createBrowserRouter([
       {
         path: '',
         element: <HomePage />
-      },
-      {
-        path: 'agents',
-        element: <AgentsPage />
       },
       {
         path: 'calculator',

@@ -1,85 +1,15 @@
 import { NewAgent } from 'sf-girls-calculator-calculator';
-import { useEffect } from 'react';
 import { useAtom, useAtomValue } from 'jotai';
-import {
-  AgentsAtom,
-  EditingAgent,
-  FilteredAgentsAtom,
-  ModifiedAgentsAtom,
-  SelectedAgentsAtom,
-  transformModifiedAgentToAgent
-} from './atoms';
-import { Agent, AgentModal } from './index';
-import { Search } from './UI';
+import { AgentsAtom, FilteredAgentsAtom, SelectedAgentsAtom, Search} from './index';
 
-const Agents: React.FC = () => {
-  const [editAgent, setEditAgent] = useAtom(EditingAgent);
-  const [modifiedAgents, setModifiedAgents] = useAtom(ModifiedAgentsAtom);
-  const [selectedAgents, setSelectedAgents] = useAtom(SelectedAgentsAtom);
+const AgentsSelect: React.FC = () => {
   const filteredAgents = useAtomValue(FilteredAgentsAtom);
-
-  const startEditing = (name = '') => {
-    const agent = modifiedAgents.find((a) => a.name === name) ?? null;
-    setEditAgent(agent);
-  };
-
-  const save = () => {
-    const newModifiedAgents = modifiedAgents.map((p) => {
-      if (p.name === editAgent?.name) {
-        return editAgent;
-      }
-      return p;
-    });
-
-    const newSelectedAgents = selectedAgents.map((p) => {
-      if (p.name === editAgent?.name) {
-        return transformModifiedAgentToAgent(p, editAgent);
-      }
-      return p;
-    });
-
-    setSelectedAgents(newSelectedAgents);
-    setModifiedAgents(newModifiedAgents);
-
-    localStorage.setItem('modified_agents', JSON.stringify(newModifiedAgents));
-
-    startEditing();
-  };
-
-  const cancel = () => {
-    startEditing();
-  };
-
-  return (
-    <div>
-      <AgentModal cancel={cancel} save={save} />
-
-      <div className="row u-center">
-        {filteredAgents.map((agent, index) => (
-          <Agent key={index} agent={agent} edit={startEditing} />
-        ))}
-      </div>
-    </div>
-  );
-};
-
-export const AgentsSelect: React.FC = () => {
-  const allAgents = useAtomValue(AgentsAtom);
-  const [filteredAgents, setFilteredAgents] = useAtom(FilteredAgentsAtom);
   const [selectedAgents, setSelectedAgents] = useAtom(SelectedAgentsAtom);
-
-  useEffect(() => () => setFilteredAgents(allAgents), []);
 
   const select = (agent: NewAgent) => {
     setSelectedAgents((prev) => {
-      if (prev.map((p) => p.name).includes(agent.name)) {
-        return prev.filter((a) => a.name !== agent.name);
-      }
-
-      if (prev.length === 6) {
-        return [...prev];
-      }
-
+      if (prev.map((p) => p.name).includes(agent.name)) return prev.filter((a) => a.name !== agent.name);
+      if (prev.length === 6) return [...prev];
       return [...prev, agent];
     });
   };
@@ -110,7 +40,7 @@ export const AgentsSelect: React.FC = () => {
         </div>
 
         <div className="sidebar-container tree-nav p-0 mr-2" id="sidebar">
-          <div className="sidebar-wrapper">
+          <div className="sidebar-wrapper pt-2">
             <div className="sidebar px-3">
               <ul className="menu mb-3">
                 <div>
@@ -122,7 +52,7 @@ export const AgentsSelect: React.FC = () => {
 
                     {filteredAgents.map((agent, index) => {
                       const isSelected = selectedAgents.map((sAgent) => sAgent.name).includes(agent.name);
-                      const className = `menu-item ${isSelected ? 'selected' : ''} mr-1`;
+                      const className = `menu-item ${isSelected ? 'selected' : ''}`;
                       return (
                         <li key={index} className={className} onClick={() => select(agent)}>
                           <a>{agent.name}</a>
@@ -148,4 +78,4 @@ export const AgentsSelect: React.FC = () => {
   );
 };
 
-export default Agents;
+export default AgentsSelect;

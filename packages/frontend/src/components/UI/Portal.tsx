@@ -28,9 +28,7 @@ export const Portal: React.FC<PortalI> = ({ children, wrapperId }) => {
     setWrapper(element);
 
     return () => {
-      if (created && element?.parentNode) {
-        element.parentNode.removeChild(element);
-      }
+      if (created && element?.parentNode) element.parentNode.removeChild(element);
     };
   }, [wrapperId]);
 

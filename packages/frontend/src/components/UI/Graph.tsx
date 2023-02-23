@@ -1,6 +1,6 @@
 import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { useAtomValue } from 'jotai';
-import { ResultAtom } from '../atoms';
+import { ResultAtom } from '../index';
 
 type AgentData = {
   name: string;
@@ -34,15 +34,12 @@ const Graph: React.FC = () => {
   const getRandomColor = () => {
     const letters = '0123456789ABCDEF';
     let color = '#';
-    for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
+    for (let i = 0; i < 6; i++) color += letters[Math.floor(Math.random() * 16)];
     return color;
   };
 
-  const getWidth = (): number => {
-    return highestDamage < 1000000 ? 60 : highestDamage < 10000000 ? 70 : highestDamage < 100000000 ? 80 : 90;
-  };
+  const getWidth = (): number =>
+    highestDamage < 1000000 ? 60 : highestDamage < 10000000 ? 70 : highestDamage < 100000000 ? 80 : 90;
 
   return (
     <ResponsiveContainer width="100%" height="100%">

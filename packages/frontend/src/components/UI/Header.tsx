@@ -6,27 +6,12 @@ const Header: React.FC = () => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleHamburger = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const visitHome = () => {
-    navigate('/');
-  };
+  const toggleHamburger = () => setIsOpen(!isOpen);
+  const visitHome = () => navigate('/');
 
   const menuItems = [
-    {
-      to: 'agents',
-      name: 'Agents'
-    },
-    {
-      to: 'calculator',
-      name: 'Calculator'
-    },
-    {
-      to: 'teamfinder',
-      name: 'Teamfinder'
-    }
+    { to: 'calculator', name: 'Calculator' },
+    { to: 'teamfinder', name: 'Teamfinder' }
   ];
 
   return (

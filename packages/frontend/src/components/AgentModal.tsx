@@ -1,74 +1,42 @@
-import { ClassEnum, NewAgent } from 'sf-girls-calculator-calculator';
 import { ChangeEvent } from 'react';
 import { useAtom } from 'jotai';
-import { EditingAgent } from './atoms';
-import { Button, Modal } from './UI';
+import {
+  EditingAgentAtom,
+  Modal,
+  ModifiedAgentsAtom,
+  SelectedAgentsAtom,
+  transformModifiedAgentToAgent
+} from './index';
 
-interface AgentI {
-  agent: NewAgent;
-  edit: (name: string) => void;
-}
-
-const Agent: React.FC<AgentI> = ({ agent, edit }) => {
-  const getClassName = () => {
-    switch (agent.class) {
-      case ClassEnum.Artillery:
-        return 'tag--danger';
-      case ClassEnum.Gunner:
-        return 'tag--info';
-      case ClassEnum.Striker:
-        return 'tag--warning';
-      case ClassEnum.Support:
-        return 'tag--success';
-    }
-  };
-
-  return (
-    <div className="col animated fadeIn" style={{ minWidth: '350px', maxWidth: '20%' }}>
-      <div className="card card--slide-up">
-        <div className="card__container">
-          <div className="card__image"></div>
-        </div>
-
-        <div className="card__mobile-title">
-          <div className="content pl-2 pr-2">
-            <div className="tile">
-              <div className="tile__container row">
-                <div className="col">
-                  <p className="tile__title">{agent.name}</p>
-                  <p className="tile__subtitle">{agent.title}</p>
-                </div>
-              </div>
-              <div className="col pt-1">
-                <div className={`tag tag--sm ${getClassName()}`}>{agent.class}</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="card__body content" style={{ width: '90%' }}>
-          <p className="u-unselectable">{agent.bio ?? 'No Bio - will add it later'}</p>
-        </div>
-
-        <div className="card__action-bar u-center">
-          <a href={`#${agent.name}`} onClick={() => edit(agent.name)}>
-            <Button text="Edit" type="btn-transparent" />
-          </a>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-interface AgentModalInterface {
-  cancel: () => void;
-  save: () => void;
-}
-
-export const AgentModal: React.FC<AgentModalInterface> = ({ cancel, save }) => {
-  const [editAgent, setEditAgent] = useAtom(EditingAgent);
+const AgentModal: React.FC = () => {
+  const [editAgent, setEditAgent] = useAtom(EditingAgentAtom);
+  const [modifiedAgents, setModifiedAgents] = useAtom(ModifiedAgentsAtom);
+  const [selectedAgents, setSelectedAgents] = useAtom(SelectedAgentsAtom);
 
   if (!editAgent) return null;
+
+  const edit = (name = '') => {
+    const agent = modifiedAgents.find((a) => a.name === name) ?? null;
+    setEditAgent(agent);
+  };
+
+  const save = () => {
+    const newModifiedAgents = modifiedAgents.map((agent) => {
+      if (agent.name === editAgent?.name) return editAgent;
+      return agent;
+    });
+
+    const newSelectedAgents = selectedAgents.map((agent) => {
+      if (agent.name === editAgent?.name) return transformModifiedAgentToAgent(agent, editAgent);
+      return agent;
+    });
+
+    setSelectedAgents(newSelectedAgents);
+    setModifiedAgents(newModifiedAgents);
+    setEditAgent(null);
+
+    localStorage.setItem('modified_agents', JSON.stringify(newModifiedAgents));
+  };
 
   const mappedWording = Object.keys(editAgent)
     .filter((key) => key !== 'name')
@@ -90,9 +58,9 @@ export const AgentModal: React.FC<AgentModalInterface> = ({ cancel, save }) => {
   };
 
   return (
-    <Modal modalId={editAgent.name} clickOutside={cancel}>
+    <Modal modalId={editAgent.name} clickOutside={() => edit()}>
       <div className="modal-header">
-        <a className="u-pull-right" aria-label="Close" style={{ cursor: 'pointer' }} onClick={cancel}>
+        <a className="u-pull-right" aria-label="Close" style={{ cursor: 'pointer' }} onClick={() => edit()}>
           <span className="icon">
             <svg
               aria-hidden="true"
@@ -138,7 +106,7 @@ export const AgentModal: React.FC<AgentModalInterface> = ({ cancel, save }) => {
 
       <div className="modal-footer">
         <div className="form-section u-text-right">
-          <a onClick={cancel}>
+          <a onClick={() => edit()}>
             <button className="hover-grow btn-transparent outline">Cancel</button>
           </a>
           <a onClick={save}>
@@ -150,4 +118,4 @@ export const AgentModal: React.FC<AgentModalInterface> = ({ cancel, save }) => {
   );
 };
 
-export default Agent;
+export default AgentModal;
