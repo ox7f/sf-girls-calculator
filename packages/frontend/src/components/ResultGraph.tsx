@@ -14,8 +14,6 @@ const ResultGraph: React.FC = () => {
 
   if (!result) return null;
 
-  console.log(result.team[0].history);
-
   let highestDamage = 0;
 
   for (const agent of result.team) {
