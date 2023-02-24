@@ -31,9 +31,5 @@
       "./packages/*"
     ]
   },
-  "engines" : {
-    "npm" : "9.5.1",
-    "node" : "19.7.0"
-  },
   "keywords": []
 }
