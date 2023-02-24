@@ -1,3 +1,4 @@
+import { Agent } from 'sf-girls-calculator-calculator';
 import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { useAtomValue } from 'jotai';
 import { ResultAtom } from './index';
@@ -48,6 +49,7 @@ const ResultGraph: React.FC = () => {
     return highestDamage < 1000000 ? 60 : highestDamage < 10000000 ? 70 : highestDamage < 100000000 ? 80 : 90;
   };
 
+  // TODO: have action type in tooltip
   return (
     <div style={{ height: '50vh' }}>
       <ResponsiveContainer width="100%" height="100%">
@@ -57,7 +59,7 @@ const ResultGraph: React.FC = () => {
           <YAxis dataKey="damage" type="number" name="Damage" width={getWidth()} />
           <Tooltip label="name" />
           <Legend />
-          {result.team.map((agent, index) => (
+          {result.team.map((agent: Agent, index: number) => (
             <Line
               key={index}
               name={agent.name}

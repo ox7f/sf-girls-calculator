@@ -7,7 +7,7 @@ export { default as ResultTable } from './ResultTable';
 export { default as ResultGraph } from './ResultGraph';
 export { default as TargetSelect } from './TargetSelect';
 
-export { Button, Footer, Graph, Header, Modal, Portal, Search, Select } from './UI/';
+export { Button, Footer, Header, Modal, Portal, Search, Select } from './UI/';
 
 export type { AgentAtomI } from './atoms';
 export {
