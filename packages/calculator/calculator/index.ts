@@ -12,27 +12,27 @@ export { DamageEffectFunctionType, EffectFunctionType, EffectParamType, ResultTy
 export { AttackModeEnum, ClassEnum, EffectEnum, NameEnum, OrganizationEnum, SizeEnum } from './enums/index';
 
 // ----------------------------- ONLY FOR DEBUGGING -----------------------------
-// import { NameEnum } from './enums';
+import { NameEnum } from './enums';
 
-// type tableType = {
-//   name: NameEnum;
-//   target: string;
-//   damage: number;
-// };
+type tableType = {
+  name: NameEnum;
+  target: string;
+  damage: number;
+};
 
-// const table: tableType[] = [];
+const table: tableType[] = [];
 
 // *** for individual teams
-// const team = [Agents.Akari];
-// const target = Targets.Dummy_Stage_1;
-// const result = calculate_team(team, target);
-// result.team.forEach((agent) => {
-//   table.push({
-//     name: agent.name,
-//     target: result.target.name,
-//     damage: agent.total_damage
-//   });
-// });
+const team = [Agents.Akari];
+const target = Targets.Dummy_Stage_1;
+const result = calculate_team(team, target);
+result.team.forEach((agent) => {
+  table.push({
+    name: agent.name,
+    target: result.target.name,
+    damage: agent.total_damage
+  });
+});
 
 // *** for all agents individual
 // calculate_agents_individually().forEach((result) => {
@@ -43,7 +43,7 @@ export { AttackModeEnum, ClassEnum, EffectEnum, NameEnum, OrganizationEnum, Size
 //   });
 // });
 
-// console.table(table, ['name', 'target', 'damage']);
+console.table(table, ['name', 'target', 'damage']);
 
 // *** bruteforce
 // bruteforce_team();

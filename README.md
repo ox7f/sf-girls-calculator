@@ -1,3 +1,3 @@
-# Readme
+# SF-GIRLS-CALCULATOR
 
-TODO
+Some readme
