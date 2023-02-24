@@ -1,6 +1,6 @@
 import { NewAgent } from 'sf-girls-calculator-calculator';
 import { useAtom, useAtomValue } from 'jotai';
-import { AgentsAtom, FilteredAgentsAtom, SelectedAgentsAtom, Search} from './index';
+import { AgentsAtom, FilteredAgentsAtom, SelectedAgentsAtom, Search } from './index';
 
 const AgentsSelect: React.FC = () => {
   const filteredAgents = useAtomValue(FilteredAgentsAtom);

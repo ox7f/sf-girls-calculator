@@ -8,4 +8,4 @@ export const calculate_team = (new_team: NewAgent[], new_target: NewTarget) => {
   const result = fightCalculator.run();
 
   return result;
-}
+};
