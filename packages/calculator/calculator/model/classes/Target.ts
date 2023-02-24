@@ -1,4 +1,4 @@
-import { NewTarget } from '../../model';
+import { NewTarget } from '../../model/index.js';
 
 export class Target {
   name: string;

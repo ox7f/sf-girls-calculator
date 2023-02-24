@@ -24,7 +24,7 @@
     "preview:frontend": "npm run preview --workspace=sf-girls-calculator-frontend"
   },
   "devDependencies": {
-    "prettier": "^2.8.3"
+    "prettier": "^2.8.4"
   },
   "workspaces": {
     "packages": [

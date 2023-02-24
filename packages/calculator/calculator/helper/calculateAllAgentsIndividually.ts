@@ -1,5 +1,5 @@
-import { calculate_team, transformAgents, transformTargets } from './index';
-import { ResultType } from '../model';
+import { calculate_team, transformAgents, transformTargets } from './index.js';
+import { ResultType } from '../model/index.js';
 
 export const calculate_agents_individually = () => {
   const agents = transformAgents();

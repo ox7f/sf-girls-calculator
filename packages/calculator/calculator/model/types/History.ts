@@ -1,4 +1,4 @@
-import { ActionType } from './index';
+import { ActionType } from './index.js';
 
 export type HistoryType = {
   time: number;

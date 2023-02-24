@@ -1,6 +1,6 @@
-import { can_use_skill } from './handleSkill';
-import { Agent, Fight } from '../../model';
-import { has_expired } from './handleEffect';
+import { can_use_skill } from './handleSkill.js';
+import { has_expired } from './handleEffect.js';
+import { Agent, Fight } from '../../model/index.js';
 
 export const handle_attack = (fight: Fight) => {
   const { team, target, time } = fight;

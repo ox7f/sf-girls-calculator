@@ -1,5 +1,5 @@
-export { Agent, Effect, DamageEffect, DOTEffect, Skill, Target, Fight } from './classes';
-export { NewAgent, NewEffect, NewDamageEffect, NewDOTEffect, NewFight, NewSkill, NewTarget } from './interfaces';
+export { Agent, Effect, DamageEffect, DOTEffect, Skill, Target, Fight } from './classes/index.js';
+export { NewAgent, NewEffect, NewDamageEffect, NewDOTEffect, NewFight, NewSkill, NewTarget } from './interfaces/index.js';
 export {
   ActionType,
   DamageEffectFunctionType,
@@ -8,4 +8,4 @@ export {
   HandleParam,
   HistoryType,
   ResultType
-} from './types';
+} from './types/index.js';

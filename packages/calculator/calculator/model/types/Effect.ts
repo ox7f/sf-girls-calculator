@@ -1,4 +1,4 @@
-import { Agent, Target } from '../classes';
+import { Agent, Target } from '../classes/index.js';
 
 export type EffectParamType = {
   agent: Agent;

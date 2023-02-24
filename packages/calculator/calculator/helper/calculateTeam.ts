@@ -1,4 +1,4 @@
-import { Agent, Fight, NewAgent, NewTarget, Target } from '../model';
+import { Agent, Fight, NewAgent, NewTarget, Target } from '../model/index.js';
 
 export const calculate_team = (new_team: NewAgent[], new_target: NewTarget) => {
   const target = new Target(new_target);

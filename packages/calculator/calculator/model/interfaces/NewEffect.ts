@@ -1,5 +1,5 @@
-import { EffectFunctionType, DamageEffectFunctionType } from '../types';
-import { EffectEnum } from '../../enums';
+import { EffectEnum } from '../../enums/index.js';
+import { EffectFunctionType, DamageEffectFunctionType } from '../types/index.js';
 
 export interface NewEffect {
   type: EffectEnum;

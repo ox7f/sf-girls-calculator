@@ -1,6 +1,6 @@
-import { NewAgent, NewDamageEffect, NewDOTEffect, NewEffect, NewSkill } from 'calculator/model';
-import { AttackModeEnum, ClassEnum, EffectEnum, NameEnum, OrganizationEnum, SizeEnum } from '../enums';
-import { EffectParamType } from '../model/types';
+import { NewAgent, NewDamageEffect, NewDOTEffect, NewEffect, NewSkill } from 'calculator/model/index.js';
+import { AttackModeEnum, ClassEnum, EffectEnum, NameEnum, OrganizationEnum, SizeEnum } from '../enums/index.js';
+import { EffectParamType } from '../model/types/index.js';
 
 export const Yuki = {
   name: NameEnum.Yuki,

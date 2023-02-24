@@ -1,6 +1,6 @@
-import { DOTEffect, Effect, Skill, Target, NewAgent, HistoryType } from '../../model';
-import { AttackModeEnum, ClassEnum, EffectEnum, NameEnum, OrganizationEnum, SizeEnum } from '../../enums';
-import { calculate_critical_damage } from '../../helper';
+import { AttackModeEnum, ClassEnum, EffectEnum, NameEnum, OrganizationEnum, SizeEnum } from '../../enums/index.js';
+import { calculate_critical_damage } from '../../helper/index.js';
+import { DOTEffect, Effect, Skill, Target, NewAgent, HistoryType } from '../../model/index.js';
 
 export class Agent {
   name: NameEnum;

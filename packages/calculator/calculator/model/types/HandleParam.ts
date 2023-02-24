@@ -1,4 +1,4 @@
-import { Agent, DamageEffect, DOTEffect, Effect, Fight } from '../classes';
+import { Agent, DamageEffect, DOTEffect, Effect, Fight } from '../classes/index.js';
 
 export type HandleParam = {
   agent: Agent;

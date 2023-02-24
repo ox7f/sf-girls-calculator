@@ -1,5 +1,5 @@
-import { Agent, Target, NewFight, ResultType } from '../../model';
-import { handle_attack, handle_skill } from '../../helper';
+import { handle_attack, handle_skill } from '../../helper/index.js';
+import { Agent, Target, NewFight, ResultType } from '../../model/index.js';
 
 export class Fight {
   team: Agent[] = [];

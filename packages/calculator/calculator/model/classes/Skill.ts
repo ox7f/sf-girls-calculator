@@ -1,5 +1,5 @@
-import { Effect, DamageEffect, DOTEffect, NewDamageEffect, NewDOTEffect, NewEffect, NewSkill } from '../../model';
-import { EffectEnum } from '../../enums';
+import { EffectEnum } from '../../enums/index.js';
+import { Effect, DamageEffect, DOTEffect, NewDamageEffect, NewDOTEffect, NewEffect, NewSkill } from '../../model/index.js';
 
 export class Skill {
   name: string;

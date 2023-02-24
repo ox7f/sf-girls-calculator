@@ -6,9 +6,9 @@ import {
   has_dot_effect,
   has_expired,
   remove_expired
-} from './index';
-import { ActionEnum, AttackModeEnum } from '../../enums';
-import { Fight, HandleParam } from '../../model';
+} from './index.js';
+import { ActionEnum, AttackModeEnum } from '../../enums/index.js';
+import { Fight, HandleParam } from '../../model/index.js';
 
 export const handle_skill = (fight: Fight) => {
   const { team } = fight;

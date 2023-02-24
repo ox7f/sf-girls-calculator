@@ -1,5 +1,5 @@
-import { add_damage } from './index';
-import { Agent, DamageEffect, DOTEffect, Effect, HandleParam } from '../../model';
+import { add_damage } from './index.js';
+import { Agent, DamageEffect, DOTEffect, Effect, HandleParam } from '../../model/index.js';
 
 export const handle_dot = ({ agent, fight }: HandleParam) => {
   const activeDots = get_active_dots({ agent, fight });

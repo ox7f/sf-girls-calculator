@@ -1,5 +1,5 @@
-import { Agents, Targets } from '../data';
-import { NewAgent, NewTarget } from '../model';
+import { Agents, Targets } from '../data/index.js';
+import { NewAgent, NewTarget } from '../model/index.js';
 
 interface AllObjects<T> {
   [index: string]: T;

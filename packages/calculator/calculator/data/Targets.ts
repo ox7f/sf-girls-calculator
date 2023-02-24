@@ -1,4 +1,4 @@
-import { NewTarget } from 'calculator/model';
+import { NewTarget } from 'calculator/model/index.js';
 
 export const Dummy_Stage_1 = {
   name: "Noa's Bootcamp Mission 1",

@@ -1,7 +1,7 @@
-import { Targets } from '../data';
-import { NewAgent } from '../model';
-import { calculate_team } from './calculateTeam';
-import { transformAgents } from './transformer';
+import { calculate_team } from './calculateTeam.js';
+import { transformAgents } from './transformer.js';
+import { NewAgent } from '../model/index.js';
+import { Targets } from '../data/index.js';
 
 export const bruteforce_team = (/* agents: NewAgents[] */) => {
   // TODO: adjust logic to make it possible to bruteforce more combinations

@@ -1,6 +1,6 @@
-import { calculate_critical_damage, set_skill_remove_animation_time } from '../index';
-import { ActionEnum, AttackModeEnum } from '../../enums';
-import { DamageEffect, DOTEffect, Effect, HandleParam } from '../../model';
+import { calculate_critical_damage, set_skill_remove_animation_time } from '../index.js';
+import { ActionEnum, AttackModeEnum } from '../../enums/index.js';
+import { DamageEffect, DOTEffect, Effect, HandleParam } from '../../model/index.js';
 
 export const add_effect = ({ agent, effect, fight }: HandleParam) => {
   const applyMethod = agent.skill.is_stackable ? apply_stackable : apply_non_stackable;

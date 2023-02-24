@@ -1,9 +1,9 @@
-export { bruteforce_team } from './bruteforceTeam';
+export { bruteforce_team } from './bruteforceTeam.js';
 
-export { calculate_team } from './calculateTeam';
-export { calculate_agents_individually } from './calculateAllAgentsIndividually';
+export { calculate_team } from './calculateTeam.js';
+export { calculate_agents_individually } from './calculateAllAgentsIndividually.js';
 
-export { calculate_critical_damage } from './getCriticalDamage';
+export { calculate_critical_damage } from './getCriticalDamage.js';
 
 export {
   add_damage,
@@ -28,6 +28,6 @@ export {
   set_skill_apply_animation_time,
   set_skill_remove_animation_time,
   use_skill
-} from './handle';
+} from './handle/index.js';
 
-export { transformAgents, transformTargets } from './transformer';
+export { transformAgents, transformTargets } from './transformer.js';

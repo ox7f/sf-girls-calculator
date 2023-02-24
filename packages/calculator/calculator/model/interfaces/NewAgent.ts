@@ -1,5 +1,5 @@
-import { NewSkill } from './index';
-import { ClassEnum, NameEnum, OrganizationEnum, SizeEnum } from '../../enums';
+import { NewSkill } from './index.js';
+import { ClassEnum, NameEnum, OrganizationEnum, SizeEnum } from '../../enums/index.js';
 
 export interface NewAgent {
   name: NameEnum;

@@ -1,4 +1,4 @@
-import { NewEffect, NewDamageEffect, NewDOTEffect } from './index';
+import { NewEffect, NewDamageEffect, NewDOTEffect } from './index.js';
 
 export interface NewSkill {
   name: string;

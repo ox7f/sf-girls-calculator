@@ -1,5 +1,5 @@
-export { ResultType } from './Result';
-export { EffectParamType, EffectFunctionType, DamageEffectFunctionType } from './Effect';
-export { HandleParam } from './HandleParam';
-export { HistoryType } from './History';
-export { ActionType } from './Action';
+export { ResultType } from './Result.js';
+export { EffectParamType, EffectFunctionType, DamageEffectFunctionType } from './Effect.js';
+export { HandleParam } from './HandleParam.js';
+export { HistoryType } from './History.js';
+export { ActionType } from './Action.js';
