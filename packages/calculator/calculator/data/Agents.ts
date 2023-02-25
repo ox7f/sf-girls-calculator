@@ -1,4 +1,4 @@
-import { NewAgent, NewDamageEffect, NewDOTEffect, NewEffect, NewSkill } from 'calculator/model/index.js';
+import { NewAgent, NewDamageEffect, NewDOTEffect, NewEffect, NewSkill } from '../model/index.js';
 import { AttackModeEnum, ClassEnum, EffectEnum, NameEnum, OrganizationEnum, SizeEnum } from '../enums/index.js';
 import { EffectParamType } from '../model/types/index.js';
 

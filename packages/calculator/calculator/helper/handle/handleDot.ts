@@ -1,11 +1,6 @@
 import { add_damage } from './index.js';
 import { Agent, DamageEffect, DOTEffect, Effect, HandleParam } from '../../model/index.js';
 
-export const handle_dot = ({ agent, fight }: HandleParam) => {
-  const activeDots = get_active_dots({ agent, fight });
-  activeDots.forEach((effect) => add_damage({ agent, effect, fight }));
-};
-
 export const add_dot_effect = ({ agent, effect, fight }: HandleParam) => {
   if (effect instanceof Effect || effect instanceof DamageEffect || !effect) return;
 
@@ -13,6 +8,21 @@ export const add_dot_effect = ({ agent, effect, fight }: HandleParam) => {
   newEffect.begin = fight.time;
 
   agent.applied_effects.push(newEffect);
+};
+
+export const get_active_dots = ({ agent, fight }: HandleParam) => {
+  const active_dots: DOTEffect[] = [];
+
+  agent.applied_effects.forEach((effect: Effect | DOTEffect) => {
+    if (effect instanceof DOTEffect && is_dot_active({ effect, agent, fight })) active_dots.push(effect);
+  });
+
+  return active_dots;
+};
+
+export const handle_dot = ({ agent, fight }: HandleParam) => {
+  const activeDots = get_active_dots({ agent, fight });
+  activeDots.forEach((effect) => add_damage({ agent, effect, fight }));
 };
 
 export const has_dot_effect = (agent: Agent) =>
@@ -28,14 +38,4 @@ export const is_dot_active = ({ effect, fight }: HandleParam) => {
   const in_interval = time % effect.interval === 0;
 
   return has_started && !has_stopped && in_interval;
-};
-
-export const get_active_dots = ({ agent, fight }: HandleParam) => {
-  const active_dots: DOTEffect[] = [];
-
-  agent.applied_effects.forEach((effect: Effect | DOTEffect) => {
-    if (effect instanceof DOTEffect && is_dot_active({ effect, agent, fight })) active_dots.push(effect);
-  });
-
-  return active_dots;
 };

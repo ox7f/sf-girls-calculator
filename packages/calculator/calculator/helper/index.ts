@@ -1,10 +1,7 @@
 export { bruteforce_team } from './bruteforceTeam.js';
-
 export { calculate_team } from './calculateTeam.js';
 export { calculate_agents_individually } from './calculateAllAgentsIndividually.js';
-
 export { calculate_critical_damage } from './getCriticalDamage.js';
-
 export {
   add_damage,
   add_dot_effect,
@@ -29,5 +26,4 @@ export {
   set_skill_remove_animation_time,
   use_skill
 } from './handle/index.js';
-
 export { transformAgents, transformTargets } from './transformer.js';

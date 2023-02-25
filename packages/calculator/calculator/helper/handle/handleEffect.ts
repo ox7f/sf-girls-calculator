@@ -1,11 +1,6 @@
-import { calculate_critical_damage, set_skill_remove_animation_time } from '../index.js';
-import { ActionEnum, AttackModeEnum } from '../../enums/index.js';
+import { apply_stackable, apply_non_stackable, calculate_critical_damage } from '../index.js';
+import { AttackModeEnum } from '../../enums/index.js';
 import { DamageEffect, DOTEffect, Effect, HandleParam } from '../../model/index.js';
-
-export const add_effect = ({ agent, effect, fight }: HandleParam) => {
-  const applyMethod = agent.skill.is_stackable ? apply_stackable : apply_non_stackable;
-  applyMethod({ effect, agent, fight });
-};
 
 export const add_damage = ({ agent, effect, fight }: HandleParam) => {
   if (effect instanceof Effect || !effect) return;
@@ -15,6 +10,11 @@ export const add_damage = ({ agent, effect, fight }: HandleParam) => {
   const { total_damage } = agent;
 
   agent.history.push({ time: fight.time, damage, total_damage, action });
+};
+
+export const add_effect = ({ agent, effect, fight }: HandleParam) => {
+  const applyMethod = agent.skill.is_stackable ? apply_stackable : apply_non_stackable;
+  applyMethod({ effect, agent, fight });
 };
 
 export const calculate_damage = ({ agent, effect, fight }: HandleParam) => {
@@ -33,36 +33,9 @@ export const calculate_damage = ({ agent, effect, fight }: HandleParam) => {
   return damage;
 };
 
-export const apply_stackable = ({ agent, effect, fight }: HandleParam) => apply({ agent, effect, fight });
-
-export const apply_non_stackable = ({ agent, effect, fight }: HandleParam) => {
-  const old = find_existing({ agent, effect, fight });
-
-  if (old) old.begin = fight.time;
-  else apply({ agent, effect, fight });
-};
-
-export const apply = ({ agent, effect, fight }: HandleParam) => {
+export const find_existing = ({ agent, effect }: HandleParam) => {
   if (effect instanceof DamageEffect || effect instanceof DOTEffect || !effect) return;
-
-  const { team, target, time } = fight;
-  const newEffect = new Effect({ ...effect, duration: effect.duration / 1000 });
-
-  newEffect.begin = time;
-  newEffect.apply({ agent, team, target });
-
-  agent.applied_effects.push(newEffect);
-};
-
-export const remove_expired = ({ agent, fight }: HandleParam) => {
-  agent.applied_effects = agent.applied_effects.filter((effect: Effect | DOTEffect) => {
-    const params = { agent, effect, fight };
-    const expired = is_expired(params);
-
-    if (expired) remove_effect(params, effect);
-
-    return !expired;
-  });
+  return agent.applied_effects.find((e: Effect | DOTEffect) => e instanceof Effect && e.apply === effect.apply);
 };
 
 export const has_expired = ({ agent, fight }: HandleParam) => {
@@ -75,32 +48,7 @@ export const has_expired = ({ agent, fight }: HandleParam) => {
   return has_expired_effect;
 };
 
-export const remove_effect = (params: HandleParam, effect: Effect | DOTEffect) => {
-  const { agent, fight } = params;
-
-  if (effect instanceof Effect) {
-    set_skill_remove_animation_time(params);
-    remove(params);
-  }
-
-  const { total_damage } = agent;
-  const { type: skill_type } = effect;
-  const action = { type: ActionEnum.Remove, skill_type, attack_mode: AttackModeEnum.None };
-
-  agent.history.push({ time: fight.time, damage: 0, total_damage, action });
-};
-
-export const remove = ({ agent, effect, fight }: HandleParam) => {
-  if (effect instanceof DamageEffect || effect instanceof DOTEffect || !effect) return;
-  effect.remove({ agent, team: fight.team, target: fight.target });
-};
-
 export const is_expired = ({ effect, fight }: HandleParam) => {
   if (effect instanceof DamageEffect || !effect) return;
   return fight.time >= effect.duration + effect.begin;
-};
-
-export const find_existing = ({ agent, effect }: HandleParam) => {
-  if (effect instanceof DamageEffect || effect instanceof DOTEffect || !effect) return;
-  return agent.applied_effects.find((e: Effect | DOTEffect) => e instanceof Effect && e.apply === effect.apply);
 };

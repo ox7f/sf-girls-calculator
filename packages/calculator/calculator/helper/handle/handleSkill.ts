@@ -41,14 +41,14 @@ export const use_skill = ({ agent, fight }: HandleParam) => {
 
   agent.skill.effects.forEach((effect) => {
     const params = { agent, effect, fight };
-    const type = effect.constructor.name;
+    const type = effect.type.toString();
     const action = { type: ActionEnum.Apply, skill_type: effect.type, attack_mode: AttackModeEnum.None };
 
     agent.history.push({ time, damage: 0, total_damage, action });
 
-    if (type === 'Effect') add_effect(params);
-    else if (type === 'DOTEffect') add_dot_effect(params);
-    else if (type === 'DamageEffect') add_damage(params);
+    if (['Debuff', 'Self Buff', 'Team Buff'].includes(type)) add_effect(params);
+    else if (type === 'Damage Over Time') add_dot_effect(params);
+    else if (type === 'Damage') add_damage(params);
   });
 };
 
