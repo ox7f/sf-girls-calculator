@@ -53,7 +53,6 @@ export const Neve = {
   critical_damage: 2.038,
   skill_damage: 569,
   base_skill_damage: 569,
-  apply_skill_time: 0.5,
   skill: {
     name: 'Absolute Zero',
     description: 'summons an iceberg dealing 26428 damage and slows down enemies to 50% for 5 seconds. cooldown: 17',
@@ -75,7 +74,6 @@ export const Ayu = {
   critical_damage: 2.038,
   skill_damage: 379,
   base_skill_damage: 379,
-  remove_skill_time: 0.75,
   skill: {
     name: 'Raining Bullets',
     description: 'shoots a piercing laser beam dealing 45536 damage. cooldown: 9',
@@ -266,7 +264,6 @@ export const Reika = {
   critical_damage: 2.038,
   skill_damage: 604,
   base_skill_damage: 604,
-  apply_skill_time: 1,
   skill: {
     name: 'Might of the Alliance',
     description: 'launches a rocket towards the target, dealing 86932 damage. cooldown: 9',
@@ -447,7 +444,6 @@ export const Aoi = {
   critical_damage: 2.038,
   skill_damage: 1207,
   base_skill_damage: 1207,
-  apply_skill_time: 1,
   skill: {
     name: 'Gamma Blaster',
     description: 'randomly picks 6 agent(s), add 25% critical rate for 6 seconds. cooldown: 9',
@@ -563,7 +559,6 @@ export const Yukako = {
   critical_damage: 2.038,
   skill_damage: 811,
   base_skill_damage: 811,
-  apply_skill_time: 1,
   skill: {
     name: "Spirit's Lethal Kiss",
     description: 'increases the damage of all gunner agents to 150% for 12 seconds. cooldown: 25',
@@ -608,7 +603,6 @@ export const Coco = {
   critical_damage: 2.038,
   skill_damage: 2398,
   base_skill_damage: 2398,
-  apply_skill_time: 1,
   skill: {
     name: 'Thrashing Paws',
     description:
@@ -662,7 +656,6 @@ export const Pan = {
   critical_damage: 2.038,
   skill_damage: 414,
   base_skill_damage: 414,
-  apply_skill_time: 1,
   skill: {
     name: 'Triple-Tap',
     description:
@@ -708,7 +701,6 @@ export const Hitomi = {
   critical_damage: 2.038,
   skill_damage: 1518,
   base_skill_damage: 1518,
-  apply_skill_time: 1,
   skill: {
     name: 'Cycle of Eternal Pain',
     description: 'increases the attack speed of all agents to 220% for 7 seconds. cooldown: 19',
@@ -764,7 +756,6 @@ export const Uni = {
   critical_damage: 2.018,
   skill_damage: 754,
   base_skill_damage: 754,
-  remove_skill_time: 1,
   skill: {
     name: "Archer's Judgement",
     description: 'casts an arrow barrage to deal 86411 damage and stuns for 6 seconds. cooldown: 20',
@@ -786,7 +777,6 @@ export const Sizuko = {
   critical_damage: 2.018,
   skill_damage: 587,
   base_skill_damage: 587,
-  apply_skill_time: 0.5,
   skill: {
     name: "Mortician's Touch",
     description:
@@ -980,7 +970,6 @@ export const Momoko = {
   critical_damage: 2.038,
   skill_damage: 2160,
   base_skill_damage: 2160,
-  apply_skill_time: 1,
   skill: {
     name: 'Piercing Bullet',
     description:
@@ -1016,7 +1005,6 @@ export const Meteli = {
   critical_damage: 2.038,
   skill_damage: 1226,
   base_skill_damage: 1226,
-  apply_skill_time: 1,
   skill: {
     name: 'Meteorite Missile',
     description:
@@ -1054,7 +1042,6 @@ export const Hoshiko = {
   critical_damage: 2.018,
   skill_damage: 1613,
   base_skill_damage: 1613,
-  apply_skill_time: 1,
   skill: {
     name: 'Crystalline Kaleidoscope Strike',
     description:
@@ -1103,7 +1090,6 @@ export const Feme = {
   critical_damage: 2.038,
   skill_damage: 2099,
   base_skill_damage: 2099,
-  apply_skill_time: 1,
   skill: {
     name: 'Requiem of Pain',
     description:
@@ -1387,7 +1373,6 @@ export const Rosalie = {
   critical_damage: 2.038,
   skill_damage: 3264,
   base_skill_damage: 3264,
-  apply_skill_time: 1,
   skill: {
     name: 'Wrath of the Rose',
     description:
@@ -1436,7 +1421,6 @@ export const Toki = {
   critical_damage: 2.038,
   skill_damage: 1624,
   base_skill_damage: 1624,
-  apply_skill_time: 1,
   skill: {
     name: "Witch's Curse",
     description:
@@ -1622,7 +1606,6 @@ export const Chia = {
   critical_damage: 2.038,
   skill_damage: 2160,
   base_skill_damage: 2160,
-  apply_skill_time: 2,
   skill: {
     name: 'Fishing of the void',
     description:
@@ -1686,7 +1669,6 @@ export const Shiko = {
   critical_damage: 2.018,
   skill_damage: 2434,
   base_skill_damage: 2434,
-  apply_skill_time: 1,
   skill: {
     name: 'Atomic Prowess: Sword Strike',
     description: 'increases self attack speed to 450% and damage to 230% for 11 seconds. cooldown: 10',
@@ -1841,7 +1823,6 @@ export const Musuna = {
   critical_damage: 2.038,
   skill_damage: 2160,
   base_skill_damage: 2160,
-  apply_skill_time: 0.5,
   skill: {
     name: 'Shuriken Strike',
     description:
@@ -1881,7 +1862,6 @@ export const Windy = {
   critical_damage: 2.018,
   skill_damage: 2085,
   base_skill_damage: 2085,
-  apply_skill_time: 1,
   skill: {
     name: 'Shuriken Strike',
     description:
@@ -1923,7 +1903,6 @@ export const Kotaru = {
   critical_damage: 2.038,
   skill_damage: 2160,
   base_skill_damage: 2160,
-  apply_skill_time: 1,
   skill: {
     name: 'Blistering Heat Wave',
     description:
@@ -1961,7 +1940,6 @@ export const Karry = {
   critical_damage: 2.038,
   skill_damage: 1144,
   base_skill_damage: 1144,
-  apply_skill_time: 1,
   skill: {
     name: "Nature's Call",
     description:
@@ -2090,7 +2068,6 @@ export const Laura = {
   critical_damage: 2.038,
   skill_damage: 680,
   base_skill_damage: 680,
-  apply_skill_time: 1,
   skill: {
     name: 'Defensive Anchor: Ultimate Shielding',
     description:
@@ -2128,7 +2105,6 @@ export const Kura = {
   critical_damage: 2.038,
   skill_damage: 2099,
   base_skill_damage: 2099,
-  apply_skill_time: 1,
   skill: {
     name: "Hell's Gate: Alpha Enhanced",
     description: 'summons three thunder beams from her trident for 8 seconds, total dealing 25190 damage. cooldown: 3',
@@ -2226,7 +2202,6 @@ export const Midori = {
   critical_damage: 2.018,
   skill_damage: 2145,
   base_skill_damage: 2145,
-  apply_skill_time: 0.75,
   skill: {
     name: 'Lashing Tongue',
     description:
@@ -2420,7 +2395,6 @@ export const Amikam = {
   critical_damage: 2.038,
   skill_damage: 2099,
   base_skill_damage: 2099,
-  apply_skill_time: 1,
   skill: {
     name: 'Vanquish The Sinners',
     description:
@@ -2514,7 +2488,6 @@ export const Tsurumi = {
   critical_damage: 2.038,
   skill_damage: 4336,
   base_skill_damage: 4336,
-  apply_skill_time: 0.75,
   skill: {
     name: 'Ninjutsu of crane: Thousand Scythe',
     description:
@@ -2601,7 +2574,6 @@ export const Masamune = {
   critical_damage: 2.038,
   skill_damage: 1226,
   base_skill_damage: 1226,
-  apply_skill_time: 1,
   skill: {
     name: 'Seven blades',
     description:
@@ -2697,7 +2669,6 @@ export const Tyrla = {
   critical_damage: 2.038,
   skill_damage: 2099,
   base_skill_damage: 2099,
-  apply_skill_time: 1,
   skill: {
     name: 'Kuchipudi',
     description:
@@ -2736,7 +2707,6 @@ export const Seina = {
   critical_damage: 2.038,
   skill_damage: 2099,
   base_skill_damage: 2099,
-  apply_skill_time: 1,
   skill: {
     name: 'Aerial Armageddon',
     description:

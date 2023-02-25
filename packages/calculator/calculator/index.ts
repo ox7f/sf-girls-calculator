@@ -12,27 +12,27 @@ export { NewAgent, NewEffect, NewDamageEffect, NewDOTEffect, NewFight, NewSkill,
 export { DamageEffectFunctionType, EffectFunctionType, EffectParamType, ResultType } from './model/index.js';
 
 // ----------------------------- ONLY FOR DEBUGGING -----------------------------
-import { NameEnum } from './enums/index.js';
+// import { NameEnum } from './enums/index.js';
 
-type tableType = {
-  name: NameEnum;
-  target: string;
-  damage: number;
-};
+// type tableType = {
+//   name: NameEnum;
+//   target: string;
+//   damage: number;
+// };
 
-const table: tableType[] = [];
+// const table: tableType[] = [];
 
 // *** for individual teams
-const team = [Agents.Akari];
-const target = Targets.Dummy_Stage_1;
-const result = calculate_team(team, target);
-result.team.forEach((agent) => {
-  table.push({
-    name: agent.name,
-    target: result.target.name,
-    damage: agent.total_damage
-  });
-});
+// const team = [Agents.ReiJK, Agents.Rosalie];
+// const target = Targets.Dummy_Stage_1;
+// const result = calculate_team(team, target);
+// result.team.forEach((agent) => {
+//   table.push({
+//     name: agent.name,
+//     target: result.target.name,
+//     damage: agent.total_damage
+//   });
+// });
 
 // *** for all agents individual
 // calculate_agents_individually().forEach((result) => {
@@ -43,7 +43,7 @@ result.team.forEach((agent) => {
 //   });
 // });
 
-console.table(table, ['name', 'target', 'damage']);
+// console.table(table, ['name', 'target', 'damage']);
 
 // *** bruteforce
 // bruteforce_team();
