@@ -1,4 +1,4 @@
-globalThis.Interval = 10;
+globalThis.Interval = 1;
 
 import * as EverythingData from './data/index.js';
 import * as EverythingHelper from './helper/index.js';

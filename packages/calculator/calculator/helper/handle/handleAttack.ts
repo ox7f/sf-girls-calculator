@@ -9,9 +9,9 @@ export const handle_attack = (fight: Fight) => {
     const time_to_attack = Math.round((1000 / agent.attack_speed) * 1000);
     const can_attack = time - agent.last_attack_time >= time_to_attack;
     const in_animation = agent.has_animation ? is_in_animation(agent) : false;
-    const used_skill = can_use_skill({ agent, fight }) || has_expired({ agent, fight });
+    const can_use = can_use_skill({ agent, fight }) || has_expired({ agent, fight });
 
-    if (can_attack && !in_animation && !used_skill) agent.attack(target, time);
+    if (can_attack && !in_animation && !can_use) agent.attack(target, time);
   });
 };
 

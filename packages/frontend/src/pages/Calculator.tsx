@@ -23,6 +23,13 @@ const Calculator: React.FC = () => {
 
     const result = calculate_team(selectedAgents, selectedTarget);
 
+    result.team = result.team.map((agent) => {
+      agent.history = agent.history.filter((event) => {
+        return !event.action.type || event.action.type.toString() === 'Apply Skill Effect';
+      });
+      return agent;
+    });
+
     setResult(result);
     setTotalDamage(result.team.reduce((pv, cv) => pv + cv.total_damage, 0));
   };

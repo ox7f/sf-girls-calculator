@@ -1,4 +1,4 @@
-import { is_expired, set_skill_remove_animation_time } from '../index.js';
+import { is_expired } from '../index.js';
 import { ActionEnum, AttackModeEnum } from '../../enums/index.js';
 import { DamageEffect, DOTEffect, Effect, HandleParam } from '../../model/index.js';
 
@@ -10,10 +10,7 @@ export const remove = ({ agent, effect, fight }: HandleParam) => {
 export const remove_effect = (params: HandleParam, effect: Effect | DOTEffect) => {
   const { agent, fight } = params;
 
-  if (effect instanceof Effect) {
-    set_skill_remove_animation_time(params);
-    remove(params);
-  }
+  if (effect instanceof Effect) remove(params);
 
   const { total_damage } = agent;
   const { type: skill_type } = effect;

@@ -22,8 +22,6 @@ export {
   is_in_animation,
   remove,
   remove_expired,
-  set_skill_apply_animation_time,
-  set_skill_remove_animation_time,
   use_skill
 } from './handle/index.js';
 export { transformAgents, transformTargets } from './transformer.js';

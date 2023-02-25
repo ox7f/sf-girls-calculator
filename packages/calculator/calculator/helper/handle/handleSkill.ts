@@ -10,6 +10,14 @@ import {
 import { ActionEnum, AttackModeEnum } from '../../enums/index.js';
 import { Fight, HandleParam } from '../../model/index.js';
 
+export const can_use_skill = ({ agent, fight }: HandleParam) => {
+  const { apply_skill_time, skill } = agent;
+  const { time } = fight;
+
+  if (time < skill.cooldown) return time === apply_skill_time;
+  return time % (skill.cooldown + apply_skill_time) === 0;
+};
+
 export const handle_skill = (fight: Fight) => {
   const { team } = fight;
 
@@ -17,20 +25,13 @@ export const handle_skill = (fight: Fight) => {
     const param = { agent, fight };
 
     if (can_use_skill(param)) {
-      set_skill_apply_animation_time(param);
       use_skill(param);
+      agent.apply_skill_remaining_time = agent.apply_skill_time;
     }
 
     if (has_dot_effect(agent)) handle_dot(param);
     if (has_expired(param)) remove_expired(param);
   });
-};
-
-export const can_use_skill = ({ agent, fight }: HandleParam) => {
-  const { apply_skill_time, skill } = agent;
-  const { time } = fight;
-
-  return (time % skill.cooldown) + apply_skill_time === 0;
 };
 
 export const use_skill = ({ agent, fight }: HandleParam) => {
@@ -51,9 +52,3 @@ export const use_skill = ({ agent, fight }: HandleParam) => {
     else if (type === 'Damage') add_damage(params);
   });
 };
-
-export const set_skill_apply_animation_time = ({ agent }: HandleParam) =>
-  (agent.apply_skill_remaining_time = agent.apply_skill_time);
-
-export const set_skill_remove_animation_time = ({ agent }: HandleParam) =>
-  (agent.remove_skill_remaining_time = agent.remove_skill_time);
