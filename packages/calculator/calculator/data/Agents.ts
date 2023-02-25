@@ -1739,14 +1739,16 @@ export const Bia = {
         apply: (params: EffectParamType) => {
           const { agent } = params;
           agent.skill_damage *= 24;
+          agent.attack_mode = AttackModeEnum.None;
         },
         remove: (params: EffectParamType) => {
           const { agent } = params;
           agent.skill_damage /= 24;
+          agent.attack_mode = AttackModeEnum.Normal;
         },
         duration: 6
       } as NewEffect,
-      { type: EffectEnum.DOT, duration: 6, interval: 1, damage: () => 8 * 1160 } as NewDOTEffect
+      { type: EffectEnum.DOT, duration: 6, interval: 0.125, damage: () => 155 } as NewDOTEffect
     ],
     cooldown: 10
   } as NewSkill
