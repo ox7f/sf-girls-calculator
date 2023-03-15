@@ -43,8 +43,6 @@ export const findAgents = (names: string[], source: NewAgent[], userSource: Agen
     };
   });
 
-  console.log(items);
-
   return items;
 };
 

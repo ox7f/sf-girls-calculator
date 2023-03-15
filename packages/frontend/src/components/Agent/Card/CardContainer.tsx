@@ -8,15 +8,15 @@ const CardContainer: React.FC<CardContainerProps> = ({ name }) => {
       <div
         className="card__image"
         style={{
-          backgroundSize: `${
-            ['Pan'].includes(name)
-              ? '60%'
-              : ['Amikam', 'Chia', 'Feme', 'Iizuna', 'Kaja', 'Karry', 'Pan', 'Rei JK', 'Shiko'].includes(name)
-              ? '80%'
-              : '120%'
-          }`,
+          // backgroundSize: `${
+          //   ['Pan'].includes(name)
+          //     ? '60%'
+          //     : ['Amikam', 'Chia', 'Feme', 'Iizuna', 'Kaja', 'Karry', 'Pan', 'Rei JK', 'Shiko'].includes(name)
+          //     ? '80%'
+          //     : '120%'
+          // }`,
           backgroundPosition: 'center',
-          backgroundImage: `url(agents/${name.replace(' ', '')}.png)`
+          // backgroundImage: `url(agents/${name.replace(' ', '')}.png)`
         }}
       ></div>
     </div>
