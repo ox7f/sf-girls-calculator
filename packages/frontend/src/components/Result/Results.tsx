@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { Graph, Table } from './index';
 import { Spinner } from '../Common';
-import { ResultsAtom, SelectedAgentsAtom, SelectedTargetsAtom } from '../../atoms';
+import { AgentDB, ResultsAtom, SelectedAgentsAtom, SelectedTargetsAtom } from '../../atoms';
 import { calculateWorker } from '../../webworker';
 
 interface ResultProps {
@@ -15,6 +15,7 @@ const Results: React.FC<ResultProps> = ({ viewName }) => {
   const [results, setResults] = useAtom(ResultsAtom);
   const selectedAgents = useAtomValue(SelectedAgentsAtom);
   const selectedTargets = useAtomValue(SelectedTargetsAtom);
+  const agentEntries = useAtomValue(AgentDB.entries);
 
   const WORKER_CONFIG = {
     calculator: calculateWorker.calculateCalculator,
@@ -31,7 +32,7 @@ const Results: React.FC<ResultProps> = ({ viewName }) => {
     const newResults = await workerCall(selectedAgents[viewName], selectedTargets[viewName]);
     if (newResults) setResults((prev) => ({ ...prev, [viewName]: newResults }));
     setLoading(false);
-  }, [selectedAgents, selectedTargets, workerCall]);
+  }, [agentEntries, selectedAgents, selectedTargets, workerCall]);
 
   useEffect(() => {
     handleCalculate();

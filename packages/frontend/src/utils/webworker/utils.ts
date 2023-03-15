@@ -28,8 +28,22 @@ export const findAgents = (names: string[], source: NewAgent[], userSource: Agen
     const item = source.find((item) => item.name === name)!;
     const userItem = userSource.find((item) => item.name === name)!;
 
-    return { ...item, userItem };
+    return {
+      ...item,
+      stats: {
+        attack_speed: userItem.attack_speed,
+        normal_attack: userItem.normal_attack,
+        critical_rate: userItem.critical_rate,
+        critical_damage: userItem.critical_damage,
+        skill_damage: userItem.skill_damage,
+        base_skill_damage: userItem.skill_damage,
+        projectile_number: userItem.projectile_number,
+        cast_time: userItem.cast_time
+      }
+    };
   });
+
+  console.log(items);
 
   return items;
 };
