@@ -1,4 +1,4 @@
-import { NewTarget } from '../../model/index.js';
+import { NewTarget } from '../../model/index';
 
 export class Target {
   name: string;
@@ -14,11 +14,15 @@ export class Target {
     this.health = health;
     this.current_health = health;
     this.duration = duration * 1000; // seconds to ms
-    this.critical_resistance = critical_resistance ?? 0;
+    this.critical_resistance = critical_resistance;
   }
 
-  take_damage(agent_damage: number): void {
+  take_damage(time: number, agent_damage: number) {
+    if (time <= 0) return 0;
+
     const damage = agent_damage * this.damage_taken_multiplier * this.weakness_multiplier;
     this.current_health -= damage;
+
+    return damage;
   }
 }

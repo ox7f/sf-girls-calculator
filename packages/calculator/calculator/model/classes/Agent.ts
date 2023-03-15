@@ -1,103 +1,127 @@
-import { AttackModeEnum, ClassEnum, EffectEnum, NameEnum, OrganizationEnum, SizeEnum } from '../../enums/index.js';
-import { calculate_critical_damage } from '../../helper/index.js';
-import { DOTEffect, Effect, Skill, Target, NewAgent, HistoryType } from '../../model/index.js';
+import { ActionEnum, ClassEnum, EffectTypeEnum, OrganizationEnum, CupSizeEnum } from '../../enums/index';
+import { ActionType, Effect, EffectDOT, Fight, HistoryType, NewAgent, Skill, Stats } from '../../model/index';
 
 export class Agent {
-  name: NameEnum;
+  index: number;
+  name: string;
   organization: OrganizationEnum;
-  cup_size: SizeEnum;
+  cup_size: CupSizeEnum;
   class: ClassEnum;
-
-  attack_speed: number; // number of attacks per second
-  normal_attack: number; // damage of a "normal" attack (when projectile or weapon hits target)
-  critical_rate: number; // probability that a attack will be critical attack
-  critical_damage: number; // multiplier of damage for a critical attack
-  skill_damage: number; // determines the damage of a skill
-  base_skill_damage: number; //copy of skill_damage. used for skill damage calculation
+  stats: Stats;
   skill: Skill;
 
-  applied_effects: Array<Effect | DOTEffect> = []; // list of applied effect s(self, team) and dot effects
-  attack_mode: AttackModeEnum = AttackModeEnum.Normal; // determines attribute that is used for damage calculation
+  attack_mode = 'Normal'; // Normal | Skill | None
+  applied_effects: Array<Effect | EffectDOT> = [];
+  casting_skill = false;
+  history: HistoryType[] = [];
 
-  apply_skill_time: number; // skill cast animation time (unable to attack during this time)
-  remove_skill_time: number; // skill remove animation time (unable to attack during this time)
-  apply_skill_remaining_time = 0; // remaining skill cast time
-  remove_skill_remaining_time = 0; // remaining skill remove time
-  has_animation: boolean; // determines if agent has skill cast animation
+  logging_enabled: boolean;
 
-  last_attack_time = 0; // timestamp of the last attack
-  attack_counter = 0; // number of attacks
-  total_damage = 0; // damage dealt during fight
-  history: HistoryType[] = []; // log of events in a fight
-
-  constructor({
-    name,
-    organization,
-    cup_size,
-    class: className,
-    attack_speed,
-    normal_attack,
-    critical_rate,
-    critical_damage,
-    skill_damage,
-    base_skill_damage,
-    skill,
-    apply_skill_time = 0,
-    remove_skill_time = 0
-  }: NewAgent) {
+  constructor({ index, name, organization, cup_size, class: _class, stats, skill }: NewAgent, logging_enabled = false) {
+    this.index = index;
     this.name = name;
     this.organization = organization;
     this.cup_size = cup_size;
-    this.class = className;
-
-    this.attack_speed = attack_speed * 1000; // seconds to ms
-    this.normal_attack = normal_attack;
-    this.critical_rate = critical_rate;
-    this.critical_damage = critical_damage;
-    this.skill_damage = skill_damage;
-    this.base_skill_damage = base_skill_damage;
+    this.class = _class;
+    this.stats = new Stats(stats);
     this.skill = new Skill(skill);
-
-    this.apply_skill_time = apply_skill_time * 1000; // seconds to ms
-    this.remove_skill_time = remove_skill_time * 1000; // seconds to ms;
-    this.has_animation = this.apply_skill_time > 0 || this.remove_skill_time > 0;
+    this.logging_enabled = logging_enabled;
   }
 
-  attack(target: Target, time: number) {
-    const damage = this.calculate_damage(target);
+  attack(fight: Fight) {
+    if (!this.can_attack(fight)) return;
 
-    this.last_attack_time = time;
-    this.total_damage += damage;
-    this.attack_counter++;
+    this.deal_damage(fight);
 
-    this.history.push({
-      time,
-      damage,
-      total_damage: this.total_damage,
-      action: {
-        skill_type: EffectEnum.Damage,
-        attack_mode: this.attack_mode
-      }
-    });
-
-    target.take_damage(damage);
+    this.stats.last_attack_time = fight.time;
+    this.stats.attack_counter++;
   }
 
-  calculate_damage(target: Target): number {
-    const critical_chance = this.critical_rate - target.critical_resistance;
+  can_attack(fight: Fight) {
+    const time_to_attack = (1 / this.stats.attack_speed) * 1000;
+    const is_first = fight.target.duration - fight.time === time_to_attack;
+    const can_attack = this.stats.last_attack_time - fight.time >= time_to_attack || is_first;
+
+    return can_attack && !this.casting_skill;
+  }
+
+  get_damage(fight: Fight): number {
     let damage = 0;
 
     switch (this.attack_mode) {
-      case AttackModeEnum.Normal:
-        damage = this.normal_attack;
+      case 'Normal':
+        damage = this.stats.normal_attack / this.stats.projectile_number;
         break;
-      case AttackModeEnum.Skill:
-        damage = this.skill_damage;
+      case 'Skill':
+        damage = this.stats.skill_damage / this.stats.projectile_number;
         break;
-      case AttackModeEnum.Both:
-        damage = this.normal_attack + this.skill_damage;
     }
 
-    return calculate_critical_damage(damage, critical_chance, this.critical_damage);
+    if (Math.random() < this.stats.critical_rate - fight.target.critical_resistance) {
+      damage *= this.stats.critical_damage;
+    }
+
+    return damage;
+  }
+
+  deal_damage(fight: Fight) {
+    const projectile_time = globalThis.projectileInterval * this.stats.projectile_number;
+
+    for (let i = 1; i <= this.stats.projectile_number; i++) {
+      const log_time = fight.time - (projectile_time - projectile_time / i); // - globalThis.projectileSpeed;
+      const agent_damage = this.get_damage(fight);
+      const damage = fight.target.take_damage(log_time, agent_damage);
+
+      this.stats.total_damage += damage;
+
+      this.log(log_time, {
+        attack_mode: this.attack_mode,
+        damage,
+        effect_type: EffectTypeEnum.None,
+        type: ActionEnum.Attack
+      });
+    }
+  }
+
+  cast_skill(fight: Fight) {
+    if (!this.can_cast_skill(fight) || this.casting_skill) return;
+
+    this.stats.last_cast_time = fight.time;
+    this.stats.last_attack_time = fight.time;
+
+    this.skill.cast(this, fight);
+  }
+
+  can_cast_skill(fight: Fight) {
+    const is_first = fight.target.duration - fight.time === 2000 + this.stats.cast_time;
+    const can_cast = fight.time <= this.stats.last_cast_time - this.skill.cooldown || is_first;
+    const cast_begin = this.stats.last_cast_time - this.skill.cooldown;
+    const cast_end = cast_begin - this.stats.cast_time;
+
+    this.casting_skill = fight.time <= cast_begin && fight.time > cast_end;
+
+    return can_cast || fight.time === fight.target.duration - 2000 - this.stats.cast_time;
+  }
+
+  manage_effects(fight: Fight) {
+    if (this.applied_effects.length === 0) return;
+
+    this.applied_effects.forEach((effect) => {
+      effect.manage(this, fight);
+    });
+  }
+
+  log(time: number, action: ActionType) {
+    if (!this.logging_enabled || time <= 0) return;
+
+    // TODO: remove duplicates Cast | Remove Skill Effect
+
+    const existingEntry = this.history.find((entry) => entry.time === time);
+
+    if (existingEntry) {
+      existingEntry.actions.push(action);
+    } else {
+      this.history.push({ time, total_damage: this.stats.total_damage, actions: [action] });
+    }
   }
 }

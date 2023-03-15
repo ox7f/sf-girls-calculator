@@ -1,11 +1,19 @@
-export { Agent, Effect, DamageEffect, DOTEffect, Skill, Target, Fight } from './classes/index.js';
-export { NewAgent, NewEffect, NewDamageEffect, NewDOTEffect, NewFight, NewSkill, NewTarget } from './interfaces/index.js';
+export { Agent, AbstractEffect, Effect, EffectDamage, EffectDOT, Skill, Stats, Target, Fight } from './classes';
+export {
+  NewAgent,
+  NewEffect,
+  NewDamageEffect,
+  NewDOTEffect,
+  NewFight,
+  NewSkill,
+  NewStats,
+  NewTarget
+} from './interfaces';
 export {
   ActionType,
   DamageEffectFunctionType,
   EffectFunctionType,
   EffectParamType,
-  HandleParam,
   HistoryType,
   ResultType
-} from './types/index.js';
+} from './types';

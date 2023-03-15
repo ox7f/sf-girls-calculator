@@ -1,27 +1,32 @@
-import { handle_attack, handle_skill } from '../../helper/index.js';
-import { Agent, Target, NewFight, ResultType } from '../../model/index.js';
+import { Agent, Target, NewFight, ResultType } from '../../model/index';
 
 export class Fight {
   team: Agent[] = [];
   target: Target;
-  time = 0;
+  time: number;
 
   constructor({ team, target }: NewFight) {
-    this.team = team;
     this.target = target;
+    this.team = team;
+    this.time = target.duration;
   }
 
   run(): ResultType {
-    while (this.time <= this.target.duration && this.target.current_health > 0) {
-      handle_skill(this);
-      handle_attack(this);
-      this.time += globalThis.Interval;
+    while (this.time > 0 && this.target.current_health > 0) {
+      for (const agent of this.team) {
+        agent.manage_effects(this);
+        agent.cast_skill(this);
+        agent.attack(this);
+      }
+
+      this.time -= globalThis.Interval;
     }
 
     return {
+      target: this.target,
       team: this.team,
       time: this.time,
-      target: this.target
+      total_damage: this.team.reduce((pv: number, cv: Agent) => pv + cv.stats.total_damage, 0)
     };
   }
 }

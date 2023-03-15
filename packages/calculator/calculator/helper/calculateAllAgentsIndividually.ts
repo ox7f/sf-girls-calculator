@@ -1,13 +1,14 @@
-import { calculate_team, transformAgents, transformTargets } from './index.js';
-import { ResultType } from '../model/index.js';
+import { calculate_team } from './index';
+import { NewAgent, NewTarget, ResultType } from '../model/index';
+import { Agents, Targets } from '../data/index';
 
 export const calculate_agents_individually = () => {
-  const agents = transformAgents();
-  const targets = transformTargets();
+  const agents = Agents.Agents;
+  const targets = Targets.Targets;
   const results: ResultType[] = [];
 
-  agents.forEach((a) => {
-    targets.forEach((t) => {
+  agents.forEach((a: NewAgent) => {
+    targets.forEach((t: NewTarget) => {
       results.push(calculate_team([a], t));
     });
   });

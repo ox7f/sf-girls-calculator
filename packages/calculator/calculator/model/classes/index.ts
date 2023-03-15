@@ -1,5 +1,6 @@
-export { Agent } from './Agent.js';
-export { Effect, DamageEffect, DOTEffect } from './Effect.js';
-export { Skill } from './Skill.js';
-export { Target } from './Target.js';
-export { Fight } from './Fight.js';
+export { Agent } from './Agent';
+export { AbstractEffect, Effect, EffectDamage, EffectDOT } from './Effect/index';
+export { Skill } from './Skill';
+export { Stats } from './Stats';
+export { Target } from './Target';
+export { Fight } from './Fight';

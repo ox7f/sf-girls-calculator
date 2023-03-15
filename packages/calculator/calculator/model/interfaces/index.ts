@@ -1,5 +1,6 @@
-export { type NewAgent } from './NewAgent.js';
-export { type NewFight } from './NewFight.js';
-export { type NewSkill } from './NewSkill.js';
-export { type NewTarget } from './NewTarget.js';
-export { type NewEffect, type NewDamageEffect, type NewDOTEffect } from './NewEffect.js';
+export { type NewAgent } from './NewAgent';
+export { type NewFight } from './NewFight';
+export { type NewSkill } from './NewSkill';
+export { type NewStats } from './NewStats';
+export { type NewTarget } from './NewTarget';
+export { type NewEffect, type NewDamageEffect, type NewDOTEffect } from './NewEffect';

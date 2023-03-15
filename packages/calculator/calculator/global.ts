@@ -1,6 +1,9 @@
+/* eslint-disable no-var */
 declare global {
-  // eslint-disable-next-line no-var
   var Interval: number;
+  var projectileInterval: number;
+  var projectileSpeed: number;
+  var damageDelay: number;
 }
 
 export {};

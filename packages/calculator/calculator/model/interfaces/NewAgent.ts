@@ -1,20 +1,14 @@
-import { NewSkill } from './index.js';
-import { ClassEnum, NameEnum, OrganizationEnum, SizeEnum } from '../../enums/index.js';
+import { NewSkill, NewStats } from './index';
+import { ClassEnum, OrganizationEnum, CupSizeEnum } from '../../enums/index';
 
 export interface NewAgent {
-  name: NameEnum;
+  index: number;
+  name: string;
   title: string;
   organization: OrganizationEnum;
   bio: string;
-  cup_size: SizeEnum;
+  cup_size: CupSizeEnum;
   class: ClassEnum;
-  attack_speed: number;
-  normal_attack: number;
-  critical_rate: number;
-  critical_damage: number;
-  skill_damage: number;
-  base_skill_damage: number;
+  stats: NewStats;
   skill: NewSkill;
-  apply_skill_time?: number;
-  remove_skill_time?: number;
 }
