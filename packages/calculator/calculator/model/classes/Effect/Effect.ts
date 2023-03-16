@@ -70,6 +70,6 @@ export class Effect extends AbstractEffect {
   }
 
   is_expired(time: number) {
-    return time >= this.duration + this.begin;
+    return time <= this.begin - this.duration;
   }
 }

@@ -114,8 +114,6 @@ export class Agent {
   log(time: number, action: ActionType) {
     if (!this.logging_enabled || time <= 0) return;
 
-    // TODO: remove duplicates Cast | Remove Skill Effect
-
     const existingEntry = this.history.find((entry) => entry.time === time);
 
     if (existingEntry) {
