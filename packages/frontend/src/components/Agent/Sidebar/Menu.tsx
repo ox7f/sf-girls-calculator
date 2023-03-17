@@ -17,7 +17,7 @@ const Menu: React.FC<SidebarMenuProps> = ({ viewName, select }) => {
 
   return (
     <ul className="menu mb-3">
-      <li className="menu-item">
+      <li className="menu-item u-sticky u-top-0">
         <Search viewName="calculator" />
       </li>
 
