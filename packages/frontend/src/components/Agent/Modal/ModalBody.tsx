@@ -19,10 +19,10 @@ const ModalBody: React.FC<ModalBodyProps> = ({ agent, onChange }) => {
     attack_speed: { label: 'Attack Speed' },
     normal_attack: { label: 'Normal Attack' },
     skill_damage: { label: 'Skill Damage' },
-    critical_rate: { label: 'Critical Rate', step: 0.01, abbrTitle: '100% = 1' },
-    critical_damage: { label: 'Critical Damage', step: 0.01, abbrTitle: '100% = 1' },
-    projectile_number: { label: 'Projectile Number' },
-    cast_time: { label: 'Cast Time (seconds)' }
+    critical_rate: { label: 'Critical Rate', step: 0.01, abbrTitle: 'for reference: 100% = 1' },
+    critical_damage: { label: 'Critical Damage', step: 0.01, abbrTitle: 'for reference: 100% = 1' },
+    // projectile_number: { label: 'Projectile Number' },
+    // cast_time: { label: 'Cast Time (seconds)' }
   };
 
   return (

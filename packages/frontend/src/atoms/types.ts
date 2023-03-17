@@ -7,8 +7,8 @@ export type AgentItem = {
   skill_damage: number;
   critical_rate: number;
   critical_damage: number;
-  projectile_number: number;
-  cast_time: number;
+  // projectile_number: number;
+  // cast_time: number;
   [key: string]: string | number;
 };
 
