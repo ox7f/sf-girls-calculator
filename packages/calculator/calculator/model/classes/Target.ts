@@ -20,7 +20,7 @@ export class Target {
   take_damage(time: number, agent_damage: number) {
     if (time <= 0) return 0;
 
-    const damage = agent_damage * this.damage_taken_multiplier * this.weakness_multiplier;
+    const damage = Math.round(agent_damage * this.damage_taken_multiplier * this.weakness_multiplier);
     this.current_health -= damage;
 
     return damage;

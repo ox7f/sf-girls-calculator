@@ -12,11 +12,11 @@ const CustomTooltip: React.FC<TooltipProps<ValueType, string>> = ({ active, payl
       let tooltip = '';
 
       if (action.effect_type === EffectTypeEnum.None) {
-        tooltip = `${action.attack_mode} ${action.type} ${action.damage.toFixed(2)}`;
+        tooltip = `${action.attack_mode} ${action.type} ${action.damage}`;
       } else if (action.type === ActionEnum.Apply || action.type == ActionEnum.Remove) {
         tooltip = `${action.type} (${action.effect_type})`;
       } else if (action.effect_type === EffectTypeEnum.DOT || action.effect_type === EffectTypeEnum.Damage) {
-        tooltip = `${action.effect_type} ${action.damage.toFixed(2)}`;
+        tooltip = `${action.effect_type} ${action.damage}`;
       }
 
       actions.push(tooltip);
@@ -29,7 +29,7 @@ const CustomTooltip: React.FC<TooltipProps<ValueType, string>> = ({ active, payl
     return (
       <div key={name}>
         <p style={{ color }}>
-          <strong>{`${name}: ${event.total_damage.toFixed(0)} `}</strong>
+          <strong>{`${name}: ${event.total_damage} `}</strong>
           {getInfoText(event)}
         </p>
       </div>

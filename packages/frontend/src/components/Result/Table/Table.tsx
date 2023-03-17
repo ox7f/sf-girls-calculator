@@ -2,6 +2,7 @@ import { useSetAtom } from 'jotai';
 import { FaCog } from 'react-icons/fa';
 import { ResultType } from 'sf-girls-calculator-calculator';
 import { AgentNameAtom } from '../../../atoms';
+import { ClassTag } from '../../../utils';
 
 interface TableProps {
   result: ResultType;
@@ -16,12 +17,13 @@ const Table: React.FC<TableProps> = ({ result }) => {
   return (
     <div className="u-center">
       <label>Remaining Time: {remainingTime} second(s)</label>
-      <label>Remaining HP: {remainingHealth.toFixed(2)}</label>
+      <label>Remaining HP: {remainingHealth}</label>
 
       <table className="table">
         <thead>
           <tr>
             <th>#</th>
+            <th>Class</th>
             <th>Name</th>
             <th>Damage</th>
             <th>%</th>
@@ -39,8 +41,13 @@ const Table: React.FC<TableProps> = ({ result }) => {
             return (
               <tr key={index}>
                 <td>{index + 1}</td>
+                <td>
+                  <div className={`tag tag--sm ${ClassTag[agent.class]}`} style={{ cursor: 'default' }}>
+                    {agent.class}
+                  </div>
+                </td>
                 <td>{name}</td>
-                <td>{total_damage.toFixed(2)}</td>
+                <td>{total_damage}</td>
                 <td>{((total_damage / result.total_damage) * 100).toFixed(2)}</td>
                 <td onClick={() => setAgentName(name)} style={{ cursor: 'pointer' }}>
                   <a className="u-center mt-1 text-gray-600">
@@ -56,8 +63,8 @@ const Table: React.FC<TableProps> = ({ result }) => {
           <tr>
             <th>&sum;</th>
             <th></th>
-            <th>{result.total_damage.toFixed(2)}</th>
             <th></th>
+            <th>{result.total_damage}</th>
             <th></th>
           </tr>
         </tfoot>
