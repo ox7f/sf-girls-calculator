@@ -24,7 +24,7 @@ export class Fight {
 
     return {
       target: this.target,
-      team: this.team,
+      team: this.team.sort((a, b) => b.stats.total_damage - a.stats.total_damage),
       time: this.time,
       total_damage: this.team.reduce((pv: number, cv: Agent) => pv + cv.stats.total_damage, 0)
     };
