@@ -1,8 +1,8 @@
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useResetAtom } from 'jotai/utils';
-import { FaTimes } from 'react-icons/fa';
+import { FaEraser } from 'react-icons/fa';
 import { ChangeEvent, useEffect, useState } from 'react';
-import { AgentsAtom, FilteredAgentsAtom } from '../../atoms';
+import { AgentsAtom, FilteredAgentsAtom, SelectedAgentsAtom } from '../../atoms';
 
 interface SearchProps {
   viewName: 'calculator' | 'teamfinder';
@@ -10,13 +10,7 @@ interface SearchProps {
 
 const Search: React.FC<SearchProps> = ({ viewName }) => {
   const [value, setValue] = useState('');
-  const [isFocus, setFocus] = useState(false);
-
-  const setFilteredItems = useSetAtom(FilteredAgentsAtom);
   const resetFilteredItems = useResetAtom(FilteredAgentsAtom);
-
-  const items = useAtomValue(AgentsAtom);
-  const itemNames = items.map((item) => item.name);
 
   const reset = () => {
     setValue('');
@@ -24,6 +18,17 @@ const Search: React.FC<SearchProps> = ({ viewName }) => {
   };
 
   useEffect(reset, []);
+
+  const setFilteredItems = useSetAtom(FilteredAgentsAtom);
+  const resetSelectedItems = useResetAtom(SelectedAgentsAtom);
+
+  const items = useAtomValue(AgentsAtom);
+  const selectedItems = useAtomValue(SelectedAgentsAtom);
+  const itemNames = items.map((item) => item.name);
+
+  const unselect = () => {
+    resetSelectedItems();
+  };
 
   const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     const search = event.target.value;
@@ -37,18 +42,12 @@ const Search: React.FC<SearchProps> = ({ viewName }) => {
 
   return (
     <div className="form-group">
-      <input
-        value={value}
-        type="search"
-        onFocus={() => setFocus(true)}
-        onBlur={() => setFocus(false)}
-        className={`form-group-input ${isFocus ? 'animated pulse' : ''}`}
-        placeholder="Search"
-        onChange={changeHandler}
-      />
-      <button className="form-group-btn btn btn-animated hover-grow animated" onClick={reset}>
-        <FaTimes />
-      </button>
+      <input value={value} type="search" className="form-group-input" placeholder="Search" onChange={changeHandler} />
+      {selectedItems[viewName].length > 0 && (
+        <button className="form-group-btn btn btn-animated hover-grow animated" onClick={unselect}>
+          <FaEraser />
+        </button>
+      )}
     </div>
   );
 };
