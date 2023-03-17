@@ -277,7 +277,6 @@ export const Denka = {
     skill_damage: 723,
     base_skill_damage: 723
   } as NewStats,
-  cast_time: 0.25,
   skill: {
     name: 'Devastating Pincer Strike',
     description: 'shoots 3 electric drills, each dealing 24214 damage. cooldown: 9',
@@ -301,7 +300,7 @@ export const Reika = {
     critical_damage: 2.038,
     skill_damage: 604,
     base_skill_damage: 604,
-    cast_time: 0.75
+    cast_time: 1
   } as NewStats,
   skill: {
     name: 'Might of the Alliance',
@@ -326,7 +325,7 @@ export const Noa = {
     critical_damage: 2.038,
     skill_damage: 880,
     base_skill_damage: 880,
-    cast_time: 0.5
+    cast_time: 1
   } as NewStats,
   skill: {
     name: 'Enhanced Plasma Cannon',
@@ -391,7 +390,7 @@ export const Larisa = {
     critical_damage: 2.038,
     skill_damage: 1552,
     base_skill_damage: 1552,
-    cast_time: 0.5
+    cast_time: 1
   } as NewStats,
   skill: {
     name: 'Guardian of the Motherland',
@@ -543,7 +542,7 @@ export const Sara = {
     critical_damage: 2.038,
     skill_damage: 811,
     base_skill_damage: 811,
-    cast_time: 0.5
+    cast_time: 1
   } as NewStats,
   skill: {
     name: 'Paralyzing Stare',
@@ -965,7 +964,7 @@ export const Riho = {
     critical_damage: 2.038,
     skill_damage: 1018,
     base_skill_damage: 1018,
-    cast_time: 0.5
+    cast_time: 1
   } as NewStats,
   skill: {
     name: 'Furious Flurry',
@@ -991,7 +990,7 @@ export const Mitsu = {
     critical_damage: 2.038,
     skill_damage: 1949,
     base_skill_damage: 1949,
-    cast_time: 0.5
+    cast_time: 1
   } as NewStats,
   skill: {
     name: 'Soaring Strike',
@@ -1070,7 +1069,6 @@ export const Sayaka = {
     skill_damage: 686,
     base_skill_damage: 686
   } as NewStats,
-  cast_time: 0.5,
   skill: {
     name: 'Omen of Dread',
     description: 'summons 4 lightning birds, each dealing 30682 damage. cooldown: 11',
@@ -1181,7 +1179,6 @@ export const Hoshiko = {
     skill_damage: 1613,
     base_skill_damage: 1613
   } as NewStats,
-  cast_time: 0.5,
   skill: {
     name: 'Crystalline Kaleidoscope Strike',
     description:
@@ -1194,7 +1191,7 @@ export const Hoshiko = {
           team
             .filter((agent) => agent.class === ClassEnum.Striker)
             .forEach((agent) => {
-              agent.stats.attack_speed *= 1.2;
+              agent.stats.attack_speed *= 1.1;
               agent.stats.normal_attack *= 1.4;
               agent.stats.skill_damage *= 1.4;
             });
@@ -1204,7 +1201,7 @@ export const Hoshiko = {
           team
             .filter((agent) => agent.class === ClassEnum.Striker)
             .forEach((agent) => {
-              agent.stats.attack_speed /= 1.2;
+              agent.stats.attack_speed /= 1.1;
               agent.stats.normal_attack /= 1.4;
               agent.stats.skill_damage /= 1.4;
             });
@@ -1234,7 +1231,6 @@ export const Feme = {
     skill_damage: 2099,
     base_skill_damage: 2099
   } as NewStats,
-  cast_time: 0.5, // TODO: should be 1 => but result is not even close
   skill: {
     name: 'Requiem of Pain',
     description:
@@ -1458,7 +1454,6 @@ export const Hami = {
     skill_damage: 2727,
     base_skill_damage: 2727
   } as NewStats,
-  cast_time: 0.5,
   skill: {
     name: "Hornet's Vengeance",
     description:
@@ -1563,7 +1558,7 @@ export const Rosalie = {
           team
             .filter((agent) => agent.class === ClassEnum.Artillery)
             .forEach((agent) => {
-              agent.stats.attack_speed *= 1.2;
+              agent.stats.attack_speed *= 1.1;
               agent.stats.normal_attack *= 1.4;
               agent.stats.skill_damage *= 1.4;
             });
@@ -1573,7 +1568,7 @@ export const Rosalie = {
           team
             .filter((agent) => agent.class === ClassEnum.Artillery)
             .forEach((agent) => {
-              agent.stats.attack_speed /= 1.2;
+              agent.stats.attack_speed /= 1.1;
               agent.stats.normal_attack /= 1.4;
               agent.stats.skill_damage /= 1.4;
             });
@@ -1615,7 +1610,7 @@ export const Toki = {
           team
             .filter((agent) => agent.class === ClassEnum.Gunner)
             .forEach((agent) => {
-              agent.stats.attack_speed *= 1.2;
+              agent.stats.attack_speed *= 1.1;
               agent.stats.normal_attack *= 1.4;
               agent.stats.skill_damage *= 1.4;
             });
@@ -1625,7 +1620,7 @@ export const Toki = {
           team
             .filter((agent) => agent.class === ClassEnum.Gunner)
             .forEach((agent) => {
-              agent.stats.attack_speed /= 1.2;
+              agent.stats.attack_speed /= 1.1;
               agent.stats.normal_attack /= 1.4;
               agent.stats.skill_damage /= 1.4;
             });
@@ -1654,7 +1649,6 @@ export const Wu = {
     skill_damage: 613,
     base_skill_damage: 613
   } as NewStats,
-  cast_time: 0.5,
   skill: {
     name: 'Jungle Drums',
     description:
@@ -1709,7 +1703,6 @@ export const ZiLong = {
     skill_damage: 1088,
     base_skill_damage: 1088
   } as NewStats,
-  cast_time: 0.5,
   skill: {
     name: "Dragon's Claw",
     description:
@@ -1875,7 +1868,6 @@ export const Shiko = {
     skill_damage: 2434,
     base_skill_damage: 2434
   } as NewStats,
-  cast_time: 0.5,
   skill: {
     name: 'Atomic Prowess: Sword Strike',
     description: 'increases self attack speed to 450% and damage to 230% for 11 seconds. cooldown: 10',
@@ -2278,21 +2270,23 @@ export const Victoria = {
         apply: (params: EffectParamType) => {
           const { team } = params;
           const support_num = team.filter((agent) => agent.class === ClassEnum.Support).length;
+          const damage_buff = 1.15 + support_num * 0.05;
           team
             .filter((agent) => agent.class === ClassEnum.Striker)
             .forEach((agent) => {
-              agent.stats.normal_attack *= 0.15 + support_num * 0.05;
-              agent.stats.skill_damage *= 0.15 + support_num * 0.05;
+              agent.stats.normal_attack *= damage_buff;
+              agent.stats.skill_damage *= damage_buff;
             });
         },
         remove: (params: EffectParamType) => {
           const { team } = params;
           const support_num = team.filter((agent) => agent.class === ClassEnum.Support).length;
+          const damage_buff = 1.15 + support_num * 0.05;
           team
             .filter((agent) => agent.class === ClassEnum.Striker)
             .forEach((agent) => {
-              agent.stats.normal_attack /= 0.15 + support_num * 0.05;
-              agent.stats.skill_damage /= 0.15 + support_num * 0.05;
+              agent.stats.normal_attack /= damage_buff;
+              agent.stats.skill_damage /= damage_buff;
             });
         },
         duration: 7
@@ -2318,7 +2312,7 @@ export const Laura = {
     critical_damage: 2.038,
     skill_damage: 680,
     base_skill_damage: 680,
-    cast_time: 0.5
+    cast_time: 1
   } as NewStats,
   skill: {
     name: 'Defensive Anchor: Ultimate Shielding',
@@ -2428,7 +2422,6 @@ export const Uta = {
     skill_damage: 2452,
     base_skill_damage: 2452
   } as NewStats,
-  cast_time: 0.5,
   skill: {
     name: 'Aura of Light',
     description:
