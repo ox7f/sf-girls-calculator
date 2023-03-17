@@ -36,9 +36,9 @@ export const findAgents = (names: string[], source: NewAgent[], userSource: Agen
         critical_rate: userItem.critical_rate,
         critical_damage: userItem.critical_damage,
         skill_damage: userItem.skill_damage,
-        base_skill_damage: userItem.skill_damage,
-        projectile_number: userItem.projectile_number,
-        cast_time: userItem.cast_time
+        base_skill_damage: userItem.skill_damage
+        // projectile_number: userItem.projectile_number,
+        // cast_time: userItem.cast_time
       }
     };
   });
