@@ -1,5 +1,5 @@
 import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
-import { Agent, ResultType } from 'sf-girls-calculator-calculator';
+import { Agent, ResultType } from '@sf-girls-calculator/calculator';
 
 import { getColorFromString, prepareGraphData } from '../../../utils/Results';
 import { CustomTooltip } from './index';

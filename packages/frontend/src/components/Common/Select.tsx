@@ -9,7 +9,7 @@ interface SelectProps {
   onChange: (event: ChangeEvent<HTMLSelectElement>) => void;
 }
 
-const Select: React.FC<SelectProps> = ({ value, options, onChange }) => {
+export const Select: React.FC<SelectProps> = ({ value, options, onChange }) => {
   return (
     <select className="select" value={value} onChange={onChange}>
       {options.map((option) => (
@@ -20,5 +20,3 @@ const Select: React.FC<SelectProps> = ({ value, options, onChange }) => {
     </select>
   );
 };
-
-export default Select;

@@ -2,15 +2,18 @@ import { useAtomValue, useSetAtom } from 'jotai';
 import { useResetAtom } from 'jotai/utils';
 import { FaEraser } from 'react-icons/fa';
 import { ChangeEvent, useEffect, useState } from 'react';
-import { AgentsAtom, FilteredAgentsAtom, SelectedAgentsAtom } from '../../atoms';
+import { AgentListAtom, FilteredAgentListAtom, SelectedAgentListAtom } from '../../atoms';
 
 interface SearchProps {
   viewName: 'calculator' | 'teamfinder';
 }
 
-const Search: React.FC<SearchProps> = ({ viewName }) => {
+export const Search: React.FC<SearchProps> = ({ viewName }) => {
   const [value, setValue] = useState('');
-  const resetFilteredItems = useResetAtom(FilteredAgentsAtom);
+  const setFilteredItems = useSetAtom(FilteredAgentListAtom);
+
+  const resetFilteredItems = useResetAtom(FilteredAgentListAtom);
+  const resetSelectedItems = useResetAtom(SelectedAgentListAtom);
 
   const reset = () => {
     setValue('');
@@ -19,11 +22,8 @@ const Search: React.FC<SearchProps> = ({ viewName }) => {
 
   useEffect(reset, []);
 
-  const setFilteredItems = useSetAtom(FilteredAgentsAtom);
-  const resetSelectedItems = useResetAtom(SelectedAgentsAtom);
-
-  const items = useAtomValue(AgentsAtom);
-  const selectedItems = useAtomValue(SelectedAgentsAtom);
+  const items = useAtomValue(AgentListAtom);
+  const selectedItems = useAtomValue(SelectedAgentListAtom);
   const itemNames = items.map((item) => item.name);
 
   const unselect = () => {
@@ -51,5 +51,3 @@ const Search: React.FC<SearchProps> = ({ viewName }) => {
     </div>
   );
 };
-
-export default Search;

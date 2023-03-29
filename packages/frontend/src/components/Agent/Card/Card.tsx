@@ -1,18 +1,18 @@
 import { useAtomValue, useSetAtom } from 'jotai';
-import { NewAgent } from 'sf-girls-calculator-calculator';
+import { Agent } from '@sf-girls-calculator/calculator';
 
 import { CardActionBar, CardBody, CardContainer, CardTitle } from './index';
-import { AgentNameAtom, SelectedAgentsAtom } from '../../../atoms';
+import { AgentNameAtom, SelectedAgentListAtom } from '../../../atoms';
 import { isSelected } from '../../../utils';
 
 interface CardProps {
-  agent: NewAgent;
+  agent: Agent;
   viewName: 'calculator' | 'teamfinder';
-  select: (agent: NewAgent) => void;
+  select: (agent: Agent) => void;
 }
 
 const Card: React.FC<CardProps> = ({ agent, viewName, select }) => {
-  const selectedAgents = useAtomValue(SelectedAgentsAtom);
+  const selectedAgents = useAtomValue(SelectedAgentListAtom);
   const setAgentName = useSetAtom(AgentNameAtom);
 
   return (

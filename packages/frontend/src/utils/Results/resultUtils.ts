@@ -1,4 +1,4 @@
-import { HistoryType, ResultType } from 'sf-girls-calculator-calculator';
+import { HistoryType, ResultType } from '@sf-girls-calculator/calculator';
 
 export const getColorFromString = (str: string) => {
   let hash = 0;

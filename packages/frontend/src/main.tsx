@@ -6,7 +6,11 @@ import { StrictMode } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import App from './App';
-import { CalculatorPage, ErrorPage, HomePage, TeamfinderPage } from './pages';
+import { AuthPage, CalculatorPage, ErrorPage, HomePage, TeamfinderPage } from './pages';
+import { withAuth } from './withAuth';
+
+const ProtectedCalculator = withAuth(CalculatorPage);
+const ProtectedTeamfinder = withAuth(TeamfinderPage);
 
 const router = createBrowserRouter([
   {
@@ -14,18 +18,10 @@ const router = createBrowserRouter([
     element: <App />,
     errorElement: <ErrorPage />,
     children: [
-      {
-        path: '',
-        element: <HomePage />
-      },
-      {
-        path: 'calculator',
-        element: <CalculatorPage />
-      },
-      {
-        path: 'teamfinder',
-        element: <TeamfinderPage />
-      }
+      { path: '/', element: <HomePage /> },
+      { path: '/authenticate', element: <AuthPage /> },
+      { path: '/calculator', element: <ProtectedCalculator /> },
+      { path: '/teamfinder', element: <ProtectedTeamfinder /> }
     ]
   }
 ]);

@@ -8,20 +8,20 @@
   "main": "index.js",
   "scripts": {
     "typecheck": "npm run typecheck:calculator && npm run typecheck:frontend",
-    "typecheck:calculator": "npm run typecheck --workspace=sf-girls-calculator-calculator",
-    "typecheck:frontend": "npm run typecheck --workspace=sf-girls-calculator-frontend",
+    "typecheck:calculator": "npm run typecheck --workspace=@sf-girls-calculator/calculator",
+    "typecheck:frontend": "npm run typecheck --workspace=@sf-girls-calculator/frontend",
     "lint": "npm run lint:calculator && npm run lint:frontend",
-    "lint:calculator": "npm run lint --workspace=sf-girls-calculator-calculator",
-    "lint:frontend": "npm run lint --workspace=sf-girls-calculator-frontend",
+    "lint:calculator": "npm run lint --workspace=@sf-girls-calculator/calculator",
+    "lint:frontend": "npm run lint --workspace=@sf-girls-calculator/frontend",
     "build": "npm run build:calculator && npm run build:frontend",
-    "build:frontend": "npm run build --workspace=sf-girls-calculator-frontend",
-    "build:calculator": "npm run build --workspace=sf-girls-calculator-calculator",
+    "build:frontend": "npm run build --workspace=@sf-girls-calculator/frontend",
+    "build:calculator": "npm run build --workspace=@sf-girls-calculator/calculator",
     "format": "npm run format:calculator && npm run format:frontend",
-    "format:frontend": "npm run format --workspace=sf-girls-calculator-frontend",
-    "format:calculator": "npm run format --workspace=sf-girls-calculator-calculator",
-    "start:calculator": "npm run start --workspace=sf-girls-calculator-calculator",
-    "start:frontend": "npm run dev --workspace=sf-girls-calculator-frontend",
-    "preview:frontend": "npm run preview --workspace=sf-girls-calculator-frontend"
+    "format:frontend": "npm run format --workspace=@sf-girls-calculator/frontend",
+    "format:calculator": "npm run format --workspace=@sf-girls-calculator/calculator",
+    "start:calculator": "npm run start --workspace=@sf-girls-calculator/calculator",
+    "start:frontend": "npm run dev --workspace=@sf-girls-calculator/frontend",
+    "preview:frontend": "npm run preview --workspace=@sf-girls-calculator/frontend"
   },
   "devDependencies": {
     "prettier": "^2.8.4"

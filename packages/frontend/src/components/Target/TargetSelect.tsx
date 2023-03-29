@@ -1,37 +1,62 @@
 import { useAtom, useAtomValue } from 'jotai';
-import { ChangeEvent, useState } from 'react';
-import { SelectedTargetsAtom, TargetsAtom } from '../../atoms';
-import { Select } from '../Common';
+import { ChangeEvent, useEffect, useMemo, useState } from 'react';
+import { NewTarget } from '@sf-girls-calculator/calculator';
 
-interface TargetSelectI {
-  viewName: 'calculator' | 'teamfinder';
-}
+import { firestore } from '../../firebase';
+import { collection, getDocs } from 'firebase/firestore';
+import { TargetConverter } from '../../firebase/converter';
 
-const TargetSelect: React.FC<TargetSelectI> = ({ viewName }) => {
-  const Targets = useAtomValue(TargetsAtom);
-  const [selectedTarget, setSelectedTarget] = useAtom(SelectedTargetsAtom);
-  const [targetValue, setTargetValue] = useState(selectedTarget[viewName][0]);
+import { ErrorMessage, Select } from '../common';
+import { CurrentViewAtom, SelectedTargetListAtom } from '../../atoms';
 
-  const selectOptions = Targets.map((target) => ({
-    value: target.name,
-    label: target.name
-  }));
+const TargetSelect: React.FC = () => {
+  const [isLoading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+  const [targets, setTargets] = useState<NewTarget[]>([]);
 
-  const select = (event: ChangeEvent<HTMLSelectElement>) => {
-    const name = event.target.value;
+  const [selectedTarget, setSelectedTarget] = useAtom(SelectedTargetListAtom);
+  const viewName = useAtomValue(CurrentViewAtom);
 
-    setSelectedTarget((prev) => {
-      // TODO: select multiple targets?
-      // const selected = prev[viewName];
-      // if (selected.includes(name)) return { ...prev, [viewName]: selected.filter((n) => n !== name) };
-      return { ...prev, [viewName]: [name] };
-    });
-    setTargetValue(name);
+  const fetchTargets = async () => {
+    try {
+      const querySnapshot = await getDocs(collection(firestore, 'targets').withConverter(TargetConverter));
+      const targetOptions = querySnapshot.docs.map((doc) => doc.data() as NewTarget);
+      setTargets(targetOptions);
+    } catch (err) {
+      setError((err as Error).message);
+    }
+
+    setLoading(false);
+    setError('');
   };
+
+  useEffect(() => {
+    fetchTargets();
+  }, []);
+
+  const selectOptions = useMemo(
+    () =>
+      targets.map((target) => ({
+        value: target.name,
+        label: target.name
+      })),
+    [targets]
+  );
+
+  const select = (event: ChangeEvent<HTMLSelectElement>) =>
+    setSelectedTarget((prev) => ({ ...prev, [viewName]: [event.target.value] }));
 
   return (
     <div className="u-center">
-      <Select value={targetValue} options={selectOptions} onChange={select} />
+      {error && <ErrorMessage message={error} />}
+
+      {isLoading && (
+        <select className="animated pulse line select bg-gray-300 w-100p">
+          <option>loading...</option>
+        </select>
+      )}
+
+      {!isLoading && <Select value={selectedTarget[viewName][0]} options={selectOptions} onChange={select} />}
     </div>
   );
 };

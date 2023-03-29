@@ -8,7 +8,7 @@ interface ButtonProps {
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
 }
 
-const Button: React.FC<ButtonProps> = ({ text, disabled = false, isAnimated = false, type = '', onClick }) => {
+export const Button: React.FC<ButtonProps> = ({ text, disabled = false, isAnimated = false, type = '', onClick }) => {
   const animationClass = isAnimated ? 'pulse' : '';
   const disabledClass = disabled ? 'btn-transparent btn--disabled outline' : '';
   const className = `btn btn-animated hover-grow animated bounceIn ${animationClass} ${disabledClass} ${type}`;
@@ -19,5 +19,3 @@ const Button: React.FC<ButtonProps> = ({ text, disabled = false, isAnimated = fa
     </button>
   );
 };
-
-export default Button;

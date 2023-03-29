@@ -58,7 +58,8 @@ export const Neve = {
     critical_rate: 0.84,
     critical_damage: 2.038,
     skill_damage: 569,
-    base_skill_damage: 569
+    base_skill_damage: 569,
+    cast_time: 1
   } as NewStats,
   skill: {
     name: 'Absolute Zero',
@@ -111,7 +112,12 @@ export const Mika = {
   skill: {
     name: "Ocean's Torrent",
     description: 'smashes the ground and creates 4 sword-quakes each dealing 11422 damage. cooldown: 11',
-    effects: [{ type: EffectTypeEnum.Damage, damage: () => 4 * 11422 } as NewDamageEffect],
+    effects: [
+      { type: EffectTypeEnum.Damage, damage: () => 11422 } as NewDamageEffect,
+      { type: EffectTypeEnum.Damage, damage: () => 11422 } as NewDamageEffect,
+      { type: EffectTypeEnum.Damage, damage: () => 11422 } as NewDamageEffect,
+      { type: EffectTypeEnum.Damage, damage: () => 11422 } as NewDamageEffect
+    ],
     cooldown: 11
   } as NewSkill
 } as NewAgent;
@@ -130,12 +136,16 @@ export const Sora = {
     critical_rate: 0.84,
     critical_damage: 2.038,
     skill_damage: 379,
-    base_skill_damage: 379
+    base_skill_damage: 379,
+    projectile_number: 2
   } as NewStats,
   skill: {
     name: 'Death From Above',
     description: 'shoots two electric bullets, each dealing 27891 damage. cooldown: 8',
-    effects: [{ type: EffectTypeEnum.Damage, damage: () => 2 * 27891 } as NewDamageEffect],
+    effects: [
+      { type: EffectTypeEnum.Damage, damage: () => 27891 } as NewDamageEffect,
+      { type: EffectTypeEnum.Damage, damage: () => 27891 } as NewDamageEffect
+    ],
     cooldown: 8
   } as NewSkill
 } as NewAgent;
@@ -154,12 +164,18 @@ export const Ember = {
     critical_rate: 0.84,
     critical_damage: 2.038,
     skill_damage: 362,
-    base_skill_damage: 362
+    base_skill_damage: 362,
+    projectile_number: 2
   } as NewStats,
   skill: {
     name: 'Dance of Death',
     description: 'shoots 4 enhanced bullets, each dealing 13991 damage cooldown: 8',
-    effects: [{ type: EffectTypeEnum.Damage, damage: () => 4 * 13991 } as NewDamageEffect],
+    effects: [
+      { type: EffectTypeEnum.Damage, damage: () => 13991 } as NewDamageEffect,
+      { type: EffectTypeEnum.Damage, damage: () => 13991 } as NewDamageEffect,
+      { type: EffectTypeEnum.Damage, damage: () => 13991 } as NewDamageEffect,
+      { type: EffectTypeEnum.Damage, damage: () => 13991 } as NewDamageEffect
+    ],
     cooldown: 8
   } as NewSkill
 } as NewAgent;
@@ -207,7 +223,12 @@ export const Irina = {
   skill: {
     name: 'Rocket Ricochet',
     description: 'fires 4 missiles at target, each dealing 14230 damage. cooldown: 6',
-    effects: [{ type: EffectTypeEnum.Damage, damage: () => 4 * 14230 } as NewDamageEffect],
+    effects: [
+      { type: EffectTypeEnum.Damage, damage: () => 14230 } as NewDamageEffect,
+      { type: EffectTypeEnum.Damage, damage: () => 14230 } as NewDamageEffect,
+      { type: EffectTypeEnum.Damage, damage: () => 14230 } as NewDamageEffect,
+      { type: EffectTypeEnum.Damage, damage: () => 14230 } as NewDamageEffect
+    ],
     cooldown: 6
   } as NewSkill
 } as NewAgent;
@@ -226,7 +247,8 @@ export const Yuuha = {
     critical_rate: 0.84,
     critical_damage: 2.038,
     skill_damage: 604,
-    base_skill_damage: 604
+    base_skill_damage: 604,
+    projectile_number: 2
   } as NewStats,
   skill: {
     name: 'Dance of the Lotus',
@@ -261,6 +283,7 @@ export const Uzu = {
   } as NewSkill
 } as NewAgent;
 
+// TODO:
 export const Denka = {
   index: 11,
   name: 'Denka',
@@ -280,7 +303,7 @@ export const Denka = {
   skill: {
     name: 'Devastating Pincer Strike',
     description: 'shoots 3 electric drills, each dealing 24214 damage. cooldown: 9',
-    effects: [{ type: EffectTypeEnum.Damage, damage: () => 3 * 24214 } as NewDamageEffect],
+    effects: [{ type: EffectTypeEnum.DOT, duration: 1, interval: 0.3, damage: () => 24892 } as NewDOTEffect],
     cooldown: 9
   } as NewSkill
 } as NewAgent;
@@ -299,17 +322,17 @@ export const Reika = {
     critical_rate: 0.84,
     critical_damage: 2.038,
     skill_damage: 604,
-    base_skill_damage: 604,
-    cast_time: 1
+    base_skill_damage: 604
   } as NewStats,
   skill: {
     name: 'Might of the Alliance',
     description: 'launches a rocket towards the target, dealing 86932 damage. cooldown: 9',
-    effects: [{ type: EffectTypeEnum.Damage, damage: () => 86932 } as NewDamageEffect],
+    effects: [{ type: EffectTypeEnum.DOT, duration: 1, interval: 1, damage: () => 86932 } as NewDamageEffect],
     cooldown: 9
   } as NewSkill
 } as NewAgent;
 
+// TODO:
 export const Noa = {
   index: 13,
   name: 'Noa',
@@ -414,8 +437,7 @@ export const Rui = {
     critical_rate: 0.84,
     critical_damage: 2.038,
     skill_damage: 964,
-    base_skill_damage: 964,
-    cast_time: 1
+    base_skill_damage: 964
   } as NewStats,
   skill: {
     name: "Devil's Contract",
@@ -461,7 +483,12 @@ export const Kotora = {
     name: 'Roar of the Beast',
     description:
       'launches an artillery shell towards the target location, which splits into 4 shells, each dealing 16404 damage. cooldown: 11',
-    effects: [{ type: EffectTypeEnum.Damage, damage: () => 4 * 16404 } as NewDamageEffect],
+    effects: [
+      { type: EffectTypeEnum.Damage, damage: () => 16404 } as NewDamageEffect,
+      { type: EffectTypeEnum.Damage, damage: () => 16404 } as NewDamageEffect,
+      { type: EffectTypeEnum.Damage, damage: () => 16404 } as NewDamageEffect,
+      { type: EffectTypeEnum.Damage, damage: () => 16404 } as NewDamageEffect
+    ],
     cooldown: 11
   } as NewSkill
 } as NewAgent;
@@ -577,6 +604,7 @@ export const Mai = {
   } as NewSkill
 } as NewAgent;
 
+// TODO:
 export const Tsukiko = {
   index: 22,
   name: 'Tsukiko',
@@ -591,7 +619,8 @@ export const Tsukiko = {
     critical_rate: 0.84,
     critical_damage: 2.038,
     skill_damage: 1552,
-    base_skill_damage: 1552
+    base_skill_damage: 1552,
+    cast_time: 1
   } as NewStats,
   skill: {
     name: 'Bulletstorm',
@@ -610,10 +639,7 @@ export const Tsukiko = {
         },
         duration: 9
       } as NewEffect,
-      {
-        type: EffectTypeEnum.Damage,
-        damage: () => 23285
-      } as NewDamageEffect
+      { type: EffectTypeEnum.DOT, duration: 4, interval: 1 / 4, damage: () => 1450 } as NewDamageEffect
     ],
     cooldown: 38
   } as NewSkill
@@ -680,7 +706,8 @@ export const Coco = {
     critical_rate: 0.84,
     critical_damage: 2.038,
     skill_damage: 2398,
-    base_skill_damage: 2398
+    base_skill_damage: 2398,
+    projectile_number: 3
   } as NewStats,
   skill: {
     name: 'Thrashing Paws',
@@ -786,7 +813,7 @@ export const Hitomi = {
     critical_damage: 2.038,
     skill_damage: 1518,
     base_skill_damage: 1518,
-    cast_time: 1
+    cast_time: 2
   } as NewStats,
   skill: {
     name: 'Cycle of Eternal Pain',
@@ -828,7 +855,7 @@ export const Cadence = {
   skill: {
     name: 'Armament Strike',
     description: 'calls in laser barrage and deals 68821 damage to all monsters. cooldown: 10',
-    effects: [{ type: EffectTypeEnum.Damage, damage: () => 68821 } as NewDamageEffect],
+    effects: [{ type: EffectTypeEnum.DOT, duration: 0.8, interval: 0.1, damage: () => 8603 } as NewDamageEffect],
     cooldown: 10
   } as NewSkill
 } as NewAgent;
@@ -878,7 +905,7 @@ export const Sizuko = {
     name: "Mortician's Touch",
     description:
       'throws a soul-scythe, after it attach on the enemy will split into 4 souls, each dealing 35211 damage and inducing fear to the enemy for 4 seconds. cooldown: 18',
-    effects: [{ type: EffectTypeEnum.Damage, damage: () => 4 * 35211 } as NewDamageEffect],
+    effects: [{ type: EffectTypeEnum.Damage, damage: () => 4 * 35211 } as NewDamageEffect], // 126,980
     cooldown: 18
   } as NewSkill
 } as NewAgent;
@@ -897,7 +924,8 @@ export const Chihiro = {
     critical_rate: 0.84,
     critical_damage: 2.038,
     skill_damage: 3898,
-    base_skill_damage: 3898
+    base_skill_damage: 3898,
+    projectile_number: 4
   } as NewStats,
   skill: {
     name: 'Shark Bite',
@@ -944,7 +972,7 @@ export const Mei = {
   skill: {
     name: 'Ringlets of Death',
     description: 'throws out a chakram, ricocheting onto 4 enemies, dealing 24463 damage to each enemy. cooldown: 12',
-    effects: [{ type: EffectTypeEnum.Damage, damage: () => 4 * 24463 } as NewDamageEffect],
+    effects: [{ type: EffectTypeEnum.DOT, duration: 0.4, interval: 0.1, damage: () => 24463 } as NewDamageEffect],
     cooldown: 12
   } as NewSkill
 } as NewAgent;
@@ -970,7 +998,7 @@ export const Riho = {
     name: 'Furious Flurry',
     description:
       'summons a group of giant redhounds at the target location, dealing 76324 damage over 2 seconds. cooldown: 9',
-    effects: [{ type: EffectTypeEnum.Damage, damage: () => 76324 } as NewDamageEffect],
+    effects: [{ type: EffectTypeEnum.DOT, duration: 2, interval: 1 / 4, damage: () => 9541 } as NewDamageEffect],
     cooldown: 9
   } as NewSkill
 } as NewAgent;
@@ -990,12 +1018,12 @@ export const Mitsu = {
     critical_damage: 2.038,
     skill_damage: 1949,
     base_skill_damage: 1949,
-    cast_time: 1
+    projectile_number: 4
   } as NewStats,
   skill: {
     name: 'Soaring Strike',
     description: 'shoots mega laser beams dealing 77963 damage. cooldown: 14',
-    effects: [{ type: EffectTypeEnum.Damage, damage: () => 77963 } as NewDamageEffect],
+    effects: [{ type: EffectTypeEnum.DOT, duration: 2, interval: 1 / 8, damage: () => 4873 } as NewDamageEffect],
     cooldown: 14
   } as NewSkill
 } as NewAgent;
@@ -1028,6 +1056,7 @@ export const Akina = {
   } as NewSkill
 } as NewAgent;
 
+// TODO:
 export const Akari = {
   index: 35,
   name: 'Akari',
@@ -1047,8 +1076,8 @@ export const Akari = {
   skill: {
     name: 'Riposte',
     description:
-      'summons a damage circle under her feet dealing total 53935 damage in 1 second, then will turn into a healing circle, heal friendly units for total (default skill damage * 7000%) in 3 seconds. cooldown: 7',
-    effects: [{ type: EffectTypeEnum.DOT, duration: 1, interval: 1 / 8, damage: () => 54208 / 8 } as NewDOTEffect],
+      'Summons a damaging circle beneath her feet that inflicts a total of "x" damage in a single second. Afterward, the circle transforms into a healing circle that restores the health of friendly units for an amount equivalent to the default skill damage multiplied by 7000% over a period of three seconds. This skill has a cooldown time of seven seconds. Note that the damage and cooldown time may vary depending on the agent\'s level.',
+    effects: [{ type: EffectTypeEnum.DOT, duration: 1, interval: 1 / 8, damage: () => 6776 } as NewDOTEffect],
     cooldown: 7
   } as NewSkill
 } as NewAgent;
@@ -1072,7 +1101,12 @@ export const Sayaka = {
   skill: {
     name: 'Omen of Dread',
     description: 'summons 4 lightning birds, each dealing 30682 damage. cooldown: 11',
-    effects: [{ type: EffectTypeEnum.Damage, damage: () => 4 * 30682 } as NewDamageEffect],
+    effects: [
+      { type: EffectTypeEnum.Damage, damage: () => 30682 } as NewDamageEffect,
+      { type: EffectTypeEnum.Damage, damage: () => 30682 } as NewDamageEffect,
+      { type: EffectTypeEnum.Damage, damage: () => 30682 } as NewDamageEffect,
+      { type: EffectTypeEnum.Damage, damage: () => 30682 } as NewDamageEffect
+    ],
     cooldown: 11
   } as NewSkill
 } as NewAgent;
@@ -1088,12 +1122,13 @@ export const Momoko = {
   class: ClassEnum.Gunner,
   stats: {
     attack_speed: 1,
-    normal_attack: 2236,
+    normal_attack: 2160,
     critical_rate: 0.94,
     critical_damage: 2.038,
     skill_damage: 2160,
     base_skill_damage: 2160,
-    cast_time: 1
+    cast_time: 1,
+    projectile_number: 2
   } as NewStats,
   skill: {
     name: 'Piercing Bullet',
@@ -1115,7 +1150,7 @@ export const Momoko = {
         duration: 4
       } as NewEffect,
       // TODO:
-      { type: EffectTypeEnum.DOT, duration: 4, interval: 0.2, damage: () => 447 * 5 } as NewDOTEffect
+      { type: EffectTypeEnum.DOT, duration: 4, interval: 0.04, damage: () => 432 } as NewDOTEffect
     ],
     cooldown: 15
   } as NewSkill
@@ -1177,7 +1212,8 @@ export const Hoshiko = {
     critical_rate: 0.69,
     critical_damage: 2.018,
     skill_damage: 1613,
-    base_skill_damage: 1613
+    base_skill_damage: 1613,
+    cast_time: 2
   } as NewStats,
   skill: {
     name: 'Crystalline Kaleidoscope Strike',
@@ -1214,7 +1250,6 @@ export const Hoshiko = {
   } as NewSkill
 } as NewAgent;
 
-// TODO:
 export const Feme = {
   index: 40,
   name: 'Feme',
@@ -1243,12 +1278,14 @@ export const Feme = {
           agent.stats.normal_attack *= 4.6;
           agent.stats.skill_damage *= 4.6;
           agent.stats.critical_rate *= 11.6;
+          agent.stats.projectile_number = 2;
         },
         remove: (params: EffectParamType) => {
           const { agent } = params;
           agent.stats.normal_attack /= 4.6;
           agent.stats.skill_damage /= 4.6;
           agent.stats.critical_rate /= 11.6;
+          agent.stats.projectile_number = 1;
         },
         duration: 12
       } as NewEffect
@@ -1257,6 +1294,7 @@ export const Feme = {
   } as NewSkill
 } as NewAgent;
 
+// TODO:
 export const NeveX = {
   index: 41,
   name: 'Neve X',
@@ -1294,13 +1332,14 @@ export const NeveX = {
         },
         duration: 14
       } as NewEffect,
-      { type: EffectTypeEnum.DOT, duration: 2, interval: 1 / 8, damage: () => 691 } as NewDOTEffect
+      { type: EffectTypeEnum.DOT, duration: 3, interval: 1 / 8, damage: () => 691 } as NewDOTEffect
     ],
     is_stackable: true,
     cooldown: 20
   } as NewSkill
 } as NewAgent;
 
+// TODO:
 export const Eiko = {
   index: 42,
   name: 'Eiko',
@@ -1315,7 +1354,8 @@ export const Eiko = {
     critical_rate: 0.94,
     critical_damage: 2.038,
     skill_damage: 2160,
-    base_skill_damage: 2160
+    base_skill_damage: 2160,
+    projectile_number: 2
   } as NewStats,
   skill: {
     name: 'Volley of the Beast',
@@ -1325,6 +1365,7 @@ export const Eiko = {
   } as NewSkill
 } as NewAgent;
 
+// TODO:
 export const Goi = {
   index: 43,
   name: 'Goi',
@@ -1339,13 +1380,19 @@ export const Goi = {
     critical_rate: 0.94,
     critical_damage: 2.038,
     skill_damage: 1394,
-    base_skill_damage: 1394
+    base_skill_damage: 1394,
+    cast_time: 1,
+    projectile_number: 3
   } as NewStats,
   skill: {
     name: 'Napalm Massacre',
     description:
       'launch 3 grenades in a straight line each dealing 25098 damage and mini stuns for 0.2 seconds. cooldown: 10',
-    effects: [{ type: EffectTypeEnum.Damage, damage: () => 3 * 25098 } as NewDamageEffect],
+    effects: [
+      { type: EffectTypeEnum.Damage, damage: () => 25098 } as NewDamageEffect,
+      { type: EffectTypeEnum.Damage, damage: () => 25098 } as NewDamageEffect,
+      { type: EffectTypeEnum.Damage, damage: () => 25098 } as NewDamageEffect
+    ],
     cooldown: 10
   } as NewSkill
 } as NewAgent;
@@ -1366,7 +1413,8 @@ export const RihoX = {
     critical_damage: 2.038,
     skill_damage: 1057,
     base_skill_damage: 1057,
-    cast_time: 1
+    cast_time: 1,
+    projectile_number: 5
   } as NewStats,
   skill: {
     name: "Hunter's Shot",
@@ -1390,12 +1438,13 @@ export const RihoX = {
           agent.stats.skill_damage /= 1.89;
         }
       } as NewEffect,
-      { type: EffectTypeEnum.Damage, damage: () => 9515 } as NewDamageEffect
+      { type: EffectTypeEnum.DOT, duration: 2, interval: 1 / 8, damage: () => 315 } as NewDOTEffect
     ],
     cooldown: 14
   } as NewSkill
 } as NewAgent;
 
+// TODO:
 export const Setsuna = {
   index: 45,
   name: 'Setsuna',
@@ -1438,6 +1487,7 @@ export const Setsuna = {
   } as NewSkill
 } as NewAgent;
 
+// TODO:
 export const Hami = {
   index: 46,
   name: 'Hami',
@@ -1452,13 +1502,17 @@ export const Hami = {
     critical_rate: 0.94,
     critical_damage: 2.038,
     skill_damage: 2727,
-    base_skill_damage: 2727
+    base_skill_damage: 2727,
+    projectile_number: 2
   } as NewStats,
   skill: {
     name: "Hornet's Vengeance",
     description:
       'summon 2 giant bumblebees, each of them shoots out laser beam horizontally to the target dealing 55912 damage to any enemies it hits. cooldown: 8',
-    effects: [{ type: EffectTypeEnum.Damage, damage: () => 2 * 55912 } as NewDamageEffect],
+    effects: [
+      { type: EffectTypeEnum.Damage, damage: () => 55912 } as NewDamageEffect,
+      { type: EffectTypeEnum.Damage, damage: () => 55912 } as NewDamageEffect
+    ],
     cooldown: 8
   } as NewSkill
 } as NewAgent;
@@ -1478,7 +1532,8 @@ export const O = {
     critical_damage: 2.038,
     skill_damage: 2099,
     base_skill_damage: 2099,
-    cast_time: 1
+    cast_time: 1,
+    projectile_number: 4
   } as NewStats,
   skill: {
     name: 'Celestial Judgement',
@@ -1519,7 +1574,8 @@ export const GaiGai = {
     critical_rate: 0.94,
     critical_damage: 2.038,
     skill_damage: 1308,
-    base_skill_damage: 1308
+    base_skill_damage: 1308,
+    cast_time: 1
   } as NewStats,
   skill: {
     name: 'Banishing Blade',
@@ -1647,7 +1703,8 @@ export const Wu = {
     critical_rate: 0.94,
     critical_damage: 2.038,
     skill_damage: 613,
-    base_skill_damage: 613
+    base_skill_damage: 613,
+    cast_time: 1
   } as NewStats,
   skill: {
     name: 'Jungle Drums',
@@ -1659,10 +1716,12 @@ export const Wu = {
         apply: (params: EffectParamType) => {
           const { agent } = params;
           agent.stats.normal_attack *= 10.35;
+          agent.stats.projectile_number = 5;
         },
         remove: (params: EffectParamType) => {
           const { agent } = params;
           agent.stats.normal_attack /= 10.35;
+          agent.stats.projectile_number = 1;
         },
         duration: 11
       } as NewEffect,
@@ -1687,6 +1746,7 @@ export const Wu = {
   } as NewSkill
 } as NewAgent;
 
+// TODO:
 export const ZiLong = {
   index: 52,
   name: 'Zi Long',
@@ -1696,12 +1756,14 @@ export const ZiLong = {
   cup_size: CupSizeEnum.I,
   class: ClassEnum.Gunner,
   stats: {
-    attack_speed: 2,
-    normal_attack: 1141,
+    attack_speed: 2.1,
+    normal_attack: 1149,
     critical_rate: 0.94,
     critical_damage: 2.038,
     skill_damage: 1088,
-    base_skill_damage: 1088
+    base_skill_damage: 1088,
+    cast_time: 1,
+    projectile_number: 4
   } as NewStats,
   skill: {
     name: "Dragon's Claw",
@@ -1852,6 +1914,7 @@ export const Chia = {
   } as NewSkill
 } as NewAgent;
 
+// TODO:
 export const Shiko = {
   index: 55,
   name: 'Shiko',
@@ -1866,7 +1929,8 @@ export const Shiko = {
     critical_rate: 0.69,
     critical_damage: 2.018,
     skill_damage: 2434,
-    base_skill_damage: 2434
+    base_skill_damage: 2434,
+    cast_time: 1
   } as NewStats,
   skill: {
     name: 'Atomic Prowess: Sword Strike',
@@ -1893,6 +1957,7 @@ export const Shiko = {
   } as NewSkill
 } as NewAgent;
 
+// TODO:
 export const Kaja = {
   index: 56,
   name: 'Kaja',
@@ -1907,13 +1972,15 @@ export const Kaja = {
     critical_rate: 0.94,
     critical_damage: 2.038,
     skill_damage: 3264,
-    base_skill_damage: 3264
+    base_skill_damage: 3264,
+    cast_time: 1,
+    projectile_number: 2
   } as NewStats,
   skill: {
     name: "Shepherd's Call",
     description:
       'summon all of her 16 little lambs, the lambs will charge forward as triangulate formation, deals 82354 damage and stun the enemies for 3 seconds. cooldown: 15',
-    effects: [{ type: EffectTypeEnum.Damage, damage: () => 234984 } as NewDamageEffect],
+    effects: [{ type: EffectTypeEnum.DOT, duration: 0.48, interval: 0.03, damage: () => 14613 } as NewDOTEffect],
     cooldown: 15
   } as NewSkill
 } as NewAgent;

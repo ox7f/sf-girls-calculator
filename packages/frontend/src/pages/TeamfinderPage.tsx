@@ -1,11 +1,16 @@
-import { Agents, /*Results, TargetSelect,*/ Search } from '../components';
+import { useSetAtom } from 'jotai';
+
+import { CurrentViewAtom } from '../atoms';
+import { Agents, /*Results,*/ Search, TargetSelect } from '../components';
 
 const Teamfinder: React.FC = () => {
+  useSetAtom(CurrentViewAtom)('teamfinder');
+
   return (
     <div>
       <div className="mx-1 pt-10">
         <mark>Work In Progress - does not work yet</mark>
-        {/* <TargetSelect viewName="teamfinder" /> */}
+        <TargetSelect />
       </div>
 
       <div className="default-layout tree-nav-body mx-auto mb-0">

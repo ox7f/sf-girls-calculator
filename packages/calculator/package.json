@@ -1,7 +1,6 @@
 {
-  "name": "sf-girls-calculator-calculator",
+  "name": "@sf-girls-calculator/calculator",
   "author": "ox7f",
-  "private": true,
   "version": "0.0.1",
   "description": "math stuff",
   "main": "dist/index.js",
@@ -30,5 +29,6 @@
     "singleQuote": true,
     "trailingComma": "none",
     "printWidth": 120
-  }
+  },
+  "private": true
 }

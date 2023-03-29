@@ -12,6 +12,11 @@ export class Fight {
   }
 
   run(): ResultType {
+    // apply support evo nodes
+    this.team.forEach((agent) => {
+      agent.manage_nodes(this);
+    });
+
     while (this.time > 0 && this.target.current_health > 0) {
       for (const agent of this.team) {
         agent.manage_effects(this);

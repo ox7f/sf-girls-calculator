@@ -1,10 +1,8 @@
 import { atomWithReset } from 'jotai/utils';
-import { Targets } from 'sf-girls-calculator-calculator';
+import { Targets } from '@sf-girls-calculator/calculator';
 import { SelectFilterType } from './types';
 
-const SelectedTargetsAtom = atomWithReset<SelectFilterType>({
+export const SelectedTargetListAtom = atomWithReset<SelectFilterType>({
   calculator: [Targets.Dummy_Stage_4.name],
   teamfinder: [Targets.Dummy_Stage_4.name]
 });
-
-export default SelectedTargetsAtom;

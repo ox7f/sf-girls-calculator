@@ -1,8 +1,8 @@
 import { useSetAtom } from 'jotai';
-import { NewAgent } from 'sf-girls-calculator-calculator';
+import { Agent } from '@sf-girls-calculator/calculator';
 
 import { AgentGallery, AgentList } from './index';
-import { SelectedAgentsAtom } from '../../atoms';
+import { SelectedAgentListAtom } from '../../atoms';
 import { addToSelected, isLimitReached, isSelected, removeFromSelected } from '../../utils';
 
 interface AgentsProps {
@@ -15,10 +15,10 @@ const COMPONENTS = {
 };
 
 const Agents: React.FC<AgentsProps> = ({ viewName }) => {
-  const setSelectedAgents = useSetAtom(SelectedAgentsAtom);
+  const setSelectedAgents = useSetAtom(SelectedAgentListAtom);
   const Component = COMPONENTS[viewName];
 
-  const select = (agent: NewAgent) => {
+  const select = (agent: Agent) => {
     setSelectedAgents((prev) => {
       const selected = prev[viewName];
 

@@ -1,4 +1,4 @@
-import { ClassEnum } from 'sf-girls-calculator-calculator';
+import { ClassEnum } from '@sf-girls-calculator/calculator';
 import { ClassTag } from '../../../utils';
 
 interface CardTitleProps {

@@ -42,4 +42,19 @@ export const Dummy_Stage_6 = {
   duration: 180
 } as NewTarget;
 
-export const Targets = [Dummy_Stage_1, Dummy_Stage_2, Dummy_Stage_3, Dummy_Stage_4, Dummy_Stage_5, Dummy_Stage_6];
+export const Ditto = {
+  name: 'Ditto',
+  health: 10000,
+  critical_resistance: 0,
+  duration: 0
+} as NewTarget;
+
+export const Targets = [
+  Dummy_Stage_1,
+  Dummy_Stage_2,
+  Dummy_Stage_3,
+  Dummy_Stage_4,
+  Dummy_Stage_5,
+  Dummy_Stage_6,
+  Ditto
+];

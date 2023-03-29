@@ -1,9 +1,21 @@
-export { Agent, AbstractEffect, Effect, EffectDamage, EffectDOT, Skill, Stats, Target, Fight } from './classes';
+export {
+  Agent,
+  AbstractEffect,
+  Effect,
+  EffectDamage,
+  EffectDOT,
+  EvoNode,
+  Skill,
+  Stats,
+  Target,
+  Fight
+} from './classes';
 export {
   NewAgent,
   NewEffect,
   NewDamageEffect,
   NewDOTEffect,
+  NewEvoNode,
   NewFight,
   NewSkill,
   NewStats,
@@ -12,8 +24,11 @@ export {
 export {
   ActionType,
   DamageEffectFunctionType,
+  DamageReturnType,
   EffectFunctionType,
   EffectParamType,
+  EvoNodeParamType,
+  EvoNodeFunctionType,
   HistoryType,
   ResultType
 } from './types';

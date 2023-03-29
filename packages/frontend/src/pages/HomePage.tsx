@@ -6,7 +6,7 @@ const Home: React.FC = () => {
   const [fadeIn, setFadeIn] = useState(false);
   const [index, setIndex] = useState(0);
 
-  const length = 4;
+  const lastIndex = 4;
   const isMobile = width <= 768;
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const Home: React.FC = () => {
 
   const handleNext = () => {
     const newIndex = index + 1;
-    setIndex(newIndex >= length ? 0 : newIndex);
+    setIndex(newIndex >= lastIndex ? 0 : newIndex);
     animate();
   };
 
@@ -73,14 +73,7 @@ const Home: React.FC = () => {
     return (
       <div>
         <h1 className="headline-3 title uppercase text-dark pt-10">Changelog</h1>
-        <p className={`${isMobile ? 'text-md' : 'text-lg'} leading-looser-md tracking-looser-md pt-5 mx-10-md`}>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-          dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-          clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
-          consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-          sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-          takimata sanctus est Lorem ipsum dolor sit amet.{' '}
-        </p>
+        <p className={`${isMobile ? 'text-md' : 'text-lg'} leading-looser-md tracking-looser-md pt-5 mx-10-md`}>TODO</p>
       </div>
     );
   };

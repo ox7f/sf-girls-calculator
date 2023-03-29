@@ -1,7 +1,7 @@
 import { FaCoffee } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
-import { Button } from '../components/Common';
+import { Button } from '../components/common';
 
 const Error: React.FC = () => {
   const navigate = useNavigate();

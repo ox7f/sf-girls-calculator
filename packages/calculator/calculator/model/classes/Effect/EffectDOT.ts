@@ -41,7 +41,7 @@ export class EffectDOT extends AbstractEffect {
 
     if (index >= 0) {
       agent.applied_effects.splice(index, 1);
-      agent.log(fight.time, { attack_mode: 'Skill', damage: 0, effect_type: this.type, type: ActionEnum.Remove });
+      agent.log(fight.time, { attack_mode: 'None', damage: 0, effect_type: this.type, type: ActionEnum.Remove });
     }
   }
 
@@ -60,9 +60,9 @@ export class EffectDOT extends AbstractEffect {
   deal_damage(agent: Agent, fight: Fight) {
     const { target, team, time } = fight;
     const { base_skill_damage, skill_damage } = agent.stats;
-    const multiplier = this.damage({ agent, team, target }) / base_skill_damage;
+    const base_damage = this.damage({ agent, team, target }) / base_skill_damage;
 
-    let agent_damage = multiplier * skill_damage;
+    let agent_damage = base_damage * skill_damage;
 
     if (Math.random() < agent.stats.critical_rate - target.critical_resistance) {
       agent_damage *= agent.stats.critical_damage;

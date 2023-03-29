@@ -1,4 +1,4 @@
-import { Button } from '../../Common';
+import { Button } from '../../common';
 
 interface CardActionBarProps {
   isSelected: boolean;

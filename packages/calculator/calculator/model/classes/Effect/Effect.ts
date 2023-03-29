@@ -49,7 +49,7 @@ export class Effect extends AbstractEffect {
 
     if (index >= 0) {
       agent.applied_effects.splice(index, 1);
-      agent.log(time, { attack_mode: 'Skill', damage: 0, effect_type: this.type, type: ActionEnum.Remove });
+      agent.log(time, { attack_mode: 'None', damage: 0, effect_type: this.type, type: ActionEnum.Remove });
     }
 
     this.remove({ agent, team, target });

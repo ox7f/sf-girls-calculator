@@ -1,6 +1,6 @@
 export enum ActionEnum {
   Attack = 'Attack',
-  Apply = 'Cast Skill Effect',
-  Remove = 'Skill Effect Expired',
+  Apply = 'Cast Skill',
+  Remove = 'Effect Expired',
   None = 'None'
 }

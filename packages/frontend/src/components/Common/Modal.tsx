@@ -6,17 +6,15 @@ interface ModalProps {
   clickOutside?: () => void;
 }
 
-const Modal: React.FC<ModalProps> = ({ modalId, children, clickOutside }) => {
+export const Modal: React.FC<ModalProps> = ({ modalId, children, clickOutside }) => {
   return (
     <Portal wrapperId="modal-container">
       <div className="modal modal--visible" id={modalId}>
         <a className="modal-overlay close-btn" aria-label="Close" onClick={clickOutside}></a>
-        <div className="modal-content" role="document">
+        <div className="modal-content" role="document" style={{ width: '500px', maxWidth: '500px' }}>
           {children}
         </div>
       </div>
     </Portal>
   );
 };
-
-export default Modal;

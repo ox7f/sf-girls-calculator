@@ -1,9 +1,9 @@
-import { NewAgent } from 'sf-girls-calculator-calculator';
+import { Agent } from '@sf-girls-calculator/calculator';
 import { NavHeader, Sidebar } from './Sidebar';
 
 interface ListProps {
   viewName: 'calculator' | 'teamfinder';
-  select: (agent: NewAgent) => void;
+  select: (agent: Agent) => void;
 }
 
 const AgentList: React.FC<ListProps> = ({ viewName, select }) => {

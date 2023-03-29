@@ -1,17 +1,17 @@
 import { useAtomValue } from 'jotai';
-import { NewAgent } from 'sf-girls-calculator-calculator';
+import { Agent } from '@sf-girls-calculator/calculator';
 
 import { Card } from './Card';
-import { AgentsAtom, FilteredAgentsAtom } from '../../atoms';
+import { AgentListAtom, FilteredAgentListAtom } from '../../atoms';
 
 interface GalleryProps {
   viewName: 'calculator' | 'teamfinder';
-  select: (agent: NewAgent) => void;
+  select: (agent: Agent) => void;
 }
 
 const AgentGallery: React.FC<GalleryProps> = ({ viewName, select }) => {
-  const agents = useAtomValue(AgentsAtom);
-  const filteredAgents = useAtomValue(FilteredAgentsAtom);
+  const agents = useAtomValue(AgentListAtom);
+  const filteredAgents = useAtomValue(FilteredAgentListAtom);
 
   return (
     <div>

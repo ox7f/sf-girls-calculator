@@ -1,6 +1,6 @@
 import { useSetAtom } from 'jotai';
 import { FaCog } from 'react-icons/fa';
-import { ResultType } from 'sf-girls-calculator-calculator';
+import { ResultType } from '@sf-girls-calculator/calculator';
 import { AgentNameAtom } from '../../../atoms';
 import { ClassTag } from '../../../utils';
 

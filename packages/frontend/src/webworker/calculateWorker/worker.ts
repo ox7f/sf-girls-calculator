@@ -1,5 +1,5 @@
-import { FunctionParams } from '../../utils/webworker/types';
-import { calculate } from '../../utils/webworker/utils';
+import { FunctionParams } from '../types';
+import { calculate } from '../utils';
 
 export const calculateCalculator = async (params: FunctionParams) => {
   const result = await calculate(params);

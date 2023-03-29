@@ -1,19 +1,19 @@
 import { useAtomValue } from 'jotai';
-import { NewAgent } from 'sf-girls-calculator-calculator';
-import { AgentsAtom, FilteredAgentsAtom, SelectedAgentsAtom } from '../../../atoms';
+import { Agent } from '@sf-girls-calculator/calculator';
+import { AgentListAtom, FilteredAgentListAtom, SelectedAgentListAtom } from '../../../atoms';
 import { isSelected } from '../../../utils';
-import { Search } from '../../Common';
+import { Search } from '../../common';
 import MenuItem from './MenuItem';
 
 interface SidebarMenuProps {
   viewName: 'calculator' | 'teamfinder';
-  select: (agent: NewAgent) => void;
+  select: (agent: Agent) => void;
 }
 
 const Menu: React.FC<SidebarMenuProps> = ({ viewName, select }) => {
-  const Agents = useAtomValue(AgentsAtom);
-  const filteredAgents = useAtomValue(FilteredAgentsAtom);
-  const selectedAgents = useAtomValue(SelectedAgentsAtom);
+  const Agents = useAtomValue(AgentListAtom);
+  const filteredAgents = useAtomValue(FilteredAgentListAtom);
+  const selectedAgents = useAtomValue(SelectedAgentListAtom);
 
   return (
     <ul className="menu mb-3">

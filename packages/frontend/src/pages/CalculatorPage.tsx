@@ -1,10 +1,15 @@
+import { useSetAtom } from 'jotai';
+
+import { CurrentViewAtom } from '../atoms';
 import { Agents, Results, TargetSelect } from '../components';
 
 const CalculatorPage: React.FC = () => {
+  useSetAtom(CurrentViewAtom)('calculator');
+
   return (
     <div>
       <div className="mx-1 pt-10">
-        <TargetSelect viewName="calculator" />
+        <TargetSelect />
       </div>
 
       <div className="default-layout tree-nav-body mx-auto mb-0">
@@ -12,7 +17,7 @@ const CalculatorPage: React.FC = () => {
 
         <div className="tree-nav-container h-auto" style={{ flexGrow: 1 }}>
           <main className="page-layout">
-            <Results viewName="calculator" />
+            <Results />
           </main>
         </div>
       </div>

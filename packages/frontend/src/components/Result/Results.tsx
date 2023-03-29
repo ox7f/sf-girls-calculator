@@ -2,19 +2,16 @@ import { useAtom, useAtomValue } from 'jotai';
 import { useCallback, useEffect, useState } from 'react';
 
 import { Graph, Table } from './index';
-import { Spinner } from '../Common';
-import { AgentDB, ResultsAtom, SelectedAgentsAtom, SelectedTargetsAtom } from '../../atoms';
+import { Spinner } from '../common';
+import { AgentDB, CurrentViewAtom, ResultListAtom, SelectedAgentListAtom, SelectedTargetListAtom } from '../../atoms';
 import { calculateWorker } from '../../webworker';
 
-interface ResultProps {
-  viewName: 'calculator' | 'teamfinder';
-}
-
-const Results: React.FC<ResultProps> = ({ viewName }) => {
+const Results: React.FC = () => {
   const [loading, setLoading] = useState(false);
-  const [results, setResults] = useAtom(ResultsAtom);
-  const selectedAgents = useAtomValue(SelectedAgentsAtom);
-  const selectedTargets = useAtomValue(SelectedTargetsAtom);
+  const [results, setResults] = useAtom(ResultListAtom);
+  const viewName = useAtomValue(CurrentViewAtom);
+  const selectedAgents = useAtomValue(SelectedAgentListAtom);
+  const selectedTargets = useAtomValue(SelectedTargetListAtom);
   const agentEntries = useAtomValue(AgentDB.entries);
 
   const WORKER_CONFIG = {
@@ -40,7 +37,7 @@ const Results: React.FC<ResultProps> = ({ viewName }) => {
 
   return (
     <div className="results-container">
-      <Spinner loading={loading} />
+      {loading && <Spinner />}
 
       {results[viewName].map((result, index) => (
         <div className="content" key={index}>

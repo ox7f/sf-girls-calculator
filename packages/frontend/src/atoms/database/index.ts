@@ -1,2 +1,3 @@
-export { default as AgentDB } from './agents';
-export { default as TargetDB } from './targets';
+export { AgentDB } from './AgentDB';
+export { AgentEvoTreeDB } from './AgentEvoTreeDB';
+export { TargetDB } from './TargetDB';

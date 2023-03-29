@@ -1,4 +1,4 @@
-const Footer: React.FC = () => {
+export const Footer: React.FC = () => {
   return (
     <div>
       <footer className="footer bg-white">
@@ -41,5 +41,3 @@ const Footer: React.FC = () => {
     </div>
   );
 };
-
-export default Footer;

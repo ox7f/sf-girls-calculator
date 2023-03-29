@@ -2,7 +2,7 @@ import { useAtom } from 'jotai';
 import { ChangeEvent } from 'react';
 
 import { ModalBody, ModalHeader } from './index';
-import { Modal as CommonModal } from '../../Common';
+import { Modal as CommonModal } from '../../common';
 import { AgentDB, AgentNameAtom } from '../../../atoms';
 
 const Modal: React.FC = () => {

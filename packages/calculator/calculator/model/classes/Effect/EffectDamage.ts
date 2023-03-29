@@ -21,17 +21,23 @@ export class EffectDamage extends AbstractEffect {
     const { base_skill_damage, skill_damage } = agent.stats;
 
     const log_time = time - globalThis.damageDelay;
-    const multiplier = this.damage({ agent, target, team }) / base_skill_damage;
+    const base_damage = this.damage({ agent, target, team }) / base_skill_damage;
+    const { damage_multiplier, bonus } = agent.get_evo_node_damage_bonus(fight);
 
-    let agent_damage = multiplier * skill_damage;
+    let agent_damage = base_damage * skill_damage;
 
     if (Math.random() < agent.stats.critical_rate - target.critical_resistance) {
       agent_damage *= agent.stats.critical_damage;
     }
 
+    if (damage_multiplier > 1) {
+      agent_damage *= damage_multiplier;
+    }
+
     const damage = target.take_damage(log_time, agent_damage);
 
     agent.stats.total_damage += damage;
-    agent.log(log_time, { attack_mode: 'Skill', damage, effect_type: this.type, type: ActionEnum.Attack });
+    agent.stats.attack_counter++;
+    agent.log(log_time, { attack_mode: 'Skill', damage, effect_type: this.type, type: ActionEnum.Attack, bonus });
   }
 }

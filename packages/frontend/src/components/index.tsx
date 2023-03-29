@@ -16,6 +16,7 @@ export {
   ModalBody,
   ModalInput
 } from './Agent';
-export { Button, Footer, Header, Modal, Portal, Search, Select, Spinner } from './Common';
+export { Button, ErrorMessage, Modal, Portal, Search, Select, Spinner } from './common';
+export { Footer, Header } from './layout';
 export { CustomTooltip, Graph, Results, Table } from './Result';
 export { TargetSelect } from './Target';

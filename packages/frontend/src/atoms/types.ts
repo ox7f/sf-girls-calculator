@@ -1,4 +1,4 @@
-import { ResultType } from 'sf-girls-calculator-calculator';
+import { ResultType } from '@sf-girls-calculator/calculator';
 
 export type AgentItem = {
   name: string;
@@ -7,9 +7,19 @@ export type AgentItem = {
   skill_damage: number;
   critical_rate: number;
   critical_damage: number;
-  // projectile_number: number;
-  // cast_time: number;
   [key: string]: string | number;
+};
+
+export type AgentEvoTreeItem = {
+  name: string;
+  nodes: EvoNodeItem[];
+  [key: string]: string | EvoNodeItem[];
+};
+
+export type EvoNodeItem = {
+  name: string;
+  level: number;
+  children: EvoNodeItem[];
 };
 
 export type TargetItem = {
@@ -20,5 +30,12 @@ export type TargetItem = {
   [key: string]: string | number;
 };
 
-export type ResultsType = { calculator: ResultType[]; teamfinder: ResultType[] };
-export type SelectFilterType = { calculator: string[]; teamfinder: string[] };
+export type ResultListType = {
+  calculator: ResultType[];
+  teamfinder: ResultType[];
+};
+
+export type SelectFilterType = {
+  calculator: string[];
+  teamfinder: string[];
+};
