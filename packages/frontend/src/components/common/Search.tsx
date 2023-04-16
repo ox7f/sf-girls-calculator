@@ -23,6 +23,11 @@ export const Search: React.FC<Props> = ({ viewName }) => {
     resetFilteredItems();
   };
 
+  const erase = () => {
+    reset();
+    resetSelectedItems();
+  };
+
   useEffect(reset, []);
 
   const allAgents = useAtomValue(AgentListAtom);
@@ -43,7 +48,7 @@ export const Search: React.FC<Props> = ({ viewName }) => {
     <div className="form-group">
       <input value={value} type="search" className="form-group-input" placeholder="Search" onChange={changeHandler} />
       {selectedAgents.length > 0 && (
-        <button className="form-group-btn btn btn-animated hover-grow animated" onClick={() => resetSelectedItems()}>
+        <button className="form-group-btn btn btn-animated hover-grow animated" onClick={erase}>
           <FaEraser />
         </button>
       )}
