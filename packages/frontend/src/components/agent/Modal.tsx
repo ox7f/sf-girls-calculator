@@ -68,7 +68,10 @@ export const AgentModal: React.FC = () => {
   const [agent, setAgent] = useAtom(AgentDB.item(agentName));
 
   const defaultAgent = Agents.Agents.find((a) => a.name === agentName);
-  const closeModal = () => setAgentName('');
+  const closeModal = () => {
+    setAgentName('');
+    setCurrentTab(TabEnum.Stats);
+  };
 
   if (!agent || !defaultAgent) {
     return null;
