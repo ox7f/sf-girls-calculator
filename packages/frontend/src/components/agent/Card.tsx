@@ -23,7 +23,7 @@ export const AgentCard: React.FC<Props> = ({ agent, viewName, select }) => {
       ? '80%'
       : '120%',
     backgroundPosition: 'center',
-    backgroundImage: `url(agents/${agent.name.replace(' ', '')}.png)`
+    // backgroundImage: `url(agents/${agent.name.replace(' ', '')}.png)`
   };
 
   return (
