@@ -1,43 +1,79 @@
-import { ActionEnum, EffectTypeEnum } from '../../../enums/index';
-import { Agent, AbstractEffect, DamageEffectFunctionType, Fight, NewDamageEffect } from '../../index';
+import { AttackModeEnum, BonusEnum, HistoryActionTypeEnum } from '../../../enums';
+import { Agent, AbstractEffect, Fight, NewEffectDamage } from '../../../model';
 
 export class EffectDamage extends AbstractEffect {
-  type: EffectTypeEnum;
-  damage: DamageEffectFunctionType;
-
-  constructor({ type, damage }: NewDamageEffect) {
+  constructor(private readonly config: NewEffectDamage) {
     super();
-    this.type = type;
-    this.damage = damage;
   }
 
   activate(agent: Agent, fight: Fight) {
-    agent.log(fight.time, { attack_mode: 'None', damage: 0, effect_type: this.type, type: ActionEnum.Apply });
-    this.deal_damage(agent, fight);
+    const { time } = fight;
+    const { type } = this.config;
+    agent.log(time, {
+      attackMode: AttackModeEnum.NONE,
+      damage: 0,
+      effectType: type,
+      type: HistoryActionTypeEnum.USE_SKILL
+    });
+    this.dealDamage(agent, fight);
   }
 
-  deal_damage(agent: Agent, fight: Fight) {
-    const { target, team, time } = fight;
-    const { base_skill_damage, skill_damage } = agent.stats;
+  add() {
+    console.log('implement logic to add effect');
+  }
 
-    const log_time = time - globalThis.damageDelay;
-    const base_damage = this.damage({ agent, target, team }) / base_skill_damage;
-    const { damage_multiplier, bonus } = agent.get_evo_node_damage_bonus(fight);
+  deactivate() {
+    console.log('implement logic to deactivate effect');
+  }
 
-    let agent_damage = base_damage * skill_damage;
+  private dealDamage(agent: Agent, fight: Fight) {
+    const {
+      target,
+      target: { criticalResistance },
+      time
+    } = fight;
 
-    if (Math.random() < agent.stats.critical_rate - target.critical_resistance) {
-      agent_damage *= agent.stats.critical_damage;
+    const { attack_counter, skillDamage, baseSkillDamage, criticalRate, criticalDamage } = agent.stats;
+    const {
+      criticalRate: criticalRateEffect = 0,
+      doubleDamage: doubleDamageChance = 0,
+      doubleHit: doubleAttackChance = 0
+    } = agent.nodeEffects;
+
+    const limitedAttackCounter = Math.min(attack_counter, 10);
+    const criticalRateWithEffect = criticalRate + criticalRateEffect * limitedAttackCounter - criticalResistance;
+
+    const bonus: BonusEnum[] = [];
+    const baseDamage = this.config.damage({ agent, target, team: fight.team }) / baseSkillDamage;
+    let damage = baseDamage * skillDamage;
+
+    if (Math.random() < criticalRateWithEffect) {
+      damage *= criticalDamage;
+      bonus.push(BonusEnum.CRITICAL);
     }
 
-    if (damage_multiplier > 1) {
-      agent_damage *= damage_multiplier;
+    if (Math.random() < doubleDamageChance) {
+      damage *= 2;
+      bonus.push(BonusEnum.HEADSHOT);
     }
 
-    const damage = target.take_damage(log_time, agent_damage);
+    if (Math.random() < doubleAttackChance) {
+      this.dealDamage(agent, fight);
+      bonus.push(BonusEnum.RELOAD);
+    }
 
-    agent.stats.total_damage += damage;
-    agent.stats.attack_counter++;
-    agent.log(log_time, { attack_mode: 'Skill', damage, effect_type: this.type, type: ActionEnum.Attack, bonus });
+    const damageDealt = target.takeDamage(damage);
+    agent.stats.totalDamage += damageDealt;
+    agent.log(time - globalThis.damageDelay, {
+      attackMode: AttackModeEnum.SKILL,
+      bonus,
+      damage: damageDealt,
+      effectType: this.config.type,
+      type: HistoryActionTypeEnum.ATTACK
+    });
+  }
+
+  manage() {
+    console.log('implement logic to manage effect');
   }
 }

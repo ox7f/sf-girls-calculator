@@ -1,17 +1,19 @@
 import { ChangeEvent } from 'react';
 
-interface SelectProps {
+type Option = {
+  label: string;
   value: string;
-  options: {
-    label: string;
-    value: string;
-  }[];
+};
+
+interface Props {
+  value: string;
+  options: Option[];
   onChange: (event: ChangeEvent<HTMLSelectElement>) => void;
 }
 
-export const Select: React.FC<SelectProps> = ({ value, options, onChange }) => {
+export const Select: React.FC<Props> = ({ value, options, onChange }) => {
   return (
-    <select className="select" value={value} onChange={onChange}>
+    <select value={value} onChange={onChange}>
       {options.map((option) => (
         <option key={option.value} value={option.value}>
           {option.label}

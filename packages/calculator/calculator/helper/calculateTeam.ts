@@ -1,11 +1,11 @@
-import { Agent, Fight, NewAgent, NewTarget, Target } from '../model/index';
+import { Agent, Fight, NewAgent, NewTarget, Target } from '../model';
 
-export const calculate_team = (new_team: NewAgent[], new_target: NewTarget, logging_enabled = true) => {
-  const target = new Target(new_target);
-  const team = new_team.map((agent: NewAgent) => new Agent(agent, logging_enabled));
+export function calculateTeam(newAgents: NewAgent[], newTarget: NewTarget, loggingEnabled = true) {
+  const target = new Target(newTarget);
+  const team = newAgents.map((agent) => new Agent(agent, loggingEnabled));
 
-  const fightCalculator = new Fight({ target, team });
-  const result = fightCalculator.run();
+  const fight = new Fight({ target, team });
+  const result = fight.run();
 
   return result;
-};
+}

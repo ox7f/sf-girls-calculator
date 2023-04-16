@@ -1,10 +1,16 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { Agents, bruteforceTeam, calculateTeam, NewAgent, NewTarget, Targets } from '@sf-girls-calculator/calculator';
 import { openDB } from 'idb';
-import { Agents, bruteforce_team, calculate_team, NewAgent, NewTarget, Targets } from '@sf-girls-calculator/calculator';
-import { AgentItem, TargetItem } from '../atoms';
-import { FunctionParams } from './types';
 
-const MAX_RESULT_NUM = 5;
+import { AgentItem, TargetItem } from '../atoms';
+import { overwriteEvoTree } from '../components/utils';
+
+const MAX_BRUTEFORCE_RESULT_NUM = 5;
+
+export type FunctionParams = {
+  selectedAgents: string[];
+  selectedTargets: string[];
+};
 
 export const calculate = async ({ selectedAgents, selectedTargets }: FunctionParams, isMultiple = false) => {
   const db = await openDB('agent-db', 1);
@@ -18,7 +24,17 @@ export const calculate = async ({ selectedAgents, selectedTargets }: FunctionPar
   const targets = findTargets(selectedTargets, Targets.Targets, []);
   const agents = findAgents(selectedAgents, Agents.Agents, userAgents);
 
-  const result = isMultiple ? bruteforce_team(agents, targets, MAX_RESULT_NUM) : [calculate_team(agents, targets[0])];
+  const result = isMultiple
+    ? bruteforceTeam(agents, targets[0], MAX_BRUTEFORCE_RESULT_NUM)
+    : [calculateTeam(agents, targets[0])];
+
+  // TODO: circular dependency - fix temporary solution
+  result.map((res) =>
+    res.team.map((agent) => {
+      agent.nodes = [];
+      return agent;
+    })
+  );
 
   return result;
 };
@@ -27,19 +43,21 @@ export const findAgents = (names: string[], source: NewAgent[], userSource: Agen
   const items = names.map((name) => {
     const item = source.find((item) => item.name === name)!;
     const userItem = userSource.find((item) => item.name === name)!;
+    const userItemNodes = overwriteEvoTree(userItem);
 
     return {
       ...item,
       stats: {
-        attack_speed: userItem.attack_speed,
-        normal_attack: userItem.normal_attack,
-        critical_rate: userItem.critical_rate,
-        critical_damage: userItem.critical_damage,
-        skill_damage: userItem.skill_damage,
-        base_skill_damage: userItem.skill_damage,
-        projectile_number: item.stats.projectile_number,
-        cast_time: item.stats.cast_time
-      }
+        attackSpeed: userItem.stats.attackSpeed,
+        normalAttack: userItem.stats.normalAttack,
+        criticalRate: userItem.stats.criticalRate,
+        criticalDamage: userItem.stats.criticalDamage,
+        skillDamage: userItem.stats.skillDamage,
+        baseSkillDamage: userItem.stats.skillDamage,
+        projectileNumber: item.stats.projectileNumber,
+        castTime: item.stats.castTime
+      },
+      nodes: userItemNodes
     };
   });
 

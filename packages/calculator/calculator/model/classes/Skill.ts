@@ -1,41 +1,41 @@
-import { EffectTypeEnum } from '../../enums/index';
+import { EffectTypeEnum } from '../../enums';
 import {
+  Agent,
   Effect,
   EffectDamage,
   EffectDOT,
-  NewDamageEffect,
-  NewDOTEffect,
-  NewEffect,
-  NewSkill,
   Fight,
-  Agent
+  NewEffectDamage,
+  NewEffectDOT,
+  NewEffect,
+  NewSkill
 } from '../../model';
 
 export class Skill {
   name: string;
   description: string;
-  is_stackable: boolean;
+  isStackable: boolean;
   cooldown: number;
-  effects: Array<Effect | EffectDamage | EffectDOT>;
+  effects: (Effect | EffectDamage | EffectDOT)[];
 
-  constructor({ name, description, effects, is_stackable = false, cooldown }: NewSkill) {
+  constructor({ name, description, effects, isStackable = false, cooldown }: NewSkill) {
     this.name = name;
     this.description = description;
-    this.is_stackable = is_stackable;
+    this.isStackable = isStackable;
     this.cooldown = cooldown * 1000; // seconds to ms
+    this.effects = this.initializeEffects(effects);
+  }
 
-    this.effects = effects.map((effect) => {
-      let init_effect;
-
-      if (effect.type === EffectTypeEnum.DOT) {
-        init_effect = new EffectDOT(effect as NewDOTEffect);
-      } else if (effect.type === EffectTypeEnum.Damage) {
-        init_effect = new EffectDamage(effect as NewDamageEffect);
-      } else {
-        init_effect = new Effect(effect as NewEffect);
+  private initializeEffects(effects: (NewEffect | NewEffectDamage | NewEffectDOT)[]) {
+    return effects.map((effect) => {
+      switch (effect.type) {
+        case EffectTypeEnum.DOT:
+          return new EffectDOT(effect as NewEffectDOT);
+        case EffectTypeEnum.DAMAGE:
+          return new EffectDamage(effect as NewEffectDamage);
+        default:
+          return new Effect(effect as NewEffect);
       }
-
-      return init_effect;
     });
   }
 

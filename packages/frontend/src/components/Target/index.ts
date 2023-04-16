@@ -1,1 +1,1 @@
-export { default as TargetSelect } from './TargetSelect';
+export { TargetSelect } from './TargetSelect';

@@ -1,5 +1,5 @@
 export { AuthPage } from './AuthPage';
-export { default as CalculatorPage } from './CalculatorPage';
-export { default as ErrorPage } from './ErrorPage';
-export { default as HomePage } from './HomePage';
-export { default as TeamfinderPage } from './TeamfinderPage';
+export { CalculatorPage } from './CalculatorPage';
+export { ErrorPage } from './ErrorPage';
+export { HomePage } from './HomePage';
+export { TeamfinderPage } from './TeamfinderPage';

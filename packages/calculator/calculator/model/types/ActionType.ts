@@ -1,9 +1,9 @@
-import { ActionEnum, BonusEnum, EffectTypeEnum } from '../../enums/index';
+import { BonusEnum, EffectTypeEnum, HistoryActionTypeEnum } from '../../enums';
 
 export type ActionType = {
-  attack_mode: string;
-  effect_type: EffectTypeEnum;
+  attackMode: string;
+  effectType: EffectTypeEnum;
   damage: number;
-  type: ActionEnum;
-  bonus?: BonusEnum;
+  type: HistoryActionTypeEnum;
+  bonus?: BonusEnum[];
 };

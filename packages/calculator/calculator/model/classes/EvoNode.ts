@@ -1,45 +1,58 @@
-import { EvoNodeFunctionType, NewEvoNode } from '../index';
+import { ApplyFunction, ApplyParams, ApplyResult, NewEvoNode } from '../../model';
 
 const MAX_LEVEL = 5;
 
 export class EvoNode {
   name: string;
-  affects: string;
   children: EvoNode[];
   level: number;
   parent: EvoNode | null;
-  rate: number;
-  locked: (node: EvoNode) => boolean;
-  apply: EvoNodeFunctionType;
+  apply: ApplyFunction;
 
-  constructor({ name, apply, locked, affects = '', children = [], level = 0, rate = 0 }: NewEvoNode, parent?: EvoNode) {
+  constructor({ name, children = [], level = 0, apply = () => ({}) }: NewEvoNode, parent: EvoNode | null = null) {
     this.name = name;
-    this.affects = affects;
     this.children = children.map((child) => new EvoNode(child, this));
     this.level = level;
-    this.parent = parent ?? null;
-    this.rate = rate;
+    this.parent = parent;
     this.apply = apply;
-    this.locked = locked;
+  }
+
+  applyNodeEffects(params: ApplyParams, effects: ApplyResult = {}) {
+    const { fight, agent } = params;
+    const result = this.apply(params);
+
+    for (const [key, value] of Object.entries(result)) {
+      const prevValue = effects[key] || 0;
+      effects[key] = prevValue + (value || 0);
+    }
+
+    this.children.forEach((child) => child.applyNodeEffects({ fight, agent, node: child }, effects));
+
+    return effects;
   }
 
   levelUp() {
-    if (this.level >= MAX_LEVEL) return this.resetLevel();
+    if (this.level >= MAX_LEVEL) {
+      this.resetLevel();
+      return;
+    }
 
     this.level++;
 
-    // update the parent property of each child node
-    for (const child of this.children) {
+    this.children.forEach((child) => {
       child.parent = this;
-    }
+    });
+
+    this.parent?.maxLevel();
+  }
+
+  maxLevel() {
+    this.level = MAX_LEVEL;
+    this.parent?.maxLevel();
   }
 
   resetLevel() {
     this.level = 0;
-
-    // reset the level of each child node recursively
-    for (const child of this.children) {
-      child.resetLevel();
-    }
+    this.children.forEach((child) => child.resetLevel());
   }
 }

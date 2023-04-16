@@ -1,9 +1,11 @@
 import { useSetAtom } from 'jotai';
 
 import { CurrentViewAtom } from '../atoms';
-import { Agents, Results, TargetSelect } from '../components';
+import { Agents } from '../components/agent';
+import { TargetSelect } from '../components/target';
+import { Results } from '../components/result';
 
-const CalculatorPage: React.FC = () => {
+export const CalculatorPage: React.FC = () => {
   useSetAtom(CurrentViewAtom)('calculator');
 
   return (
@@ -24,5 +26,3 @@ const CalculatorPage: React.FC = () => {
     </div>
   );
 };
-
-export default CalculatorPage;

@@ -1,20 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { Agent, Fight } from '../../index';
+import { Agent, Fight } from '../../classes';
 
-export class AbstractEffect {
-  add(agent: Agent, fight: Fight) {
-    // implement logic to add effect
-  }
-
-  activate(agent: Agent, fight: Fight) {
-    // implement logic to activate effect
-  }
-
-  deactivate(agent: Agent, fight: Fight) {
-    // implement logic to deactivate effect
-  }
-
-  manage(agent: Agent, fight: Fight) {
-    // implement logic to manage effect
-  }
+export abstract class AbstractEffect {
+  abstract activate(agent: Agent, fight: Fight): void;
+  abstract add(agent: Agent, fight: Fight): void;
+  abstract deactivate(agent: Agent, fight: Fight): void;
+  abstract manage(agent: Agent, fight: Fight): void;
 }

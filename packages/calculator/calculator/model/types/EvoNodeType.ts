@@ -1,9 +1,21 @@
 import { Agent, EvoNode, Fight } from '../classes';
 
-export type EvoNodeParamType = {
+export type ApplyParams = {
   agent: Agent;
-  node: EvoNode;
   fight: Fight;
+  node: EvoNode;
 };
 
-export type EvoNodeFunctionType = (params: EvoNodeParamType) => number;
+export type ApplyResult = {
+  attackSpeed?: number;
+  normalAttack?: number;
+  criticalRate?: number;
+  criticalDamage?: number;
+  skillDamage?: number;
+  dotDamage?: number;
+  doubleDamage?: number;
+  doubleHit?: number;
+  [key: string]: number | undefined;
+};
+
+export type ApplyFunction = (params: ApplyParams) => ApplyResult;

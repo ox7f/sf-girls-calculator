@@ -1,14 +1,16 @@
-import { MiniDb } from 'jotai-minidb';
 import { Agents } from '@sf-girls-calculator/calculator';
+import { MiniDb } from 'jotai-minidb';
 import { AgentItem } from '../types';
+import { convertAgentItem } from '../utils';
 
-const initialAgentData: Record<string, AgentItem> = {};
+const agentData: Record<string, AgentItem> = {};
 
-Agents.Agents.forEach((agent) => {
-  initialAgentData[agent.name] = {
-    ...agent.stats,
-    name: agent.name
-  };
+Agents.Agents.forEach((agent, index) => {
+  const convertedAgent = convertAgentItem(agent, index);
+  agentData[agent.name] = convertedAgent;
 });
 
-export const AgentDB = new MiniDb<AgentItem>({ name: 'agent-db', initialData: initialAgentData });
+export const AgentDB = new MiniDb<AgentItem>({
+  name: 'agent-db',
+  initialData: agentData
+});

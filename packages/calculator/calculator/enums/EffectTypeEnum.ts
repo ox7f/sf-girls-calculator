@@ -1,8 +1,8 @@
 export enum EffectTypeEnum {
-  Debuff = 'Debuff',
+  DEBUFF = 'Debuff',
   DOT = 'Damage Over Time',
-  Self = 'Self Buff',
-  Damage = 'Damage',
-  Team = 'Team Buff',
-  None = 'None'
+  SELF_BUFF = 'Self Buff',
+  DAMAGE = 'Damage',
+  TEAM_BUFF = 'Team Buff',
+  NONE = 'None'
 }

@@ -1,3 +1,4 @@
-export { bruteforce_team } from './bruteforceTeam';
-export { calculate_agents_individually } from './calculateAllAgentsIndividually';
-export { calculate_team } from './calculateTeam';
+export { bruteforceTeam } from './bruteforceTeam';
+export { calculateAgentTarget } from './calculateAgentTarget';
+export { calculateTeam } from './calculateTeam';
+export { findBestRuneSets } from './findBestRuneSets';

@@ -1,40 +1,40 @@
-import { useSetAtom } from 'jotai';
 import { Agent } from '@sf-girls-calculator/calculator';
+import { useSetAtom } from 'jotai';
 
-import { AgentGallery, AgentList } from './index';
+import { AgentGallery } from './Gallery';
+import { AgentList } from './List';
+import {
+  ViewName,
+  addAgentToSelectedList,
+  agentIsSelected,
+  isLimitOfSelectionReached,
+  removeAgentFromSelectedList
+} from '../utils';
 import { SelectedAgentListAtom } from '../../atoms';
-import { addToSelected, isLimitReached, isSelected, removeFromSelected } from '../../utils';
 
-interface AgentsProps {
-  viewName: 'calculator' | 'teamfinder';
+interface Props {
+  viewName: ViewName;
 }
 
-const COMPONENTS = {
+const AGENT_COMPONENTS = {
   calculator: AgentList,
   teamfinder: AgentGallery
 };
 
-const Agents: React.FC<AgentsProps> = ({ viewName }) => {
+export const Agents: React.FC<Props> = ({ viewName }) => {
   const setSelectedAgents = useSetAtom(SelectedAgentListAtom);
-  const Component = COMPONENTS[viewName];
+  const AgentComponent = AGENT_COMPONENTS[viewName];
 
-  const select = (agent: Agent) => {
+  const handleAgentSelection = (selectedAgent: Agent) =>
     setSelectedAgents((prev) => {
       const selected = prev[viewName];
-
-      if (isSelected(selected, agent.name)) {
-        return { ...prev, [viewName]: removeFromSelected(selected, agent.name) };
-      }
-
-      if (isLimitReached(viewName, selected.length)) {
-        return prev;
-      }
-
-      return { ...prev, [viewName]: addToSelected(selected, agent.name) };
+      const selectedAgents = agentIsSelected(selected, selectedAgent.name)
+        ? removeAgentFromSelectedList(selected, selectedAgent.name)
+        : isLimitOfSelectionReached(viewName, selected.length)
+        ? selected
+        : addAgentToSelectedList(selected, selectedAgent.name);
+      return { ...prev, [viewName]: selectedAgents };
     });
-  };
 
-  return <Component viewName={viewName} select={select} />;
+  return <AgentComponent viewName={viewName} select={handleAgentSelection} />;
 };
-
-export default Agents;

@@ -1,14 +1,17 @@
 import { useAtomValue, useSetAtom } from 'jotai';
 import { useResetAtom } from 'jotai/utils';
-import { FaEraser } from 'react-icons/fa';
 import { ChangeEvent, useEffect, useState } from 'react';
-import { AgentListAtom, FilteredAgentListAtom, SelectedAgentListAtom } from '../../atoms';
+import { FaEraser } from 'react-icons/fa';
 
-interface SearchProps {
-  viewName: 'calculator' | 'teamfinder';
+import { ViewName } from '../utils';
+import { FilteredAgentListAtom, SelectedAgentListAtom } from '../../atoms';
+import { AgentListAtom } from '../../atoms/atoms';
+
+interface Props {
+  viewName: ViewName;
 }
 
-export const Search: React.FC<SearchProps> = ({ viewName }) => {
+export const Search: React.FC<Props> = ({ viewName }) => {
   const [value, setValue] = useState('');
   const setFilteredItems = useSetAtom(FilteredAgentListAtom);
 
@@ -22,13 +25,9 @@ export const Search: React.FC<SearchProps> = ({ viewName }) => {
 
   useEffect(reset, []);
 
-  const items = useAtomValue(AgentListAtom);
-  const selectedItems = useAtomValue(SelectedAgentListAtom);
-  const itemNames = items.map((item) => item.name);
-
-  const unselect = () => {
-    resetSelectedItems();
-  };
+  const allAgents = useAtomValue(AgentListAtom);
+  const selectedAgents = useAtomValue(SelectedAgentListAtom)[viewName] || [];
+  const agentNames = allAgents.map((agent) => agent.name);
 
   const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     const search = event.target.value;
@@ -36,15 +35,15 @@ export const Search: React.FC<SearchProps> = ({ viewName }) => {
     setValue(search);
     setFilteredItems((prev) => ({
       ...prev,
-      [viewName]: itemNames.filter((name) => name.toLocaleLowerCase().includes(search.toLocaleLowerCase()))
+      [viewName]: agentNames.filter((name) => name.toLocaleLowerCase().includes(search.toLocaleLowerCase()))
     }));
   };
 
   return (
     <div className="form-group">
       <input value={value} type="search" className="form-group-input" placeholder="Search" onChange={changeHandler} />
-      {selectedItems[viewName].length > 0 && (
-        <button className="form-group-btn btn btn-animated hover-grow animated" onClick={unselect}>
+      {selectedAgents.length > 0 && (
+        <button className="form-group-btn btn btn-animated hover-grow animated" onClick={() => resetSelectedItems()}>
           <FaEraser />
         </button>
       )}

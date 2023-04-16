@@ -1,7 +1,7 @@
 export { Agent } from './Agent';
-export { AbstractEffect, Effect, EffectDamage, EffectDOT } from './Effect/index';
+export { AbstractEffect, Effect, EffectDamage, EffectDOT } from './Effect';
 export { EvoNode } from './EvoNode';
+export { Fight } from './Fight';
 export { Skill } from './Skill';
 export { Stats } from './Stats';
 export { Target } from './Target';
-export { Fight } from './Fight';

@@ -3,13 +3,40 @@ globalThis.damageDelay = 100;
 globalThis.projectileSpeed = 100;
 globalThis.projectileInterval = 100;
 
-import * as EverythingData from './data/index';
-import * as EverythingHelper from './helper/index';
+import * as EverythingData from './data';
+import * as EverythingHelper from './helper';
 
 export const { Agents, EvoNodes, Targets } = EverythingData;
-export const { bruteforce_team, calculate_agents_individually, calculate_team } = EverythingHelper;
+export const { bruteforceTeam, calculateAgentTarget, calculateTeam, findBestRuneSets } = EverythingHelper;
 
-export { ActionEnum, BonusEnum, ClassEnum, EffectTypeEnum, OrganizationEnum, CupSizeEnum } from './enums/index';
+export { HistoryActionTypeEnum, BonusEnum, ClassEnum, EffectTypeEnum, OrganizationEnum, CupSizeEnum } from './enums';
+
+export {
+  ActionType,
+  DamageEffectFunction,
+  EffectFunction,
+  EffectParams,
+  ApplyParams,
+  ApplyFunction,
+  HistoryType,
+  ResultType,
+  Rune,
+  RuneData,
+  RuneSet
+} from './model/types';
+
+export {
+  NewAgent,
+  NewEffect,
+  NewEffectDamage,
+  NewEffectDOT,
+  NewEvoNode,
+  NewFight,
+  NewSkill,
+  NewStats,
+  NewTarget
+} from './model/interfaces';
+
 export {
   Agent,
   AbstractEffect,
@@ -21,26 +48,4 @@ export {
   Stats,
   Target,
   Fight
-} from './model/index';
-export {
-  NewAgent,
-  NewEffect,
-  NewDamageEffect,
-  NewDOTEffect,
-  NewEvoNode,
-  NewFight,
-  NewSkill,
-  NewStats,
-  NewTarget
-} from './model/index';
-export {
-  ActionType,
-  DamageEffectFunctionType,
-  DamageReturnType,
-  EffectFunctionType,
-  EffectParamType,
-  EvoNodeParamType,
-  EvoNodeFunctionType,
-  HistoryType,
-  ResultType
-} from './model/index';
+} from './model/classes';

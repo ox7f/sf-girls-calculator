@@ -1,38 +1,28 @@
-import { calculate_team } from './calculateTeam';
-import { NewAgent, NewTarget } from '../model/index';
+import { calculateTeam } from './calculateTeam';
+import { NewAgent, NewTarget } from '../model';
 
-// TODO: iterate through targets
-export const bruteforce_team = (agents: NewAgent[], targets: NewTarget[], limit?: number) => {
-  const combinationSize = agents.length > 6 ? 6 : agents.length;
-  const combinations = getCombinations(agents, combinationSize);
+const maxCombinationSize = 6;
 
-  const results = [];
+export function bruteforceTeam(agents: NewAgent[], target: NewTarget, limit?: number) {
+  const combinationSize = Math.min(maxCombinationSize, agents.length);
+  const combinations = generateCombinations(agents, combinationSize);
+  const results = combinations.map((combination) => calculateTeam(combination, target));
+  results.sort((a, b) => a.totalDamage - b.totalDamage);
+  return limit ? results.slice(0, limit) : results;
+}
 
-  for (const combination of combinations) {
-    const result = calculate_team(combination, targets[0]);
-    results.push(result);
-  }
-
-  results.sort((a, b) => a.total_damage - b.total_damage);
-
-  if (limit) {
-    return results.slice(0, limit);
-  }
-
-  return results;
-};
-
-function getCombinations(arr: NewAgent[], size: number) {
+function generateCombinations(agents: NewAgent[], size: number) {
   const combinations: NewAgent[][] = [];
 
-  function backtrack(start: number, combination: NewAgent[]) {
+  function backtrack(startIndex: number, combination: NewAgent[]) {
     if (combination.length === size) {
       combinations.push([...combination]);
       return;
     }
 
-    for (let i = start; i < arr.length; i++) {
-      combination.push(arr[i]);
+    for (let i = startIndex; i < agents.length; i++) {
+      const currentAgent = agents[i];
+      combination.push(currentAgent);
       backtrack(i + 1, combination);
       combination.pop();
     }

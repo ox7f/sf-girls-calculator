@@ -1,28 +1,27 @@
-import { NewTarget } from '../../model/index';
+import { NewTarget } from '../../model';
 
 export class Target {
   name: string;
-  health: number;
-  current_health: number;
-  critical_resistance: number;
-  damage_taken_multiplier = 1;
-  weakness_multiplier = 1;
   duration: number;
+  health: number;
+  currentHealth: number;
+  criticalResistance: number;
+  damageTakenMultiplier: number;
+  weaknessMultiplier: number;
 
-  constructor({ name, health, critical_resistance, duration }: NewTarget) {
+  constructor({ name, health, criticalResistance, duration }: NewTarget) {
     this.name = name;
-    this.health = health;
-    this.current_health = health;
     this.duration = duration * 1000; // seconds to ms
-    this.critical_resistance = critical_resistance;
+    this.health = health;
+    this.currentHealth = health;
+    this.criticalResistance = criticalResistance;
+    this.damageTakenMultiplier = 1;
+    this.weaknessMultiplier = 1;
   }
 
-  take_damage(time: number, agent_damage: number) {
-    if (time <= 0) return 0;
-
-    const damage = Math.round(agent_damage * this.damage_taken_multiplier * this.weakness_multiplier);
-    this.current_health -= damage;
-
+  takeDamage(agentDamage: number) {
+    const damage = Math.round(agentDamage * this.damageTakenMultiplier * this.weaknessMultiplier);
+    this.currentHealth -= damage;
     return damage;
   }
 }

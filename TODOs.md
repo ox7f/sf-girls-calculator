@@ -3,9 +3,9 @@
 ## clean code
 
 - [x] move handle functions inside class -> clean code, follow oop (no stinky code allowed)
-- [] refactor search component
-- [] refactor types, each one in a separate file
-- [] work with initialized objects instead of interfaces in frontend?
+- [x] refactor search component
+- [x] refactor types, each one in a separate file
+- [x] work with initialized objects instead of interfaces
 
 ## must have
 
@@ -15,7 +15,7 @@
 - [x] implement number of projectiles
 - [x] implement projectile travel speed
 - [x] handle cast animations logic better (add global cast time)
-- [] TODO: implement evo tree
+- [x] implement evo tree
 - [] implement new target (ditto: target with evo tree)
 - [] implement runes
 - [] implement seekers
@@ -29,6 +29,7 @@
 - [] teamfinder: results on separate page / calculate on click
 - [] new detail view: agent detail view where you can adjust stats with instant graph update, also select support agents but graph shows only selected agent
 - [] fill changelog with content
+- [] add rune finder to UI
 
 ## nice to have
 
@@ -45,15 +46,15 @@
 
 ## UI/UX
 
+- [] good looking evo tree => ui overhaul
 - [] adjust width/height of graph
+- [] show critical hits or other bonuses (e.g. evo node: headshot, instant reload) in graph
+- [] add images
 
 ## code changes
 
-- [x] add projectile number
-- [x] add cast time
 - [x] log damage events (is_crit, is_headshot, nodes etc)
-- [] TODO: replace atoms with real data => firebase
-- [] refactor stuff again (atoms needed? try useState for short persistency?)
+- [x] dots don't crit!
 
 ## feedback
 

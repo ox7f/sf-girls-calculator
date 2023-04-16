@@ -1,3 +1,3 @@
-export { calculateWorker, calculateCalculator, calculateTeamfinder } from './calculateWorker';
-export { type FunctionParams } from './types';
-export { calculate, findAgents, findTargets } from './utils';
+export { calculateWorker } from './instance';
+export { calculate, findAgents, findTargets, type FunctionParams } from './utils';
+export { calculateCalculator, calculateTeamfinder } from './worker';

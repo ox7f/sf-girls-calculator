@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { FaAngleRight } from 'react-icons/fa';
 
-const Home: React.FC = () => {
+export const HomePage: React.FC = () => {
   const [width, setWidth] = useState<number>(window.innerWidth);
   const [fadeIn, setFadeIn] = useState(false);
   const [index, setIndex] = useState(0);
@@ -147,5 +147,3 @@ const Home: React.FC = () => {
     </main>
   );
 };
-
-export default Home;

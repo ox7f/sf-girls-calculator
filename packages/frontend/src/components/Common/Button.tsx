@@ -1,20 +1,28 @@
 import { MouseEvent } from 'react';
 
-interface ButtonProps {
+interface Props {
   text: string;
   disabled?: boolean;
   isAnimated?: boolean;
-  type?: string;
+  type?: 'success' | 'primary' | 'transparent';
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
 }
 
-export const Button: React.FC<ButtonProps> = ({ text, disabled = false, isAnimated = false, type = '', onClick }) => {
-  const animationClass = isAnimated ? 'pulse' : '';
-  const disabledClass = disabled ? 'btn-transparent btn--disabled outline' : '';
-  const className = `btn btn-animated hover-grow animated bounceIn ${animationClass} ${disabledClass} ${type}`;
+export const Button: React.FC<Props> = ({ text, disabled = false, isAnimated = false, type = 'primary', onClick }) => {
+  const classNames = ['btn', 'hover-grow', 'animated', 'bounceIn'];
+
+  if (isAnimated) {
+    classNames.push('pulse');
+  }
+
+  if (disabled) {
+    classNames.push('btn-transparent', 'btn--disabled', 'outline');
+  } else {
+    classNames.push(type ? `btn-${type}` : '');
+  }
 
   return (
-    <button className={className.replace(/\s+/g, ' ')} disabled={disabled} onClick={onClick}>
+    <button className={classNames.join(' ')} disabled={disabled} onClick={onClick}>
       {text}
     </button>
   );

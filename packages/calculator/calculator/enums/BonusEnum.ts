@@ -1,5 +1,5 @@
 export enum BonusEnum {
-  Critical = 'Critical',
-  EvoNode = 'Evo Node',
-  None = 'None'
+  CRITICAL = 'Critical',
+  HEADSHOT = 'Artillery Headshot',
+  RELOAD = 'Gunner Instand Reload'
 }

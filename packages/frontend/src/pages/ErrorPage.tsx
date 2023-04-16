@@ -1,13 +1,9 @@
 import { FaCoffee } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-
 import { Button } from '../components/common';
 
-const Error: React.FC = () => {
+export const ErrorPage: React.FC = () => {
   const navigate = useNavigate();
-
-  const refreshPage = () => window.location.reload();
-  const visitHome = () => navigate('/');
 
   return (
     <main>
@@ -27,10 +23,10 @@ const Error: React.FC = () => {
             </div>
 
             <div className="placeholder-commands u-center">
-              <div className="m-1" onClick={refreshPage}>
-                <Button text="Refresh" type="btn-primary" />
+              <div className="m-1" onClick={() => window.location.reload()}>
+                <Button text="Refresh" type="primary" />
               </div>
-              <div className="m-1" onClick={visitHome}>
+              <div className="m-1" onClick={() => navigate('/')}>
                 <Button text="Home" />
               </div>
             </div>
@@ -40,5 +36,3 @@ const Error: React.FC = () => {
     </main>
   );
 };
-
-export default Error;

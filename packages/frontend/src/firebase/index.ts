@@ -24,4 +24,3 @@ const storage = getStorage(app);
 
 export { analytics, auth, firestore, performance, storage };
 export { AgentConverter, type ItemConverterType, TargetConverter } from './converter';
-export { initializeCollection, initializeAgents, initializeTargets } from './utils';

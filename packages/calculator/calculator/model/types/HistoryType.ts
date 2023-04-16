@@ -1,7 +1,7 @@
-import { ActionType } from './index';
+import { ActionType } from '../types';
 
 export type HistoryType = {
   actions: ActionType[];
   time: number;
-  total_damage: number;
+  totalDamage: number;
 };

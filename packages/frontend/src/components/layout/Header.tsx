@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
+// import { useAuthState } from 'react-firebase-hooks/auth';
 import { FaGithub } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-import { auth } from '../../firebase';
+// import { auth } from '../../firebase';
 
 const menuItems = [
   { name: 'Calculator', to: '/calculator' },
@@ -11,7 +11,8 @@ const menuItems = [
 ];
 
 export const Header: React.FC = () => {
-  const [user] = useAuthState(auth);
+  const user = true;
+  // const [user] = useAuthState(auth);
   const [isOpen, setIsOpen] = useState(false);
   const toggleHamburger = () => setIsOpen(!isOpen);
 
@@ -52,7 +53,7 @@ export const Header: React.FC = () => {
         </div>
 
         <div className="nav-right">
-          <div className="nav-item u-justify-flex-end">
+          {/* <div className="nav-item u-justify-flex-end">
             {user ? (
               <a className="sign-out" onClick={() => auth.signOut()}>
                 Sign out
@@ -62,7 +63,7 @@ export const Header: React.FC = () => {
                 <span>Sign in</span>
               </Link>
             )}
-          </div>
+          </div> */}
 
           <div className="nav-item u-justify-flex-end no-hover">
             <a href="https://www.buymeacoffee.com/ox7f" target="_blank">

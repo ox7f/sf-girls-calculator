@@ -28,8 +28,8 @@ export const AgentConverter = {
 };
 
 export const TargetConverter = {
-  toFirestore({ critical_resistance, duration, health, name }: PartialWithFieldValue<NewTarget>): DocumentData {
-    return { critical_resistance, duration, health, name };
+  toFirestore({ criticalResistance, duration, health, name }: PartialWithFieldValue<NewTarget>): DocumentData {
+    return { criticalResistance, duration, health, name };
   },
   fromFirestore: (snapshot: QueryDocumentSnapshot<DocumentData>, options: SnapshotOptions) => {
     const data = snapshot.data(options);

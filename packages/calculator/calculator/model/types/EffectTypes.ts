@@ -1,11 +1,11 @@
-import { Agent, Target } from '../classes/index';
+import { Agent, Target } from '../classes';
 
-export type EffectParamType = {
+export type EffectParams = {
   agent: Agent;
   team: Agent[];
   target: Target;
 };
 
-export type EffectFunctionType = (params: EffectParamType) => void;
+export type EffectFunction = (params: EffectParams) => void;
 
-export type DamageEffectFunctionType = (params: EffectParamType) => number;
+export type DamageEffectFunction = (params: EffectParams) => number;

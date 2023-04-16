@@ -20,9 +20,6 @@
     "**/*.ts",
     "**/*.tsx",
     "global.d.ts"
-, "src/webworker/calculateWorker/worker.ts"  ],
-  "exclude": [
-    "node_modules"
-  ],
+, "src/webworker/worker.ts"  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

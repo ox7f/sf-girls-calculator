@@ -1,7 +1,7 @@
-import { Agent, Target, NewFight, ResultType } from '../../model/index';
+import { Agent, NewFight, ResultType, Target } from '../../model';
 
 export class Fight {
-  team: Agent[] = [];
+  team: Agent[];
   target: Target;
   time: number;
 
@@ -12,26 +12,30 @@ export class Fight {
   }
 
   run(): ResultType {
-    // apply support evo nodes
-    this.team.forEach((agent) => {
-      agent.manage_nodes(this);
-    });
+    this.applyAgentEvoTree();
 
-    while (this.time > 0 && this.target.current_health > 0) {
+    while (this.time > 0 && this.target.currentHealth > 0) {
       for (const agent of this.team) {
-        agent.manage_effects(this);
-        agent.cast_skill(this);
+        agent.manageEffects(this);
+        agent.castSkill(this);
         agent.attack(this);
       }
 
       this.time -= globalThis.Interval;
     }
 
+    const sortedTeam = this.team.sort((a, b) => b.stats.totalDamage - a.stats.totalDamage);
+    const totalDamage = sortedTeam.reduce((pv: number, cv: Agent) => pv + cv.stats.totalDamage, 0);
+
     return {
       target: this.target,
-      team: this.team.sort((a, b) => b.stats.total_damage - a.stats.total_damage),
+      team: sortedTeam,
       time: this.time,
-      total_damage: this.team.reduce((pv: number, cv: Agent) => pv + cv.stats.total_damage, 0)
+      totalDamage
     };
+  }
+
+  private applyAgentEvoTree() {
+    this.team.forEach((agent) => agent.manageEvoTree(this));
   }
 }

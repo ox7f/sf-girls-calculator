@@ -3,17 +3,18 @@ import { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Outlet } from 'react-router-dom';
 
-import { AgentModal, ErrorMessage, Footer, Header, Spinner } from './components';
 import { auth } from './firebase';
+import { AgentModal } from './components/agent';
+import { ErrorMessage, Spinner } from './components/common';
+import { Footer, Header } from './components/layout';
 
-const App: React.FC = () => {
+export const App: React.FC = () => {
   const [user] = useAuthState(auth);
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  console.log('user', user);
-
   const initializeApp = async () => {
+    return;
     if (!user) {
       try {
         await signInAnonymously(auth);
@@ -45,5 +46,3 @@ const App: React.FC = () => {
     </div>
   );
 };
-
-export default App;

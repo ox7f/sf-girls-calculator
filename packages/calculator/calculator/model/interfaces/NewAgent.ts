@@ -1,5 +1,5 @@
-import { NewEvoNode, NewSkill, NewStats } from './index';
-import { ClassEnum, OrganizationEnum, CupSizeEnum } from '../../enums/index';
+import { NewEvoNode, NewSkill, NewStats } from '../interfaces';
+import { ClassEnum, CupSizeEnum, OrganizationEnum } from '../../enums';
 
 export interface NewAgent {
   index: number;
@@ -7,7 +7,7 @@ export interface NewAgent {
   title: string;
   bio: string;
   organization: OrganizationEnum;
-  cup_size: CupSizeEnum;
+  cupSize: CupSizeEnum;
   class: ClassEnum;
   stats: NewStats;
   skill: NewSkill;

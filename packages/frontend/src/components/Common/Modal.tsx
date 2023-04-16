@@ -1,12 +1,12 @@
 import { Portal } from './index';
 
-interface ModalProps {
+interface Props {
   modalId: string;
   children?: React.ReactNode;
   clickOutside?: () => void;
 }
 
-export const Modal: React.FC<ModalProps> = ({ modalId, children, clickOutside }) => {
+export const Modal: React.FC<Props> = ({ modalId, children = null, clickOutside = () => null }) => {
   return (
     <Portal wrapperId="modal-container">
       <div className="modal modal--visible" id={modalId}>

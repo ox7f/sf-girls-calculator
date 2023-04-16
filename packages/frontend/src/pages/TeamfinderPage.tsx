@@ -1,9 +1,11 @@
 import { useSetAtom } from 'jotai';
 
 import { CurrentViewAtom } from '../atoms';
-import { Agents, /*Results,*/ Search, TargetSelect } from '../components';
+import { Agents } from '../components/agent';
+import { Search } from '../components/common';
+import { TargetSelect } from '../components/target';
 
-const Teamfinder: React.FC = () => {
+export const TeamfinderPage: React.FC = () => {
   useSetAtom(CurrentViewAtom)('teamfinder');
 
   return (
@@ -28,5 +30,3 @@ const Teamfinder: React.FC = () => {
     </div>
   );
 };
-
-export default Teamfinder;

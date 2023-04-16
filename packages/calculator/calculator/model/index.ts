@@ -1,5 +1,4 @@
 export {
-  Agent,
   AbstractEffect,
   Effect,
   EffectDamage,
@@ -7,14 +6,15 @@ export {
   EvoNode,
   Skill,
   Stats,
+  Agent,
   Target,
   Fight
 } from './classes';
 export {
   NewAgent,
   NewEffect,
-  NewDamageEffect,
-  NewDOTEffect,
+  NewEffectDamage,
+  NewEffectDOT,
   NewEvoNode,
   NewFight,
   NewSkill,
@@ -23,12 +23,15 @@ export {
 } from './interfaces';
 export {
   ActionType,
-  DamageEffectFunctionType,
-  DamageReturnType,
-  EffectFunctionType,
-  EffectParamType,
-  EvoNodeParamType,
-  EvoNodeFunctionType,
+  ApplyFunction,
+  ApplyParams,
+  ApplyResult,
+  DamageEffectFunction,
+  EffectFunction,
+  EffectParams,
   HistoryType,
-  ResultType
+  ResultType,
+  Rune,
+  RuneData,
+  RuneSet
 } from './types';

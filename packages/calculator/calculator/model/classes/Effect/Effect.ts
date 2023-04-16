@@ -1,55 +1,63 @@
-import { ActionEnum, EffectTypeEnum } from '../../../enums/index';
-import { Agent, AbstractEffect, EffectFunctionType, Fight, NewEffect } from '../../index';
+import { AttackModeEnum, EffectTypeEnum, HistoryActionTypeEnum } from '../../../enums';
+import { Agent, AbstractEffect, EffectFunction, Fight, NewEffect } from '../../../model';
 
 export class Effect extends AbstractEffect {
-  type: EffectTypeEnum;
-  apply: EffectFunctionType;
-  remove: EffectFunctionType;
-  duration: number;
   begin: number;
+  duration: number;
+  type: EffectTypeEnum;
+  apply: EffectFunction;
+  remove: EffectFunction;
 
   constructor({ type, duration, apply, remove, begin = 0 }: NewEffect) {
     super();
+    this.begin = begin;
+    this.duration = duration * 1000; // seconds to ms
     this.type = type;
     this.apply = apply;
     this.remove = remove;
-    this.duration = duration * 1000; // seconds to ms
-    this.begin = begin;
   }
 
   add(agent: Agent, fight: Fight) {
     const { target, team, time } = fight;
-    const newEffect = new Effect({
-      ...this,
-      duration: this.duration / 1000,
-      begin: time
-    });
+    const newEffect = new Effect({ ...this, duration: this.duration / 1000, begin: time });
 
     newEffect.apply({ agent, team, target });
+    agent.activeEffects.push(newEffect);
 
-    agent.applied_effects.push(newEffect);
-    agent.log(time, { attack_mode: 'None', damage: 0, effect_type: this.type, type: ActionEnum.Apply });
+    agent.log(time, {
+      attackMode: AttackModeEnum.NONE,
+      damage: 0,
+      effectType: this.type,
+      type: HistoryActionTypeEnum.USE_SKILL
+    });
   }
 
   activate(agent: Agent, fight: Fight) {
-    if (agent.skill.is_stackable) {
+    if (agent.skill.isStackable) {
       return this.add(agent, fight);
     }
 
-    const old = this.find_existing(agent, this);
+    const old = this.findExisting(agent);
 
-    if (old) old.deactivate(agent, fight);
+    if (old) {
+      old.deactivate(agent, fight);
+    }
 
     this.add(agent, fight);
   }
 
   deactivate(agent: Agent, fight: Fight) {
     const { target, team, time } = fight;
-    const index = agent.applied_effects.indexOf(this);
+    const index = agent.activeEffects.indexOf(this);
 
     if (index >= 0) {
-      agent.applied_effects.splice(index, 1);
-      agent.log(time, { attack_mode: 'None', damage: 0, effect_type: this.type, type: ActionEnum.Remove });
+      agent.activeEffects.splice(index, 1);
+      agent.log(time, {
+        attackMode: AttackModeEnum.NONE,
+        damage: 0,
+        effectType: this.type,
+        type: HistoryActionTypeEnum.REMOVE
+      });
     }
 
     this.remove({ agent, team, target });
@@ -58,18 +66,18 @@ export class Effect extends AbstractEffect {
   manage(agent: Agent, fight: Fight) {
     const { time } = fight;
 
-    if (this.is_expired(time)) {
+    if (this.isExpired(time)) {
       this.deactivate(agent, fight);
     }
   }
 
-  find_existing(agent: Agent, effect: Effect) {
-    return agent.applied_effects.find(
-      (applied_effect) => applied_effect instanceof Effect && applied_effect.apply === effect.apply
+  findExisting(agent: Agent) {
+    return agent.activeEffects.find(
+      (applied_effect) => applied_effect instanceof Effect && applied_effect.apply === this.apply
     );
   }
 
-  is_expired(time: number) {
+  private isExpired(time: number) {
     return time <= this.begin - this.duration;
   }
 }
