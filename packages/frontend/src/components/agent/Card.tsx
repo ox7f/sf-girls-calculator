@@ -55,7 +55,7 @@ export const AgentCard: React.FC<Props> = ({ agent, viewName, select }) => {
           type={isSelected ? 'success' : 'transparent'}
           onClick={() => select(agent)}
         />
-        <Button text="Edit" type="transparent" onClick={() => setAgentName(agent.name)} />
+        <Button text="Edit" type="primary" onClick={() => setAgentName(agent.name)} />
       </div>
     </div>
   );
