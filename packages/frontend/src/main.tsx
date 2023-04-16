@@ -6,11 +6,7 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import { App } from './App';
-import { AuthPage, CalculatorPage, ErrorPage, HomePage, TeamfinderPage } from './pages';
-// import { withAuth } from './withAuth';
-
-// const ProtectedCalculator = withAuth(CalculatorPage);
-// const ProtectedTeamfinder = withAuth(TeamfinderPage);
+import { CalculatorPage, ErrorPage, HomePage, TeamfinderPage } from './pages';
 
 const router = createBrowserRouter([
   {
@@ -19,7 +15,6 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { path: '/', element: <HomePage /> },
-      { path: '/authenticate', element: <AuthPage /> },
       { path: '/calculator', element: <CalculatorPage /> },
       { path: '/teamfinder', element: <TeamfinderPage /> }
     ]

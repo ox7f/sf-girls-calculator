@@ -7,8 +7,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run build:functions && tsc && vite build",
-    "build:functions": "npm --prefix ./functions install && npm --prefix ./functions run build",
+    "build": "tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint ./src/**/*",
     "typecheck": "tsc -b",
@@ -29,13 +28,11 @@
     "@sf-girls-calculator/calculator": "^0.0.1",
     "cirrus-ui": "^0.7.1",
     "comlink": "^4.4.1",
-    "firebase": "^9.19.1",
     "idb": "^7.1.1",
     "jotai": "^2.0.4",
     "jotai-minidb": "^0.0.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-firebase-hooks": "^5.1.1",
     "react-icons": "^4.8.0",
     "react-router-dom": "^6.10.0",
     "recharts": "^2.5.0"

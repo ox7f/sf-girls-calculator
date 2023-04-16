@@ -1,9 +1,6 @@
 import { useState } from 'react';
-// import { useAuthState } from 'react-firebase-hooks/auth';
 import { FaGithub } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-
-// import { auth } from '../../firebase';
 
 const menuItems = [
   { name: 'Calculator', to: '/calculator' },
@@ -11,8 +8,6 @@ const menuItems = [
 ];
 
 export const Header: React.FC = () => {
-  const user = true;
-  // const [user] = useAuthState(auth);
   const [isOpen, setIsOpen] = useState(false);
   const toggleHamburger = () => setIsOpen(!isOpen);
 
@@ -42,29 +37,16 @@ export const Header: React.FC = () => {
             </Link>
           </div>
 
-          {user &&
-            menuItems.map((menuItem) => (
-              <div className="nav-item" key={menuItem.name}>
-                <Link to={menuItem.to}>
-                  <span>{menuItem.name}</span>
-                </Link>
-              </div>
-            ))}
+          {menuItems.map((menuItem) => (
+            <div className="nav-item" key={menuItem.name}>
+              <Link to={menuItem.to}>
+                <span>{menuItem.name}</span>
+              </Link>
+            </div>
+          ))}
         </div>
 
         <div className="nav-right">
-          {/* <div className="nav-item u-justify-flex-end">
-            {user ? (
-              <a className="sign-out" onClick={() => auth.signOut()}>
-                Sign out
-              </a>
-            ) : (
-              <Link to="/authenticate">
-                <span>Sign in</span>
-              </Link>
-            )}
-          </div> */}
-
           <div className="nav-item u-justify-flex-end no-hover">
             <a href="https://www.buymeacoffee.com/ox7f" target="_blank">
               <img src="/buymeacoffee.png" alt="Buy Me A Coffee" style={{ height: '36px', width: '130px' }} />
