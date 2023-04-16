@@ -12,6 +12,7 @@
   },
   "main": "lib/index.js",
   "dependencies": {
+    "@sf-girls-calculator/frontend": "file:..",
     "better-firebase-functions": "^6.0.0",
     "firebase-admin": "^11.5.0",
     "firebase-functions": "^4.2.0"
