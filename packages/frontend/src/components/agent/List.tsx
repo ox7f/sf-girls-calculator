@@ -1,4 +1,4 @@
-import { Agent } from '@sf-girls-calculator/calculator';
+import { Agent, Agents } from '@sf-girls-calculator/calculator';
 import { useAtomValue } from 'jotai';
 
 import { Search } from '../common';
