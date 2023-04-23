@@ -319,10 +319,17 @@ export const DB = {
   name: 'Damage Boost',
   children: [I_I, MS_I, LS_I],
   apply: (params: ApplyParams) => {
-    const na_bonus = 1 + 0.01 * params.node.level;
-    const sk_bonus = 1 + 0.01 * params.node.level;
-    params.agent.stats.normalAttack *= na_bonus;
-    params.agent.stats.skillDamage *= sk_bonus;
+    const { agent, fight, node } = params;
+
+    // TODO: better check? like instanceof Ditto / ! instanceof Target
+    if (fight.target.name !== 'Ditto') {
+      return {};
+    }
+
+    const na_bonus = 1 + 0.01 * node.level;
+    const sk_bonus = 1 + 0.01 * node.level;
+    agent.stats.normalAttack *= na_bonus;
+    agent.stats.skillDamage *= sk_bonus;
     return {};
   }
 } as NewEvoNode;
