@@ -48,13 +48,14 @@
 
 - [] good looking evo tree => ui overhaul
 - [] adjust width/height of graph
-- [] show critical hits or other bonuses (e.g. evo node: headshot, instant reload) in graph
-- [] add images
+- [x] show critical hits or other bonuses (e.g. evo node: headshot, instant reload) in graph
+- [] add images (if allowed)
 
 ## code changes
 
 - [x] log damage events (is_crit, is_headshot, nodes etc)
 - [x] dots don't crit!
+- [x] move isStackable from Skill to Effect
 
 ## feedback
 
