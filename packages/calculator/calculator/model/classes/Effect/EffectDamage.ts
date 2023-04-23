@@ -33,19 +33,22 @@ export class EffectDamage extends AbstractEffect {
       time
     } = fight;
 
-    const { attack_counter, skillDamage, baseSkillDamage, criticalRate, criticalDamage } = agent.stats;
+    const { attackCounter, skillDamage, baseSkillDamage, criticalRate, criticalDamage } = agent.stats;
     const {
+      skillDamage: skillDamageEffect = 0,
       criticalRate: criticalRateEffect = 0,
       doubleDamage: doubleDamageChance = 0,
       doubleHit: doubleAttackChance = 0
     } = agent.nodeEffects;
 
-    const limitedAttackCounter = Math.min(attack_counter, 10);
+    const limitedAttackCounter = Math.min(attackCounter, 10);
     const criticalRateWithEffect = criticalRate + criticalRateEffect * limitedAttackCounter - criticalResistance;
+    const skillAttackEffect = skillDamage * skillDamageEffect * limitedAttackCounter;
+    const totalSkillAttack = skillDamage + skillAttackEffect;
 
     const bonus: BonusEnum[] = [];
     const baseDamage = this.config.damage({ agent, target, team: fight.team }) / baseSkillDamage;
-    let damage = baseDamage * skillDamage;
+    let damage = baseDamage * totalSkillAttack;
 
     if (Math.random() < criticalRateWithEffect) {
       damage *= criticalDamage;

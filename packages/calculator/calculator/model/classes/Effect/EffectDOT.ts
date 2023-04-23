@@ -2,11 +2,11 @@ import { AttackModeEnum, BonusEnum, HistoryActionTypeEnum } from '../../../enums
 import { Agent, AbstractEffect, Fight, NewEffectDOT } from '../../../model';
 
 export class EffectDOT extends AbstractEffect {
-  private last_dot: number;
+  private lastDot: number;
 
   constructor(private readonly config: NewEffectDOT) {
     super();
-    this.last_dot = this.config.begin ?? 0;
+    this.lastDot = this.config.begin ?? 0;
   }
 
   activate(agent: Agent, fight: Fight) {
@@ -54,7 +54,7 @@ export class EffectDOT extends AbstractEffect {
     const { damage, bonus } = this.getDamage(agent, fight);
     const damageDealt = target.takeDamage(damage);
 
-    this.last_dot = time;
+    this.lastDot = time;
     agent.stats.totalDamage += damageDealt;
     agent.log(time, {
       attackMode: AttackModeEnum.SKILL,
@@ -67,15 +67,17 @@ export class EffectDOT extends AbstractEffect {
 
   private getDamage(agent: Agent, fight: Fight) {
     const { target, team } = fight;
-    const { attack_counter, skillDamage, baseSkillDamage, criticalRate, criticalDamage } = agent.stats;
-    const { criticalRate: criticalRateEffect = 0 } = agent.nodeEffects;
+    const { attackCounter, skillDamage, baseSkillDamage, criticalRate, criticalDamage } = agent.stats;
+    const { skillDamage: skillDamageEffect = 0, criticalRate: criticalRateEffect = 0 } = agent.nodeEffects;
 
-    const limitedAttackCounter = Math.min(attack_counter, 10);
+    const limitedAttackCounter = Math.min(attackCounter, 10);
     const criticalRateWithEffect = criticalRate + criticalRateEffect * limitedAttackCounter - target.criticalResistance;
+    const skillAttackEffect = skillDamage * skillDamageEffect * limitedAttackCounter;
+    const totalSkillAttack = skillDamage + skillAttackEffect;
 
     const bonus: BonusEnum[] = [];
     const baseDamage = this.config.damage({ agent, target, team }) / baseSkillDamage;
-    let damage = baseDamage * skillDamage;
+    let damage = baseDamage * totalSkillAttack;
 
     if (Math.random() < criticalRateWithEffect) {
       damage *= criticalDamage;
@@ -88,11 +90,11 @@ export class EffectDOT extends AbstractEffect {
   private isActive(time: number) {
     const { begin = 0, duration, interval } = this.config;
 
-    const has_started = time <= begin;
-    const has_stopped = time < begin - duration;
-    const in_interval = this.last_dot - interval >= time;
+    const hasStarted = time <= begin;
+    const hasStopped = time < begin - duration;
+    const inInterval = this.lastDot - interval >= time;
 
-    return has_started && !has_stopped && in_interval;
+    return hasStarted && !hasStopped && inInterval;
   }
 
   private isExpired(time: number) {
