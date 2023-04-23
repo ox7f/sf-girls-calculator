@@ -6,10 +6,11 @@ interface NewAbstractEffect {
 }
 
 export interface NewEffect extends NewAbstractEffect {
+  duration: number;
   apply: EffectFunction;
   remove: EffectFunction;
-  duration: number;
   begin?: number;
+  isStackable?: boolean;
 }
 
 export interface NewEffectDamage extends NewAbstractEffect {
