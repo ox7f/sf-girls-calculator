@@ -4,15 +4,17 @@ import { Agent, AbstractEffect, EffectFunction, Fight, NewEffect } from '../../.
 export class Effect extends AbstractEffect {
   begin: number;
   duration: number;
+  isStackable: boolean;
   type: EffectTypeEnum;
   apply: EffectFunction;
   remove: EffectFunction;
 
-  constructor({ type, duration, apply, remove, begin = 0 }: NewEffect) {
+  constructor({ type, duration, apply, remove, begin = 0, isStackable = false }: NewEffect) {
     super();
     this.begin = begin;
     this.duration = duration * 1000; // seconds to ms
     this.type = type;
+    this.isStackable = isStackable;
     this.apply = apply;
     this.remove = remove;
   }
@@ -33,7 +35,7 @@ export class Effect extends AbstractEffect {
   }
 
   activate(agent: Agent, fight: Fight) {
-    if (agent.skill.isStackable) {
+    if (this.isStackable) {
       return this.add(agent, fight);
     }
 
@@ -73,7 +75,7 @@ export class Effect extends AbstractEffect {
 
   findExisting(agent: Agent) {
     return agent.activeEffects.find(
-      (applied_effect) => applied_effect instanceof Effect && applied_effect.apply === this.apply
+      (appliedEffect) => appliedEffect instanceof Effect && appliedEffect.apply === this.apply
     );
   }
 

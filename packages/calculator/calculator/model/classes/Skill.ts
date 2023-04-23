@@ -14,14 +14,12 @@ import {
 export class Skill {
   name: string;
   description: string;
-  isStackable: boolean;
   cooldown: number;
   effects: (Effect | EffectDamage | EffectDOT)[];
 
-  constructor({ name, description, effects, isStackable = false, cooldown }: NewSkill) {
+  constructor({ name, description, effects, cooldown }: NewSkill) {
     this.name = name;
     this.description = description;
-    this.isStackable = isStackable;
     this.cooldown = cooldown * 1000; // seconds to ms
     this.effects = this.initializeEffects(effects);
   }
