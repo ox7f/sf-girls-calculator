@@ -7,7 +7,7 @@ type Props = {
 // TODO:
 export const Logs: React.FC<Props> = ({ logs }) => {
   return (
-    <div style={{ maxHeight: '100px', overflowY: 'auto' }}>
+    <div style={{ maxHeight: '200px', overflowY: 'auto' }}>
       {logs.map(({ time, totalDamage, actions }) => (
         <div key={time} style={{ display: 'flex', alignItems: 'center' }}>
           <span style={{ marginRight: '10px' }}>{time}s</span>
