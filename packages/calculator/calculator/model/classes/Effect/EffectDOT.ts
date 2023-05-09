@@ -1,12 +1,24 @@
-import { AttackModeEnum, BonusEnum, HistoryActionTypeEnum } from '../../../enums';
-import { Agent, AbstractEffect, Fight, NewEffectDOT } from '../../../model';
+import { AttackModeEnum, BonusEnum, EffectTypeEnum, HistoryActionTypeEnum } from '../../../enums';
+import { Agent, AbstractEffect, Fight, NewEffectDOT, DamageEffectFunction } from '../../../model';
 
 export class EffectDOT extends AbstractEffect {
+  type: EffectTypeEnum;
+  duration: number;
+  interval: number;
+  damage: DamageEffectFunction;
+  begin: number;
+
   private lastDot: number;
 
-  constructor(private readonly config: NewEffectDOT) {
+  constructor({ type, duration, interval, damage, begin = 0 }: NewEffectDOT) {
     super();
-    this.lastDot = this.config.begin ?? 0;
+    this.type = type;
+    this.duration = duration * 1000;
+    this.interval = interval * 1000;
+    this.damage = damage;
+    this.begin = begin;
+
+    this.lastDot = this.begin;
   }
 
   activate(agent: Agent, fight: Fight) {
@@ -14,18 +26,18 @@ export class EffectDOT extends AbstractEffect {
     agent.log(fight.time, {
       attackMode: AttackModeEnum.NONE,
       damage: 0,
-      effectType: this.config.type,
+      effectType: this.type,
       type: HistoryActionTypeEnum.USE_SKILL
     });
   }
 
   add(agent: Agent, fight: Fight) {
     const { time } = fight;
-    const { duration, interval } = this.config;
+    const { duration, interval } = this;
 
     agent.activeEffects.push(
       new EffectDOT({
-        ...this.config,
+        ...this,
         duration: duration / 1000,
         interval: interval / 1000,
         begin: time
@@ -44,7 +56,7 @@ export class EffectDOT extends AbstractEffect {
     agent.log(fight.time, {
       attackMode: AttackModeEnum.NONE,
       damage: 0,
-      effectType: this.config.type,
+      effectType: this.type,
       type: HistoryActionTypeEnum.REMOVE
     });
   }
@@ -60,7 +72,7 @@ export class EffectDOT extends AbstractEffect {
       attackMode: AttackModeEnum.SKILL,
       bonus,
       damage: damageDealt,
-      effectType: this.config.type,
+      effectType: this.type,
       type: HistoryActionTypeEnum.ATTACK
     });
   }
@@ -76,7 +88,7 @@ export class EffectDOT extends AbstractEffect {
     const totalSkillAttack = skillDamage + skillAttackEffect;
 
     const bonus: BonusEnum[] = [];
-    const baseDamage = this.config.damage({ agent, target, team }) / baseSkillDamage;
+    const baseDamage = this.damage({ agent, target, team }) / baseSkillDamage;
     let damage = baseDamage * totalSkillAttack;
 
     if (Math.random() < criticalRateWithEffect) {
@@ -88,7 +100,7 @@ export class EffectDOT extends AbstractEffect {
   }
 
   private isActive(time: number) {
-    const { begin = 0, duration, interval } = this.config;
+    const { begin = 0, duration, interval } = this;
 
     const hasStarted = time <= begin;
     const hasStopped = time < begin - duration;
@@ -98,7 +110,7 @@ export class EffectDOT extends AbstractEffect {
   }
 
   private isExpired(time: number) {
-    const { begin = 0, duration } = this.config;
+    const { begin = 0, duration } = this;
     return time <= begin - duration;
   }
 

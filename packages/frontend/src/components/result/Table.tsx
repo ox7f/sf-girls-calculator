@@ -1,6 +1,6 @@
-import { Agent, ResultType } from '@sf-girls-calculator/calculator';
 import { useSetAtom } from 'jotai';
 import { FaCog } from 'react-icons/fa';
+import { Agent, ResultType } from '@sf-girls-calculator/calculator';
 
 import { ClassTag } from '../utils';
 import { AgentNameAtom } from '../../atoms';
@@ -31,51 +31,46 @@ const TableRow: React.FC<{ agent: Agent; index: number; damage: number }> = ({ a
       <td>{totalDamage}</td>
       <td>{percentOfTotalDamage}</td>
       <td onClick={() => setAgentName(name)} style={{ cursor: 'pointer' }}>
-        <a className="u-center mt-1 text-gray-600">
-          <FaCog />
-        </a>
+        <div className="tooltip tooltip--bottom" data-tooltip="Edit Agent">
+          <a className="u-center mt-1 text-gray-600 hover-grow-extreme">
+            <FaCog />
+          </a>
+        </div>
       </td>
     </tr>
   );
 };
 
 export const Table: React.FC<Props> = ({ result }) => {
-  const remainingTime = result.time / 1000;
-  const remainingHealth = result.target.currentHealth;
-
   return (
-    <div className="u-center">
-      <label>Remaining Time: {remainingTime} second(s)</label>
-      <label>Remaining HP: {remainingHealth}</label>
+    <table className="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Class</th>
+          <th>Name</th>
+          <th>Damage</th>
+          <th>%</th>
+          <th>Edit</th>
+        </tr>
+      </thead>
 
-      <table className="table">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Class</th>
-            <th>Name</th>
-            <th>Damage</th>
-            <th>%</th>
-            <th>Edit</th>
-          </tr>
-        </thead>
+      <tbody>
+        {result.team.map((agent, index) => (
+          <TableRow key={index} agent={agent} index={index} damage={result.totalDamage} />
+        ))}
+      </tbody>
 
-        <tbody>
-          {result.team.map((agent, index) => (
-            <TableRow key={index} agent={agent} index={index} damage={result.totalDamage} />
-          ))}
-        </tbody>
-
-        <tfoot>
-          <tr>
-            <th>&sum;</th>
-            <th></th>
-            <th></th>
-            <th>{result.totalDamage}</th>
-            <th></th>
-          </tr>
-        </tfoot>
-      </table>
-    </div>
+      <tfoot>
+        <tr>
+          <th>&sum;</th>
+          <th></th>
+          <th></th>
+          <th>{result.totalDamage}</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </tfoot>
+    </table>
   );
 };

@@ -12,10 +12,12 @@ export type FunctionParams = {
   selectedTargets: string[];
 };
 
-export const calculate = async ({ selectedAgents, selectedTargets }: FunctionParams, isMultiple = false) => {
+export async function calculate({ selectedAgents, selectedTargets }: FunctionParams, isMultiple = false) {
   const db = await openDB('agent-db', 1);
 
-  if (!db || selectedAgents.length === 0 || selectedTargets.length === 0) return null;
+  if (!db || selectedAgents.length === 0 || selectedTargets.length === 0) {
+    return null;
+  }
 
   const transaction = db.transaction('key-value', 'readwrite');
   const store = transaction.objectStore('key-value');
@@ -24,22 +26,22 @@ export const calculate = async ({ selectedAgents, selectedTargets }: FunctionPar
   const targets = findTargets(selectedTargets, Targets.Targets, []);
   const agents = findAgents(selectedAgents, Agents.Agents, userAgents);
 
-  const result = isMultiple
+  const results = isMultiple
     ? bruteforceTeam(agents, targets[0], MAX_BRUTEFORCE_RESULT_NUM)
     : [calculateTeam(agents, targets[0])];
 
   // TODO: circular dependency - fix temporary solution
-  result.map((res) =>
-    res.team.map((agent) => {
+  results.map((result) =>
+    result.team.map((agent) => {
       agent.nodes = [];
       return agent;
     })
   );
 
-  return result;
-};
+  return results;
+}
 
-export const findAgents = (names: string[], source: NewAgent[], userSource: AgentItem[]) => {
+export function findAgents(names: string[], source: NewAgent[], userSource: AgentItem[]) {
   const items = names.map((name) => {
     const item = source.find((item) => item.name === name)!;
     const userItem = userSource.find((item) => item.name === name)!;
@@ -62,9 +64,9 @@ export const findAgents = (names: string[], source: NewAgent[], userSource: Agen
   });
 
   return items;
-};
+}
 
-export const findTargets = (names: string[], source: NewTarget[], userSource: TargetItem[]) => {
+export function findTargets(names: string[], source: NewTarget[], userSource: TargetItem[]) {
   const items = names.map((name) => {
     const item = source.find((item) => item.name === name)!;
     const userItem = userSource.find((item) => item.name === name)!;
@@ -73,4 +75,4 @@ export const findTargets = (names: string[], source: NewTarget[], userSource: Ta
   });
 
   return items;
-};
+}

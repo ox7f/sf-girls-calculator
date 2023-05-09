@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react';
+import { FC, useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { createWrapper } from '../utils';
 
-interface Props {
+type PortalProps = {
   children: React.ReactNode;
   wrapperId: string;
-}
+};
 
-export const Portal: React.FC<Props> = ({ children, wrapperId }) => {
+export const Portal: FC<PortalProps> = ({ children, wrapperId }) => {
   const [wrapper, setWrapper] = useState<HTMLElement | null>(null);
 
   useEffect(() => {

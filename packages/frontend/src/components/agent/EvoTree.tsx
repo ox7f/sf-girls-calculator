@@ -1,13 +1,13 @@
-import { EvoNode as EvoNodeClass } from '@sf-girls-calculator/calculator';
 import { useAtom, useAtomValue } from 'jotai';
-import { useMemo } from 'react';
+import { FC, useMemo } from 'react';
+import { EvoNode as EvoNodeClass } from '@sf-girls-calculator/calculator';
 
-import { Button } from '../common';
 import { EvoNode } from './EvoNode';
-import { getAllChildren, getAllParents, overwriteEvoTree } from '../utils';
+import { Button } from '../common';
+import { getAllNodeChildren, getAllNodes, getAllNodeParents, overwriteEvoTree } from '../utils';
 import { AgentDB, AgentNameAtom } from '../../atoms';
 
-export const EvoTree: React.FC = () => {
+export const EvoTree: FC = () => {
   const agentName = useAtomValue(AgentNameAtom);
   const [agent, setAgent] = useAtom(AgentDB.item(agentName));
 
@@ -16,9 +16,12 @@ export const EvoTree: React.FC = () => {
   }
 
   const nodes = useMemo(() => overwriteEvoTree(agent), [agent]);
+  const allNodes = useMemo(() => getAllNodes(nodes), [nodes]);
+  const disableMax = allNodes.every((node) => node.level === 5);
+  const disableReset = allNodes.every((node) => node.level === 0);
 
-  const updateNode = (node: EvoNodeClass) => {
-    const newNodes = getAllParents(node).concat(getAllChildren(node));
+  const onUpdateNode = (node: EvoNodeClass) => {
+    const newNodes = getAllNodeParents(node).concat(getAllNodeChildren(node));
 
     setAgent({
       ...agent,
@@ -35,17 +38,31 @@ export const EvoTree: React.FC = () => {
 
   return (
     <>
-      <div className="content u-text-center pt-3">
-        <div className="u-flex u-center u-overflow-auto" style={{ flexWrap: 'nowrap', justifyContent: 'normal' }}>
+      <div className="content u-text-center">
+        <div
+          className="u-flex u-center u-overflow-auto"
+          style={{ flexWrap: 'nowrap', justifyContent: 'normal', height: '26rem' }}
+        >
           {nodes.map((node) => (
-            <EvoNode key={node.name} node={node} update={updateNode} />
+            <EvoNode key={node.name} node={node} update={onUpdateNode} />
           ))}
         </div>
       </div>
 
       <div className="btn-group btn-group-fill">
-        <Button text="Max" onClick={() => updateNodesLevel(5)} />
-        <Button text="Reset" onClick={() => updateNodesLevel(0)} />
+        <Button
+          text="Max"
+          color="primary"
+          disabled={disableMax}
+          onClick={() => updateNodesLevel(5)}
+        />
+        <Button
+          text="Reset"
+          variant="outline"
+          color="primary"
+          disabled={disableReset}
+          onClick={() => updateNodesLevel(0)}
+        />
       </div>
     </>
   );

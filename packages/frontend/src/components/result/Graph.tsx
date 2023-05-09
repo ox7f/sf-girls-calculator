@@ -1,6 +1,6 @@
-import { Agent, HistoryType, ResultType } from '@sf-girls-calculator/calculator';
 import { useState } from 'react';
 import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import { Agent, HistoryType, ResultType } from '@sf-girls-calculator/calculator';
 
 import { CustomTooltip, Logs } from './index';
 import { getColorFromString, prepareGraphData } from '../utils';
@@ -18,7 +18,7 @@ export const Graph: React.FC<GraphProp> = ({ result }) => {
   };
 
   return (
-    <div style={{ height: '500px', width: '100%' }}>
+    <>
       <ResponsiveContainer>
         <LineChart>
           <CartesianGrid strokeDasharray="3 3" />
@@ -41,6 +41,6 @@ export const Graph: React.FC<GraphProp> = ({ result }) => {
         </LineChart>
       </ResponsiveContainer>
       <Logs logs={logs} />
-    </div>
+    </>
   );
 };

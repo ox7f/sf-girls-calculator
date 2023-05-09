@@ -1,25 +1,43 @@
 import { useAtom, useAtomValue } from 'jotai';
 import { useCallback, useEffect, useState } from 'react';
+import { FaChartArea, FaTable } from 'react-icons/fa';
 
 import { Graph, Table } from './index';
-import { Spinner } from '../common';
+import { Button, Spinner } from '../common';
 import { AgentDB, CurrentViewAtom, ResultListAtom, SelectedAgentListAtom, SelectedTargetListAtom } from '../../atoms';
 import { calculateWorker } from '../../webworker';
 
+const WORKER_CONFIG = {
+  calculator: calculateWorker.calculateCalculator,
+  teamfinder: calculateWorker.calculateTeamfinder
+};
+
 export const Results: React.FC = () => {
   const [loading, setLoading] = useState(false);
+  const [showGraph, setShowGraph] = useState(true);
+  const [showTable, setShowTable] = useState(false);
+
   const [results, setResults] = useAtom(ResultListAtom);
   const viewName = useAtomValue(CurrentViewAtom);
   const selectedAgents = useAtomValue(SelectedAgentListAtom)[viewName] || [];
   const selectedTargets = useAtomValue(SelectedTargetListAtom)[viewName] || [];
   const agentEntries = useAtomValue(AgentDB.entries);
 
-  const WORKER_CONFIG = {
-    calculator: calculateWorker.calculateCalculator,
-    teamfinder: calculateWorker.calculateTeamfinder
-  };
-
   const workerCall = useCallback(async (selectedAgents: string[], selectedTargets: string[]) => {
+    /** uncomment only for testing:
+    if (selectedAgents.length > 0 && selectedTargets) {
+      const test_results = [];
+
+      for (let i = 0; i < 500; i++) {
+        const test_result = await WORKER_CONFIG[viewName]({ selectedAgents, selectedTargets });
+        test_results.push(JSON.parse(test_result)[0]);
+      }
+
+      test_results.sort((a, b) => b.totalDamage - a.totalDamage);
+      console.log(test_results[0].totalDamage, test_results[test_results.length - 1].totalDamage);
+    }
+    */
+
     const newResults = await WORKER_CONFIG[viewName]({ selectedAgents, selectedTargets });
     return JSON.parse(newResults);
   }, []);
@@ -39,12 +57,47 @@ export const Results: React.FC = () => {
     <div className="results-container">
       {loading && <Spinner />}
 
-      {results[viewName].map((result, index) => (
-        <div className="content" key={index}>
-          <Table result={result} />
-          <Graph result={result} />
-        </div>
-      ))}
+      {results[viewName].map((result, index) => {
+        const remainingTime = result.time / 1000;
+        const remainingHealth = result.target.currentHealth;
+
+        return (
+          <div className="content" key={index}>
+            <div className="btn-group pt-1">
+              <div className="tooltip tooltip--bottom" data-tooltip="Show Graph">
+                <Button
+                  variant={showGraph ? 'outline' : undefined}
+                  onClick={() => {
+                    setShowGraph(true);
+                    setShowTable(false);
+                  }}
+                >
+                  <FaChartArea size={20} />
+                </Button>
+              </div>
+              <div className="tooltip tooltip--bottom" data-tooltip="Show Table">
+                <Button
+                  variant={showTable ? 'outline' : undefined}
+                  onClick={() => {
+                    setShowGraph(false);
+                    setShowTable(true);
+                  }}
+                >
+                  <FaTable size={20} />
+                </Button>
+              </div>
+            </div>
+
+            <div style={{ height: '500px', width: '100%' }}>
+              <label>Remaining Time: {remainingTime} second(s)</label>
+              <label>Remaining HP: {remainingHealth}</label>
+
+              {showTable && <Table result={result} />}
+              {showGraph && <Graph result={result} />}
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 };

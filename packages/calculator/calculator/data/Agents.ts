@@ -1,12 +1,14 @@
+import { EvoNodes } from '../data';
 import { AttackModeEnum, ClassEnum, CupSizeEnum, EffectTypeEnum, OrganizationEnum } from '../enums';
 import { EffectParams, NewAgent, NewEffectDamage, NewEffectDOT, NewEffect, NewSkill, NewStats } from '../model';
-import { EvoNodes } from '../data';
 
 export const Yuki = {
   index: 1,
   name: 'Yuki',
   title: 'Valkyrie',
-  bio: "Despite her warm beauty and natural youthfulness, Yuki is otherwise a very cold individual. She takes her job very seriously in the WIO, and refuses to let social interaction get in the way of her duty. A fact she'll bluntly tell you.",
+  bio: `
+  Despite her warm and youthful beauty, Yuki is actually a very cold individual. She takes her job at the WIO very seriously and refuses to let social interactions interfere with her duties, which she will bluntly tell you.
+  `,
   organization: OrganizationEnum.WIO,
   cupSize: CupSizeEnum.C,
   class: ClassEnum.STRIKER,
@@ -22,7 +24,10 @@ export const Yuki = {
   } as NewStats,
   skill: {
     name: 'Precision Assault',
-    description: 'increases the damage to 1500% and attack speed to 220% for 4 seconds. cooldown: 8',
+    description: `
+    This skill increases damage by 1500% and attack speed by 220% for 4 seconds.
+    It has a cooldown of 8 seconds.
+    `,
     effects: [
       {
         type: EffectTypeEnum.SELF_BUFF,
@@ -49,7 +54,9 @@ export const Neve = {
   index: 2,
   name: 'Neve',
   title: 'Frostbite',
-  bio: "A literal 'ice queen', Neve wants this war business to be done and over with already. Impatient and cruel, even to her commanding officer, she has few friends and many enemies. There's no denying she's beautiful, but most are too wary of that poisonous tongue to try getting to know her.",
+  bio: `
+  Neve is often referred to as an 'ice queen' due to her impatience and cruelty, even towards her commanding officer. Her desire to end the war quickly is evident, but she has made few friends and many enemies along the way. Although she is undeniably beautiful, her sharp tongue and toxic attitude make people wary of getting to know her.
+  `,
   organization: OrganizationEnum.GSR,
   cupSize: CupSizeEnum.D,
   class: ClassEnum.SUPPORT,
@@ -65,8 +72,11 @@ export const Neve = {
   } as NewStats,
   skill: {
     name: 'Absolute Zero',
-    description: 'summons an iceberg dealing 26428 damage and slows down enemies to 50% for 5 seconds. cooldown: 17',
-    effects: [{ type: EffectTypeEnum.DAMAGE, damage: () => 26428 } as NewEffectDamage],
+    description: `
+    Summons an iceberg, dealing 26296.9 damage and slowing down enemies to 50% for 5 seconds.
+    It has a cooldown of 17 seconds.
+    `,
+    effects: [{ type: EffectTypeEnum.DAMAGE, damage: () => 26296.9 } as NewEffectDamage],
     cooldown: 17
   } as NewSkill
 } as NewAgent;
@@ -75,7 +85,9 @@ export const Ayu = {
   index: 3,
   name: 'Ayu',
   title: 'Spectre',
-  bio: "Trained in advanced weaponry, Ayu should naturally be a very tough individual. However, despite being skilled at her craft, she's incredibly naive and impressionable, often times not realizing the gravity of a situation without help from her peers.",
+  bio: `
+  Ayu has received advanced training in weaponry, which should make her a tough and skilled individual. However, she can be incredibly naive and impressionable, sometimes failing to grasp the gravity of a situation without guidance from her peers.
+  `,
   organization: OrganizationEnum.WIO,
   cupSize: CupSizeEnum.E,
   class: ClassEnum.GUNNER,
@@ -90,8 +102,11 @@ export const Ayu = {
   } as NewStats,
   skill: {
     name: 'Raining Bullets',
-    description: 'shoots a piercing laser beam dealing 45536 damage. cooldown: 9',
-    effects: [{ type: EffectTypeEnum.DAMAGE, damage: () => 45536 } as NewEffectDamage],
+    description: `
+    Shoots a piercing laser beam, dealing 45535.8 damage.
+    It has a cooldown of 9 seconds.
+    `,
+    effects: [{ type: EffectTypeEnum.DAMAGE, damage: () => 45535.8 } as NewEffectDamage],
     cooldown: 9
   } as NewSkill
 } as NewAgent;
@@ -100,7 +115,9 @@ export const Mika = {
   index: 4,
   name: 'Mika',
   title: 'Maelstrom',
-  bio: "Mika is a naturally kind individual. She hasn't let the horrors of war change her personality, and remains one of the cheeriest members of the SF alliance. Soldiers love being put in a team with her, simply because of how happy and bubbly she is.",
+  bio: `
+  Mika is naturally a kind and cheerful individual who hasn't let the horrors of war affect her personality. Despite being a member of the SF alliance, she remains one of the happiest and most positive members. Soldiers love being on her team because of her bubbly personality and positive attitude.
+  `,
   organization: OrganizationEnum.GAA,
   cupSize: CupSizeEnum.G,
   class: ClassEnum.STRIKER,
@@ -115,12 +132,15 @@ export const Mika = {
   } as NewStats,
   skill: {
     name: "Ocean's Torrent",
-    description: 'smashes the ground and creates 4 sword-quakes each dealing 11422 damage. cooldown: 11',
+    description: `
+    Smashes the ground and creates 4 sword-quakes, each dealing 10010.1 damage. Cooldown: 11.
+    It has a cooldown of 11 seconds.
+    `,
     effects: [
-      { type: EffectTypeEnum.DAMAGE, damage: () => 11422 } as NewEffectDamage,
-      { type: EffectTypeEnum.DAMAGE, damage: () => 11422 } as NewEffectDamage,
-      { type: EffectTypeEnum.DAMAGE, damage: () => 11422 } as NewEffectDamage,
-      { type: EffectTypeEnum.DAMAGE, damage: () => 11422 } as NewEffectDamage
+      { type: EffectTypeEnum.DAMAGE, damage: () => 10010.1 } as NewEffectDamage,
+      { type: EffectTypeEnum.DAMAGE, damage: () => 10010.1 } as NewEffectDamage,
+      { type: EffectTypeEnum.DAMAGE, damage: () => 10010.1 } as NewEffectDamage,
+      { type: EffectTypeEnum.DAMAGE, damage: () => 10010.1 } as NewEffectDamage
     ],
     cooldown: 11
   } as NewSkill
@@ -130,7 +150,9 @@ export const Sora = {
   index: 5,
   name: 'Sora',
   title: 'Harpy',
-  bio: "Sora was originally turned away from the SF for being too young, but after a quick display of her skills, they were eager to have her join the Earth defense. Timid by nature, her indecisiveness makes her look to the Commander for constant validation, but she'll do whatever it takes to keep her fellow humans safe.",
+  bio: `
+  Sora was initially rejected by the SF for being too young, but after demonstrating her exceptional skills, they were eager to recruit her for Earth's defense. Though she is naturally timid and indecisive, she looks up to the Commander for validation and guidance. However, she remains committed to doing whatever it takes to ensure the safety of her fellow humans.
+  `,
   organization: OrganizationEnum.GSR,
   cupSize: CupSizeEnum.E,
   class: ClassEnum.GUNNER,
@@ -146,10 +168,13 @@ export const Sora = {
   } as NewStats,
   skill: {
     name: 'Death From Above',
-    description: 'shoots two electric bullets, each dealing 27891 damage. cooldown: 8',
+    description: `
+    Shoots two electric bullets, each dealing 27890.7 damage.
+    It has a cooldown of 8 seconds.
+    `,
     effects: [
-      { type: EffectTypeEnum.DAMAGE, damage: () => 27891 } as NewEffectDamage,
-      { type: EffectTypeEnum.DAMAGE, damage: () => 27891 } as NewEffectDamage
+      { type: EffectTypeEnum.DAMAGE, damage: () => 27890.7 } as NewEffectDamage,
+      { type: EffectTypeEnum.DAMAGE, damage: () => 27890.7 } as NewEffectDamage
     ],
     cooldown: 8
   } as NewSkill
@@ -159,7 +184,9 @@ export const Ember = {
   index: 6,
   name: 'Ember',
   title: 'The Maniac',
-  bio: "For the most part, people just try to stay out of Ember's way. A destructive force all her own, she gets off on the thrill of destroying her enemies. Sometimes it seems like she's having too much fun-this is a war after all-but at least she's pointing her guns in the right direction.",
+  bio: `
+  Ember is a destructive force, and most people try to avoid crossing her path. She takes pleasure in obliterating her enemies and seems to enjoy it a little too much at times. While her enthusiasm for destruction may be alarming, she channels it in the right direction by targeting the enemy during the war.
+  `,
   organization: OrganizationEnum.GAA,
   cupSize: CupSizeEnum.E,
   class: ClassEnum.ARTILLERY,
@@ -175,12 +202,15 @@ export const Ember = {
   } as NewStats,
   skill: {
     name: 'Dance of Death',
-    description: 'shoots 4 enhanced bullets, each dealing 13991 damage cooldown: 8',
+    description: `
+    Shoots 4 enhanced bullets, each dealing 13990.6 damage.
+    It has a cooldown of 8 seconds.
+    `,
     effects: [
-      { type: EffectTypeEnum.DAMAGE, damage: () => 13991 } as NewEffectDamage,
-      { type: EffectTypeEnum.DAMAGE, damage: () => 13991 } as NewEffectDamage,
-      { type: EffectTypeEnum.DAMAGE, damage: () => 13991 } as NewEffectDamage,
-      { type: EffectTypeEnum.DAMAGE, damage: () => 13991 } as NewEffectDamage
+      { type: EffectTypeEnum.DAMAGE, damage: () => 13990.6 } as NewEffectDamage,
+      { type: EffectTypeEnum.DAMAGE, damage: () => 13990.6 } as NewEffectDamage,
+      { type: EffectTypeEnum.DAMAGE, damage: () => 13990.6 } as NewEffectDamage,
+      { type: EffectTypeEnum.DAMAGE, damage: () => 13990.6 } as NewEffectDamage
     ],
     cooldown: 8
   } as NewSkill
@@ -190,7 +220,9 @@ export const Chiharu = {
   index: 7,
   name: 'Chiharu',
   title: 'Corsair',
-  bio: "The military normally wouldn't employ the likes of space pirates or other outlaws to fight alongside their drafted soldiers, but with a situation this dire they couldn't afford to be picky. Chiharu is one of the most renown pirates to occupy Human space. For as wary as the soldiers are fo trusting someone who should technically be their enemy, there's an undeniable charm and wit about her that makes her very likable.",
+  bio: `
+  Under normal circumstances, the military would not consider hiring space pirates or outlaws to fight alongside their drafted soldiers. However, in this dire situation, they had no choice but to enlist anyone who could help. Chiharu is one of the most renowned pirates in Human space, and while soldiers are wary of trusting someone who should technically be their enemy, she has an undeniable charm and wit that makes her very likable.
+  `,
   organization: OrganizationEnum.GAA,
   cupSize: CupSizeEnum.J,
   class: ClassEnum.ARTILLERY,
@@ -205,8 +237,11 @@ export const Chiharu = {
   } as NewStats,
   skill: {
     name: "Dead Man's Curse",
-    description: 'shoots a powerful bullet at the monster with the highest health, dealing 65165 damage. cooldown: 9',
-    effects: [{ type: EffectTypeEnum.DAMAGE, damage: () => 65165 } as NewEffectDamage],
+    description: `
+    Shoots a powerful bullet at the monster with the highest health, dealing 65165 damage.
+    It has a cooldown of 9 seconds.
+    `,
+    effects: [{ type: EffectTypeEnum.DAMAGE, damage: () => 65164.8 } as NewEffectDamage],
     cooldown: 9
   } as NewSkill
 } as NewAgent;
@@ -215,7 +250,9 @@ export const Irina = {
   index: 8,
   name: 'Irina',
   title: 'Honeybee',
-  bio: "Irina wasn't supposed to be a part of the war effort at all, until someone had the brilliant idea of strapping a missile launcher up to a girl on roller skates. Now, she's the fastest unit they've got on the force, and with her giant weaponry, she's also one of the most deadly.",
+  bio: `
+  Irina wasn't originally part of the war effort until someone had the brilliant idea of equipping a girl on roller skates with a missile launcher. Now, she's the fastest unit on the force, and her giant weaponry makes her one of the most deadly soldiers.
+  `,
   organization: OrganizationEnum.DOD,
   cupSize: CupSizeEnum.A,
   class: ClassEnum.ARTILLERY,
@@ -230,12 +267,15 @@ export const Irina = {
   } as NewStats,
   skill: {
     name: 'Rocket Ricochet',
-    description: 'fires 4 missiles at target, each dealing 14230 damage. cooldown: 6',
+    description: `
+    Fires 4 missiles at the target, each dealing 14230 damage.
+    It has a cooldown of 6 seconds.
+    `,
     effects: [
-      { type: EffectTypeEnum.DAMAGE, damage: () => 14230 } as NewEffectDamage,
-      { type: EffectTypeEnum.DAMAGE, damage: () => 14230 } as NewEffectDamage,
-      { type: EffectTypeEnum.DAMAGE, damage: () => 14230 } as NewEffectDamage,
-      { type: EffectTypeEnum.DAMAGE, damage: () => 14230 } as NewEffectDamage
+      { type: EffectTypeEnum.DAMAGE, damage: () => 14229.9 } as NewEffectDamage,
+      { type: EffectTypeEnum.DAMAGE, damage: () => 14229.9 } as NewEffectDamage,
+      { type: EffectTypeEnum.DAMAGE, damage: () => 14229.9 } as NewEffectDamage,
+      { type: EffectTypeEnum.DAMAGE, damage: () => 14229.9 } as NewEffectDamage
     ],
     cooldown: 6
   } as NewSkill
@@ -245,7 +285,9 @@ export const Yuuha = {
   index: 9,
   name: 'Yuuha',
   title: 'Lotus',
-  bio: "War is no place for a pacifist, yet Yuuha remains in the SF alliance anyway. Fighting goes against everything she believes in, but unlike others, she understands that sometimes, there's no logical alternative.",
+  bio: `
+  War is not a suitable place for a pacifist, yet Yuuha remains in the SF alliance nonetheless. Fighting goes against everything she believes in, but unlike others, she understands that sometimes there is no logical alternative.
+  `,
   organization: OrganizationEnum.WIO,
   cupSize: CupSizeEnum.C,
   class: ClassEnum.GUNNER,
@@ -261,8 +303,11 @@ export const Yuuha = {
   } as NewStats,
   skill: {
     name: 'Dance of the Lotus',
-    description: 'deals 26563 damage and knockbacks all monsters by 1.6 unit distances. cooldown: 16',
-    effects: [{ type: EffectTypeEnum.DAMAGE, damage: () => 26563 } as NewEffectDamage],
+    description: `
+    Deals 26562.5 damage and knocks back all enemies by 1.6 units.
+    It has a cooldown of 16 seconds.
+    `,
+    effects: [{ type: EffectTypeEnum.DAMAGE, damage: () => 26562.5 } as NewEffectDamage],
     cooldown: 16
   } as NewSkill
 } as NewAgent;
@@ -271,7 +316,9 @@ export const Uzu = {
   index: 10,
   name: 'Uzu',
   title: 'Abyss',
-  bio: "Previously employed in aquatic biological and technological research, Uzu saw the SF Alliance as a way to expand her skills. More interested in the benefits of war than the war effort itself, most soldiers don't respect her too much. But she could care less what other people think.",
+  bio: `
+  Previously employed in aquatic biological and technological research, Uzu saw the SF Alliance as an opportunity to expand her skills. Although she is more interested in the benefits of war than the war effort itself, most soldiers do not respect her that much. However, she couldn't care less about other people's opinions.
+  `,
   organization: OrganizationEnum.ADB,
   cupSize: CupSizeEnum.J,
   class: ClassEnum.SUPPORT,
@@ -286,19 +333,22 @@ export const Uzu = {
   } as NewStats,
   skill: {
     name: 'Crushing Embrace',
-    description:
-      'releases her tentacles and deals 57490 damage to the surrounding units, knockbacks enemy for 1 unit distance and applies a 1 second mini-stun. cooldown: 16',
-    effects: [{ type: EffectTypeEnum.DAMAGE, damage: () => 57490 } as NewEffectDamage],
+    description: `
+    Releases her tentacles and deals 57204.3 damage to surrounding units, knocking back enemies by 1 unit and applying a 1-second mini-stun.
+    It has a cooldown of 16 seconds.
+    `,
+    effects: [{ type: EffectTypeEnum.DAMAGE, damage: () => 57204.3 } as NewEffectDamage],
     cooldown: 16
   } as NewSkill
 } as NewAgent;
 
-// TODO:
 export const Denka = {
   index: 11,
   name: 'Denka',
   title: 'Groundhog',
-  bio: "Coming from a family of wealthy investors, Denka begged her parents to let her join the SF. Though she's equipped with the finest weapons and armor money can buy, she's far too cocky for her own good. Her intentions may be pure but people are wary that she's only there to further her family's reputation.",
+  bio: `
+  Coming from a family of wealthy investors, Denka pleaded with her parents to allow her to join the SF. While she is equipped with the finest weapons and armor money can buy, her excessive confidence often works against her. Despite her genuine intentions, people are wary that she is merely using the SF to enhance her family's reputation.
+  `,
   organization: OrganizationEnum.WIO,
   cupSize: CupSizeEnum.E,
   class: ClassEnum.STRIKER,
@@ -323,7 +373,9 @@ export const Reika = {
   index: 12,
   name: 'Reika',
   title: 'Iris',
-  bio: "As the Commander's secretary, Reika has a very stressful and important job to do. Being the right-hand woman of one of the most prominent military figures in the war isn't a small feat. Sometimes she gets flustered and is naturally very shy, but when it comes to her duty she sets her own insecurities aside to protect those she cherishes.",
+  bio: `
+  As the Commander's secretary, Reika holds a highly stressful and crucial position. Being the right-hand woman of one of the most prominent military figures in the war is no small feat. Though she may occasionally become flustered and is naturally shy, when it comes to her duties, she sets aside her own insecurities to protect those she cherishes.
+  `,
   organization: OrganizationEnum.NDS,
   cupSize: CupSizeEnum.I,
   class: ClassEnum.GUNNER,
@@ -344,12 +396,13 @@ export const Reika = {
   } as NewSkill
 } as NewAgent;
 
-// TODO:
 export const Noa = {
   index: 13,
   name: 'Noa',
   title: 'The Professor',
-  bio: "A brilliant student in the tech industry, Noa seems only able to function after a dozen cups of coffee or energy drinks. Somewhat sleepy at all times, she is surprisingly alert and ready-for-action at any given moment. People can't believe she's able to create such innovative and efficient technologies for the war effort, but she still manages it somehow.",
+  bio: `
+  A brilliant student in the tech industry, Noa seems to require a dozen cups of coffee or energy drinks just to function. Despite appearing somewhat sleepy at all times, she maintains an unexpected level of alertness and readiness for action. People find it hard to believe that she can create such innovative and efficient technologies for the war effort, yet she somehow manages to do so.
+  `,
   organization: OrganizationEnum.NDS,
   cupSize: CupSizeEnum.D,
   class: ClassEnum.SUPPORT,
@@ -376,7 +429,9 @@ export const Neugena = {
   index: 14,
   name: 'Neugena',
   title: 'bucktail',
-  bio: "No one's really sure where Neugena came from. Nor are they certain of how she became so skilled at hunting. But one's asking questions, especially when she talks about killing for sport so often. No one wants to become her next prey.",
+  bio: `
+  No one is really certain of Neugena's origins, nor do they have a clear understanding of how she acquired her exceptional hunting skills. Nevertheless, no one dares to inquire further, particularly when she frequently discusses her enjoyment of killing for sport. No one wishes to become her next target.
+  `,
   organization: OrganizationEnum.GSR,
   cupSize: CupSizeEnum.D,
   class: ClassEnum.GUNNER,
@@ -416,7 +471,9 @@ export const Larisa = {
   index: 15,
   name: 'Larisa',
   title: 'Katyusha',
-  bio: "The creation of the SF brought together soldiers of all flocks, including those like Larisa. Her home country naturally does things a little differently than the rest of the world, and she's got an attitude to match. Unconcerned with rules and regulations, sometimes it can be a challenge keeping her in line with your orders.",
+  bio: `
+  The establishment of the SF united soldiers from various backgrounds, including individuals like Larisa. Hailing from a country with its own unique customs and practices, she possesses a corresponding attitude. Unfazed by rules and regulations, it can sometimes prove challenging to ensure she follows orders and stays in line with the team's objectives.
+  `,
   organization: OrganizationEnum.ADB,
   cupSize: CupSizeEnum.G,
   class: ClassEnum.ARTILLERY,
@@ -442,7 +499,9 @@ export const Rui = {
   index: 16,
   name: 'Rui',
   title: 'Femme Fatale',
-  bio: "Rui refused to be given a projectile weapon for the war, instead insisting on wielding her spiked mace. According to her it 'made things a lot more fun'. Her commanding officers weren't too sure what that meant, but as long as she's doing damage, they aren't complaining. Not to mention, her flirty personality is impossible for men to resist.",
+  bio: `
+  Rui adamantly refused to be equipped with a projectile weapon for the war, opting instead to wield her spiked mace, claiming it made things "a lot more fun." Her commanding officers were unsure of what exactly she meant by that, but as long as she was inflicting damage on the enemy, they had no complaints. Additionally, Rui's flirtatious personality has proven irresistible to many men in the force.
+  `,
   organization: OrganizationEnum.GSR,
   cupSize: CupSizeEnum.D,
   class: ClassEnum.STRIKER,
@@ -483,7 +542,9 @@ export const Kotora = {
   index: 17,
   name: 'Kotora',
   title: 'Tiger',
-  bio: "It's not uncommon for other soldiers to report concerns regarding Kotora's behavior. She's mischievous and playful, almost exaggerating at times. But despite her to-the-wind philosophy, she enjoys the thrill of the hunt. And luckily for Earth, Kotora considers the invaders the perfect prey.",
+  bio: `
+  It is not uncommon for fellow soldiers to express concerns about Kotora's behavior. She has a mischievous and playful nature, often taking it to the extreme. However, beneath her carefree attitude, she relishes the excitement of the hunt. Fortunately for Earth, Kotora sees the invaders as the ideal prey to satisfy her thrill-seeking nature.
+  `,
   organization: OrganizationEnum.GSR,
   cupSize: CupSizeEnum.J,
   class: ClassEnum.ARTILLERY,
@@ -514,7 +575,9 @@ export const Vanessa = {
   index: 18,
   name: 'Vanessa',
   title: 'Belle',
-  bio: "Vanessa is from a deep underwater city which hasn't quite caught up to the rest of the world's cultural benchmark. Other soldiers often think of her as old-fashioned and out-dated, but an overall sweet gal. Sometimes she can have a hard time feeling at home with the widely-accepted social standard, despite knowing people have the best intentions.",
+  bio: `
+  Vanessa hails from a deep underwater city that has yet to fully embrace the cultural advancements of the world above. Consequently, other soldiers tend to perceive her as old-fashioned and out of touch, though they generally regard her as a sweet individual. Adjusting to the widely accepted social norms can be challenging for her, even though she acknowledges that people mean well.
+  `,
   organization: OrganizationEnum.DOD,
   cupSize: CupSizeEnum.K,
   class: ClassEnum.SUPPORT,
@@ -539,7 +602,9 @@ export const Aoi = {
   index: 19,
   name: 'Aoi',
   title: 'Astro',
-  bio: "When it comes to Aoi, what you see is what you get. She's cute and fun-loving, and extremely curious. That sort of personality comes in handy when you're in the business of gathering information. But sometimes she can go a bit too far, prying into things she shouldn't, like the personal lives and secrets of her fellow soldiers.",
+  bio: `
+  When it comes to Aoi, what you see is what you get. She possesses a cute and fun-loving nature, coupled with an insatiable curiosity. This particular trait proves advantageous in her role as an information gatherer. However, there are instances when her curiosity gets the better of her, leading her to delve into matters she should not pry into, such as the personal lives and secrets of her fellow soldiers.
+  `,
   organization: OrganizationEnum.WIO,
   cupSize: CupSizeEnum.B,
   class: ClassEnum.SUPPORT,
@@ -577,7 +642,9 @@ export const Sara = {
   index: 20,
   name: 'Sara',
   title: 'Medusa',
-  bio: "Sara has always thought that she had the charm and beauty to sway anyone to do what she wanted. She's seen other women do it, after all, why couldn't she? What she fails to accept is that she is more aptly described as cute rather than sexy, so her attempts at flirtation tend to be seen as humorous, which only pisses her off more.",
+  bio: `
+  Sara has long believed in her ability to use her charm and beauty to manipulate others into doing her bidding. She has observed other women successfully employing such tactics, leading her to believe she could do the same. However, she struggles to acknowledge that her demeanor is more endearing and cute than overtly sexy. As a result, her attempts at flirtation often come across as humorous, which only serves to frustrate her further.
+  `,
   organization: OrganizationEnum.GSR,
   cupSize: CupSizeEnum.C,
   class: ClassEnum.SUPPORT,
@@ -603,7 +670,9 @@ export const Mai = {
   index: 21,
   name: 'Mai',
   title: 'White Lion',
-  bio: "In the face of hardship, Mai finds herself keeping a cool head. Rational and calm under pressure, some units have found that Mai is the glue that holds them together, keeping the mission as a primary focus until it is complete. That's also helped by the fact that sheÄs so cute, too. Her trusty lazer-shooting cat also helps too.",
+  bio: `
+  In the face of adversity, Mai maintains a composed demeanor. She remains rational and level-headed even in high-pressure situations, making her an invaluable asset to her unit. Many have recognized Mai as the linchpin that keeps the team united and focused on accomplishing the mission at hand. It doesn't hurt that she also possesses an endearing and charming appearance. Additionally, her trusty laser-shooting cat serves as a reliable companion, further enhancing her capabilities.
+  `,
   organization: OrganizationEnum.DOD,
   cupSize: CupSizeEnum.B,
   class: ClassEnum.GUNNER,
@@ -625,12 +694,13 @@ export const Mai = {
   } as NewSkill
 } as NewAgent;
 
-// TODO:
 export const Tsukiko = {
   index: 22,
   name: 'Tsukiko',
   title: 'Arsenal',
-  bio: "SF wanted to experiment to see just how much weaponry you could attach to a soldier before it becomes a liability rather than an asset. Their answer was Tsukiko. She's loaded to the brim with knives, guns and weapons of all kinds, ready for any situation the war throws at her. Of course, the experiment was only partially successful, because Tsukiko is the only soldier in the force capable of working with that much firepower at once.",
+  bio: `
+  SF embarked on an experiment to determine the threshold at which the attachment of weaponry to a soldier becomes a liability rather than an asset. Tsukiko emerged as the embodiment of their findings. Adorned with an array of knives, guns, and various weapons, she is prepared for any situation the war presents. However, the experiment can only be deemed partially successful, as Tsukiko stands as the sole soldier within the force capable of effectively handling such an immense arsenal simultaneously.
+  `,
   organization: OrganizationEnum.ADB,
   cupSize: CupSizeEnum.F,
   class: ClassEnum.ARTILLERY,
@@ -671,7 +741,9 @@ export const Yukako = {
   index: 23,
   name: 'Yukako',
   title: 'The Ghost',
-  bio: 'Primarily in charge of the tech supplied by the Department of Orbital Defense, Yukako is used to working alone. Her quick wits and handy knowledge of electronics have gotten her far by herself, so working in a team like yours can sometimes catch her off guard.',
+  bio: `
+  Primarily responsible for managing the technology provided by the Department of Orbital Defense, Yukako is accustomed to working independently. Her sharp intellect and expertise in electronics have propelled her success in solo endeavors. Consequently, collaborating with a team like yours occasionally catches her off guard, as she is more accustomed to working alone.
+  `,
   organization: OrganizationEnum.NDS,
   cupSize: CupSizeEnum.A,
   class: ClassEnum.GUNNER,
@@ -719,7 +791,9 @@ export const Coco = {
   index: 24,
   name: 'Coco',
   title: 'Bearclaw',
-  bio: "Coco want nothing to do with this war business, preferring to spend her time gorging on tea and cookies, but when Zeth destroyed her favorite bakery, she couldn't sit by and let it happen. She won't stop until her favorite bakery has been avenged, and will use the money to help rebuild it.",
+  bio: `
+  Coco wants nothing to do with this war business. She prefers to spend her time indulging in tea and cookies, enjoying a peaceful and carefree existence. However, when Zeth destroyed her favorite bakery, Coco's peaceful demeanor shifted. She couldn't bear to witness the loss of her beloved bakery and decided to take action. Determined to seek justice and ensure the bakery's restoration, Coco is now resolute in her pursuit, vowing to avenge her cherished establishment and contributing financially to its rebuilding efforts.
+  `,
   organization: OrganizationEnum.DOD,
   cupSize: CupSizeEnum.B,
   class: ClassEnum.SUPPORT,
@@ -777,7 +851,9 @@ export const Pan = {
   index: 25,
   name: 'Pan',
   title: 'Liberty',
-  bio: "Pan is a cop without a purpose. Her precinct took her off her most important case after things got heated, and now she's agreed to help you with the war effort.",
+  bio: `
+  Pan, once a dedicated cop, finds herself without a sense of purpose. Her precinct removed her from a crucial case due to escalating tensions, leaving her feeling adrift. However, she has now made the decision to assist in the war effort alongside you.
+  `,
   organization: OrganizationEnum.WIO,
   cupSize: CupSizeEnum.G,
   class: ClassEnum.GUNNER,
@@ -827,7 +903,9 @@ export const Hitomi = {
   index: 26,
   name: 'Hitomi',
   title: 'Kairos',
-  bio: "A resident of Sohle, Hitomi joined the SF hoping to help protect the citizens of the world in any way she can. Despite having lost her mother and sister in the initial attack, she is surprisingly positive, using her uplifting demeanor to keep her fellow soldiers' morale high.",
+  bio: `
+  Hitomi, a native of Sohle, joined the SF with a strong desire to safeguard the world's inhabitants in whatever capacity possible. Despite experiencing the tragic loss of her mother and sister during the initial attack, she exhibits remarkable positivity, employing her uplifting nature to uplift the spirits of her fellow soldiers. Her ability to maintain high morale is truly commendable.
+  `,
   organization: OrganizationEnum.GAA,
   cupSize: CupSizeEnum.D,
   class: ClassEnum.SUPPORT,
@@ -866,7 +944,9 @@ export const Cadence = {
   index: 27,
   name: 'Cadence',
   title: 'Cerberus',
-  bio: "Cadence has been in the military for a long time, and is a stickler for the rules and traditions that come with it. As happens often to long-time soldiers, she can come across as overly formal, and sometimes her personality is a bit overbearing. But in a war setting, she's guaranteed to do a job well done.",
+  bio: `
+  Cadence, with her extensive military experience, upholds the rules and traditions that accompany it with great seriousness. Like many seasoned soldiers, she may appear excessively formal, and her strong personality can be overwhelming at times. Nevertheless, in the midst of war, she is reliable and consistently delivers exceptional results.
+  `,
   organization: OrganizationEnum.ADB,
   cupSize: CupSizeEnum.D,
   class: ClassEnum.ARTILLERY,
@@ -891,7 +971,9 @@ export const Uni = {
   index: 28,
   name: 'Uni',
   title: 'Cupid',
-  bio: "Hiding behind Uni's heavenly and virtuous appearance is an arrogant personality one wouldn't expect. But since her long-ranged combat skills are so impeccable, no one's going to openly complain about it. No one's brave enough to say it out loud, but it's a common rumor that Uni is only in SF to display her own superiority.",
+  bio: `
+  Behind Uni's angelic and virtuous appearance, hides an unexpected arrogance. However, her unrivaled long-range combat skills prevent anyone from openly challenging her. Though no one dares to voice it aloud, a common rumor circulates that Uni joined SF solely to flaunt her superiority.
+  `,
   organization: OrganizationEnum.DOD,
   cupSize: CupSizeEnum.K,
   class: ClassEnum.SUPPORT,
@@ -917,7 +999,9 @@ export const Sizuko = {
   index: 29,
   name: 'Sizuko',
   title: 'Reaper',
-  bio: "Before joining SF, Sizuko worked mostly alone in the city's morgue, handling the deceased. Now that she's in the company of many other soldiers who are very much alive, her demeanor can come across as macabre and morbid sometimes. She doesn't mean to be, but everyone considers her a little strange.",
+  bio: `
+  Before joining SF, Sizuko primarily worked in solitude at the city's morgue, tending to the deceased. Now, surrounded by fellow soldiers who are very much alive, her demeanor can occasionally appear macabre and morbid. Although unintentional, her peculiarities have led others to perceive her as somewhat strange.
+  `,
   organization: OrganizationEnum.GAA,
   cupSize: CupSizeEnum.K,
   class: ClassEnum.STRIKER,
@@ -943,7 +1027,9 @@ export const Chihiro = {
   index: 30,
   name: 'Chihiro',
   title: 'Thresher',
-  bio: "At first glance, Chihiro seems like a sweet little girl. But she's got a mouth like a sailor and the personality to macht someone rough, tough, and hardcore. She's truly a perfect example not to judge a book by its cover... Little girls are very capable of causing extreme mayhem.",
+  bio: `
+  At first glance, Chihiro may appear as a sweet little girl, but she possesses a vocabulary and personality that matches someone rugged, resilient, and audacious. She serves as a compelling reminder not to judge a book by its cover, as even young girls can possess the capacity to unleash chaos and havoc to an extreme degree.
+  `,
   organization: OrganizationEnum.ADB,
   cupSize: CupSizeEnum.C,
   class: ClassEnum.ARTILLERY,
@@ -987,7 +1073,9 @@ export const Mei = {
   index: 31,
   name: 'Mei',
   title: 'Amethyst',
-  bio: "One of the newest cadets in the program, Mei is all too eager to please her superiors as best she can, sometimes even going further than her comfort zone to do so. She's desperately afraid of failure, and will stop at nothing to make sure she does everything right. When your team is labeled traitors of the government, she's all too happy to bring you in.",
+  bio: `
+  One of the newest cadets in the program, Mei is incredibly enthusiastic about earning the approval of her superiors. She often pushes herself beyond her comfort zone in her eagerness to please. Fearful of failure, she goes to great lengths to ensure she does everything correctly. In the event that your team is labeled as traitors by the government, Mei willingly takes on the task of apprehending you, seemingly delighted by the opportunity.
+  `,
   organization: OrganizationEnum.ADB,
   cupSize: CupSizeEnum.G,
   class: ClassEnum.STRIKER,
@@ -1012,7 +1100,9 @@ export const Riho = {
   index: 32,
   name: 'Riho',
   title: 'Artemis',
-  bio: "Riho was already training for the GSR before the aliens attacked. Part of her worried it would end up being a boring job, but now she has a reason to use her skills on actual enemies. She's keen on showing the world--and the aliens-- what she can do, no matter how small she might be.",
+  bio: `
+  Riho had been training for the Global Soldier Reserve (GSR) even before the alien invasion. Initially, she had concerns that it might turn out to be a mundane occupation, but now she has a compelling reason to put her skills to use against real adversaries. She is determined to demonstrate her capabilities to the world, as well as to the aliens, regardless of her diminutive stature.
+  `,
   organization: OrganizationEnum.ADB,
   cupSize: CupSizeEnum.C,
   class: ClassEnum.GUNNER,
@@ -1039,7 +1129,9 @@ export const Mitsu = {
   index: 33,
   name: 'Mitsu',
   title: 'Delta',
-  bio: "Mitsu has looked up to Sky Fleet for a long time, and always dreamed of joining the program. Through diligent studying and keeping herself in perfect condition, she eventually found a place in the Airspace Defense Bureau. Now living her dream, she's determined to be seen as a hero to everyone in her home town, and does everything possible to get her name out there.",
+  bio: `
+  Mitsu has long held Sky Fleet in high regard and nurtured a dream of becoming part of the program. Through diligent studying and maintaining impeccable physical condition, she eventually secured a position in the Airspace Defense Bureau. Now living her dream, she is determined to be recognized as a hero by everyone in her hometown and goes to great lengths to raise her profile and make a name for herself.
+  `,
   organization: OrganizationEnum.ADB,
   cupSize: CupSizeEnum.D,
   class: ClassEnum.ARTILLERY,
@@ -1065,7 +1157,9 @@ export const Akina = {
   index: 34,
   name: 'Akina',
   title: 'The Dragon',
-  bio: "The very moment they destroyed her pyrotechnic temple, Akina hated the aliens with all of her being. Hellbent on destroying all foreign lifeforms she see - and backed with the firepower to do it - this deity won't rest until every last one of them is destroyed or repelled.",
+  bio: `
+  From the very instant her pyrotechnic temple was destroyed, Akina harbored an intense hatred for the aliens. Determined to eradicate any and all foreign lifeforms she encounters, she is driven by an unwavering desire for their destruction. Empowered with formidable firepower, this deity will stop at nothing until every last one of them is annihilated or driven away.
+  `,
   organization: OrganizationEnum.DOD,
   cupSize: CupSizeEnum.H,
   class: ClassEnum.STRIKER,
@@ -1090,12 +1184,13 @@ export const Akina = {
   } as NewSkill
 } as NewAgent;
 
-// TODO:
 export const Akari = {
   index: 35,
   name: 'Akari',
   title: 'Tinker',
-  bio: "Akari is a small girl with a loud and abrasive mouth. She's crude and undignified, but she gets the job done. One of the best mechanics Starfleet has at their disposal, she's too valuable of an asset to really let go of...",
+  bio: `
+  Akari is a petite girl with a boisterous and brash demeanor. She may come across as crude and lacking in refinement, but her skills as a mechanic are unparalleled. She is one of the most indispensable assets that Starfleet possesses, making it difficult to consider parting ways with her.
+  `,
   organization: OrganizationEnum.ADB,
   cupSize: CupSizeEnum.C,
   class: ClassEnum.SUPPORT,
@@ -1121,7 +1216,9 @@ export const Sayaka = {
   index: 36,
   name: 'Sayaka',
   title: 'Crow',
-  bio: "Sayaka never really wanted to fight. The thought of other getting hurt made her anxious, especially her closest friends and loved ones. But when the call to arms was made, she couldn't help but feel she needed to use her skills to defend the Earth from annihilation.",
+  bio: `
+  Sayaka never had a desire to engage in combat. The mere thought of others getting hurt caused her great anxiety, particularly when it involved her closest friends and loved ones. However, when the call to arms was issued, she felt a profound obligation to utilize her skills in order to protect the Earth from imminent annihilation.
+  `,
   organization: OrganizationEnum.ADB,
   cupSize: CupSizeEnum.H,
   class: ClassEnum.STRIKER,
@@ -1147,12 +1244,13 @@ export const Sayaka = {
   } as NewSkill
 } as NewAgent;
 
-// TODO:
 export const Momoko = {
   index: 37,
   name: 'Momoko',
   title: 'Mouse',
-  bio: 'Despite her youthful appearance, Momoko is actually a highly trained fighter and pilot. She enlisted at a young age for the military, and jumped at the chance to be part of SF. More than anything, she just likes being part of the team.',
+  bio: `
+  Despite her youthful appearance, Momoko is a highly trained fighter and pilot. She joined the military at a young age and eagerly seized the opportunity to become a member of SF. Above all, she cherishes the sense of belonging and camaraderie that comes with being part of a team.
+  `,
   organization: OrganizationEnum.DOD,
   cupSize: CupSizeEnum.A,
   class: ClassEnum.GUNNER,
@@ -1197,7 +1295,9 @@ export const Meteli = {
   index: 38,
   name: 'Meteli',
   title: 'Nebula',
-  bio: "The military normally calls ofr mature individuals into action, but Meteli is an exception. Childish by nature but extremely skilled at her craft, this soldier is quite the opposite of who'd you'd expect to be in the middle of a war. She doesn't let the fighting get to her by distracting herself with cute and fluffy things.",
+  bio: `
+  The military typically selects individuals with maturity for combat duty, but Meteli defies this norm. Despite her childish nature, she possesses exceptional skills in her field, making her an unexpected participant in the midst of war. Rather than allowing the intensity of the conflict to affect her, she copes by immersing herself in the world of cute and fluffy things, finding solace and distraction in them.
+  `,
   organization: OrganizationEnum.WIO,
   cupSize: CupSizeEnum.E,
   class: ClassEnum.STRIKER,
@@ -1235,12 +1335,13 @@ export const Meteli = {
   } as NewSkill
 } as NewAgent;
 
-// TODO:
 export const Hoshiko = {
   index: 39,
   name: 'Hoshiko',
   title: 'Zircon',
-  bio: "Hoshiko's father is a decorated general in the military, so it was only natural of her to follow in his footsteps and join the fight for Earth. But it's difficult to distinguish herself as an individual when her father is so well-known. She wishes her fellow soldiers would just respect her for her own deeds and not those of her father.",
+  bio: `
+  Hoshiko's father, a decorated general in the military, served as her inspiration to join the fight for Earth. However, living in her father's shadow poses a challenge for Hoshiko in establishing her own identity. She yearns for her fellow soldiers to acknowledge and respect her based on her personal achievements rather than simply attributing her success to her father's reputation.
+  `,
   organization: OrganizationEnum.GSR,
   cupSize: CupSizeEnum.M,
   class: ClassEnum.SUPPORT,
@@ -1281,10 +1382,10 @@ export const Hoshiko = {
               agent.stats.skillDamage /= 1.4;
             });
         },
-        duration: 24
+        duration: 24,
+        isStackable: true
       } as NewEffect
     ],
-    isStackable: true,
     cooldown: 5
   } as NewSkill
 } as NewAgent;
@@ -1293,7 +1394,9 @@ export const Feme = {
   index: 40,
   name: 'Feme',
   title: 'Jackal',
-  bio: "If there's any agent that you should watch yourself around, it's Feme. A sadist at heart, she's only holding herself back so as not to cause too much collateral damage to SF's own troops. Incredibly, some troops even feel bad for the aliens when they see her fight against them. War might be hell for an average human, bust she's found herself at the world's biggest playground.",
+  bio: `
+  If there's any agent you should exercise caution around, it's Feme. She possesses a sadistic nature that she restrains, aiming to minimize harm to SF's own forces. Surprisingly, some troops even empathize with the aliens when witnessing her fierce battles against them. While war may be a harrowing experience for ordinary humans, Feme perceives it as the grandest of playgrounds, relishing the opportunities it presents.
+  `,
   organization: OrganizationEnum.GAA,
   cupSize: CupSizeEnum.G,
   class: ClassEnum.ARTILLERY,
@@ -1334,12 +1437,13 @@ export const Feme = {
   } as NewSkill
 } as NewAgent;
 
-// TODO:
 export const NeveX = {
   index: 41,
   name: 'Neve X',
   title: 'Frostbite: Alpha',
-  bio: "Sky Fleet Medics treated Neve after a critical injury in battle. The operation went fine, but it is secretly rumored something the monsters did changed the agent in ways that medicine can't fix. She might have been arrogant and cold before, but no one's ever seen her as ruthless or unforgiving as she is now. Some say that the creatures changed her DNA on a fundamental level, increasing her power, but twisting her personality...",
+  bio: `
+  Sky Fleet Medics attended to Neve following a severe battle injury. The procedure was successful, but there are secretive whispers that the encounter with the monsters had an irreversible impact on the agent. While Neve may have exhibited arrogance and coldness in the past, her current demeanor is described as ruthless and unforgiving, surpassing anything seen before. Speculation suggests that the creatures may have altered her DNA at a fundamental level, enhancing her power while distorting her personality.
+  `,
   organization: OrganizationEnum.GSR,
   cupSize: CupSizeEnum.L,
   class: ClassEnum.SUPPORT,
@@ -1371,21 +1475,22 @@ export const NeveX = {
             .filter((agent) => agent.class === ClassEnum.ARTILLERY)
             .forEach((agent) => (agent.stats.criticalDamage -= 1.9));
         },
-        duration: 14
+        duration: 14,
+        isStackable: true
       } as NewEffect,
       { type: EffectTypeEnum.DOT, duration: 3, interval: 1 / 8, damage: () => 691 } as NewEffectDOT
     ],
-    isStackable: true,
     cooldown: 20
   } as NewSkill
 } as NewAgent;
 
-// TODO:
 export const Eiko = {
   index: 42,
   name: 'Eiko',
   title: 'Cottontail',
-  bio: "Though Eiko's skills are matched only by the best of the best agents in sky fleet, she can't help but feel jealous of others. She wants to remain in the spotlight, or at least be recognized for her actions constantly. Some would describe her as high maintenance, but to her, it's essential to stay like by everyone around her.",
+  bio: `
+  Though Eiko possesses skills that rival the best agents in Sky Fleet, she often finds herself plagued by feelings of jealousy towards others. She desires to be constantly in the spotlight and craves recognition for her actions. Some might label her as high maintenance, but to Eiko, it is crucial to be liked by everyone around her.
+  `,
   organization: OrganizationEnum.GSR,
   cupSize: CupSizeEnum.F,
   class: ClassEnum.GUNNER,
@@ -1401,18 +1506,19 @@ export const Eiko = {
   } as NewStats,
   skill: {
     name: 'Volley of the Beast',
-    description: 'summon an extraterrestrial attack, dealing 58548 damage over 1.5 seconds. cooldown: 9',
-    effects: [{ type: EffectTypeEnum.DOT, duration: 1.5, interval: 1 / 8, damage: () => 2898 } as NewEffectDOT],
+    description: 'summon an extraterrestrial attack, dealing 492584.7 damage over 1.5 seconds. cooldown: 9',
+    effects: [{ type: EffectTypeEnum.DOT, duration: 1.5, interval: 1 / 8, damage: () => 61573 } as NewEffectDOT],
     cooldown: 9
   } as NewSkill
 } as NewAgent;
 
-// TODO:
 export const Goi = {
   index: 43,
   name: 'Goi',
   title: 'Ruiner',
-  bio: "Goi has the best intentions, truly she does. But things don't always work out in her favor. In training, she flunked out on tests of knowledge. But her skills rapidly excelled when she got to the firearms and explosives part of the program. Somehow her bad luck only enhances her destructive power in combat. Set Goi up on a path to destruction and she'll take out many as collateral damage.",
+  bio: `
+  Goi has genuine good intentions, despite often facing unfavorable outcomes. During her training, she struggled with tests involving knowledge, but she excelled rapidly when it came to handling firearms and explosives. Strangely, her streak of bad luck seems to amplify her destructive abilities in combat. If placed on a path towards destruction, Goi becomes a force to be reckoned with, often causing collateral damage along the way.
+  `,
   organization: OrganizationEnum.GAA,
   cupSize: CupSizeEnum.G,
   class: ClassEnum.ARTILLERY,
@@ -1440,12 +1546,13 @@ export const Goi = {
   } as NewSkill
 } as NewAgent;
 
-// TODO:
 export const RihoX = {
   index: 44,
   name: 'Riho X',
   title: 'Artemis: Alpha',
-  bio: "After a year of service under the Commander, Riho has grown and matured as a person. They've grown closer together and despite still being teased all the time for her short stature, Riho finds that she doesn't mind all that much anymore. She's just happy to be in Sky Fleet with her comrades. the new Riho has certainly become much kinder.",
+  bio: `
+  After a year of serving alongside the Commander, Riho has experienced significant personal growth and maturity. Their bond has strengthened over time, and although Riho continues to face teasing about her short stature, she has learned to embrace it without being bothered. Being a part of Sky Fleet and having comrades around her brings her immense joy. The transformed Riho now exudes kindness and compassion, reflecting the positive changes she has undergone.
+  `,
   organization: OrganizationEnum.ADB,
   cupSize: CupSizeEnum.C,
   class: ClassEnum.ARTILLERY,
@@ -1488,12 +1595,13 @@ export const RihoX = {
   } as NewSkill
 } as NewAgent;
 
-// TODO:
 export const Setsuna = {
   index: 45,
   name: 'Setsuna',
   title: 'Sabotage',
-  bio: "Nobody quite knows how Setsuna joined the SF coalition. She just showed up one day saying she was from the Global Soldier Reserve, and no one questioned her about it. She doesn't talk too much and keeps mostly to herself, but she contributes a great deal when it comes to straight combat. Some say she was trained in a secret ninja facility in another country.",
+  bio: `
+  The circumstances surrounding Setsuna's inclusion in the SF coalition remain a mystery. She mysteriously appeared one day, claiming to be a member of the Global Soldier Reserve, and her presence was accepted without much inquiry. Setsuna is a reserved individual who prefers to keep to herself and doesn't engage in extensive conversation. However, her combat skills are highly regarded, and she proves to be a valuable asset in direct confrontations. Rumor has it that she underwent training in a covert ninja facility located in another country.
+  `,
   organization: OrganizationEnum.GSR,
   cupSize: CupSizeEnum.D,
   class: ClassEnum.STRIKER,
@@ -1532,12 +1640,13 @@ export const Setsuna = {
   } as NewSkill
 } as NewAgent;
 
-// TODO:
 export const Hami = {
   index: 46,
   name: 'Hami',
   title: 'Sting',
-  bio: "Hami could be described as sweet as honey, with the sting of a wasp when angered. Stay on her good side and she'll be your favorite companion. But cross her and she'll vow to be your worst nightmare. When you're marked as a traitor by your own people, she doesn't ask questions and puts you on her hit list.",
+  bio: `
+  Hami is known for her sweet and amiable demeanor, reminiscent of honey. However, she can swiftly transform into a formidable force when provoked. As long as you maintain a positive relationship with her, she will become your trusted and cherished companion. But if you betray her trust, be prepared to face the consequences, as she will stop at nothing to become your worst nightmare. When someone is labeled a traitor by their own people, Hami takes decisive action without hesitation and adds them to her list of targets, without bothering to inquire further.
+  `,
   organization: OrganizationEnum.DOD,
   cupSize: CupSizeEnum.C,
   class: ClassEnum.GUNNER,
@@ -1567,7 +1676,9 @@ export const O = {
   index: 47,
   name: 'O',
   title: 'Andromeda',
-  bio: "O was an assistant in a research facility before being selected for a secret government experiment. After months of being exposed to Alpha energy, she somehow was given the ability to manipulate energy and particles just using her mind. With her newfound abilities, and the desire to learn as much information as she possibly can, she's set out to help people from the threat of the monsters and find justice for the prisoners and herself who underwent the experiment.",
+  bio: `
+  O worked as an assistant in a research facility before being chosen for a classified government experiment. After months of exposure to Alpha energy, she inexplicably gained the power to manipulate energy and particles using only her mind. Empowered by her newfound abilities and driven by a thirst for knowledge, O has taken it upon herself to aid people in their struggle against the monster threat. Additionally, she seeks justice for the prisoners who, like her, were subjected to the experiment.
+  `,
   organization: OrganizationEnum.GSR,
   cupSize: CupSizeEnum.C,
   class: ClassEnum.ARTILLERY,
@@ -1611,7 +1722,9 @@ export const GaiGai = {
   index: 48,
   name: 'Gai Gai',
   title: 'Panda',
-  bio: "Fiercely independent and proud, Gai Gai isn't going to let anyone stand in the way of what she wants. She's learned to put herself first and foremost, even to her superiors. She's confident in her ability and combat prowess, and won't let anyone take that, or her position in the Division of Orbital Defense, away from her. Once you've been marked a traitor, she feels like she could do the job alone.",
+  bio: `
+  Fiercely independent and fiercely proud, Gai Gai is determined to pursue her own desires without allowing anyone to impede her path. She has developed a mindset where she prioritizes herself above all, even when it comes to dealing with her superiors. Gai Gai possesses unwavering confidence in her combat skills and capabilities, and she refuses to let anyone undermine her position within the Division of Orbital Defense. In her eyes, once someone is labeled a traitor, she believes she is more than capable of fulfilling the task independently.
+  `,
   organization: OrganizationEnum.DOD,
   cupSize: CupSizeEnum.D,
   class: ClassEnum.STRIKER,
@@ -1633,12 +1746,13 @@ export const GaiGai = {
   } as NewSkill
 } as NewAgent;
 
-// TODO:
 export const Rosalie = {
   index: 49,
   name: 'Rosalie',
   title: 'Lust',
-  bio: "Rosalie could only be described as a hopeless romantic, desperately trying to search for her soulmate even as war wages around her. She's afraid that if she doesn't mee her match soon, she'll die in combat and never be able to lay eyes on her one true love. As such, the male agents try to steer clear of her, put off by her extremely pushy advances.",
+  bio: `
+  Rosalie is best described as a hopeless romantic, fervently seeking her soulmate even amidst the chaos of war. She carries a deep fear that if she doesn't find her perfect match soon, she will perish in combat without ever having the chance to meet her one true love. However, her relentless pursuit often makes male agents uncomfortable, as they find her advances to be overly assertive and off-putting.
+  `,
   organization: OrganizationEnum.ADB,
   cupSize: CupSizeEnum.E,
   class: ClassEnum.SUPPORT,
@@ -1678,20 +1792,21 @@ export const Rosalie = {
               agent.stats.skillDamage /= 1.4;
             });
         },
-        duration: 24
+        duration: 24,
+        isStackable: true
       } as NewEffect
     ],
-    isStackable: true,
     cooldown: 5
   } as NewSkill
 } as NewAgent;
 
-// TODO:
 export const Toki = {
   index: 50,
   name: 'Toki',
   title: 'The Witch',
-  bio: "It can be difficult to talk to Toki. Not because she's unintelligent, but because she is continuously sarcastic and insincere. You can never tell if she's telling you how she feels or actually just kidding around. She's attractive, but most agents aren't too eager to play her word games and confusing statements. No one can deny her ability to fight, however.",
+  bio: `
+  Interacting with Toki can be challenging, not due to her lack of intelligence, but because she consistently employs sarcasm and insincerity. It becomes a constant guessing game to discern whether she is expressing her true emotions or simply engaging in playful banter. While her physical appearance may be appealing, many agents are hesitant to engage in her word games and perplexing statements. Nevertheless, her undeniable combat prowess is widely recognized.
+  `,
   organization: OrganizationEnum.DOD,
   cupSize: CupSizeEnum.D,
   class: ClassEnum.SUPPORT,
@@ -1731,10 +1846,10 @@ export const Toki = {
               agent.stats.skillDamage /= 1.4;
             });
         },
-        duration: 24
+        duration: 24,
+        isStackable: true
       } as NewEffect
     ],
-    isStackable: true,
     cooldown: 5
   } as NewSkill
 } as NewAgent;
@@ -1743,7 +1858,9 @@ export const Wu = {
   index: 51,
   name: 'Wu',
   title: 'Emperor',
-  bio: "Wu grew up on the outskirts of Sohle, where she learned to live and thrive in the back alleys and tougher streets of the city. one thing nobody expected of the toughened street kid was that she'd developed an extremely perverted personality. She tends to make others uncomfortable, added to by her up close and personal attitude.",
+  bio: `
+  Wu spent her formative years on the outskirts of Sohle, honing her survival skills in the rough back alleys and streets of the city. However, what surprises many is that beneath her tough exterior, she possesses an extremely unconventional and provocative personality. This facet of her character often makes others feel uneasy, especially when coupled with her intimate and direct approach to interactions.
+  `,
   organization: OrganizationEnum.GAA,
   cupSize: CupSizeEnum.G,
   class: ClassEnum.STRIKER,
@@ -1797,12 +1914,13 @@ export const Wu = {
   } as NewSkill
 } as NewAgent;
 
-// TODO:
 export const ZiLong = {
   index: 52,
   name: 'Zi Long',
   title: 'Leviathan',
-  bio: "Zi Long isn't exactly a rude person, she just knows what the wants and won't allow anything to get in the way of that. Whether it be a battle plan or just a seat in the ship's mess hall, she's not going to let others interfere with what she feels she deserves. Mercy on anyone who tries to tell her no. And once the government tells her you're a threat. You're next on the list.",
+  bio: `
+  Zi Long doesn't necessarily come across as rude, but rather she is assertive in pursuing what she desires and refuses to let anything obstruct her path. Whether it involves formulating a battle strategy or securing a seat in the ship's mess hall, she is determined to assert her entitlement. Those who dare to oppose her or deny her requests should brace themselves, as Zi Long shows no mercy in dealing with such resistance. Furthermore, if the government designates someone as a threat, they can expect to become the next target on Zi Long's list.
+  `,
   organization: OrganizationEnum.DOD,
   cupSize: CupSizeEnum.I,
   class: ClassEnum.GUNNER,
@@ -1855,12 +1973,13 @@ export const ZiLong = {
   } as NewSkill
 } as NewAgent;
 
-// TODO:
 export const Ari = {
   index: 53,
   name: 'Ari',
   title: 'Blood Lizard',
-  bio: "If there's one thing in the world Ari hates most, it's Shiko. They'd been close allies during the genetic enhancement program in the Sohle labs, but something between them went sour, and they've since sworn vengeance against each other. She'll tolerate working together in Zeth as long as she gets to kill things. Extremely skilled in violence and combat, Ari enjoys doing things the unconventional way, unafraid of getting things messy along the way.",
+  bio: `
+  Ari harbors an intense hatred towards Shiko, considering it the most abhorrent thing in the world. Once closely aligned as allies during the genetic enhancement program in the Sohle laboratories, their relationship turned sour, prompting them to vow vengeance against one another. In the context of working together in Zeth, Ari reluctantly tolerates their cooperation, but her primary motivation lies in indulging her penchant for violence and combat. With exceptional proficiency in these areas, Ari relishes in deviating from conventional approaches, displaying a fearlessness towards the chaotic and messy outcomes that may ensue.
+  `,
   organization: OrganizationEnum.ZETH,
   cupSize: CupSizeEnum.K,
   class: ClassEnum.ARTILLERY,
@@ -1904,7 +2023,11 @@ export const Chia = {
   index: 54,
   name: 'Chia',
   title: 'Nora Kun',
-  bio: 'A normal feral cat at early 21st century. It got infected with the plague, but nothing happened to their species. When the virus variate to chi, some of their species began to develop intelligence, growing super huge in size. Some of them even began to name each other. One gigantic size of them evolved a skill to fish from void, allowing it ot feed its whole species. They named her Chia, marking the end of virus. After numerous years passed, Chia was found to be staying in the old world. The SF team desperately want to recruit her for no reason.',
+  bio: `
+  In the early 21st century, there was an ordinary feral cat that became infected with a plague. Surprisingly, this virus had no adverse effects on the cat's species. However, when the virus mutated into a strain called "chi," some individuals within the species began to exhibit increased intelligence and grew to enormous sizes. They even started giving each other names.
+  Among them, there was a colossal cat named Chia, who possessed a unique ability to fish from the void, providing sustenance for the entire species. Chia's emergence marked the end of the virus's influence.
+  After many years had passed, Chia was discovered residing in the remnants of the old world. Curiously, the SF team expressed a strong desire to recruit her, despite the absence of a clear reason for doing so.
+  `,
   organization: OrganizationEnum.MEOW,
   cupSize: CupSizeEnum.H, // healthy?
   class: ClassEnum.GUNNER,
@@ -1968,12 +2091,13 @@ export const Chia = {
   } as NewSkill
 } as NewAgent;
 
-// TODO:
 export const Shiko = {
   index: 55,
   name: 'Shiko',
   title: 'Dragonfly',
-  bio: "Shiko was one of two successful projects created by the labs in Sohle. Genetically manipulated to be the perfect agent, she's unmatched in intelligence and strategy and flaunts it well. Ari was supposed to have been her combat partner, but things went awry and they went separate ways, vowing to put an end to one another. However, they worked together once more in Zeth, as she feels that she is too smart for the human race to accept.",
+  bio: `
+  Shiko emerged as one of the accomplished products of the Sohle laboratories, meticulously designed to embody the epitome of an agent. With unmatched intelligence and strategic prowess, she confidently showcases her exceptional abilities. Initially, Ari was intended to be her combat partner, but unforeseen circumstances led them to part ways, each harboring a determination to bring an end to the other. However, their paths converged once again within Zeth, as Shiko perceived herself as too intellectually superior to be embraced by the human race.
+  `,
   organization: OrganizationEnum.ZETH,
   cupSize: CupSizeEnum.L,
   class: ClassEnum.STRIKER,
@@ -2012,12 +2136,13 @@ export const Shiko = {
   } as NewSkill
 } as NewAgent;
 
-// TODO:
 export const Kaja = {
   index: 56,
   name: 'Kaja',
   title: 'Shepherd',
-  bio: "There's none more effective at infiltration and information gathering than Kaja. Although rather youthful, she's been able to put her young and innocent appearance to good use, often times tricking enemies into believing she is a simple civilian. And while she can be as sweet as she looks everyone is wary that she is an adept liar.",
+  bio: `
+  When it comes to infiltration and intelligence gathering, Kaja is unmatched in her effectiveness. Despite her youthful appearance, she skillfully utilizes her innocent and youthful demeanor to deceive adversaries, often tricking them into perceiving her as an ordinary civilian. While she can exude an endearing sweetness that matches her looks, there is a prevailing sense of wariness among others, recognizing her proficiency as a skilled and adept liar.
+  `,
   organization: OrganizationEnum.WIO,
   cupSize: CupSizeEnum.A,
   class: ClassEnum.SUPPORT,
@@ -2041,12 +2166,13 @@ export const Kaja = {
   } as NewSkill
 } as NewAgent;
 
-// TODO:
 export const Bia = {
   index: 57,
   name: 'Bia',
   title: 'Halo',
-  bio: "Bia was raised in a deeply religious family, and followed a strict set of moral rules all her life. When she joined Sky Fleet, her values didn't change, leading to a highly stringent agent who refuses to follow orders that contradict with her beliefs. Commanding officers find it difficult to work with her, as she is dull and doesn't like change. But with her strength and power, it's hard to turn her away.",
+  bio: `
+  Bia's upbringing within a devoutly religious family instilled in her a profound adherence to a strict moral code. Throughout her life, she remained dedicated to these values. Upon joining Sky Fleet, her unwavering principles remained intact, rendering her a highly disciplined agent who adamantly refuses to comply with orders that conflict with her beliefs. Commanding officers face challenges in collaborating with her, as she possesses a stoic demeanor and exhibits resistance to change. However, due to her exceptional strength and prowess, it becomes arduous to dismiss her from service.
+  `,
   organization: OrganizationEnum.DOD,
   cupSize: CupSizeEnum.K,
   class: ClassEnum.STRIKER,
@@ -2089,7 +2215,9 @@ export const Eri = {
   index: 58,
   name: 'Eri',
   title: 'Phaze',
-  bio: "It's no question that Eri is a genius. At a young age she was a technological prodigy, surpassing the IQ's of university-level professors all over the world. Now drafted in a war environment, Eri can't help but try to teach her fellow agents what she knows. Too bad half the time they can't understand what she's saying.",
+  bio: `
+  There is no doubt about Eri's exceptional intellect. Even at a young age, she exhibited prodigious technological aptitude, surpassing the IQ scores of professors at esteemed universities worldwide. However, in the current war setting, Eri finds herself compelled to share her knowledge with her fellow agents. Regrettably, a significant portion of the time, her advanced explanations and concepts are met with limited comprehension, leaving her frustrated by the communication gap.
+  `,
   organization: OrganizationEnum.ADB,
   cupSize: CupSizeEnum.F,
   class: ClassEnum.GUNNER,
@@ -2114,7 +2242,9 @@ export const Kiyomi = {
   index: 59,
   name: 'Kiyomi',
   title: 'Shimmer',
-  bio: "If you ever need a straight answer or opinion, it's a good idea to ask Kiyomi. She's blunt, transparent, and honest beyond what most people would be comfortable with. She feels it's a waste of time to feel shameful for any of her opinions, and will tell you what she thinks at any given moment. No need to wonder what's going through her head.",
+  bio: `
+  If you ever seek a direct and unfiltered response or opinion, Kiyomi is the person to approach. She possesses a straightforward nature, offering transparency and an honesty that surpasses the comfort zone of many individuals. Kiyomi firmly believes that it is futile to feel ashamed or hesitant about expressing her opinions. As a result, she will readily share her thoughts with you at any given moment, sparing you the need to speculate or question what might be going through her mind.
+  `,
   organization: OrganizationEnum.WIO,
   cupSize: CupSizeEnum.G,
   class: ClassEnum.STRIKER,
@@ -2151,12 +2281,13 @@ export const Kiyomi = {
   } as NewSkill
 } as NewAgent;
 
-// TODO:
 export const Musuna = {
   index: 60,
   name: 'Musuna',
   title: 'Ruby',
-  bio: "Musuna isn't used to being directly on a battlefield. Her main purpose was for infiltration and stealth missions, but now that the war wages across the whole planet, she's forced into a position where battle is inevitable. She's quite skittish, and most people see her as weak and useless in combat. But when cornered with no other options, she fights for her life with everything she's got.",
+  bio: `
+  Musuna isn't accustomed to engaging directly in battlefield confrontations. Her primary role has been focused on infiltration and carrying out stealth missions. However, as the war escalates and spreads throughout the entire planet, she finds herself thrust into a situation where engaging in combat becomes unavoidable. Despite being regarded by many as skittish and lacking value in combat, Musuna demonstrates remarkable resilience and determination when pushed into a corner. When faced with no alternative, she fights fiercely for her life, utilizing every ounce of her strength and abilities.
+  `,
   organization: OrganizationEnum.WIO,
   cupSize: CupSizeEnum.A,
   class: ClassEnum.GUNNER,
@@ -2200,6 +2331,9 @@ export const Windy = {
   index: 61,
   name: 'Windy',
   title: 'Death Wing',
+  bio: `
+  Nothing frightens a woman like Windy. She has endured countless hardships that no longer affect her in the slightest. In times of war, there is no room for concern about delicate and adorable matters. Even a momentary lapse in vigilance can result in death, and Windy is acutely aware of this. You will never catch her taking breaks; she remains focused on her responsibilities at all times.
+  `,
   organization: OrganizationEnum.GAA,
   cupSize: CupSizeEnum.K,
   class: ClassEnum.ARTILLERY,
@@ -2245,7 +2379,9 @@ export const Kotaru = {
   index: 62,
   name: 'Kotaru',
   title: 'Fire Fly',
-  bio: "As someone who came from a poor family, Kotaru doesn't like the thought of money going to waste. Nor does she tolerate being taken advantage of or working for less than she's worth. Sure, the world is in danger and if they fail, lots of people will die... but what sort of payment does that entail? Not only is she money-minded, but her own pleasure is also very important to her too. Almost a bit too important...",
+  bio: `
+  Coming from a poor family, Kotaru strongly disapproves of the idea of squandering money. Additionally, she refuses to tolerate being exploited or undervalued in her work. While she acknowledges the impending peril that threatens the world and the potential loss of countless lives, she questions the compensation that accompanies such a perilous task. Not only does she prioritize financial matters, but her personal enjoyment holds significant importance to her as well. In fact, one might argue that it occupies an excessively prominent place in her priorities.
+  `,
   organization: OrganizationEnum.WIO,
   cupSize: CupSizeEnum.I,
   class: ClassEnum.GUNNER,
@@ -2287,7 +2423,9 @@ export const Karry = {
   index: 63,
   name: 'Karry',
   title: 'Stardust',
-  bio: "Karry is a native of Phobo, another planet where Sky Fleet travels. She loves nature but hates humans, and uses her magic to help the environment. She's incredibly angry when Zeth intends to dump large amount of the Alpha energy onto her planet, and she'll do whatever it takes to stop them.",
+  bio: `
+  Karry, hailing from Phobo, a distant planet visited by the Sky Fleet, possesses a deep affection for nature but harbors a strong dislike for humans. Utilizing her magical abilities, she dedicates herself to preserving and safeguarding the environment. When Zeth's plan to unleash a substantial amount of Alpha energy onto her planet is revealed, it sparks an intense fury within her. Determined to prevent this calamity, she is willing to go to any lengths necessary to thwart their efforts.
+  `,
   organization: OrganizationEnum.NONE,
   cupSize: CupSizeEnum.C,
   class: ClassEnum.SUPPORT,
@@ -2328,6 +2466,9 @@ export const Sato = {
   index: 64,
   name: 'Sato',
   title: 'Chimera',
+  bio: `
+  Unlike many of her fellow team members, Sato was not specifically created to be a monster. She was born with an extraordinary level of strength that exceeded that of an average human. However, when people failed to acknowledge her superiority, it greatly angered her. In response, she made a solemn vow to ensure that anyone who belittled her would face consequences and pay for their actions in whatever manner she deemed fit.
+  `,
   organization: OrganizationEnum.ZETH,
   cupSize: CupSizeEnum.G,
   class: ClassEnum.STRIKER,
@@ -2374,12 +2515,13 @@ export const Sato = {
   } as NewSkill
 } as NewAgent;
 
-// TODO:
 export const Victoria = {
   index: 65,
   name: 'Victoria',
   title: 'Vampire',
-  bio: "Throughout her childhood, Victoria was experimented on by cruel scientists looking to create a superhuman. However, their research failed after she was unsuccessfully mutated and killed all of the researchers. Angry with what the world had made her, she joined Kura's team hoping to kill as many people as she can.",
+  bio: `
+  During her early years, Victoria endured a childhood marred by cruel scientists who subjected her to inhumane experiments in their quest to create a superhuman. However, their efforts ended in failure when the mutations performed on her proved unsuccessful and resulted in the death of all the researchers. Consumed by anger towards the world that had shaped her in such a way, Victoria decided to join Kura's team with the intent of inflicting harm on as many people as possible.
+  `,
   organization: OrganizationEnum.ZETH,
   cupSize: CupSizeEnum.H,
   class: ClassEnum.STRIKER,
@@ -2421,11 +2563,11 @@ export const Victoria = {
               agent.stats.skillDamage /= damage_buff;
             });
         },
-        duration: 7
+        duration: 7,
+        isStackable: true
       } as NewEffect,
       { type: EffectTypeEnum.DOT, duration: 16, interval: 0.38, damage: () => 2451.3 } as NewEffectDOT
     ],
-    isStackable: true,
     cooldown: 10
   } as NewSkill
 } as NewAgent;
@@ -2434,6 +2576,10 @@ export const Laura = {
   index: 66,
   name: 'Laura',
   title: 'Tempest',
+  bio: `
+  Laura was discovered in a severely injured state and promptly transported to the hospital. The circumstances surrounding her condition remain unknown, leaving everyone astonished at her ability to endure such a traumatic experience.
+  In addition to her astounding physical resilience, Laura possesses captivating qualities and an air of enigma. As a result, many individuals find themselves drawn to her, intrigued by both her remarkable attributes and the mysteries that surround her life.
+  `,
   organization: OrganizationEnum.ADB,
   cupSize: CupSizeEnum.C,
   class: ClassEnum.STRIKER,
@@ -2471,12 +2617,13 @@ export const Laura = {
   } as NewSkill
 } as NewAgent;
 
-// TODO:
 export const Kura = {
   index: 67,
   name: 'Kura',
   title: 'Imp',
-  bio: 'Tired of being disappointed by life as a regular agent, Kura put together a team of other strong and dissatisfied warriors to help her steal the Alpha Stone. They want to use it to make themselves gods, or if that fails to work, destroy the world and everyone in it. She only cares about herself and no one else. Teammates are expendable to her.',
+  bio: `
+  Fed up with the constant disappointments of being an ordinary agent, Kura took matters into her own hands and assembled a team comprising of powerful and discontented warriors. Their primary objective is to seize the Alpha Stone, intending to use its power to elevate themselves to the status of gods. Alternatively, if their plan fails, they are willing to resort to destroying the world and annihilating all its inhabitants. Kura's sole concern revolves around her own interests, displaying a complete disregard for the well-being of her teammates, whom she considers expendable.
+  `,
   organization: OrganizationEnum.ZETH,
   cupSize: CupSizeEnum.G,
   class: ClassEnum.ARTILLERY,
@@ -2501,6 +2648,10 @@ export const Ne = {
   index: 68,
   name: 'Ne',
   title: 'Berserk',
+  bio: `
+  Ne grew up in a secluded region of the world that adhered to age-old customs and occupations. While she may give off an impression of being gentle and amiable, the moment she enters combat, she transforms into an unrecognizable force of fury.
+  Both adversaries and comrades would be wise to steer clear of her path, as anyone who crosses her will experience the full destructive force of her mighty battle axe.
+  `,
   organization: OrganizationEnum.GAA,
   cupSize: CupSizeEnum.E,
   class: ClassEnum.STRIKER,
@@ -2545,7 +2696,9 @@ export const Uta = {
   index: 69,
   name: 'Uta',
   title: 'Cathedral',
-  bio: "Uta claims that she has never felt emotions ever in her life. A lot of people don't believe her, for various reasons. The only emotion she does display is anger, and she uses that to fuel her strength in battle. A lot of agents in the organization don't like being around her, because she is always negative, but I'm sure that deep down, she's got a heart.",
+  bio: `
+  Uta asserts that she has never experienced emotions throughout her entire life. However, many people harbor doubts about her claim for various reasons. The only emotion she outwardly displays is anger, which she channels to bolster her strength during battles. Due to her consistently negative demeanor, many agents within the organization prefer to keep their distance from her. Nevertheless, it is reasonable to believe that deep down, Uta possesses a compassionate heart.
+  `,
   organization: OrganizationEnum.WIO,
   cupSize: CupSizeEnum.E,
   class: ClassEnum.STRIKER,
@@ -2588,6 +2741,10 @@ export const Midori = {
   index: 70,
   name: 'Midori',
   title: 'Hopper',
+  bio: `
+  Midori's life has been characterized by constant turbulence and indecisiveness. She frequently changes her mind and mood, making it challenging to discern her true emotions. In one moment, she may seem content and joyful, but in the next, even a minor misstep could provoke a fierce and unpredictable reaction.
+  Despite her unpredictable nature, there's no denying that Midori is an imposing warrior. Her formidable skills and prowess in battle are undeniable, earning her respect in that regard.
+  `,
   organization: OrganizationEnum.WIO,
   cupSize: CupSizeEnum.J,
   class: ClassEnum.GUNNER,
@@ -2630,7 +2787,9 @@ export const Sera = {
   index: 71,
   name: 'Sera',
   title: 'Zephyr',
-  bio: "Partial to pranks and tricks, Sera is a local terror in her city of Celestis. Many of the locals just think she's a nuisance, but she genuinely does care about those around her. Even humans, who aren't well liked on her planet. She's determined to save her planet from Kura and Zeth.",
+  bio: `
+  Sera, known for her fondness for pranks and tricks, is often regarded as a mischievous troublemaker by the residents of Celestis. However, despite this reputation, she genuinely cares about the well-being of those in her city. She extends her concern even to humans, who face prejudice on her planet. Sera is resolute in her determination to protect her planet from the threats posed by Kura and Zeth.
+  `,
   organization: OrganizationEnum.NONE,
   cupSize: CupSizeEnum.D,
   class: ClassEnum.SUPPORT,
@@ -2679,7 +2838,9 @@ export const Livia = {
   index: 72,
   name: 'Livia',
   title: 'Majesty',
-  bio: "Nevermind the fact that Livia is a whale, her skills as a strategist and combat veteran makes her invaluable to the war effort. Ok, yeah it's a little strange, but she isn't going to let the quiet discrimination against her species get the way of protecting people. She takes the different treatment in stride, never letting the ultimate goal out of her sight.",
+  bio: `
+  Regardless of the fact that Livia is a whale, her exceptional abilities as a strategist and combat veteran make her indispensable to the war effort. While it may seem unusual, she refuses to allow the subtle discrimination against her species to hinder her commitment to protecting others. Livia gracefully handles the differing treatment and remains focused on the ultimate objective at hand.
+  `,
   organization: OrganizationEnum.WIO,
   cupSize: CupSizeEnum.J,
   class: ClassEnum.GUNNER,
@@ -2721,7 +2882,9 @@ export const ReiJK = {
   index: 73,
   name: 'Rei JK',
   title: 'Sabertooth: Beta',
-  bio: 'Rei, even as a young woman, as always smart and charm. Nothing ever seemed to phase her. The younger Rei still holds respect even among her senior agents. Everyone knows not to think they are above her. She always proves them wrong.',
+  bio: `
+  Rei, even in her youth, has always possessed intelligence and charm. Nothing seems to faze her, and she consistently commands respect from even her senior colleagues. Everyone is well aware not to underestimate her, as she consistently proves them wrong.
+  `,
   organization: OrganizationEnum.GSR,
   cupSize: CupSizeEnum.I,
   class: ClassEnum.ARTILLERY,
@@ -2777,7 +2940,9 @@ export const Rei = {
   index: 74,
   name: 'Rei',
   title: 'Sabertooth',
-  bio: "An officer of the Global Soldier Reserve (GSR), Rei is all business, rarely cracking a smile, and is severely impatient. She isn't too thrilled with the fact that you're not a seasoned Commander, either. The only thing she's here to do is end this war once and for all, and you seem more like a liability than an asset.",
+  bio: `
+  Rei, an officer in the Global Soldier Reserve (GSR), embodies a serious and no-nonsense demeanor. She seldom shows any signs of a smile and possesses a strong impatience. She isn't particularly enthusiastic about your lack of experience as a Commander either. Her sole objective is to bring an end to the ongoing war, and she perceives you as more of a hindrance than a valuable asset.
+  `,
   organization: OrganizationEnum.GSR,
   cupSize: CupSizeEnum.I,
   class: ClassEnum.ARTILLERY,
@@ -2802,7 +2967,9 @@ export const Amikam = {
   index: 75,
   name: 'Amikam',
   title: 'Penance',
-  bio: "Kicked out of her convent for being too 'naughty'. Amikam is looking for a good cause to put her services to. She's quick with a gun and a compliment, and promises to give any sinners she finds a proper punishment...",
+  bio: `
+  Amikam was expelled from her convent due to her mischievous nature. Now, she seeks a worthwhile endeavor to devote her skills and services to. With her proficiency in handling firearms and her ability to deliver both compliments and punishments, she aims to bring justice to those she deems sinful.
+  `,
   organization: OrganizationEnum.GAA,
   cupSize: CupSizeEnum.E,
   class: ClassEnum.ARTILLERY,
@@ -2844,12 +3011,13 @@ export const Amikam = {
   } as NewSkill
 } as NewAgent;
 
-// TODO:
 export const Iizuna = {
   index: 76,
   name: 'Iizuna',
   title: 'Kitsune',
-  bio: "Iizuna tries her very best to be an obedient Fujo, but honestly it's hard some days. This war is the perfect distraction! Maybe getting all the non-fujo things out of her system will maker her a better one once all this fighting is over with.",
+  bio: `
+  Iizuna strives to be a dutiful Fujo, giving her best effort, although some days it proves to be challenging. The ongoing war serves as a convenient distraction for her. Perhaps indulging in activities unrelated to being a Fujo will help her become more proficient once the fighting comes to an end.
+  `,
   organization: OrganizationEnum.GSR,
   cupSize: CupSizeEnum.F,
   class: ClassEnum.ARTILLERY,
@@ -2915,6 +3083,10 @@ export const Tsurumi = {
   index: 77,
   name: 'Tsurumi',
   title: 'Bakoninnin',
+  bio: `
+  Tsurumi was raised and educated in a ninja village, where the rigorous training regimen molded her into a formidable assassin. However, she lacks any understanding of how to navigate the complexities of the modern world.
+  Having never left the village since birth, Tsurumi's village elder insists that she venture out into the world accompanied by her ninja pet. This journey aims to expose her to different experiences and modern training methods, with the hope that she will acquire valuable knowledge and bring it back to the village.
+  `,
   organization: OrganizationEnum.RSA,
   cupSize: CupSizeEnum.A,
   class: ClassEnum.GUNNER,
@@ -2953,11 +3125,14 @@ export const Tsurumi = {
   } as NewSkill
 } as NewAgent;
 
-// TODO:
 export const Mora = {
   index: 78,
   name: 'Mora',
   title: 'Eureka',
+  bio: `
+  Before New Dellum was built, Mora went by the alias Etsu Yakumora and served as an agent in Dellum Security. During that period, there was a project focused on dimensional jumping. However, before the project could be finalized, Mora mysteriously vanished.
+  After a rupture occurred in the time-invariant transcendental space known as Y, Mora unexpectedly reappeared in the New Dellum Security. She revealed that she had been working for the Dimension Administration Bureau for several years. Having now found Noa, she made the decision to immediately join the SF team.
+  `,
   organization: OrganizationEnum.DAB,
   cupSize: CupSizeEnum.F,
   class: ClassEnum.SUPPORT,
@@ -3020,6 +3195,9 @@ export const Masamune = {
   index: 79,
   name: 'Masamune',
   title: 'Bontenmaru',
+  bio: `
+  Masamune was born into a historic samurai family and was a pure-blooded samurai. She possesses an open mind and exemplifies unwavering loyalty as a courtier. Her swordsmanship continues to evolve, and her utilization of state-of-the-art technology equipment has enabled her to become the strongest swordswoman. Very few individuals in the world can match her in combat.
+  `,
   organization: OrganizationEnum.RSA,
   cupSize: CupSizeEnum.H,
   class: ClassEnum.STRIKER,
@@ -3056,11 +3234,15 @@ export const Masamune = {
   } as NewSkill
 } as NewAgent;
 
-// TODO:
 export const Chloe = {
   index: 80,
   name: 'Chloe',
   title: 'Dunkel Segnen',
+  bio: `
+  Since her early years, Chloe has been recognized for her exceptional intelligence. She spent her entire childhood residing in an orphanage, until the House of Plantagenet took notice of her and provided training, transforming her into a proud warrior. Very little is known about her life before the orphanage, leading some to speculate that she might be a princess from a long-lost kingdom.
+  Having faced numerous hardships and challenges during her formative years, Chloe developed a determined mindset that thrives on victory. She strives to excel in everything she does and always seeks to come out on top. Nevertheless, she remains committed to supporting the orphanage by regularly sending food and resources.
+  While Chloe may sometimes appear frivolous and conceited, beneath her exterior lies a warm-hearted personality.
+  `,
   organization: OrganizationEnum.RSA,
   cupSize: CupSizeEnum.G,
   class: ClassEnum.ARTILLERY,
@@ -3090,7 +3272,8 @@ export const Chloe = {
           agent.stats.normalAttack /= 2;
           agent.stats.skillDamage /= 2;
         },
-        duration: 24
+        duration: 24,
+        isStackable: true
       } as NewEffect,
       {
         type: EffectTypeEnum.TEAM_BUFF,
@@ -3112,10 +3295,10 @@ export const Chloe = {
               agent.stats.skillDamage /= 1.1;
             });
         },
-        duration: 24
+        duration: 24,
+        isStackable: true
       } as NewEffect
     ],
-    isStackable: true,
     cooldown: 10
   } as NewSkill
 } as NewAgent;
@@ -3124,6 +3307,10 @@ export const Tyrla = {
   index: 81,
   name: 'Tyrla',
   title: 'Armstrong',
+  bio: `
+  Tyrla spent her childhood in the Santriel Underground City (SUC), and life there was far from ideal. The living conditions in the SUC were unfavorable. To support herself and work towards curing her sister, she turned to dancing as her means of income.
+  Through relentless dedication, Tyrla combined her dancing abilities with her combat skills, creating her own unique style of combat dance. Over the years, her combat dance evolved into a lethal yet elegant art form. Despite her success, Tyrla continues to perform in the SUC while also recently joining the Trajectory Academic Parliament. Her goal is to acquire more knowledge and save enough money to cure her sister's illness.
+  `,
   organization: OrganizationEnum.TAP,
   cupSize: CupSizeEnum.A,
   class: ClassEnum.ARTILLERY,
@@ -3168,6 +3355,11 @@ export const Seina = {
   index: 82,
   name: 'Seina',
   title: 'Black Hawk',
+  bio: `
+  Seina's lifelong ambition was to become a pilot, so when the Airspace Defense Bureau extended an invitation for her to join their ranks in support of the war effort, she eagerly accepted.
+  While Seina is undeniably skilled in her craft, she tends to have a slightly absent-minded nature. This characteristic often leaves her fellow agents uncertain about entrusting their lives to her in the heat of battle.
+  Recognizing the need to enhance her abilities and gain trust, Seina decided to join the Trajectory Academic Parliament. Her primary focus within the parliament is to study flight safety and tactics for evading enemy fire, aiming to improve her skills and reliability as a pilot.
+  `,
   organization: OrganizationEnum.TAP,
   cupSize: CupSizeEnum.E,
   class: ClassEnum.ARTILLERY,
@@ -3206,9 +3398,133 @@ export const Seina = {
   } as NewSkill
 } as NewAgent;
 
+export const AphraClairmont = {
+  index: 83,
+  name: 'Aphra Clairmont',
+  title: 'Knight',
+  bio: `
+  Originally hailing from the Cardelle Dukedom, she was the most talented and esteemed knight. However, she chose to resign from her position upon discovering the heartless and cruel nature of Lord Balan Emory. She decided to take up a post in the villages that were oppressed by the lord's army, assisting the villagers in their resistance against him. It was an impossible task to fight against a whole army with only villagers and a single knight.
+  During her valiant efforts, she was eventually captured by the lord. It was at this moment that her world collided with the SF (Science Fiction) world. Coincidentally, she found herself in the midst of the commander's adventure, who happened to pass by the area.
+  `,
+  organization: OrganizationEnum.ECD,
+  cupSize: CupSizeEnum.E,
+  class: ClassEnum.STRIKER,
+  nodes: EvoNodes.Striker_Nodes,
+  stats: {
+    attackSpeed: 1,
+    normalAttack: 1226,
+    criticalRate: 0.94,
+    criticalDamage: 2.038,
+    skillDamage: 1226,
+    baseSkillDamage: 1226
+  } as NewStats,
+  skill: {
+    name: 'Strength Enhance',
+    description:
+      'knight leader skill. cast a stackable buff, increase damage to 260% and increase all striker agents damage to 110% for 24 seconds. cooldown: 10.0',
+    effects: [
+      {
+        type: EffectTypeEnum.SELF_BUFF,
+        apply: (params: EffectParams) => {
+          const { agent } = params;
+          agent.stats.normalAttack *= 2.6;
+          agent.stats.skillDamage *= 2.6;
+        },
+        remove: (params: EffectParams) => {
+          const { agent } = params;
+          agent.stats.normalAttack /= 2.6;
+          agent.stats.skillDamage /= 2.6;
+        },
+        duration: 24,
+        isStackable: true
+      } as NewEffect,
+      {
+        type: EffectTypeEnum.TEAM_BUFF,
+        apply: (params: EffectParams) => {
+          const { team } = params;
+          team
+            .filter((agent) => agent.class === ClassEnum.STRIKER)
+            .forEach((agent) => {
+              agent.stats.normalAttack *= 1.1;
+              agent.stats.skillDamage *= 1.1;
+            });
+        },
+        remove: (params: EffectParams) => {
+          const { team } = params;
+          team
+            .filter((agent) => agent.class === ClassEnum.STRIKER)
+            .forEach((agent) => {
+              agent.stats.normalAttack /= 1.1;
+              agent.stats.skillDamage /= 1.1;
+            });
+        },
+        duration: 24,
+        isStackable: true
+      } as NewEffect
+    ],
+    cooldown: 10
+  } as NewSkill
+} as NewAgent;
+
+export const KagawaMatsu = {
+  index: 84,
+  name: 'Kagawa Matsu',
+  title: 'Muramatsu nechan',
+  bio: `
+  The intertwined fate of the Takeda, Sanada, and Date clans unfolds in a tumultuous manner. Matsu, who was raised as a samurai from a young age, finds herself caught in the midst of this chaotic destiny. Just as her tragic fate begins to unfold, her path unexpectedly crosses with the world of SF (Science Fiction). This convergence occurs during the commander's ongoing adventure, adding further complexity to the unfolding narrative.
+  `,
+  organization: OrganizationEnum.ECD,
+  cupSize: CupSizeEnum.F,
+  class: ClassEnum.STRIKER,
+  nodes: EvoNodes.Striker_Nodes,
+  stats: {
+    attackSpeed: 0.5,
+    normalAttack: 2452,
+    criticalRate: 0.94,
+    criticalDamage: 2.038,
+    skillDamage: 2452,
+    baseSkillDamage: 2452
+  } as NewStats,
+  skill: {
+    name: 'Adieu',
+    description:
+      'cast a non-stackable self buff. damage x830%, range +5.00. cast another stackable self buff, attack speed x115%. all buff last for 16s. her bushido spirit awaken, only do single target attack, any damage deal to enemy within the buff duration, have 50% chance to reduce cooldown by 2.0s. cooldown: 10.',
+    effects: [
+      {
+        type: EffectTypeEnum.SELF_BUFF,
+        apply: (params: EffectParams) => {
+          const { agent } = params;
+          agent.stats.normalAttack *= 8.3;
+          agent.stats.skillDamage *= 8.3;
+        },
+        remove: (params: EffectParams) => {
+          const { agent } = params;
+          agent.stats.normalAttack /= 8.3;
+          agent.stats.skillDamage /= 8.3;
+        },
+        duration: 16
+      } as NewEffect,
+      {
+        type: EffectTypeEnum.SELF_BUFF,
+        apply: (params: EffectParams) => {
+          const { agent } = params;
+          agent.stats.attackSpeed *= 1.15;
+        },
+        remove: (params: EffectParams) => {
+          const { agent } = params;
+          agent.stats.attackSpeed /= 1.15;
+        },
+        duration: 16
+      } as NewEffect
+    ],
+    cooldown: 10
+  } as NewSkill
+} as NewAgent;
+
 export const Agents = [
   Akari,
   Akina,
+  AphraClairmont,
   Amikam,
   Aoi,
   Ari,
@@ -3232,6 +3548,7 @@ export const Agents = [
   Hoshiko,
   Iizuna,
   Irina,
+  KagawaMatsu,
   Kaja,
   Karry,
   Kiyomi,

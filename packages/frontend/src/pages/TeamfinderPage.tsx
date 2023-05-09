@@ -1,32 +1,36 @@
 import { useSetAtom } from 'jotai';
+import { useEffect } from 'react';
 
 import { CurrentViewAtom } from '../atoms';
 import { Agents } from '../components/agent';
 import { Search } from '../components/common';
-import { TargetSelect } from '../components/target';
+
+const viewName = 'teamfinder';
 
 export const TeamfinderPage: React.FC = () => {
-  useSetAtom(CurrentViewAtom)('teamfinder');
+  const setViewName = useSetAtom(CurrentViewAtom);
+
+  useEffect(() => {
+    setViewName(viewName);
+  }, []);
 
   return (
-    <div>
-      <div className="mx-1 pt-10">
-        <mark>Work In Progress - does not work yet</mark>
-        <TargetSelect />
-      </div>
+    <div className="mx-1">
+      {/* TODO: show selected agents with mini-cards? */}
+      {/* <TargetSelect /> */}
 
       <div className="default-layout tree-nav-body mx-auto mb-0">
         <div className="tree-nav-container h-auto" style={{ flexGrow: 1 }}>
-          <main className="page-layout">
-            <div className="mx-1 pb-2">
-              <Search viewName="teamfinder" />
-            </div>
+          <main>
+            <Search />
 
-            {/* <Results viewName="teamfinder" /> */}
-            <Agents viewName="teamfinder" />
+            {/* <Results /> */}
+            <Agents />
           </main>
         </div>
       </div>
     </div>
   );
 };
+
+export default TeamfinderPage;

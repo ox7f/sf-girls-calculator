@@ -32,21 +32,25 @@ export const inputConfig: Record<string, InputConfig> = {
   criticalDamage: { label: 'Critical Damage', step: 0.01, abbrTitle: 'for reference: 100% = 1' }
 };
 
-export const agentIsSelected = (selectedAgentNames: string[], agentName: string) =>
-  selectedAgentNames.includes(agentName);
+export function agentIsSelected(selectedAgentNames: string[], agentName: string): boolean {
+  return selectedAgentNames.includes(agentName);
+}
 
-export const isLimitOfSelectionReached = (viewName: ViewName, selectedAgentsLength: number) =>
-  selectedAgentsLength === (viewName === 'calculator' ? 10 : 20);
+export function isLimitOfSelectionReached(viewName: ViewName, selectedAgentsLength: number): boolean {
+  return selectedAgentsLength === (viewName === 'calculator' ? 7 : 20);
+}
 
-export const addAgentToSelectedList = (selectedAgentNames: string[], agentName: string) => [
-  ...selectedAgentNames,
-  agentName
-];
+export function addAgentToSelectedList(viewName: ViewName, selectedAgentNames: string[], agentName: string): string[] {
+  return isLimitOfSelectionReached(viewName, selectedAgentNames.length)
+    ? selectedAgentNames
+    : [...selectedAgentNames, agentName];
+}
 
-export const removeAgentFromSelectedList = (selectedAgents: string[], agentName: string) =>
-  selectedAgents.filter((agent) => agent !== agentName);
+export function removeAgentFromSelectedList(selectedAgents: string[], agentName: string): string[] {
+  return selectedAgents.filter((agent) => agent !== agentName);
+}
 
-export const getColorFromString = (str: string) => {
+export function getColorFromString(str: string): string {
   let hash = 0;
   for (let i = 0; i < str.length; i++) {
     hash = str.charCodeAt(i) + ((hash << 5) - hash);
@@ -57,9 +61,9 @@ export const getColorFromString = (str: string) => {
     color += ('00' + value.toString(16)).substr(-2);
   }
   return color;
-};
+}
 
-export const prepareGraphData = (result: ResultType) => {
+export function prepareGraphData(result: ResultType): Array<HistoryType[]> {
   const data: Array<HistoryType[]> = [];
 
   for (const [index, agent] of result.team.entries()) {
@@ -71,16 +75,20 @@ export const prepareGraphData = (result: ResultType) => {
   }
 
   return data;
-};
+}
 
-export const createWrapper = (wrapperId: string) => {
+export function createWrapper(wrapperId: string) {
   const wrapper = document.createElement('div');
   wrapper.setAttribute('id', wrapperId);
   document.body.appendChild(wrapper);
   return wrapper;
-};
+}
 
-export const getAllParents = (node: EvoNode): AgentNode[] => {
+export function getAllNodes(nodes: EvoNode[]): AgentNode[] {
+  return nodes.flatMap(getAllNodeChildren);
+}
+
+export function getAllNodeParents(node: EvoNode): AgentNode[] {
   const parents: AgentNode[] = [];
   let parent = node.parent;
 
@@ -90,14 +98,13 @@ export const getAllParents = (node: EvoNode): AgentNode[] => {
   }
 
   return parents;
-};
+}
 
-export const getAllChildren = (node: EvoNode): AgentNode[] => [
-  { name: node.name, level: node.level },
-  ...node.children.flatMap(getAllChildren)
-];
+export function getAllNodeChildren(node: EvoNode): AgentNode[] {
+  return [{ name: node.name, level: node.level }, ...node.children.flatMap(getAllNodeChildren)];
+}
 
-export const overwriteEvoTree = (agent: AgentItem): EvoNode[] => {
+export function overwriteEvoTree(agent: AgentItem): EvoNode[] {
   const defaultAgent = Agents.Agents.find((a) => a.name === agent.name);
 
   if (!defaultAgent) {
@@ -122,4 +129,19 @@ export const overwriteEvoTree = (agent: AgentItem): EvoNode[] => {
   iterateNodes(initAgent.nodes, agent.nodes);
 
   return initAgent.nodes;
-};
+}
+
+export function getTreeNumber(node: EvoNode) {
+  if (!node.parent) {
+    return 0;
+  }
+
+  return 1;
+}
+
+export function getEvoNodeTooltip(node: EvoNode) {
+  return `${node.name
+    .split(' ')
+    .map((word) => (/^(I|II|III|IV)$/.test(word) ? word : word.charAt(0)))
+    .join('')} ${node.level}`;
+}

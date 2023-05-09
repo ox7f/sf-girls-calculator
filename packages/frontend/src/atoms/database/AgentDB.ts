@@ -1,5 +1,6 @@
-import { Agents } from '@sf-girls-calculator/calculator';
 import { MiniDb } from 'jotai-minidb';
+import { Agents } from '@sf-girls-calculator/calculator';
+
 import { AgentItem } from '../types';
 import { convertAgentItem } from '../utils';
 

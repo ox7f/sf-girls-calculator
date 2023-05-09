@@ -1,5 +1,6 @@
 export {
   AgentNameAtom,
+  AgentListAtom,
   CurrentViewAtom,
   FilteredAgentListAtom,
   FilteredTargetListAtom,

@@ -1,8 +1,6 @@
-export { AgentCard } from './Card';
-export { AgentGallery } from './Gallery';
-export { AgentList } from './List';
-export { AgentMenu } from './Menu';
-export { AgentModal } from './Modal';
+export { AgentGallery } from './AgentGallery';
+export { AgentList } from './AgentList';
+export { AgentModal } from './AgentModal';
 export { Agents } from './Agents';
 export { EvoNode } from './EvoNode';
 export { EvoTree } from './EvoTree';

@@ -1,40 +1,29 @@
+import { useAtomValue, useSetAtom } from 'jotai';
+import { FC } from 'react';
 import { Agent } from '@sf-girls-calculator/calculator';
-import { useSetAtom } from 'jotai';
 
-import { AgentGallery } from './Gallery';
-import { AgentList } from './List';
-import {
-  ViewName,
-  addAgentToSelectedList,
-  agentIsSelected,
-  isLimitOfSelectionReached,
-  removeAgentFromSelectedList
-} from '../utils';
-import { SelectedAgentListAtom } from '../../atoms';
-
-interface Props {
-  viewName: ViewName;
-}
+import { AgentGallery } from './AgentGallery';
+import { AgentList } from './AgentList';
+import { addAgentToSelectedList, agentIsSelected, removeAgentFromSelectedList } from '../utils';
+import { CurrentViewAtom, SelectedAgentListAtom } from '../../atoms';
 
 const AGENT_COMPONENTS = {
   calculator: AgentList,
   teamfinder: AgentGallery
 };
 
-export const Agents: React.FC<Props> = ({ viewName }) => {
+export const Agents: FC = () => {
   const setSelectedAgents = useSetAtom(SelectedAgentListAtom);
+  const viewName = useAtomValue(CurrentViewAtom);
   const AgentComponent = AGENT_COMPONENTS[viewName];
 
-  const handleAgentSelection = (selectedAgent: Agent) =>
+  const onAgentSelect = (selectedAgent: Agent) =>
     setSelectedAgents((prev) => {
-      const selected = prev[viewName];
-      const selectedAgents = agentIsSelected(selected, selectedAgent.name)
-        ? removeAgentFromSelectedList(selected, selectedAgent.name)
-        : isLimitOfSelectionReached(viewName, selected.length)
-        ? selected
-        : addAgentToSelectedList(selected, selectedAgent.name);
+      const selectedAgents = agentIsSelected(prev[viewName], selectedAgent.name)
+        ? removeAgentFromSelectedList(prev[viewName], selectedAgent.name)
+        : addAgentToSelectedList(viewName, prev[viewName], selectedAgent.name);
       return { ...prev, [viewName]: selectedAgents };
     });
 
-  return <AgentComponent viewName={viewName} select={handleAgentSelection} />;
+  return <AgentComponent select={onAgentSelect} />;
 };

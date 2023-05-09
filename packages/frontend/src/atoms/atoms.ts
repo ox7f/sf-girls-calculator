@@ -1,6 +1,6 @@
-import { Agent, Agents, ResultType, Target, Targets } from '@sf-girls-calculator/calculator';
 import { atom } from 'jotai';
 import { atomWithReset } from 'jotai/utils';
+import { Agent, Agents, ResultType, Target, Targets } from '@sf-girls-calculator/calculator';
 
 const initializedAgents = Agents.Agents.map((agent) => new Agent(agent));
 const initializedTargets = Targets.Targets.map((target) => new Target(target));

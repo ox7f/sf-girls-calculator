@@ -1,4 +1,5 @@
 import 'cirrus-ui';
+import './index.scss';
 
 import { Provider } from 'jotai';
 import { StrictMode } from 'react';
@@ -6,17 +7,17 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import { App } from './App';
-import { CalculatorPage, ErrorPage, HomePage, TeamfinderPage } from './pages';
+import { Calculator, ErrorBoundary, Home, Teamfinder } from './pages';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
-    errorElement: <ErrorPage />,
+    errorElement: <ErrorBoundary />,
     children: [
-      { path: '/', element: <HomePage /> },
-      { path: '/calculator', element: <CalculatorPage /> },
-      { path: '/teamfinder', element: <TeamfinderPage /> }
+      { path: '/', element: <Home /> },
+      { path: '/calculator', element: <Calculator /> },
+      { path: '/teamfinder', element: <Teamfinder /> }
     ]
   }
 ]);

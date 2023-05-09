@@ -1,5 +1,13 @@
 # TODOs
 
+- [] rethink selected and filtered atoms
+
+## chatGPT suggestions
+
+- [] Add visual elements: Consider adding graphics, images or videos that relate to your website's theme or content. You could use screenshots of the game, or create custom graphics that showcase the calculator functionality. This will make your website look more visually appealing and engaging. (gif for selecting agents/target, gif for editing agent/target, gif for teamfinder)
+- [] Incorporate social proof: Consider adding social proof, such as the number of people who have used the calculator, or how long it has been in operation. This will help visitors understand that your website is a reputable source of information.
+- [] Add calls to action: Consider adding calls to action, such as "Start Calculating Now", or "Join Our Community", to encourage visitors to engage with your website.
+
 ## clean code
 
 - [x] move handle functions inside class -> clean code, follow oop (no stinky code allowed)
@@ -26,10 +34,9 @@
 - [x] fix graph (handle multiple dots on the same position)
 - [x] changelog on entry page
 - [x] unselect all selected agents button
-- [] teamfinder: results on separate page / calculate on click
-- [] new detail view: agent detail view where you can adjust stats with instant graph update, also select support agents but graph shows only selected agent
 - [] fill changelog with content
 - [] add rune finder to UI
+- [] save results and compare them (history? (list where the last result is compared with the current - for example +25% damage or -20% damage))
 
 ## nice to have
 
@@ -43,13 +50,20 @@
 - [x] sort table by damage
 - [x] sticky search bar (scrolls with)
 - [x] agent skill/bio inside modal (tabs: bio/stats/skill)
+- [] filter functions in UI
 
 ## UI/UX
 
-- [] good looking evo tree => ui overhaul
 - [] adjust width/height of graph
+- [x] good looking evo tree => overhaul
 - [x] show critical hits or other bonuses (e.g. evo node: headshot, instant reload) in graph
-- [] add images (if allowed)
+- [x] add images
+- [x] button overhaul
+- [x] modal overhaul
+- [x] search bar overhaul
+- [] calculator overhaul
+- [] teamfinder overhaul
+- [x] switch between views (show either table or graph not both)
 
 ## code changes
 

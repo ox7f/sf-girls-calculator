@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { FaGithub } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
@@ -7,15 +7,23 @@ const menuItems = [
   { name: 'Teamfinder', to: '/teamfinder' }
 ];
 
-export const Header: React.FC = () => {
+export const Header: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleHamburger = () => setIsOpen(!isOpen);
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [isOpen]);
+
   return (
-    <div id="header" className="header header-animated header-fixed unselectable">
+    <div id="header" className="header header-animated u-unselectable u-sticky u-top-0">
       <div className="header-brand">
         <div className="nav-item no-hover">
-          <Link to="/">
+          <Link to="/" onClick={() => setIsOpen(false)}>
             <h6 className="title">SF Girls Calculator</h6>
           </Link>
         </div>
@@ -27,7 +35,7 @@ export const Header: React.FC = () => {
         </div>
       </div>
 
-      <div id="header-menu" className={`header-nav ${isOpen ? 'active' : ''}`}>
+      <div id="header-menu" className={`header-nav ${isOpen ? 'active' : ''}`} onClick={() => setIsOpen(false)}>
         <div className="nav-left">
           <div className="nav-item">
             <Link to="https://github.com/ox7f/sf-girls-calculator" target="_blank">
@@ -47,10 +55,10 @@ export const Header: React.FC = () => {
         </div>
 
         <div className="nav-right">
-          <div className="nav-item u-justify-flex-end no-hover">
-            <a href="https://www.buymeacoffee.com/ox7f" target="_blank">
+          <div className="nav-item ">
+            <Link to="https://www.buymeacoffee.com/ox7f" target="_blank">
               <img src="/buymeacoffee.png" alt="Buy Me A Coffee" style={{ height: '36px', width: '130px' }} />
-            </a>
+            </Link>
           </div>
         </div>
       </div>

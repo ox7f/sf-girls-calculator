@@ -2,33 +2,41 @@ import { RuneData, RuneSet } from '../model';
 
 export const data = {
   type_1: [
-    { stat_1: 'NA: +36%', stat_2: 'NA: +29%', stat_3: 'CD: +18.1%' },
-    { stat_1: 'AS: +11.4%', stat_2: 'NA: +36%', stat_3: 'NA: +27.1%' },
-    { stat_1: 'AS: +22%', stat_2: 'AS: +14.6%', stat_3: 'NA: +20.2%' },
-    { stat_1: 'AS: +22%', stat_2: 'AS: +12.6%', stat_3: 'NA: +30.4%' },
+    { stat_1: 'AS: +22%', stat_2: 'AS: +10%', stat_3: 'NA: +29.5%' },
+    { stat_1: 'NA: +36%', stat_2: 'CD: +18.1%', stat_3: 'NA: +29%' },
+    { stat_1: 'AS: +22%', stat_2: 'NA: +18%', stat_3: 'AS: +17.2%' },
+    { stat_1: 'NA: +36%', stat_2: 'NA: +27.1%', stat_3: 'AS: +11.4%' },
+    { stat_1: 'AS: +22%', stat_2: 'NA: +20.2%', stat_3: 'AS: +14.6%' },
+    { stat_1: 'AS: +22%', stat_2: 'NA: +30.4%', stat_3: 'AS: +12.6%' },
     { stat_1: 'AS: +12.8%', stat_2: 'NA: +36%', stat_3: 'NA: +25.9%' },
     { stat_1: 'AS: +22%', stat_2: 'AS: +12%', stat_3: 'NA: +25.9%' },
     { stat_1: 'AS: +22%', stat_2: 'AS: +14.9%', stat_3: 'NA: +23.4%' },
+    { stat_1: 'NA: +36%', stat_2: 'NA: +30.1%', stat_3: 'AS: +10%' },
     { stat_1: 'AS: +22%', stat_2: 'AS: +13%', stat_3: 'NA: +24.2%' },
     { stat_1: 'AS: +22%', stat_2: 'AS: +10%', stat_3: 'NA: +32.1%' },
     { stat_1: 'AS: +22%', stat_2: 'AS: +13.7%', stat_3: 'NA: +23%' },
-    { stat_1: 'AS: +22%', stat_2: 'AS: +12.4%', stat_3: 'NA: +25.9%' }
+    { stat_1: 'AS: +22%', stat_2: 'CR: +17.6%', stat_3: 'AS: +15.6%' },
+    { stat_1: 'AS: +22%', stat_2: 'AS: +12.4%', stat_3: 'NA: +25.9%' },
+    { stat_1: 'AS: +22%', stat_2: 'AS: +13%', stat_3: 'NA: +29%' }
   ],
   type_2: [
     { stat_1: 'AS: +22%', stat_2: 'AS: +10%', stat_3: 'NA: +31.1%' },
-    { stat_1: 'CD: +12.8%', stat_2: 'NA: +36%', stat_3: 'NA: +25.9%' },
-    { stat_1: 'AS: +22%', stat_2: 'AS: +15.6%', stat_3: 'NA: +22.3%' },
-    { stat_1: 'NA: +36%', stat_2: 'NA: +20.2%', stat_3: 'AS: +15.4%' },
+    { stat_1: 'AS: +22%', stat_2: 'NA: +20.2%', stat_3: 'AS: +15.9%' },
+    { stat_1: 'NA: +25.9%', stat_2: 'NA: +36%', stat_3: 'CD: +12.8%' },
+    { stat_1: 'AS: +22%', stat_2: 'NA: +22.3%', stat_3: 'AS: +15.6%' },
+    { stat_1: 'NA: +36%', stat_2: 'AS: +15.4%', stat_3: 'NA: +20.2%' },
     { stat_1: 'AS: +22%', stat_2: 'AS: +14.6%', stat_3: 'CD: +11.8%' },
-    { stat_1: 'NA: +36%', stat_2: 'NA: +20.5%', stat_3: 'CR: +22.2%' },
+    { stat_1: 'NA: +36%', stat_2: 'CR: +22.2%', stat_3: 'NA: +20.5%' },
+    { stat_1: 'AS: +22%', stat_2: 'CR: +15.7%', stat_3: 'AS: +15.1%' },
     { stat_1: 'AS: +22%', stat_2: 'AS: +12.6%', stat_3: 'NA: +28.1%' },
-    { stat_1: 'AS: +11.4%', stat_2: 'NA: +36%', stat_3: 'NA: +25.5%' },
+    { stat_1: 'NA: +36%', stat_2: 'AS: +11.4%', stat_3: 'NA: +25.5%' },
     { stat_1: 'AS: +22%', stat_2: 'AS: +12.6%', stat_3: 'CD: +14.3%' },
     { stat_1: 'NA: +36%', stat_2: 'NA: +27.7%', stat_3: 'CR: +17.6%' },
+    { stat_1: 'AS: +22%', stat_2: 'NA: +20.2%', stat_3: 'AS: +14.1%' },
     { stat_1: 'NA: +36%', stat_2: 'NA: +29%', stat_3: 'CR: +18.2%' },
-    { stat_1: 'AS: +22%', stat_2: 'AS: +14.6%', stat_3: 'CR: +14%' },
-    { stat_1: 'AS: +22%', stat_2: 'CR: +15.7%', stat_3: 'AS: +15.1%' },
-    { stat_1: 'AS: +22%', stat_2: 'NA: +20.2%', stat_3: 'AS: +15.9%' }
+    { stat_1: 'NA: +36%', stat_2: 'NA: +25.4%', stat_3: 'CR: +17.1%' },
+    { stat_1: 'AS: +22%', stat_2: 'CR: +14%', stat_3: 'AS: +14.6%' },
+    { stat_1: 'NA: +36%', stat_2: 'AS: +12.6%', stat_3: 'NA: +25.5%' }
   ],
   type_3: [
     { stat_1: 'AS: +22%', stat_2: 'AS: +12.6%', stat_3: 'NA: +25.8%' },
@@ -43,10 +51,13 @@ export const data = {
     { stat_1: 'AS: +22%', stat_2: 'AS: +11.6%', stat_3: 'NA: +22.6%' },
     { stat_1: 'NA: +36%', stat_2: 'NA: +28.6%', stat_3: 'CR: +16.8%' },
     { stat_1: 'AS: +22%', stat_2: 'AS: +14.1%', stat_3: 'NA: +20.2%' },
-    { stat_1: 'AS: +22%', stat_2: 'AS: +12.8%', stat_3: 'NA: +27.1%' },
+    { stat_1: 'AS: +22%', stat_2: 'NA: +28.5%', stat_3: 'AS: +11.2%' },
+    { stat_1: 'AS: +22%', stat_2: 'NA: +27.1%', stat_3: 'AS: +12.8%' },
     { stat_1: 'AS: +22%', stat_2: 'AS: +11.2%', stat_3: 'NA: +29%' },
+    { stat_1: 'NA: +36%', stat_2: 'AS: +17.5%', stat_3: 'NA: +18%' },
     { stat_1: 'AS: +22%', stat_2: 'AS: +16.9%', stat_3: 'NA: +22.3%' },
     { stat_1: 'AS: +22%', stat_2: 'AS: +14.2%', stat_3: 'NA: +22.3%' },
+    { stat_1: 'AS: +22%', stat_2: 'AS: +11.4%', stat_3: 'NA: +25.4%' },
     { stat_1: 'AS: +10%', stat_2: 'NA: +36%', stat_3: 'NA: +35.4%' }
   ]
 };
@@ -141,11 +152,12 @@ export function calculateTotalScore(runeSet: RuneSet) {
 
     for (const stat of stats) {
       if (stat.includes('AS')) {
-        attackSpeedRunes.push(parseStat(stat) * 3);
+        attackSpeedRunes.push(parseStat(stat) * 1.25);
       } else if (stat.includes('CD')) {
         criticalDamageRunes.push(parseStat(stat));
       } else if (stat.includes('CR')) {
-        criticalRateRunes.push(parseStat(stat) * 1.5);
+        // criticalRateRunes.push(parseStat(stat) * 1.05);
+        criticalRateRunes.push(parseStat(stat));
       } else if (stat.includes('NA')) {
         normalAttackRunes.push(parseStat(stat));
       }

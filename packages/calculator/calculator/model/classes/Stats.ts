@@ -10,7 +10,8 @@ export class Stats {
   projectileNumber: number;
   castTime: number;
 
-  attack_counter = 0;
+  attackCounter = 0;
+  firstAttackTime = 0;
   lastAttackTime = 0;
   lastCastTime = 0;
   totalDamage = 0;

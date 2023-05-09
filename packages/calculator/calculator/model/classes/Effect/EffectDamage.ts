@@ -1,18 +1,22 @@
-import { AttackModeEnum, BonusEnum, HistoryActionTypeEnum } from '../../../enums';
-import { Agent, AbstractEffect, Fight, NewEffectDamage } from '../../../model';
+import { AttackModeEnum, BonusEnum, EffectTypeEnum, HistoryActionTypeEnum } from '../../../enums';
+import { Agent, AbstractEffect, Fight, NewEffectDamage, DamageEffectFunction } from '../../../model';
 
 export class EffectDamage extends AbstractEffect {
-  constructor(private readonly config: NewEffectDamage) {
+  type: EffectTypeEnum;
+  damage: DamageEffectFunction;
+
+  constructor({ type, damage }: NewEffectDamage) {
     super();
+    this.type = type;
+    this.damage = damage;
   }
 
   activate(agent: Agent, fight: Fight) {
     const { time } = fight;
-    const { type } = this.config;
     agent.log(time, {
       attackMode: AttackModeEnum.NONE,
       damage: 0,
-      effectType: type,
+      effectType: this.type,
       type: HistoryActionTypeEnum.USE_SKILL
     });
     this.dealDamage(agent, fight);
@@ -47,7 +51,7 @@ export class EffectDamage extends AbstractEffect {
     const totalSkillAttack = skillDamage + skillAttackEffect;
 
     const bonus: BonusEnum[] = [];
-    const baseDamage = this.config.damage({ agent, target, team: fight.team }) / baseSkillDamage;
+    const baseDamage = this.damage({ agent, target, team: fight.team }) / baseSkillDamage;
     let damage = baseDamage * totalSkillAttack;
 
     if (Math.random() < criticalRateWithEffect) {
@@ -71,7 +75,7 @@ export class EffectDamage extends AbstractEffect {
       attackMode: AttackModeEnum.SKILL,
       bonus,
       damage: damageDealt,
-      effectType: this.config.type,
+      effectType: this.type,
       type: HistoryActionTypeEnum.ATTACK
     });
   }

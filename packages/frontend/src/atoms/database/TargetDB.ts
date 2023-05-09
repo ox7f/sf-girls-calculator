@@ -1,5 +1,6 @@
-import { Targets } from '@sf-girls-calculator/calculator';
 import { MiniDb } from 'jotai-minidb';
+import { Targets } from '@sf-girls-calculator/calculator';
+
 import { TargetItem } from '../types';
 
 const targetData: Record<string, TargetItem> = {};
