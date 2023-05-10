@@ -24,7 +24,7 @@ export const Results: React.FC = () => {
   const agentEntries = useAtomValue(AgentDB.entries);
 
   const workerCall = useCallback(async (selectedAgents: string[], selectedTargets: string[]) => {
-    /** uncomment only for testing:
+    /** only for testing:
     if (selectedAgents.length > 0 && selectedTargets) {
       const test_results = [];
 
@@ -55,15 +55,13 @@ export const Results: React.FC = () => {
 
   return (
     <div className="results-container">
-      {loading && <Spinner />}
-
       {results[viewName].map((result, index) => {
         const remainingTime = result.time / 1000;
         const remainingHealth = result.target.currentHealth;
 
         return (
           <div className="content" key={index}>
-            <div className="btn-group pt-1">
+            <div className="btn-group pt-1 u-flex-row">
               <div className="tooltip tooltip--bottom" data-tooltip="Show Graph">
                 <Button
                   variant={showGraph ? 'outline' : undefined}
@@ -88,10 +86,19 @@ export const Results: React.FC = () => {
               </div>
             </div>
 
-            <div style={{ height: '500px', width: '100%' }}>
-              <label>Remaining Time: {remainingTime} second(s)</label>
-              <label>Remaining HP: {remainingHealth}</label>
+            <div style={{ height: '500px', width: '100%' }} className="animated fadeIn">
+              <p className="pt-1">
+                <span>
+                  Remaining Time: <span className="font-semibold">{remainingTime} second(s)</span>
+                </span>
 
+                <br />
+                <span>
+                  Remaining HP: <span className="font-semibold">{remainingHealth}</span>
+                </span>
+              </p>
+
+              {loading && <Spinner />}
               {showTable && <Table result={result} />}
               {showGraph && <Graph result={result} />}
             </div>
