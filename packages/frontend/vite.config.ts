@@ -17,6 +17,7 @@ export default defineConfig({
     plugins: [comlink()]
   },
   build: {
+    cssCodeSplit: false,
     rollupOptions: {
       output: {
         manualChunks(id) {

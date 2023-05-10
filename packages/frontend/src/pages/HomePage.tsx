@@ -89,7 +89,7 @@ const items = [
           <li>Seekers</li>
           <li>Runes</li>
           <li>Rune-Finder Tool</li>
-          <li>Filter FUnction for Agents</li>
+          <li>Filter Function for Agents</li>
           <li>UI Overhaul</li>
         </ul>
       </>
