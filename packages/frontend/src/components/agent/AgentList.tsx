@@ -43,12 +43,12 @@ export const AgentList: FC<{ select: (agent: Agent) => void }> = ({ select }) =>
               <li className="menu-item u-sticky u-top-1">
                 <Search />
               </li>
-              <ul id="agent-list" className="menu mb-3">
-                {filteredAgents ? (
+              <ul id="agent-list" className="menu mb-3 animated fadeIn">
+                {filteredAgents.length ? (
                   filteredAgents.map((name) => {
                     const agent = allAgents.find((agent) => agent.name === name);
-                    const className = `menu-item u-unselectable ${
-                      agentIsSelected(selectedAgents, name) ? 'selected' : ''
+                    const className = `menu-item u-unselectable animated ${
+                      agentIsSelected(selectedAgents, name) ? 'selected bounceIn' : ''
                     }`;
 
                     return (
@@ -61,7 +61,7 @@ export const AgentList: FC<{ select: (agent: Agent) => void }> = ({ select }) =>
                   })
                 ) : (
                   <li className="menu-item mr-1">
-                    <a>No result...</a>
+                    <p>No results found...</p>
                   </li>
                 )}
               </ul>
