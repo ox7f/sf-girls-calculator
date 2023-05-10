@@ -1,7 +1,5 @@
 # TODOs
 
-- [] rethink selected and filtered atoms
-
 ## chatGPT suggestions
 
 - [] Add visual elements: Consider adding graphics, images or videos that relate to your website's theme or content. You could use screenshots of the game, or create custom graphics that showcase the calculator functionality. This will make your website look more visually appealing and engaging. (gif for selecting agents/target, gif for editing agent/target, gif for teamfinder)
@@ -24,9 +22,9 @@
 - [x] implement projectile travel speed
 - [x] handle cast animations logic better (add global cast time)
 - [x] implement evo tree
-- [] implement new target (ditto: target with evo tree)
-- [] implement runes
-- [] implement seekers
+- [] add new target (ditto: target with evo tree) to UI
+- [] add runes to UI
+- [] add seekers to UI
 
 ## should have
 
@@ -35,7 +33,7 @@
 - [x] changelog on entry page
 - [x] unselect all selected agents button
 - [] fill changelog with content
-- [] add rune finder to UI
+- [] add rune finder tool to UI
 - [] save results and compare them (history? (list where the last result is compared with the current - for example +25% damage or -20% damage))
 
 ## nice to have
@@ -58,12 +56,14 @@
 - [x] good looking evo tree => overhaul
 - [x] show critical hits or other bonuses (e.g. evo node: headshot, instant reload) in graph
 - [x] add images
+- [x] switch between views (show either table or graph not both)
 - [x] button overhaul
 - [x] modal overhaul
 - [x] search bar overhaul
-- [] calculator overhaul
-- [] teamfinder overhaul
-- [x] switch between views (show either table or graph not both)
+- [x] calculator overhaul
+- [x] teamfinder overhaul
+- [] graph overhaul
+- [] graph logs overhaul
 
 ## code changes
 
