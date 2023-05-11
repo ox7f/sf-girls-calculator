@@ -20,7 +20,7 @@ export const EvoNode: FC<EvoNodeProps> = ({ node, update }) => {
           height: '4rem',
           width: '4rem',
           textShadow: '1px 1px 5px rgba(0, 0, 0, 1)',
-          backgroundImage: `url(evoNodes/${node.name.replace(/\s/g, '')}.webp)`,
+          // backgroundImage: `url(evoNodes/${node.name.replace(/\s/g, '')}.webp)`,
           backgroundPosition: 'center',
           backgroundSize: '100%'
         }}

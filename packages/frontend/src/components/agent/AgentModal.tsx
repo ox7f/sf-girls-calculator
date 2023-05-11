@@ -132,7 +132,7 @@ export const AgentModal: FC = () => {
                 <div
                   style={{
                     height: '100%',
-                    backgroundImage: `url(agents/${agentName.replace(/\s/g, '')}Mini.webp)`,
+                    // backgroundImage: `url(agents/${agentName.replace(/\s/g, '')}Mini.webp)`,
                     backgroundSize: '100%'
                   }}
                 />

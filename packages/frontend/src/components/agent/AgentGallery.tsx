@@ -89,8 +89,8 @@ export const AgentGallery: FC<{ select: (agent: Agent) => void }> = ({ select })
                             ].includes(agent.name)
                           ? '80%'
                           : '120%',
-                        backgroundPosition: 'center',
-                        backgroundImage: `url(agents/${agent.name.replace(/\s/g, '')}.webp)`
+                        backgroundPosition: 'center'
+                        // backgroundImage: `url(agents/${agent.name.replace(/\s/g, '')}.webp)`
                       }}
                     />
                   )}
