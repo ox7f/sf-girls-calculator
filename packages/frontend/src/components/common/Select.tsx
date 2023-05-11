@@ -1,13 +1,11 @@
 import { ChangeEvent, FC } from 'react';
 
-type Option = {
-  label: string;
-  value: string;
-};
-
 type SelectProps = {
   value: string;
-  options: Option[];
+  options: {
+    label: string;
+    value: string;
+  }[];
   onChange?: (event: ChangeEvent<HTMLSelectElement>) => void;
 };
 

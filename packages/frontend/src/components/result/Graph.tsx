@@ -1,21 +1,27 @@
 import { FC, useState } from 'react';
-import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import {
+  CartesianGrid,
+  Legend,
+  LegendProps,
+  Line,
+  LineChart,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis
+} from 'recharts';
 import { Agent, ResultType } from '@sf-girls-calculator/calculator';
 
 import { CustomTooltip } from './index';
 import { getColorFromString, prepareGraphData } from '../utils';
 
-interface GraphProp {
-  result: ResultType;
-}
-
-export const Graph: FC<GraphProp> = ({ result }) => {
+export const Graph: FC<{ result: ResultType }> = ({ result }) => {
   const { team } = result;
 
   const data = prepareGraphData(result);
   const [currentHover, setCurrentHover] = useState('');
 
-  const handleMouseEnter = (data: any) => {
+  const handleMouseEnter: LegendProps['onMouseEnter'] = (data) => {
     setCurrentHover(data.value);
   };
 
@@ -23,6 +29,7 @@ export const Graph: FC<GraphProp> = ({ result }) => {
     setCurrentHover('');
   };
 
+  // TODO: show crit / evo bonus not in tooltip but as icon on line
   return (
     <ResponsiveContainer>
       <LineChart>

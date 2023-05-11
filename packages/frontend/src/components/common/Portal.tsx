@@ -1,9 +1,9 @@
-import { FC, useState, useEffect } from 'react';
+import { FC, ReactNode, useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { createWrapper } from '../utils';
 
 type PortalProps = {
-  children: React.ReactNode;
+  children: ReactNode;
   wrapperId: string;
 };
 

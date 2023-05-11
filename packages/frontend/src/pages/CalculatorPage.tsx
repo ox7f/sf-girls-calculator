@@ -4,7 +4,7 @@ import { FC, useEffect } from 'react';
 import { CurrentViewAtom } from '../atoms';
 import { TargetSelect } from '../components/target';
 import { Agents } from '../components/agent';
-import { Results } from '../components/result';
+import { History, Results } from '../components/result';
 
 const viewName = 'calculator';
 
@@ -29,19 +29,7 @@ export const CalculatorPage: FC = () => {
               <Results />
             </section>
 
-            {/* TODO: move to own component */}
-            <nav className="toc__nav">
-              <span className="uppercase text-gray-600 font-bold text-xs">History</span>
-              <ul>
-                <li className="active">
-                  <ul>
-                    <li>
-                      <a>TODO: Calculator History</a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </nav>
+            <History />
           </main>
         </div>
       </div>

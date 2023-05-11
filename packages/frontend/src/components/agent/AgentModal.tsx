@@ -22,9 +22,6 @@ export const AgentModal: FC = () => {
     return null;
   }
 
-  // renderInput(config, name, agent.stats[name], (newValue: number) =>
-  // setAgent({ ...agent, stats: { ...agent.stats, [name]: newValue } })
-
   const renderBody = () => {
     switch (currentTab) {
       case TabEnum.Stats:

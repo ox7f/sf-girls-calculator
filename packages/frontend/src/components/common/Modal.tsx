@@ -1,9 +1,9 @@
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 import { Portal } from './Portal';
 
 type ModalProps = {
   modalId: string;
-  children?: React.ReactNode;
+  children?: ReactNode;
   clickOutside?: () => void;
 };
 
