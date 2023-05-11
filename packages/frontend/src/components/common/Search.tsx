@@ -45,7 +45,14 @@ export const Search: FC = () => {
     <div className="form-group">
       <input value={value} type="search" className="form-group-input" placeholder="Search" onChange={changeHandler} />
       {selectedAgents.length > 0 && (
-        <Button animate={true} effect="bounceIn" className="form-group-btn" onClick={erase}>
+        <Button
+          animate={true}
+          effect="bounceIn"
+          className="form-group-btn"
+          onClick={erase}
+          tooltip="Unselect all"
+          tooltipPosition="top"
+        >
           <FaEraser />
         </Button>
       )}

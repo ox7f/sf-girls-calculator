@@ -58,17 +58,23 @@ export const AgentModal: FC = () => {
         ));
       case TabEnum.Bio:
         return (
-          <p>
-            {defaultAgent.bio ? defaultAgent.bio.split('\n').map((bio) => <p>{bio}</p>) : 'No bio - will add it later'}
-          </p>
+          <>
+            {defaultAgent.bio ? (
+              defaultAgent.bio.split('\n').map((bio, i) => <p key={i}>{bio}</p>)
+            ) : (
+              <p>No bio - will add it later</p>
+            )}
+          </>
         );
       case TabEnum.Skill:
         return (
-          <p>
-            {defaultAgent.skill.description
-              ? defaultAgent.skill.description.split('\n').map((desc) => <p>{desc}</p>)
-              : 'No skill description - will add it later'}
-          </p>
+          <>
+            {defaultAgent.skill.description ? (
+              defaultAgent.skill.description.split('\n').map((desc, i) => <p key={i}>{desc}</p>)
+            ) : (
+              <p>No skill description - will add it later</p>
+            )}
+          </>
         );
       case TabEnum.EvoTree:
         return <EvoTree />;

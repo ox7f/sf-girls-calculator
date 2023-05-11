@@ -468,7 +468,7 @@ a {
 }
 
 .level-0-container:not(:last-child) {
-  border-right: 1px solid #bbb;
+  border-right: 1px solid darkgrey;
 }
 
 .level-1-container {
@@ -481,6 +481,18 @@ a {
 
 .level-1-item {
   margin: 0.2rem 0.2rem 0.4rem 0.2rem;
+}
+
+/** chart **/
+
+.recharts-legend-item-text {
+  cursor: pointer;
+  display: inline-block;
+  transition: transform 0.3s;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
 }
 
 /** animate **/

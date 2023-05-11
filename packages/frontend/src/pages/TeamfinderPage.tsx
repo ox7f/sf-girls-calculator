@@ -1,5 +1,5 @@
 import { useSetAtom } from 'jotai';
-import { useEffect } from 'react';
+import { FC, useEffect } from 'react';
 
 import { CurrentViewAtom } from '../atoms';
 import { Agents } from '../components/agent';
@@ -7,7 +7,7 @@ import { Search } from '../components/common';
 
 const viewName = 'teamfinder';
 
-export const TeamfinderPage: React.FC = () => {
+export const TeamfinderPage: FC = () => {
   const setViewName = useSetAtom(CurrentViewAtom);
 
   useEffect(() => {

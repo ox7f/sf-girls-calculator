@@ -1,5 +1,5 @@
 import { useSetAtom } from 'jotai';
-import { useEffect } from 'react';
+import { FC, useEffect } from 'react';
 
 import { CurrentViewAtom } from '../atoms';
 import { TargetSelect } from '../components/target';
@@ -8,7 +8,7 @@ import { Results } from '../components/result';
 
 const viewName = 'calculator';
 
-export const CalculatorPage: React.FC = () => {
+export const CalculatorPage: FC = () => {
   const setViewName = useSetAtom(CurrentViewAtom);
 
   useEffect(() => {

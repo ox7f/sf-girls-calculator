@@ -1,8 +1,9 @@
+import { FC } from 'react';
 import { FaCoffee } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/common';
 
-export const ErrorBoundary: React.FC = () => {
+export const ErrorBoundary: FC = () => {
   const navigate = useNavigate();
 
   return (

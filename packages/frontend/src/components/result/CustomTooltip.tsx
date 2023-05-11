@@ -1,8 +1,9 @@
+import { FC } from 'react';
 import { TooltipProps } from 'recharts';
 import { ValueType } from 'recharts/types/component/DefaultTooltipContent';
 import { HistoryActionTypeEnum, EffectTypeEnum, HistoryType } from '@sf-girls-calculator/calculator';
 
-export const CustomTooltip: React.FC<TooltipProps<ValueType, string>> = ({ active, payload }) => {
+export const CustomTooltip: FC<TooltipProps<ValueType, string>> = ({ active, payload }) => {
   if (!active || !payload) return null;
 
   const getInfoText = (event: HistoryType) => {

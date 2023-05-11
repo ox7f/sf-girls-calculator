@@ -1,4 +1,5 @@
 import { useSetAtom } from 'jotai';
+import { FC } from 'react';
 import { FaCog } from 'react-icons/fa';
 import { Agent, ResultType } from '@sf-girls-calculator/calculator';
 
@@ -9,7 +10,7 @@ interface Props {
   result: ResultType;
 }
 
-const TableRow: React.FC<{ agent: Agent; index: number; damage: number }> = ({ agent, index, damage }) => {
+const TableRow: FC<{ agent: Agent; index: number; damage: number }> = ({ agent, index, damage }) => {
   const setAgentName = useSetAtom(AgentNameAtom);
   const {
     name,
@@ -41,7 +42,7 @@ const TableRow: React.FC<{ agent: Agent; index: number; damage: number }> = ({ a
   );
 };
 
-export const Table: React.FC<Props> = ({ result }) => {
+export const Table: FC<Props> = ({ result }) => {
   return (
     <table className="table">
       <thead>

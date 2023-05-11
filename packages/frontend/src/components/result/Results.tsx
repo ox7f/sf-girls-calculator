@@ -1,5 +1,5 @@
 import { useAtom, useAtomValue } from 'jotai';
-import { useCallback, useEffect, useState } from 'react';
+import { FC, useCallback, useEffect, useState } from 'react';
 import { FaChartArea, FaTable } from 'react-icons/fa';
 
 import { Graph, Table } from './index';
@@ -12,7 +12,7 @@ const WORKER_CONFIG = {
   teamfinder: calculateWorker.calculateTeamfinder
 };
 
-export const Results: React.FC = () => {
+export const Results: FC = () => {
   const [loading, setLoading] = useState(false);
   const [showGraph, setShowGraph] = useState(true);
   const [showTable, setShowTable] = useState(false);
@@ -62,28 +62,28 @@ export const Results: React.FC = () => {
         return (
           <div className="content" key={index}>
             <div className="btn-group pt-1 u-flex-row">
-              <div className="tooltip tooltip--bottom" data-tooltip="Show Graph">
-                <Button
-                  variant={showGraph ? 'outline' : undefined}
-                  onClick={() => {
-                    setShowGraph(true);
-                    setShowTable(false);
-                  }}
-                >
-                  <FaChartArea size={20} />
-                </Button>
-              </div>
-              <div className="tooltip tooltip--bottom" data-tooltip="Show Table">
-                <Button
-                  variant={showTable ? 'outline' : undefined}
-                  onClick={() => {
-                    setShowGraph(false);
-                    setShowTable(true);
-                  }}
-                >
-                  <FaTable size={20} />
-                </Button>
-              </div>
+              <Button
+                tooltip="Show Graph"
+                tooltipPosition="bottom"
+                variant={showGraph ? 'outline' : undefined}
+                onClick={() => {
+                  setShowGraph(true);
+                  setShowTable(false);
+                }}
+              >
+                <FaChartArea size={20} />
+              </Button>
+              <Button
+                tooltip="Show Table"
+                tooltipPosition="bottom"
+                variant={showTable ? 'outline' : undefined}
+                onClick={() => {
+                  setShowGraph(false);
+                  setShowTable(true);
+                }}
+              >
+                <FaTable size={20} />
+              </Button>
             </div>
 
             <div style={{ height: '500px', width: '100%' }} className="animated fadeIn">

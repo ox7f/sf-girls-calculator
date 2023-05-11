@@ -1,10 +1,10 @@
 import { useAtom, useAtomValue } from 'jotai';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, FC, useState } from 'react';
 
 import { Select } from '../common';
 import { CurrentViewAtom, SelectedTargetListAtom, TargetListAtom } from '../../atoms';
 
-export const TargetSelect: React.FC = () => {
+export const TargetSelect: FC = () => {
   const viewName = useAtomValue(CurrentViewAtom);
   const targets = useAtomValue(TargetListAtom);
   const [selectedTarget, setSelectedTarget] = useAtom(SelectedTargetListAtom);
