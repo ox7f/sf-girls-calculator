@@ -23,24 +23,27 @@ export const Results: FC = () => {
   const selectedTargets = useAtomValue(SelectedTargetListAtom)[viewName] || [];
   const agentEntries = useAtomValue(AgentDB.entries);
 
-  const workerCall = useCallback(async (selectedAgents: string[], selectedTargets: string[]) => {
-    /** only for testing:
-    if (selectedAgents.length > 0 && selectedTargets) {
-      const test_results = [];
+  const workerCall = useCallback(
+    async (selectedAgents: string[], selectedTargets: string[]) => {
+      /** only for testing:
+      if (selectedAgents.length > 0 && selectedTargets) {
+        const test_results = [];
 
-      for (let i = 0; i < 500; i++) {
-        const test_result = await WORKER_CONFIG[viewName]({ selectedAgents, selectedTargets });
-        test_results.push(JSON.parse(test_result)[0]);
+        for (let i = 0; i < 500; i++) {
+          const test_result = await WORKER_CONFIG[viewName]({ selectedAgents, selectedTargets });
+          test_results.push(JSON.parse(test_result)[0]);
+        }
+
+        test_results.sort((a, b) => b.totalDamage - a.totalDamage);
+        console.log(test_results[0].totalDamage, test_results[test_results.length - 1].totalDamage);
       }
+      */
 
-      test_results.sort((a, b) => b.totalDamage - a.totalDamage);
-      console.log(test_results[0].totalDamage, test_results[test_results.length - 1].totalDamage);
-    }
-    */
-
-    const newResults = await WORKER_CONFIG[viewName]({ selectedAgents, selectedTargets });
-    return JSON.parse(newResults);
-  }, []);
+      const newResults = await WORKER_CONFIG[viewName]({ selectedAgents, selectedTargets });
+      return JSON.parse(newResults);
+    },
+    [viewName]
+  );
 
   const handleCalculate = useCallback(async () => {
     setLoading(true);
