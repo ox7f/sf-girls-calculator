@@ -17,6 +17,7 @@ export const Footer: FC = () => {
       <p className="subtitle mx-5">
         Made with{' '}
         <svg
+          aria-label="love"
           style={{ display: 'inline' }}
           aria-hidden="true"
           data-icon="heart"
