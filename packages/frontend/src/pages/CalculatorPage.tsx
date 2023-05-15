@@ -29,7 +29,7 @@ export const CalculatorPage: FC = () => {
               <Results />
             </section>
 
-            <History />
+            {/* <History /> */}
           </main>
         </div>
       </div>
