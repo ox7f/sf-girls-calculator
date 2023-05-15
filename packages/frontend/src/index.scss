@@ -127,6 +127,23 @@ a {
 
 /** components **/
 
+.result-container {
+  padding-right: 1rem;
+  position: relative;
+
+  .avatar {
+    background-color: white;
+
+    div {
+      border-radius: 50%;
+    }
+  }
+
+  .result-team {
+    display: flex;
+  }
+}
+
 .agent-avatar {
   width: 5.25rem;
   height: 5.25rem;
@@ -178,6 +195,34 @@ a {
   }
 }
 
+.card__image:after {
+  position: relative !important;
+}
+
+.card__image {
+  background-color: #f2f2f2;
+}
+
+.card--slide-up {
+  &:hover {
+    .card-image,
+    .card__image {
+      transform: translateY(0px) !important;
+    }
+
+    .mobile-title,
+    .card__mobile-title {
+      bottom: 39% !important;
+      transition: all 0.3s ease-in-out;
+      z-index: 100;
+
+      .content {
+        margin: 0 !important;
+      }
+    }
+  }
+}
+
 .close {
   transition: transform 0.2s ease-in-out, width 0.7s ease-in-out, height 0.7s ease-in-out;
 }
@@ -186,15 +231,47 @@ a {
   transform: scale(1.5) rotate(180deg) !important;
 }
 
+.agent-graph-tooltip {
+  .divider {
+    padding: 0;
+    margin: 0;
+    border-top: 0.05rem solid rgba(darkgrey, 0.5);
+  }
+
+  .tooltip-content {
+    position: relative;
+
+    .dot {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      border-radius: 50%;
+      height: 0.4rem;
+      width: 0.4rem;
+    }
+
+    p {
+      margin-left: 1rem;
+    }
+  }
+}
+
 .modal-content {
   animation-duration: 0.4s;
   animation-name: animate-pop;
   animation-fill-mode: backwards;
 }
 
-.form-group {
-  margin: 0;
-  overflow: hidden;
+.graph-container {
+  position: relative;
+}
+
+.reset-graph {
+  position: absolute;
+  bottom: 4rem;
+  right: 0.5rem;
+  z-index: 100;
 }
 
 /** layout **/
@@ -294,7 +371,6 @@ a {
 .page-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  max-width: 90rem;
   margin: 0;
 }
 
@@ -309,6 +385,9 @@ a {
   -webkit-align-self: start;
   align-self: start;
   padding-left: 1rem;
+  max-height: calc(100vh - 7.5rem);
+  overflow-y: auto;
+  overflow-x: hidden;
 
   ol,
   ul {
@@ -338,12 +417,6 @@ a {
   overflow-x: hidden;
 }
 
-.sidebar-wrapper,
-.sidebar__title {
-  position: -webkit-sticky;
-  position: sticky;
-}
-
 .sidebar-wrapper {
   top: 5rem;
   height: inherit !important;
@@ -355,6 +428,17 @@ a {
   height: calc(100vh - 17.5rem);
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+.agent-search {
+  position: relative;
+
+  .agent-filter {
+    position: absolute;
+    bottom: -1.5rem;
+    right: 0;
+    z-index: 100;
+  }
 }
 
 /* mobile */
@@ -438,6 +522,13 @@ a {
 @media screen and (min-width: 1023px) {
   .page-layout {
     grid-template-columns: minmax(0, 1fr) 20rem;
+    align-items: normal;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .page-layout section {
+    padding: 0 10rem;
   }
 }
 
