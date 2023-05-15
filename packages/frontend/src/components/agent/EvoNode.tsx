@@ -15,12 +15,13 @@ export const EvoNode: FC<EvoNodeProps> = ({ node, update }) => {
       <div
         style={{
           borderRadius: '10%',
+          cursor: 'pointer',
           fontSize: '1rem',
           fontWeight: '500',
           height: '4rem',
           width: '4rem',
           textShadow: '1px 1px 5px rgba(0, 0, 0, 1)',
-          // backgroundImage: `url(evoNodes/${node.name.replace(/\s/g, '')}.webp)`,
+          backgroundImage: `url(evoNodes/${node.name.replace(/\s/g, '')}.webp)`,
           backgroundPosition: 'center',
           backgroundSize: '100%'
         }}

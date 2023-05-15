@@ -3,7 +3,7 @@ import { FC, useEffect, useRef, useState } from 'react';
 import { Agent } from '@sf-girls-calculator/calculator';
 
 import { Button } from '../common';
-import { ClassTag, agentIsSelected } from '../utils';
+import { AgentStyleMap, ClassTag, agentIsSelected } from '../utils';
 import {
   AgentListAtom,
   AgentNameAtom,
@@ -69,28 +69,8 @@ export const AgentGallery: FC<{ select: (agent: Agent) => void }> = ({ select })
                     <div
                       className="card__image"
                       style={{
-                        backgroundSize: ['Pan', 'Kagawa Matsu'].includes(agent.name)
-                          ? '60%'
-                          : [
-                              'Amikam',
-                              'Aphra Clairmont',
-                              'Chia',
-                              'Feme',
-                              'Iizuna',
-                              'Kaja',
-                              'Karry',
-                              'Midori',
-                              'Pan',
-                              'Rei JK',
-                              'Shiko',
-                              'Tsurumi',
-                              'Tyrla',
-                              'Windy'
-                            ].includes(agent.name)
-                          ? '80%'
-                          : '120%',
-                        backgroundPosition: 'center'
-                        // backgroundImage: `url(agents/${agent.name.replace(/\s/g, '')}.webp)`
+                        ...AgentStyleMap[agent.name as keyof typeof AgentStyleMap],
+                        backgroundImage: `url(agents/${agent.name.replace(/\s/g, '')}.webp)`
                       }}
                     />
                   )}

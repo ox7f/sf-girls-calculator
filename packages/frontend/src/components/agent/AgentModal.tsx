@@ -57,7 +57,7 @@ export const AgentModal: FC = () => {
         return (
           <>
             {defaultAgent.bio ? (
-              defaultAgent.bio.split('\n').map((bio, i) => <p key={i}>{bio}</p>)
+              defaultAgent.bio.split('\n').map((bio, index) => <p key={index}>{bio}</p>)
             ) : (
               <p>No bio - will add it later</p>
             )}
@@ -67,7 +67,7 @@ export const AgentModal: FC = () => {
         return (
           <>
             {defaultAgent.skill.description ? (
-              defaultAgent.skill.description.split('\n').map((desc, i) => <p key={i}>{desc}</p>)
+              defaultAgent.skill.description.split('\n').map((desc, index) => <p key={index}>{desc}</p>)
             ) : (
               <p>No skill description - will add it later</p>
             )}
@@ -132,7 +132,7 @@ export const AgentModal: FC = () => {
                 <div
                   style={{
                     height: '100%',
-                    // backgroundImage: `url(agents/${agentName.replace(/\s/g, '')}Mini.webp)`,
+                    backgroundImage: `url(agents/${agentName.replace(/\s/g, '')}Mini.webp)`,
                     backgroundSize: '100%'
                   }}
                 />
