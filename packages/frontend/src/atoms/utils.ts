@@ -1,5 +1,5 @@
-import { ClassEnum, EvoNodes, NewAgent, NewEvoNode, NewStats } from '@sf-girls-calculator/calculator';
-import { AgentItem, AgentNode, AgentStats } from './index';
+import { ClassEnum, EvoNodes, NewAgent, NewEvoNode, NewStats, NewTarget } from '@sf-girls-calculator/calculator';
+import { AgentItem, AgentNode, AgentStats, TargetItem } from './index';
 
 type EvoNodeItem = {
   name: string;
@@ -13,13 +13,7 @@ export function convertStats({ baseSkillDamage, castTime, projectileNumber, ...r
 
 export function convertNode({ name, children }: NewEvoNode): AgentNode[] {
   const nodes = children?.flatMap(convertNode) ?? [];
-  return [
-    {
-      name,
-      level: 0
-    },
-    ...nodes
-  ];
+  return [{ name, level: 0 }, ...nodes];
 }
 
 export function convertAgentItem({ name, stats, nodes }: NewAgent, index: number): AgentItem {
@@ -27,16 +21,31 @@ export function convertAgentItem({ name, stats, nodes }: NewAgent, index: number
     index,
     name,
     stats: convertStats(stats),
-    nodes: nodes.flatMap(convertNode)
+    nodes: nodes.flatMap(convertNode),
+    options: {
+      openModal: false,
+      isFavorite: false,
+      calculator: { isSelected: false },
+      teamfinder: { isSelected: false }
+    }
   };
 }
 
 export function convertNodeToItem(node: NewEvoNode): EvoNodeItem {
   const children = node.children?.map(convertNodeToItem) ?? [];
+  return { name: node.name, level: 0, children };
+}
+
+export function convertTargetItem(newTarget: NewTarget, index: number): TargetItem {
   return {
-    name: node.name,
-    level: 0,
-    children
+    index,
+    ...newTarget,
+    options: {
+      openModal: false,
+      isFavorite: false,
+      calculator: { isSelected: false },
+      teamfinder: { isSelected: false }
+    }
   };
 }
 

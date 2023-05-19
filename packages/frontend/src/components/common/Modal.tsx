@@ -7,11 +7,7 @@ type ModalProps = {
   clickOutside?: () => void;
 };
 
-export const Modal: FC<ModalProps> = ({
-  modalId,
-  children,
-  clickOutside = () => console.log('Please provide a clickOutside function.')
-}) => {
+export const Modal: FC<ModalProps> = ({ modalId, children, clickOutside }) => {
   return (
     <Portal wrapperId="modal-container">
       <div className="modal modal--visible" id={modalId}>

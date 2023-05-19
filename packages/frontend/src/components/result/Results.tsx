@@ -1,10 +1,10 @@
-import { useAtom, useAtomValue } from 'jotai';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { FC, useCallback, useEffect, useState } from 'react';
 import { FaChartArea, FaTable } from 'react-icons/fa';
 
 import { Graph, Table } from './index';
 import { Button, Spinner } from '../common';
-import { AgentDB, CurrentViewAtom, ResultListAtom, SelectedAgentListAtom, SelectedTargetListAtom } from '../../atoms';
+import { AgentDB, CurrentViewAtom, ResultListAtom, ResultListHistoryAtom, TargetDB } from '../../atoms';
 import { calculateWorker } from '../../webworker';
 
 const WORKER_CONFIG = {
@@ -17,11 +17,12 @@ export const Results: FC = () => {
   const [showGraph, setShowGraph] = useState(true);
   const [showTable, setShowTable] = useState(false);
 
-  const [results, setResults] = useAtom(ResultListAtom);
   const viewName = useAtomValue(CurrentViewAtom);
-  const selectedAgents = useAtomValue(SelectedAgentListAtom)[viewName] || [];
-  const selectedTargets = useAtomValue(SelectedTargetListAtom)[viewName] || [];
-  const agentEntries = useAtomValue(AgentDB.entries);
+  const [results, setResults] = useAtom(ResultListAtom);
+  const setHistory = useSetAtom(ResultListHistoryAtom);
+
+  const agents = useAtomValue(AgentDB.values);
+  const targets = useAtomValue(TargetDB.values);
 
   const workerCall = useCallback(
     async (selectedAgents: string[], selectedTargets: string[]) => {
@@ -45,51 +46,61 @@ export const Results: FC = () => {
     [viewName]
   );
 
-  const handleCalculate = useCallback(async () => {
+  const handleCalculate = async () => {
     setLoading(true);
-    const newResults = await workerCall(selectedAgents, selectedTargets);
-    if (newResults) setResults((prev) => ({ ...prev, [viewName]: newResults }));
+
+    const selectedAgents = agents.filter((agent) => agent.options[viewName].isSelected).map((agent) => agent.name);
+    const selectedTarget = targets.filter((target) => target.options[viewName].isSelected).map((target) => target.name);
+
+    const newResults = await workerCall(selectedAgents, selectedTarget);
+
+    if (newResults) {
+      setResults((prev) => ({ ...prev, [viewName]: newResults }));
+      setHistory((prev) => [...newResults, ...prev]);
+    }
+
     setLoading(false);
-  }, [agentEntries, selectedAgents, selectedTargets, workerCall]);
+  };
 
   useEffect(() => {
     handleCalculate();
-  }, [handleCalculate]);
+  }, [agents, targets]);
 
   return (
     <div className="results-container">
+      <div className="btn-group pt-1 u-flex-row">
+        <Button
+          tooltip="Show Graph"
+          tooltipPosition="bottom"
+          variant={showGraph ? 'outline' : undefined}
+          onClick={() => {
+            setShowGraph(true);
+            setShowTable(false);
+          }}
+        >
+          <FaChartArea size={20} />
+        </Button>
+        <Button
+          tooltip="Show Table"
+          tooltipPosition="bottom"
+          variant={showTable ? 'outline' : undefined}
+          onClick={() => {
+            setShowGraph(false);
+            setShowTable(true);
+          }}
+        >
+          <FaTable size={20} />
+        </Button>
+        <Button text="Calculate" onClick={() => handleCalculate()} />
+      </div>
+
       {results[viewName].map((result, index) => {
         const remainingTime = result.time / 1000;
         const remainingHealth = result.target.currentHealth;
 
         return (
           <div className="content" key={index}>
-            <div className="btn-group pt-1 u-flex-row">
-              <Button
-                tooltip="Show Graph"
-                tooltipPosition="bottom"
-                variant={showGraph ? 'outline' : undefined}
-                onClick={() => {
-                  setShowGraph(true);
-                  setShowTable(false);
-                }}
-              >
-                <FaChartArea size={20} />
-              </Button>
-              <Button
-                tooltip="Show Table"
-                tooltipPosition="bottom"
-                variant={showTable ? 'outline' : undefined}
-                onClick={() => {
-                  setShowGraph(false);
-                  setShowTable(true);
-                }}
-              >
-                <FaTable size={20} />
-              </Button>
-            </div>
-
-            <div style={{ height: '500px', width: '100%' }} className="animated fadeIn">
+            <div style={{ height: '500px', width: '100%' }}>
               <p className="pt-1">
                 <span>
                   Remaining Time: <span className="font-semibold">{remainingTime} second(s)</span>
@@ -97,7 +108,7 @@ export const Results: FC = () => {
 
                 <br />
                 <span>
-                  Remaining HP: <span className="font-semibold">{remainingHealth}</span>
+                  Remaining Health: <span className="font-semibold">{remainingHealth}</span>
                 </span>
               </p>
 

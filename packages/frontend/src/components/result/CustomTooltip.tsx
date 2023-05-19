@@ -12,20 +12,23 @@ export const CustomTooltip: FC<CustomTooltipProps> = ({ active, payload, clicked
     return null;
   }
 
+  const renderTooltipContent = () => {
+    return payload.map((data) => {
+      const { color = 'black', name = '', payload: event } = data;
+
+      if (clicked && data.name !== clicked) {
+        return null;
+      }
+
+      return createTooltip(color, name, event);
+    });
+  };
+
   return (
     <div className="agent-graph-tooltip" style={{ backgroundColor: 'white', opacity: 0.8 }}>
-      <p className="u-center mb-0">{payload[0].payload.time}s </p>
-      <div className="divider"></div>
-
-      {payload.map((data) => {
-        const { color = 'black', name = '', payload: event } = data;
-
-        if (clicked && data.name !== clicked) {
-          return null;
-        }
-
-        return createTooltip(color, name, event);
-      })}
+      <p className="u-center mb-0">{payload[0].payload.time}s</p>
+      <div className="divider" />
+      {renderTooltipContent()}
     </div>
   );
 };

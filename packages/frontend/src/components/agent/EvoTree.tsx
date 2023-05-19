@@ -5,11 +5,17 @@ import { EvoNode as EvoNodeClass } from '@sf-girls-calculator/calculator';
 import { EvoNode } from './EvoNode';
 import { Button } from '../common';
 import { getAllNodeChildren, getAllNodes, getAllNodeParents, overwriteEvoTree } from '../utils';
-import { AgentDB, AgentNameAtom } from '../../atoms';
+import { AgentDB } from '../../atoms';
 
 export const EvoTree: FC = () => {
-  const agentName = useAtomValue(AgentNameAtom);
-  const [agent, setAgent] = useAtom(AgentDB.item(agentName));
+  const agents = useAtomValue(AgentDB.values);
+  const agentEntry = agents.find((agent) => agent.options.openModal);
+
+  if (!agentEntry) {
+    return null;
+  }
+
+  const [agent, setAgent] = useAtom(AgentDB.item(agentEntry.name));
 
   if (!agent) {
     return null;
@@ -50,19 +56,8 @@ export const EvoTree: FC = () => {
       </div>
 
       <div className="btn-group btn-group-fill">
-        <Button
-          text="Max"
-          color="primary"
-          disabled={disableMax}
-          onClick={() => updateNodesLevel(5)}
-        />
-        <Button
-          text="Reset"
-          variant="outline"
-          color="primary"
-          disabled={disableReset}
-          onClick={() => updateNodesLevel(0)}
-        />
+        <Button text="Max" color="primary" disabled={disableMax} onClick={() => updateNodesLevel(5)} />
+        <Button text="Reset" color="primary" disabled={disableReset} onClick={() => updateNodesLevel(0)} />
       </div>
     </>
   );

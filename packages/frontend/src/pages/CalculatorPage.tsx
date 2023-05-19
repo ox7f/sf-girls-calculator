@@ -2,9 +2,9 @@ import { useSetAtom } from 'jotai';
 import { FC, useEffect } from 'react';
 
 import { CurrentViewAtom } from '../atoms';
-import { TargetSelect } from '../components/target';
 import { Agents } from '../components/agent';
 import { History, Results } from '../components/result';
+import { TargetSelect } from '../components/target';
 
 const viewName = 'calculator';
 
@@ -23,13 +23,11 @@ export const CalculatorPage: FC = () => {
         <div className="tree-nav-container h-auto" style={{ flexGrow: 1 }}>
           <main className="page-layout u-center">
             <section>
-              <div className="u-center m-o" style={{ display: 'block', paddingTop: '0.75rem' }}>
-                <TargetSelect />
-              </div>
+              <TargetSelect />
               <Results />
             </section>
 
-            {/* <History /> */}
+            <History />
           </main>
         </div>
       </div>

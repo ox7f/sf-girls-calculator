@@ -9,11 +9,7 @@ type SelectProps = {
   onChange?: (event: ChangeEvent<HTMLSelectElement>) => void;
 };
 
-export const Select: FC<SelectProps> = ({
-  value,
-  options,
-  onChange = () => console.log('Please provide a onChange function.')
-}) => {
+export const Select: FC<SelectProps> = ({ value, options, onChange }) => {
   return (
     <select value={value} onChange={onChange}>
       {options.map((option) => (

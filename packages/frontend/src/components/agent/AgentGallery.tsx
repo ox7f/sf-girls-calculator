@@ -1,24 +1,19 @@
-import { useAtomValue, useSetAtom } from 'jotai';
 import { FC, useEffect, useRef, useState } from 'react';
-import { Agent } from '@sf-girls-calculator/calculator';
+import { FaStar } from 'react-icons/fa';
 
 import { Button } from '../common';
-import { AgentStyleMap, ClassTag, agentIsSelected } from '../utils';
-import {
-  AgentListAtom,
-  AgentNameAtom,
-  CurrentViewAtom,
-  FilteredAgentListAtom,
-  SelectedAgentListAtom
-} from '../../atoms';
+import { AgentStyleMap, ClassTag, ViewName, getAgentInfo } from '../utils';
+import { AgentItem } from '../../atoms';
 
-export const AgentGallery: FC<{ select: (agent: Agent) => void }> = ({ select }) => {
-  const viewName = useAtomValue(CurrentViewAtom);
-  const allAgents = useAtomValue(AgentListAtom);
-  const setAgentName = useSetAtom(AgentNameAtom);
-  const filteredAgents = useAtomValue(FilteredAgentListAtom)[viewName] || [];
-  const selectedAgents = useAtomValue(SelectedAgentListAtom)[viewName] || [];
+type AgentGalleryProps = {
+  agents: AgentItem[];
+  viewName: ViewName;
+  favorite: (agent: AgentItem) => void;
+  select: (agent: AgentItem) => void;
+  toggleModal: (agent: AgentItem) => void;
+};
 
+export const AgentGallery: FC<AgentGalleryProps> = ({ agents, viewName, favorite, select, toggleModal }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [loadedIndexes, setLoadedIndexes] = useState<number[]>([]);
 
@@ -33,81 +28,82 @@ export const AgentGallery: FC<{ select: (agent: Agent) => void }> = ({ select })
           }
         });
       },
-      {
-        root: null,
-        rootMargin: '-100px',
-        threshold: 0
-      }
+      { root: null, rootMargin: '-80px', threshold: 0 }
     );
 
-    const images = containerRef.current?.querySelectorAll('.card');
-    images?.forEach((image, index) => {
-      observer.observe(image);
-      image.setAttribute('data-index', String(index));
+    const cards = containerRef.current?.querySelectorAll('.card');
+    cards?.forEach((card, index) => {
+      observer.observe(card);
+      card.setAttribute('data-index', String(index));
     });
 
     return () => observer.disconnect();
-  }, [filteredAgents]);
+  }, [agents]);
 
-  return (
-    <div className="row u-center" ref={containerRef}>
-      {filteredAgents.length ? (
-        filteredAgents.map((name, index) => {
-          const agent = allAgents.find((a) => a.name === name);
+  const renderAgentCard = (agent: AgentItem, index: number) => {
+    const {
+      name,
+      options: {
+        isFavorite,
+        [viewName]: { isSelected }
+      }
+    } = agent;
+    const { title, bio, className } = getAgentInfo(name);
 
-          if (!agent) {
-            return null;
-          }
+    const cardImageStyle = {
+      ...AgentStyleMap[name as keyof typeof AgentStyleMap],
+      backgroundImage: `url(agents/${name.replace(/\s/g, '')}.webp)`
+    };
 
-          const isSelected = agentIsSelected(selectedAgents, agent.name);
-
-          return (
-            <div key={name} className="col animated fadeIn" style={{ minWidth: '350px', maxWidth: '350px' }}>
-              <div className="card card--slide-up">
-                <div className="card__container">
-                  {loadedIndexes.includes(index) && (
-                    <div
-                      className="card__image"
-                      style={{
-                        ...AgentStyleMap[agent.name as keyof typeof AgentStyleMap],
-                        backgroundImage: `url(agents/${agent.name.replace(/\s/g, '')}.webp)`
-                      }}
-                    />
-                  )}
-                </div>
-                <div className="card__mobile-title">
-                  <div className="content pl-2 pr-2">
-                    <div className="tile">
-                      <div className="tile__container row">
-                        <div className="col">
-                          <p className="tile__title">{agent.name}</p>
-                          <p className="tile__subtitle">{agent.title}</p>
-                        </div>
-                      </div>
-                      <div className="col pt-1">
-                        <div className={`tag tag--sm ${ClassTag[agent.class]}`}>{agent.class}</div>
-                      </div>
-                    </div>
+    return (
+      <div key={name} className="col" style={{ minWidth: '350px', maxWidth: '350px' }}>
+        <div className="card card--slide-up">
+          <div className="u-absolute w-5 h-5 u-z-10">
+            <span
+              className="u-absolute favorite"
+              style={{ top: '0.75rem', right: '1rem' }}
+              onClick={() => favorite(agent)}
+            >
+              <FaStar color={isFavorite ? '#ffdd00' : 'white'} size={20} />
+            </span>
+          </div>
+          <div className="card__container">
+            {loadedIndexes.includes(index) && <div className="card__image" style={cardImageStyle} />}
+          </div>
+          <div className="card__mobile-title">
+            <div className="content pl-2 pr-2">
+              <div className="tile">
+                <div className="tile__container row">
+                  <div className="col">
+                    <p className="tile__title">{name}</p>
+                    <p className="tile__subtitle">{title}</p>
                   </div>
                 </div>
-                <div className="card__body content" style={{ width: '90%' }}>
-                  <p>{agent.bio ?? 'No Bio - will add it later'}</p>
-                </div>
-                <div className="card__action-bar u-center">
-                  <Button
-                    text={isSelected ? 'Selected' : 'Select'}
-                    color={isSelected ? 'primary' : 'transparent'}
-                    onClick={() => select(agent)}
-                  />
-                  <Button text="Edit" color="transparent" onClick={() => setAgentName(agent.name)} />
+                <div className="col pt-1">
+                  <div className={`tag tag--sm ${ClassTag[className]}`}>{className}</div>
                 </div>
               </div>
             </div>
-          );
-        })
-      ) : (
-        <p>No results found...</p>
-      )}
+          </div>
+          <div className="card__body content" style={{ width: '90%' }}>
+            <p>{bio}</p>
+          </div>
+          <div className="card__action-bar u-center">
+            <Button
+              text={isSelected ? 'Selected' : 'Select'}
+              color={isSelected ? 'primary' : 'transparent'}
+              onClick={() => select(agent)}
+            />
+            <Button text="Edit" color="transparent" onClick={() => toggleModal(agent)} />
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div className="row u-center" ref={containerRef}>
+      {agents.length ? agents.map(renderAgentCard) : <p>No results found...</p>}
     </div>
   );
 };

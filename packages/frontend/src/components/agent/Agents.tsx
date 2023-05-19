@@ -1,11 +1,8 @@
 import { useAtomValue, useSetAtom } from 'jotai';
 import { FC } from 'react';
-import { Agent } from '@sf-girls-calculator/calculator';
 
-import { AgentGallery } from './AgentGallery';
-import { AgentList } from './AgentList';
-import { addAgentToSelectedList, agentIsSelected, removeAgentFromSelectedList } from '../utils';
-import { CurrentViewAtom, SelectedAgentListAtom } from '../../atoms';
+import { AgentGallery, AgentList } from './index';
+import { AgentDB, AgentItem, CurrentViewAtom, FilteredAgentListAtom } from '../../atoms';
 
 const AGENT_COMPONENTS = {
   calculator: AgentList,
@@ -13,17 +10,56 @@ const AGENT_COMPONENTS = {
 };
 
 export const Agents: FC = () => {
-  const setSelectedAgents = useSetAtom(SelectedAgentListAtom);
+  const agentEntries = useAtomValue(AgentDB.values);
+  const setAgent = useSetAtom(AgentDB.set);
+
   const viewName = useAtomValue(CurrentViewAtom);
+  const filteredAgentNames = useAtomValue(FilteredAgentListAtom);
   const AgentComponent = AGENT_COMPONENTS[viewName];
 
-  const onAgentSelect = (selectedAgent: Agent) =>
-    setSelectedAgents((prev) => {
-      const selectedAgents = agentIsSelected(prev[viewName], selectedAgent.name)
-        ? removeAgentFromSelectedList(prev[viewName], selectedAgent.name)
-        : addAgentToSelectedList(viewName, prev[viewName], selectedAgent.name);
-      return { ...prev, [viewName]: selectedAgents };
-    });
+  // TODO: sort by filter settings
+  const filteredAgents = agentEntries.filter((agent) => filteredAgentNames.includes(agent.name));
+  // .sort((a: AgentItem, b: AgentItem) =>
+  //   a.isFavorite === b.isFavorite ? a.name.localeCompare(b.name) : a.isFavorite ? -1 : 1
+  // );
 
-  return <AgentComponent select={onAgentSelect} />;
+  const onAgentSelect = (agent: AgentItem) => {
+    setAgent(agent.name, {
+      ...agent,
+      options: {
+        ...agent.options,
+        [viewName]: { ...agent.options[viewName], isSelected: !agent.options[viewName].isSelected }
+      }
+    });
+  };
+
+  const onAgentToggleModal = (agent: AgentItem) => {
+    setAgent(agent.name, {
+      ...agent,
+      options: {
+        ...agent.options,
+        openModal: !agent.options.openModal
+      }
+    });
+  };
+
+  const onAgentToggleFavorite = (agent: AgentItem) => {
+    setAgent(agent.name, {
+      ...agent,
+      options: {
+        ...agent.options,
+        isFavorite: !agent.options.isFavorite
+      }
+    });
+  };
+
+  return (
+    <AgentComponent
+      agents={filteredAgents}
+      favorite={onAgentToggleFavorite}
+      toggleModal={onAgentToggleModal}
+      select={onAgentSelect}
+      viewName={viewName}
+    />
+  );
 };

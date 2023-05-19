@@ -320,8 +320,6 @@ a {
 
   .tree-nav-container {
     overflow-y: auto;
-    top: 4rem;
-    bottom: 1rem;
   }
 }
 
@@ -364,7 +362,6 @@ a {
 }
 
 .tree-nav-container {
-  margin-top: 2rem;
   overflow-y: inherit !important;
 }
 
@@ -385,7 +382,6 @@ a {
   -webkit-align-self: start;
   align-self: start;
   padding-left: 1rem;
-  max-height: calc(100vh - 7.5rem);
   overflow-y: auto;
   overflow-x: hidden;
 
@@ -394,6 +390,7 @@ a {
     list-style: none;
     margin: 0;
     padding: 0;
+    height: calc(100vh - 8rem) !important;
   }
 
   li {
@@ -408,6 +405,14 @@ a {
   li.active > a {
     color: #333;
     font-weight: 700;
+  }
+}
+
+.favorite {
+  svg {
+    cursor: pointer;
+    stroke: black;
+    stroke-width: 0.5rem;
   }
 }
 
@@ -428,17 +433,6 @@ a {
   height: calc(100vh - 17.5rem);
   overflow-y: auto;
   overflow-x: hidden;
-}
-
-.agent-search {
-  position: relative;
-
-  .agent-filter {
-    position: absolute;
-    bottom: -1.5rem;
-    right: 0;
-    z-index: 100;
-  }
 }
 
 /* mobile */
@@ -490,7 +484,7 @@ a {
     padding: 0.85rem !important;
 
     ul > ul {
-      height: calc(100vh - 8rem);
+      height: calc(100vh - 7rem) !important;
       width: 301px;
       overflow-y: auto;
       margin-right: -24px;
@@ -601,5 +595,14 @@ a {
   100% {
     opacity: 1;
     transform: scale(1, 1);
+  }
+}
+
+@keyframes animate-fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

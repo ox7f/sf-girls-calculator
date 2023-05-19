@@ -1,9 +1,21 @@
+type ViewOption = {
+  openModal: boolean;
+  isFavorite: boolean;
+  calculator: {
+    isSelected: boolean;
+  };
+  teamfinder: {
+    isSelected: boolean;
+  };
+};
+
 export type AgentItem = {
   index: number;
   name: string;
   stats: AgentStats;
   nodes: AgentNode[];
-  [key: string]: string | number | AgentStats | AgentNode[];
+  options: ViewOption;
+  [key: string]: string | number | AgentStats | AgentNode[] | ViewOption;
 };
 
 export type AgentNode = {
@@ -27,5 +39,6 @@ export type TargetItem = {
   health: number;
   criticalResistance: number;
   duration: number;
-  [key: string]: string | number;
+  options: ViewOption;
+  [key: string]: string | number | ViewOption;
 };

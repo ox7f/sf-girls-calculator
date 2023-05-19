@@ -13,5 +13,21 @@ Agents.Agents.forEach((agent, index) => {
 
 export const AgentDB = new MiniDb<AgentItem>({
   name: 'agent-db',
-  initialData: agentData
+  initialData: agentData,
+  version: 1,
+  migrations: {
+    1: (agent) => {
+      agent.options = {
+        isFavorite: false,
+        openModal: false,
+        calculator: { isSelected: false },
+        teamfinder: { isSelected: false }
+      };
+      return agent;
+    }
+  },
+  onMigrationCompleted: () => {
+    alert('AgentDB was updated. Page will be reloaded.');
+    window.location.reload();
+  }
 });

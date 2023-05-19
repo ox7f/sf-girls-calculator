@@ -1,26 +1,34 @@
-import { useAtom } from 'jotai';
+import { useAtomValue, useSetAtom } from 'jotai';
 import { ChangeEvent, FC, useState } from 'react';
-import { Agents } from '@sf-girls-calculator/calculator';
 
 import { EvoTree } from './EvoTree';
 import { Modal } from '../common';
-import { TabEnum, inputConfig } from '../utils';
-import { AgentDB, AgentNameAtom } from '../../atoms';
+import { TabEnum, getAgentInfo, inputConfig } from '../utils';
+import { AgentDB } from '../../atoms';
 
 export const AgentModal: FC = () => {
   const [currentTab, setCurrentTab] = useState(TabEnum.Stats);
-  const [agentName, setAgentName] = useAtom(AgentNameAtom);
-  const [agent, setAgent] = useAtom(AgentDB.item(agentName));
 
-  const defaultAgent = Agents.Agents.find((a) => a.name === agentName);
-  const closeModal = () => {
-    setAgentName('');
-    setCurrentTab(TabEnum.Stats);
-  };
+  const agents = useAtomValue(AgentDB.values);
+  const agent = agents.find((agent) => agent.options.openModal);
+  const setAgent = useSetAtom(AgentDB.set);
 
-  if (!agent || !defaultAgent) {
+  if (!agent) {
     return null;
   }
+
+  const closeModal = () => {
+    setCurrentTab(TabEnum.Stats);
+    setAgent(agent.name, {
+      ...agent,
+      options: {
+        ...agent.options,
+        openModal: false
+      }
+    });
+  };
+
+  const { bio, skillDescription } = getAgentInfo(agent.name);
 
   const renderBody = () => {
     switch (currentTab) {
@@ -47,7 +55,7 @@ export const AgentModal: FC = () => {
                 if (event.target.value.includes('-')) {
                   event.preventDefault();
                 } else {
-                  setAgent({ ...agent, stats: { ...agent.stats, [name]: newValue } });
+                  setAgent(agent.name, { ...agent, stats: { ...agent.stats, [name]: newValue } });
                 }
               }}
             />
@@ -56,21 +64,17 @@ export const AgentModal: FC = () => {
       case TabEnum.Bio:
         return (
           <>
-            {defaultAgent.bio ? (
-              defaultAgent.bio.split('\n').map((bio, index) => <p key={index}>{bio}</p>)
-            ) : (
-              <p>No bio - will add it later</p>
-            )}
+            {bio.split('\n').map((bio, index) => (
+              <p key={index}>{bio}</p>
+            ))}
           </>
         );
       case TabEnum.Skill:
         return (
           <>
-            {defaultAgent.skill.description ? (
-              defaultAgent.skill.description.split('\n').map((desc, index) => <p key={index}>{desc}</p>)
-            ) : (
-              <p>No skill description - will add it later</p>
-            )}
+            {skillDescription.split('\n').map((desc, index) => (
+              <p key={index}>{desc}</p>
+            ))}
           </>
         );
       case TabEnum.EvoTree:
@@ -95,7 +99,7 @@ export const AgentModal: FC = () => {
   );
 
   return (
-    <Modal modalId={agentName} clickOutside={closeModal}>
+    <Modal modalId={agent.name} clickOutside={closeModal}>
       <div className="modal-header">
         <a
           className="u-pull-right text-xl hover-grow-extreme button text-primary close"
@@ -132,14 +136,14 @@ export const AgentModal: FC = () => {
                 <div
                   style={{
                     height: '100%',
-                    backgroundImage: `url(agents/${agentName.replace(/\s/g, '')}Mini.webp)`,
+                    backgroundImage: `url(agents/${agent.name.replace(/\s/g, '')}Mini.webp)`,
                     backgroundSize: '100%'
                   }}
                 />
               </div>
             </div>
             <div className="tile__container">
-              <p className="tile__title m-0 text-xl">{agentName}</p>
+              <p className="tile__title m-0 text-xl">{agent.name}</p>
             </div>
           </div>
         </div>

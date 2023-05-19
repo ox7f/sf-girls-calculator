@@ -1,10 +1,7 @@
 import { FC, MouseEvent } from 'react';
 
 type ButtonProps = {
-  text?: string;
-  disabled?: boolean;
   animate?: boolean;
-  effect?: 'bounce' | 'bounceIn' | 'fadeIn' | 'pound' | 'pulse' | 'ping' | 'loading';
   children?: JSX.Element;
   className?: string;
   color?:
@@ -19,104 +16,76 @@ type ButtonProps = {
     | 'success'
     | 'warning'
     | 'danger';
-  variant?: 'outline' | 'close';
-  shape?: 'pilled' | 'circle';
+  disabled?: boolean;
+  effect?: 'bounce' | 'bounceIn' | 'fadeIn' | 'pound' | 'pulse' | 'ping' | 'loading';
   size?: 'xs' | 'sm' | 'lg' | 'xl';
+  text?: string;
   tooltip?: string;
   tooltipPosition?: 'top' | 'bottom' | 'right' | 'left';
+  variant?: 'outline' | 'close';
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
 };
 
-const getButtonClassNames = ({
-  disabled,
-  animate,
-  effect,
-  color,
-  variant,
-  shape,
-  size,
-  tooltip,
-  tooltipPosition
-}: ButtonProps): string[] => {
-  const classNames = [];
-
-  if (disabled) {
-    classNames.push('btn--disabled');
-  }
-
-  if (animate) {
-    classNames.push('btn-animated');
-
-    if (effect) {
-      classNames.push('animated', effect);
-    }
-  }
-
-  if (color) {
-    classNames.push(`btn-${color}`);
-  }
-
-  if (variant) {
-    if (variant === 'close') {
-      classNames.push('btn-close', 'u-pull-right');
-    } else {
-      classNames.push(variant);
-    }
-  }
-
-  if (size) {
-    classNames.push(`btn-${size}`);
-  }
-
-  if (shape) {
-    classNames.push(`btn--${shape}`);
-  }
-
-  if (tooltip) {
-    classNames.push('tooltip');
-  }
-
-  if (tooltipPosition) {
-    classNames.push(`tooltip--${tooltipPosition}`);
-  }
-
-  return classNames;
-};
-
 export const Button: FC<ButtonProps> = ({
-  text,
-  disabled = false,
-  animate = false,
-  effect,
+  animate,
   children,
   className,
   color,
-  variant,
-  shape,
+  disabled,
+  effect,
   size,
+  text,
   tooltip,
   tooltipPosition,
-  onClick = () => console.log('Please provide a onClick function.')
+  variant,
+  onClick
 }) => {
-  const classNames = getButtonClassNames({
-    disabled,
-    animate,
-    effect,
-    color,
-    variant,
-    shape,
-    size,
-    tooltip,
-    tooltipPosition
-  });
+  const getButtonClassNames = (): string => {
+    const classNames = [];
+
+    if (animate) {
+      classNames.push('btn-animated');
+
+      if (effect) {
+        classNames.push('animated', effect);
+      }
+    }
+
+    if (color) {
+      classNames.push(`btn-${color}`);
+    }
+
+    if (disabled) {
+      classNames.push('btn--disabled');
+    }
+
+    if (size) {
+      classNames.push(`btn-${size}`);
+    }
+
+    if (tooltip) {
+      classNames.push('tooltip');
+    }
+
+    if (tooltipPosition) {
+      classNames.push(`tooltip--${tooltipPosition}`);
+    }
+
+    if (variant) {
+      if (variant === 'close') {
+        classNames.push('btn-close', 'u-pull-right');
+      } else {
+        classNames.push(variant);
+      }
+    }
+
+    return classNames.join(' ');
+  };
+
+  const buttonClassNames = getButtonClassNames();
 
   return (
-    <button
-      className={`${classNames.join(' ')} ${className}`}
-      disabled={disabled}
-      onClick={onClick}
-      data-tooltip={tooltip}
-    >
+    <button className={`${buttonClassNames} ${className}`} disabled={disabled} onClick={onClick} data-tooltip={tooltip}>
       {text && text}
       {children && children}
     </button>

@@ -10,10 +10,10 @@ type ShowCaseProps = {
 };
 
 export const Showcase: FC<ShowCaseProps> = ({ items }) => {
-  const [width, setWidth] = useState<number>(window.innerWidth);
-  const [fadeIn, setFadeIn] = useState(false);
   const [isPlaying, setIsPlaying] = useState(true);
   const [current, setCurrent] = useState(0);
+  const [width, setWidth] = useState<number>(window.innerWidth);
+  const [fadeIn, setFadeIn] = useState(false);
 
   const isMobile = width <= 768;
   const handleWindowSizeChange = () => setWidth(window.innerWidth);

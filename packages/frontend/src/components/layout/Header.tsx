@@ -9,7 +9,6 @@ const menuItems = [
 
 export const Header: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const toggleHamburger = () => setIsOpen(!isOpen);
 
   useEffect(() => {
     if (isOpen) {
@@ -28,7 +27,7 @@ export const Header: FC = () => {
           </Link>
         </div>
 
-        <div className="nav-item nav-btn" id="header-btn" onClick={toggleHamburger}>
+        <div className="nav-item nav-btn" id="header-btn" onClick={() => setIsOpen(!isOpen)}>
           <span />
           <span />
           <span />

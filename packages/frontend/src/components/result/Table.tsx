@@ -1,37 +1,53 @@
-import { useSetAtom } from 'jotai';
+import { useAtom } from 'jotai';
 import { FC } from 'react';
 import { FaCog } from 'react-icons/fa';
-import { Agent, ResultType } from '@sf-girls-calculator/calculator';
+import { ResultType } from '@sf-girls-calculator/calculator';
 
-import { ClassTag } from '../utils';
-import { AgentNameAtom } from '../../atoms';
+import { ClassTag, getAgentInfo } from '../utils';
+import { AgentDB } from '../../atoms';
 
-interface Props {
+interface TableProps {
   result: ResultType;
 }
 
-const TableRow: FC<{ agent: Agent; index: number; damage: number }> = ({ agent, index, damage }) => {
-  const setAgentName = useSetAtom(AgentNameAtom);
-  const {
-    name,
-    class: agentClass,
-    stats: { totalDamage }
-  } = agent;
+type TableRow = {
+  agentName: string;
+  totalDamage: number;
+  index: number;
+  damage: number;
+};
 
+const TableRow: FC<TableRow> = ({ agentName, totalDamage, index, damage }) => {
+  const [agent, setAgent] = useAtom(AgentDB.item(agentName));
+  const { className } = getAgentInfo(agentName);
   const percentOfTotalDamage = ((totalDamage / damage) * 100).toFixed(2);
+
+  if (!agent) {
+    return null;
+  }
+
+  const openModal = () => {
+    setAgent({
+      ...agent,
+      options: {
+        ...agent.options,
+        openModal: true
+      }
+    });
+  };
 
   return (
     <tr>
       <td>{index + 1}</td>
       <td>
-        <div className={`tag tag--sm ${ClassTag[agentClass]}`} style={{ cursor: 'default' }}>
-          {agentClass}
+        <div className={`tag tag--sm ${ClassTag[className]}`} style={{ cursor: 'default' }}>
+          {className}
         </div>
       </td>
-      <td>{name}</td>
+      <td>{agent.name}</td>
       <td>{totalDamage}</td>
       <td>{percentOfTotalDamage}</td>
-      <td onClick={() => setAgentName(name)} style={{ cursor: 'pointer' }}>
+      <td onClick={openModal} style={{ cursor: 'pointer' }}>
         <div className="tooltip tooltip--bottom" data-tooltip="Edit Agent">
           <a className="u-center mt-1 text-gray-600 hover-grow-extreme">
             <FaCog />
@@ -42,7 +58,18 @@ const TableRow: FC<{ agent: Agent; index: number; damage: number }> = ({ agent, 
   );
 };
 
-export const Table: FC<Props> = ({ result }) => {
+export const Table: FC<TableProps> = ({ result }) => {
+  const renderTableRows = () =>
+    result.team.map((agent, index) => (
+      <TableRow
+        key={index}
+        agentName={agent.name}
+        totalDamage={agent.stats.totalDamage}
+        index={index}
+        damage={result.totalDamage}
+      />
+    ));
+
   return (
     <table className="table">
       <thead>
@@ -56,11 +83,7 @@ export const Table: FC<Props> = ({ result }) => {
         </tr>
       </thead>
 
-      <tbody>
-        {result.team.map((agent, index) => (
-          <TableRow key={index} agent={agent} index={index} damage={result.totalDamage} />
-        ))}
-      </tbody>
+      <tbody>{renderTableRows()}</tbody>
 
       <tfoot>
         <tr>
