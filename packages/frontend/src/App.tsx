@@ -8,7 +8,9 @@ export const App: FC = () => {
     <div className="container">
       <AgentModal />
       <Header />
-      <Outlet />
+      <div className="content">
+        <Outlet />
+      </div>
       <Footer />
     </div>
   );
