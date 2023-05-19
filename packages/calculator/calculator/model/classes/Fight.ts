@@ -1,3 +1,4 @@
+import { generateUUID } from '../../helper';
 import { Agent, NewFight, ResultType, Target } from '../../model';
 
 export class Fight {
@@ -28,6 +29,7 @@ export class Fight {
     const totalDamage = sortedTeam.reduce((pv: number, cv: Agent) => pv + cv.stats.totalDamage, 0);
 
     return {
+      id: generateUUID(),
       target: this.target,
       team: sortedTeam,
       time: this.time,
