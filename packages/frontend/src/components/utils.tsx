@@ -2,6 +2,7 @@ import {
   ActionType,
   Agent,
   Agents,
+  ClassEnum,
   EffectTypeEnum,
   EvoNode,
   HistoryActionTypeEnum,
@@ -40,10 +41,10 @@ export function createWrapper(wrapperId: string) {
 export function getAgentInfo(name: string) {
   const agent = Agents.Agents.find((agent) => agent.name === name);
   return {
-    title: agent?.title,
-    bio: agent?.bio,
-    skillDescription: agent?.skill.description,
-    className: agent?.class
+    title: agent?.title ?? 'No title',
+    bio: agent?.bio ?? 'No bio',
+    skillDescription: agent?.skill.description ?? 'No skill description',
+    className: agent?.class ?? ClassEnum.ARTILLERY
   };
 }
 
