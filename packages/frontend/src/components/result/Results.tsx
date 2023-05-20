@@ -94,12 +94,12 @@ export const Results: FC = () => {
         <Button text="Calculate" onClick={() => handleCalculate()} />
       </div>
 
-      {results[viewName].map((result, index) => {
+      {results[viewName].map((result) => {
         const remainingTime = result.time / 1000;
         const remainingHealth = result.target.currentHealth;
 
         return (
-          <div className="content" key={index}>
+          <div className="content" key={result.id}>
             <div style={{ height: '500px', width: '100%' }}>
               <p className="pt-1">
                 <span>
