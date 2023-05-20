@@ -1,19 +1,24 @@
-import { useAtomValue, useSetAtom } from 'jotai';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useResetAtom } from 'jotai/utils';
 import { ChangeEvent, FC, useEffect, useState } from 'react';
-import { FaEraser } from 'react-icons/fa';
+import { FaEraser, FaFilter } from 'react-icons/fa';
 
 import { Button } from './Button';
-import { AgentListAtom, CurrentViewAtom, FilteredAgentListAtom, SelectedAgentListAtom } from '../../atoms';
+import { AgentDB, CurrentViewAtom, FilterAtom, FilteredAgentListAtom } from '../../atoms';
+import { ClassEnum } from '@sf-girls-calculator/calculator';
 
 export const Search: FC = () => {
-  const viewName = useAtomValue(CurrentViewAtom);
-
   const [value, setValue] = useState('');
-  const setFilteredItems = useSetAtom(FilteredAgentListAtom);
+  const [showFilter, setShowFilter] = useState(false);
+  const [filter, setFilter] = useAtom(FilterAtom);
 
+  const viewName = useAtomValue(CurrentViewAtom);
+  const agents = useAtomValue(AgentDB.values);
+  const setAgents = useSetAtom(AgentDB.setMany);
+  const setFilteredAgentList = useSetAtom(FilteredAgentListAtom);
   const resetFilteredItems = useResetAtom(FilteredAgentListAtom);
-  const resetSelectedItems = useResetAtom(SelectedAgentListAtom);
+
+  const selectedAgents = agents.filter((agent) => agent.options[viewName].isSelected);
 
   const reset = () => {
     setValue('');
@@ -22,39 +27,64 @@ export const Search: FC = () => {
 
   const erase = () => {
     reset();
-    resetSelectedItems();
+    setAgents(
+      agents.map((agent) => [
+        agent.name,
+        {
+          ...agent,
+          options: {
+            ...agent.options,
+            [viewName]: { ...agent.options[viewName], isSelected: false }
+          }
+        }
+      ])
+    );
+  };
+
+  const toggleShowFilter = () => {
+    setShowFilter((prev) => !prev);
   };
 
   useEffect(reset, []);
 
-  const allAgents = useAtomValue(AgentListAtom);
-  const selectedAgents = useAtomValue(SelectedAgentListAtom)[viewName] || [];
-  const agentNames = allAgents.map((agent) => agent.name);
+  useEffect(() => {
+    // console.log('TODO: apply filter settings');
+  }, [filter]);
 
   const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     const search = event.target.value;
+    const filteredAgents = agents
+      .map((agent) => agent.name)
+      .filter((name) => name.toLocaleLowerCase().includes(search.toLocaleLowerCase()));
 
     setValue(search);
-    setFilteredItems((prev) => ({
-      ...prev,
-      [viewName]: agentNames.filter((name) => name.toLocaleLowerCase().includes(search.toLocaleLowerCase()))
-    }));
+    setFilteredAgentList(filteredAgents);
   };
 
   return (
-    <div className="form-group">
+    <div className="form-group agent-search">
       <input value={value} type="search" className="form-group-input" placeholder="Search" onChange={changeHandler} />
+      {/* <Button className="form-group-btn" onClick={toggleShowFilter} tooltip="Filter" tooltipPosition="top">
+        <FaFilter />
+      </Button> */}
+
       {selectedAgents.length > 0 && (
-        <Button
-          animate={true}
-          effect="bounceIn"
-          className="form-group-btn"
-          onClick={erase}
-          tooltip="Unselect all"
-          tooltipPosition="top"
-        >
+        <Button className="form-group-btn" onClick={erase} tooltip="Unselect all" tooltipPosition="top">
           <FaEraser />
         </Button>
+      )}
+
+      {/* TODO: build filter  */}
+      {showFilter && (
+        <div className="u-absolute dropdown-right bg-gray-300">
+          <ul className="menu">
+            {Object.values(ClassEnum).map((value) => (
+              <li key={value} className="menu-item">
+                <a>{value}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
     </div>
   );
