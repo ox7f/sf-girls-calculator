@@ -58,7 +58,7 @@ export const AgentGallery: FC<AgentGalleryProps> = ({ agents, viewName, favorite
     return (
       <div key={name} className="col" style={{ minWidth: '350px', maxWidth: '350px' }}>
         <div className="card card--slide-up">
-          <div className="u-absolute w-5 h-5 u-z-10">
+          <div className="u-absolute w-5 h-5 u-z-1">
             <span
               className="u-absolute favorite"
               style={{ top: '0.75rem', right: '1rem' }}

@@ -2,7 +2,6 @@ import {
   ActionType,
   Agent,
   Agents,
-  ClassEnum,
   EffectTypeEnum,
   EvoNode,
   HistoryActionTypeEnum,
@@ -40,19 +39,12 @@ export function createWrapper(wrapperId: string) {
 
 export function getAgentInfo(name: string) {
   const agent = Agents.Agents.find((agent) => agent.name === name);
-  return agent
-    ? {
-        title: agent.title,
-        bio: agent.bio,
-        skillDescription: agent.skill.description,
-        className: agent.class
-      }
-    : {
-        title: 'No title',
-        bio: 'No bio',
-        skillDescription: 'No skill description',
-        className: ClassEnum.ARTILLERY
-      };
+  return {
+    title: agent?.title,
+    bio: agent?.bio,
+    skillDescription: agent?.skill.description,
+    className: agent?.class
+  };
 }
 
 /** Select Helper */
@@ -71,24 +63,6 @@ export const inputConfig: Record<string, InputConfig> = {
   criticalRate: { label: 'Critical Rate', step: 0.01, abbrTitle: 'for reference: 100% = 1' },
   criticalDamage: { label: 'Critical Damage', step: 0.01, abbrTitle: 'for reference: 100% = 1' }
 };
-
-export function agentIsSelected(selectedAgentNames: string[], agentName: string): boolean {
-  return selectedAgentNames.includes(agentName);
-}
-
-export function isLimitOfSelectionReached(viewName: ViewName, selectedAgentsLength: number): boolean {
-  return selectedAgentsLength === (viewName === 'calculator' ? 7 : 20);
-}
-
-export function addAgentToSelectedList(viewName: ViewName, selectedAgentNames: string[], agentName: string): string[] {
-  return isLimitOfSelectionReached(viewName, selectedAgentNames.length)
-    ? selectedAgentNames
-    : [...selectedAgentNames, agentName];
-}
-
-export function removeAgentFromSelectedList(selectedAgents: string[], agentName: string): string[] {
-  return selectedAgents.filter((agent) => agent !== agentName);
-}
 
 /** Graph Helper */
 

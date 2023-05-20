@@ -24,6 +24,13 @@ export const Agents: FC = () => {
   // );
 
   const onAgentSelect = (agent: AgentItem) => {
+    const selectedAgentsCount = agentEntries.filter((agent) => agent.options[viewName]?.isSelected).length;
+
+    // TODO: individual limit for calculator (pve - 6/pvp - 7) and teamfinder - 20
+    if (selectedAgentsCount === 7 && !agent.options[viewName]?.isSelected) {
+      return;
+    }
+
     setAgent(agent.name, {
       ...agent,
       options: {
