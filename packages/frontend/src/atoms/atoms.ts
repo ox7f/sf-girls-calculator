@@ -1,13 +1,11 @@
 import { atom } from 'jotai';
 import { atomWithReset } from 'jotai/utils';
-import { ClassEnum, ResultType } from '@sf-girls-calculator/calculator';
+import { ResultType } from '@sf-girls-calculator/calculator';
 
-export const CurrentViewAtom = atomWithReset<'calculator' | 'teamfinder'>('calculator');
+import { FilterType, ResultListType } from './types';
+import { ViewName } from '../components/utils';
 
-type ResultListType = {
-  calculator: ResultType[];
-  teamfinder: ResultType[];
-};
+export const CurrentViewAtom = atomWithReset<ViewName>('calculator');
 
 export const ResultListAtom = atom<ResultListType>({
   calculator: [],
@@ -15,19 +13,6 @@ export const ResultListAtom = atom<ResultListType>({
 });
 
 export const ResultListHistoryAtom = atom<ResultType[]>([]);
-
-type FilterType = {
-  calculator: {
-    class: ClassEnum[];
-    sort: string;
-    sortParam: string;
-  };
-  teamfinder: {
-    class: ClassEnum[];
-    sort: string;
-    sortParam: string;
-  };
-};
 
 export const FilterAtom = atom<FilterType>({
   calculator: {

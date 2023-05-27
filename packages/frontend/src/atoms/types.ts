@@ -1,4 +1,24 @@
-type ViewOption = {
+import { ClassEnum, ResultType } from "@sf-girls-calculator/calculator";
+
+export type ResultListType = {
+  calculator: ResultType[];
+  teamfinder: ResultType[];
+};
+
+export type FilterType = {
+  calculator: {
+    class: ClassEnum[];
+    sort: string;
+    sortParam: string;
+  };
+  teamfinder: {
+    class: ClassEnum[];
+    sort: string;
+    sortParam: string;
+  };
+};
+
+export type ViewOption = {
   openModal: boolean;
   isFavorite: boolean;
   calculator: {
