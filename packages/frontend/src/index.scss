@@ -84,14 +84,8 @@ body {
     Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
 }
 
-main {
-  display: block;
-}
-
-section {
-  display: block;
-}
-
+main,
+section,
 nav {
   display: block;
 }
@@ -106,10 +100,10 @@ ul {
 ul {
   list-style: none;
   list-style: disc;
-}
 
-ul ul {
-  list-style-type: circle;
+  ul {
+    list-style-type: circle;
+  }
 }
 
 li {
@@ -168,33 +162,6 @@ a {
   animation: spin 10s linear infinite;
 }
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes gradient-border {
-  0% {
-    background-position: 0% 0%;
-  }
-  25% {
-    background-position: 100% 0%;
-  }
-  50% {
-    background-position: 100% 100%;
-  }
-  75% {
-    background-position: 0% 100%;
-  }
-  100% {
-    background-position: 0% 0%;
-  }
-}
-
 .card__image:after {
   position: relative !important;
 }
@@ -212,9 +179,9 @@ a {
 
     .mobile-title,
     .card__mobile-title {
-      bottom: 39% !important;
+      bottom: 38% !important;
       transition: all 0.3s ease-in-out;
-      z-index: 100;
+      z-index: 1;
 
       .content {
         margin: 0 !important;
@@ -225,10 +192,10 @@ a {
 
 .close {
   transition: transform 0.2s ease-in-out, width 0.7s ease-in-out, height 0.7s ease-in-out;
-}
 
-.close:hover {
-  transform: scale(1.5) rotate(180deg) !important;
+  &:hover {
+    transform: scale(1.5) rotate(180deg) !important;
+  }
 }
 
 .agent-graph-tooltip {
@@ -265,13 +232,13 @@ a {
 
 .graph-container {
   position: relative;
-}
 
-.reset-graph {
-  position: absolute;
-  bottom: 4rem;
-  right: 0.5rem;
-  z-index: 100;
+  .reset-graph {
+    position: absolute;
+    bottom: 4rem;
+    right: 0.5rem;
+    z-index: 10;
+  }
 }
 
 /** layout **/
@@ -280,25 +247,12 @@ a {
   backdrop-filter: blur(8px);
   background-color: hsla(0, 0%, 100%, 0.8);
   position: absolute;
-  z-index: 10;
+  z-index: 100;
 }
 
 .hero {
-  animation: slide 15s linear infinite;
+  animation: animate-slide 15s linear infinite;
 }
-
-@keyframes slide {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: -150px 0;
-  }
-}
-
-// .default-layout {
-//   max-width: 1920px;
-// }
 
 .tree-nav-body {
   display: -webkit-flex;
@@ -408,7 +362,15 @@ a {
   }
 }
 
+.animated.loading::after {
+  width: 3rem;
+  height: 3rem;
+}
+
 .favorite {
+  top: 0.75rem;
+  right: 1rem;
+
   svg {
     cursor: pointer;
     stroke: black;
@@ -433,6 +395,13 @@ a {
   height: calc(100vh - 17.5rem);
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+.teamfinder-search {
+  top: 3.5rem;
+  backdrop-filter: blur(8px);
+  background-color: hsla(0, 0%, 100%, 0.8);
+  z-index: 10;
 }
 
 /* mobile */
@@ -520,12 +489,6 @@ a {
   }
 }
 
-@media screen and (min-width: 1920px) {
-  .page-layout section {
-    padding: 0 10rem;
-  }
-}
-
 /** utils **/
 
 .focus-grow {
@@ -604,5 +567,41 @@ a {
   }
   100% {
     opacity: 1;
+  }
+}
+
+@keyframes animate-slide {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -150px 0;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes gradient-border {
+  0% {
+    background-position: 0% 0%;
+  }
+  25% {
+    background-position: 100% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  75% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
   }
 }

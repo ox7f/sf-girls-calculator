@@ -9,6 +9,7 @@ export enum OrganizationEnum {
   MEOW = 'Madness Eternal From The Old World',
   NDS = 'New Dellum Security',
   RSA = 'Rising Sun Association',
+  SIB = 'Santriel Inspection Bureau',
   TAP = 'Trajectory Academic Parliament',
   WIO = 'Wartime Intelligence Office',
   ZETH = 'Zeth',

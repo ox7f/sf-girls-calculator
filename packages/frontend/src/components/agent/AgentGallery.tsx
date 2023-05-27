@@ -1,19 +1,25 @@
+import { useAtomValue } from 'jotai';
 import { FC, useEffect, useRef, useState } from 'react';
 import { FaStar } from 'react-icons/fa';
 
-import { Button } from '../common';
-import { AgentStyleMap, ClassTag, ViewName, getAgentInfo } from '../utils';
-import { AgentItem } from '../../atoms';
+import { Button, Search } from '../common';
+import { Results } from '../result';
+import { AgentStyleMap, ClassTag, getAgentInfo } from '../utils';
+import { AgentItem, CurrentViewAtom } from '../../atoms';
 
 type AgentGalleryProps = {
   agents: AgentItem[];
-  viewName: ViewName;
+  loading: boolean;
+  calculate: () => void;
   favorite: (agent: AgentItem) => void;
   select: (agent: AgentItem) => void;
   toggleModal: (agent: AgentItem) => void;
 };
 
-export const AgentGallery: FC<AgentGalleryProps> = ({ agents, viewName, favorite, select, toggleModal }) => {
+export const AgentGallery: FC<AgentGalleryProps> = ({ agents, loading, calculate, favorite, select, toggleModal }) => {
+  const viewName = useAtomValue(CurrentViewAtom);
+  const [showResults, setShowResults] = useState(false);
+
   const containerRef = useRef<HTMLDivElement>(null);
   const [loadedIndexes, setLoadedIndexes] = useState<number[]>([]);
 
@@ -101,9 +107,32 @@ export const AgentGallery: FC<AgentGalleryProps> = ({ agents, viewName, favorite
     );
   };
 
+  const selectedAgents = agents.filter((agent) => agent.options[viewName].isSelected);
+
   return (
-    <div className="row u-center" ref={containerRef}>
-      {agents.length ? agents.map(renderAgentCard) : <p>No results found...</p>}
+    <div className="tree-nav-container h-auto" style={{ flexGrow: 1 }}>
+      <main>
+        <div className="u-flex u-sticky teamfinder-search">
+          <Button
+            text={showResults ? 'Back' : 'Calculate'}
+            className="my-1 px-5"
+            disabled={selectedAgents.length === 0 && !showResults}
+            onClick={() => {
+              calculate();
+              setShowResults((prev) => !prev);
+            }}
+          />
+          <Search />
+        </div>
+
+        {showResults ? (
+          <Results calculate={calculate} loading={loading} />
+        ) : (
+          <div className="row u-center" ref={containerRef}>
+            {agents.length ? agents.map(renderAgentCard) : <p>No results found...</p>}
+          </div>
+        )}
+      </main>
     </div>
   );
 };

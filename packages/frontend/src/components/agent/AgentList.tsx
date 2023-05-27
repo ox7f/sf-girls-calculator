@@ -1,35 +1,70 @@
-import { FC } from 'react';
+import { useAtomValue } from 'jotai';
+import { FC, useEffect, useRef, useState } from 'react';
 import { FaAngleRight, FaStar } from 'react-icons/fa';
 
 import { Search } from '../common';
-import { ViewName } from '../utils';
-import { AgentItem } from '../../atoms';
+import { History, Results } from '../result';
+import { TargetSelect } from '../target';
+import { AgentItem, CurrentViewAtom } from '../../atoms';
 
 type AgentListProps = {
   agents: AgentItem[];
-  viewName: ViewName;
+  loading: boolean;
+  calculate: () => void;
   favorite: (agent: AgentItem) => void;
   select: (agent: AgentItem) => void;
   toggleModal: (agent: AgentItem) => void;
 };
 
-export const AgentList: FC<AgentListProps> = ({ agents, viewName, favorite, select }) => {
+export const AgentList: FC<AgentListProps> = ({ agents, loading, calculate, favorite, select }) => {
+  const viewName = useAtomValue(CurrentViewAtom);
+
+  const containerRef = useRef<HTMLUListElement>(null);
+  const [loadedIndexes, setLoadedIndexes] = useState<number[]>([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = Number(entry.target.getAttribute('data-index'));
+            setLoadedIndexes((prev) => [...prev, index]);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { root: null, rootMargin: '-30px', threshold: 0 }
+    );
+
+    const cards = containerRef.current?.querySelectorAll('.avatar');
+    cards?.forEach((card, index) => {
+      observer.observe(card);
+      card.setAttribute('data-index', String(index));
+    });
+
+    return () => observer.disconnect();
+  }, [agents]);
+
   const renderAgentList = () =>
     agents.length ? (
-      agents.map((agent) => {
+      agents.map((agent, index) => {
         const isSelected = agent.options[viewName].isSelected;
         const className = isSelected ? 'selected animated bounceIn' : '';
+        const listElementStyle = {
+          height: '100%',
+          backgroundImage: `url(agents/${agent.name.replace(/\s/g, '')}Mini.webp)`,
+          backgroundSize: '100%'
+        };
 
         return (
-          <li key={agent.name} className={`flex u-relative menu-item u-unselectable ${className}`}>
-            <a className="w-100p" onClick={() => select(agent)}>
+          <li key={agent.name} className={`u-relative menu-item u-unselectable ${className}`}>
+            <a className="w-100p u-flex" onClick={() => select(agent)}>
+              <div className="avatar avatar--xs bg-white m-0 mr-1">
+                {loadedIndexes.includes(index) && <div style={listElementStyle} />}
+              </div>
               {agent.name}
             </a>
-            <span
-              className="u-absolute favorite"
-              style={{ top: '0.75rem', right: '1rem' }}
-              onClick={() => favorite(agent)}
-            >
+            <span className="u-absolute favorite" onClick={() => favorite(agent)}>
               <FaStar color={agent.options.isFavorite ? '#ffdd00' : 'white'} />
             </span>
           </li>
@@ -53,10 +88,10 @@ export const AgentList: FC<AgentListProps> = ({ agents, viewName, favorite, sele
           <div className="sidebar px-3">
             <ul className="menu m-0">
               <div className="sidebar__title font-bold uppercase text-gray-600">Agents</div>
-              <li className="menu-item u-sticky">
+              <li className="menu-item">
                 <Search />
               </li>
-              <ul id="agent-list" className="menu mb-3">
+              <ul ref={containerRef} id="agent-list" className="menu mb-3">
                 {renderAgentList()}
               </ul>
             </ul>
@@ -64,6 +99,19 @@ export const AgentList: FC<AgentListProps> = ({ agents, viewName, favorite, sele
         </div>
       </div>
       <a href="#" id="sidebar-close" className="tree-nav-close p-0 u-shadow-none" style={{ boxShadow: 'none' }}></a>
+
+      <div className="tree-nav-container h-auto" style={{ flexGrow: 1 }}>
+        <main className="page-layout u-center">
+          <section>
+            <TargetSelect />
+            <Results calculate={calculate} loading={loading} />
+          </section>
+
+          <section>
+            <History />
+          </section>
+        </main>
+      </div>
     </>
   );
 };

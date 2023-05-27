@@ -66,8 +66,8 @@ const HistoryItem: FC<HistoryItemProps> = ({ result, nextResult, difference }) =
     );
 
   return (
-    <li>
-      <details className="accordion" open={open} onClick={toggleAccordion}>
+    <li className="m-0 p-0">
+      <details className="accordion" open={open} onClick={toggleAccordion} style={{ padding: '0.75rem' }}>
         <summary className="accordion__summary">
           {renderDifference()}
           {result.totalDamage}

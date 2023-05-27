@@ -1,8 +1,6 @@
 export {
   CurrentViewAtom,
   FilterAtom,
-  FilteredAgentListAtom,
-  FilteredTargetListAtom,
   ResultListAtom,
   ResultListHistoryAtom
 } from './atoms';

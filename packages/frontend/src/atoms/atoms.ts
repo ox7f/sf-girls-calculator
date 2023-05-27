@@ -1,11 +1,8 @@
 import { atom } from 'jotai';
 import { atomWithReset } from 'jotai/utils';
-import { Agents, ClassEnum, ResultType, Targets } from '@sf-girls-calculator/calculator';
+import { ClassEnum, ResultType } from '@sf-girls-calculator/calculator';
 
 export const CurrentViewAtom = atomWithReset<'calculator' | 'teamfinder'>('calculator');
-
-export const FilteredAgentListAtom = atomWithReset<string[]>(Agents.Agents.map((agent) => agent.name));
-export const FilteredTargetListAtom = atomWithReset<string[]>(Targets.Targets.map((target) => target.name));
 
 type ResultListType = {
   calculator: ResultType[];

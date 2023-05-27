@@ -7,7 +7,7 @@ export function bruteforceTeam(agents: NewAgent[], target: NewTarget, limit?: nu
   const combinationSize = Math.min(maxCombinationSize, agents.length);
   const combinations = generateCombinations(agents, combinationSize);
   const results = combinations.map((combination) => calculateTeam(combination, target));
-  results.sort((a, b) => a.totalDamage - b.totalDamage);
+  results.sort((a, b) => b.totalDamage - a.totalDamage);
   return limit ? results.slice(0, limit) : results;
 }
 
