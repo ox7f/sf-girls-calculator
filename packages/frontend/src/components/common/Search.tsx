@@ -124,7 +124,8 @@ export const Search: FC = () => {
           style={{ marginTop: '3.125rem' }}
         >
           <ul
-            className="u-overflow-y-scroll menu bg-white m-0 p-1"
+            id="search-dropdown"
+            className="u-overflow-y-scroll menu m-0 p-1"
             ref={containerRef}
             style={{ maxHeight: '16rem', borderLeft: 0 }}
           >

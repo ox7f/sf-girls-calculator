@@ -1,4 +1,4 @@
-import { ClassEnum, ResultType } from "@sf-girls-calculator/calculator";
+import { ClassEnum, ResultType } from '@sf-girls-calculator/calculator';
 
 export type ResultListType = {
   calculator: ResultType[];

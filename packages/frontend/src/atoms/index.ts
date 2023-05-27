@@ -1,9 +1,4 @@
-export {
-  CurrentViewAtom,
-  FilterAtom,
-  ResultListAtom,
-  ResultListHistoryAtom
-} from './atoms';
+export { CurrentViewAtom, FilterAtom, ResultListAtom, ResultListHistoryAtom } from './atoms';
 
 export { AgentDB, TargetDB } from './database';
 

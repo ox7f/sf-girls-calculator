@@ -121,6 +121,11 @@ a {
 
 /** components **/
 
+#search-dropdown {
+  backdrop-filter: blur(8px);
+  background-color: hsla(0, 0%, 100%, 0.9);
+}
+
 .result-container {
   padding-right: 1rem;
   position: relative;
