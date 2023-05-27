@@ -99,14 +99,11 @@ export const Search: FC = () => {
 
   useEffect(reset, []);
 
-  useEffect(() => {
-    // console.log('TODO: apply filter settings');
-  }, [filter]);
-
   const selectedAgents = agents.filter((agent) => agent.options[viewName].isSelected);
+  const filteredAgents = agents.filter((agent) => agent.name.toLowerCase().includes(searchValue.toLocaleLowerCase()));
 
   return (
-    <div className="form-group w-100p" ref={dropdownRef}>
+    <div className="u-relative form-group w-100p" ref={dropdownRef}>
       <input
         value={searchValue}
         type="search"
@@ -121,13 +118,18 @@ export const Search: FC = () => {
         </Button>
       )}
 
-      {/* TODO: with should be the same as the input field */}
       {isOpenDropdown && (
-        <div className="dropdown-right u-absolute u-z-1" style={{ marginTop: '2.5rem' }}>
-          <ul className="menu u-overflow-y-scroll bg-white" ref={containerRef} style={{ maxHeight: '16rem', borderLeft: '0' }}>
-            {agents
-              .filter((agent) => agent.name.toLowerCase().includes(searchValue.toLocaleLowerCase()))
-              .map((agent, index) => {
+        <div
+          className="dropdown-right u-shadow-md u-absolute u-z-1 u-right-0 u-left-0"
+          style={{ marginTop: '3.125rem' }}
+        >
+          <ul
+            className="u-overflow-y-scroll menu bg-white m-0 p-1"
+            ref={containerRef}
+            style={{ maxHeight: '16rem', borderLeft: 0 }}
+          >
+            {filteredAgents.length > 0 ? (
+              filteredAgents.map((agent, index) => {
                 const isSelected = selectedAgents.find((sAgent) => sAgent.name === agent.name);
                 const className = `menu-item${isSelected ? ' selected' : ''}`;
                 const listElementStyle = {
@@ -146,7 +148,10 @@ export const Search: FC = () => {
                     </a>
                   </li>
                 );
-              })}
+              })
+            ) : (
+              <span>No results...</span>
+            )}
           </ul>
         </div>
       )}
