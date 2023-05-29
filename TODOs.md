@@ -73,7 +73,7 @@
 - [x] teamfinder change (button for calculation and show results instead of cards + clear button)
 - [x] avatar in agent list
 - [x] search bar: show results in dropdown
-- [] fix spinner => should be centered and sticky
+- [x] fix spinner => should be centered and sticky
 - [] style the favorite star
 - [] add animations and effects on new elements
 - [] replace percentile height and with with fixed values

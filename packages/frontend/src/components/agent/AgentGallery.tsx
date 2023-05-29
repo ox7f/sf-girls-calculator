@@ -118,8 +118,13 @@ export const AgentGallery: FC<AgentGalleryProps> = ({ agents, loading, calculate
             className="my-1 px-5"
             disabled={selectedAgents.length === 0 && !showResults}
             onClick={() => {
-              calculate();
               setShowResults((prev) => !prev);
+
+              if (showResults) {
+                return;
+              }
+
+              calculate();
             }}
           />
           <Search />
