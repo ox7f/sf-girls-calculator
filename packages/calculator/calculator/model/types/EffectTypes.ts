@@ -2,8 +2,9 @@ import { Agent, Target } from '../classes';
 
 export type EffectParams = {
   agent: Agent;
-  team: Agent[];
   target: Target;
+  team: Agent[];
+  time: number;
 };
 
 export type EffectFunction = (params: EffectParams) => void;

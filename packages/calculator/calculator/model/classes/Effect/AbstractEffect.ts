@@ -1,8 +1,8 @@
-import { Agent, Fight } from '../../classes';
+import { EffectParams } from '../../types';
 
 export abstract class AbstractEffect {
-  abstract activate(agent: Agent, fight: Fight): void;
-  abstract add(agent: Agent, fight: Fight): void;
-  abstract deactivate(agent: Agent, fight: Fight): void;
-  abstract manage(agent: Agent, fight: Fight): void;
+  abstract activate(params: EffectParams): void;
+  abstract add(params: EffectParams): void;
+  abstract deactivate(params: EffectParams): void;
+  abstract manage(params: EffectParams): void;
 }

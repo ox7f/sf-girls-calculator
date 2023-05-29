@@ -25,7 +25,7 @@ export class Fight {
       this.time -= globalThis.Interval;
     }
 
-    const sortedTeam = this.team.sort((a, b) => b.stats.totalDamage - a.stats.totalDamage);
+    const sortedTeam = this.team.sort((a: Agent, b: Agent) => b.stats.totalDamage - a.stats.totalDamage);
     const totalDamage = sortedTeam.reduce((pv: number, cv: Agent) => pv + cv.stats.totalDamage, 0);
 
     return {
@@ -38,6 +38,6 @@ export class Fight {
   }
 
   private applyAgentEvoTree() {
-    this.team.forEach((agent) => agent.manageEvoTree(this));
+    this.team.forEach((agent: Agent) => agent.manageEvoTree(this));
   }
 }

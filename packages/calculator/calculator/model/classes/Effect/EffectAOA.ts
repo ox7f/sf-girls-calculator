@@ -1,33 +1,25 @@
 import { AttackModeEnum, EffectTypeEnum, HistoryActionTypeEnum } from '../../../enums';
-import { AbstractEffect, EffectFunction, NewEffect, EffectParams } from '../../../model';
+import { AbstractEffect, EffectFunction, NewEffectAOA, EffectParams } from '../..';
 
-export class Effect extends AbstractEffect {
+export class EffectAOA extends AbstractEffect {
   begin: number;
   duration: number;
-  isStackable: boolean;
   type: EffectTypeEnum;
   apply: EffectFunction;
-  remove: EffectFunction;
 
-  constructor({ type, duration, apply, remove, begin = 0, isStackable = false }: NewEffect) {
+  constructor({ type, duration, apply, begin = 0 }: NewEffectAOA) {
     super();
     this.begin = begin;
     this.duration = duration * 1000; // seconds to ms
     this.type = type;
-    this.isStackable = isStackable;
     this.apply = apply;
-    this.remove = remove;
   }
 
   activate(params: EffectParams) {
-    if (this.isStackable) {
-      return this.add(params);
-    }
+    const old = this.findExisting(params);
 
-    const oldEffect = this.findExisting(params);
-
-    if (oldEffect) {
-      oldEffect.deactivate(params);
+    if (old) {
+      old.deactivate(params);
     }
 
     this.add(params);
@@ -35,13 +27,8 @@ export class Effect extends AbstractEffect {
 
   add(params: EffectParams) {
     const { agent, time } = params;
-    const newEffect = new Effect({
-      ...this,
-      duration: this.duration / 1000,
-      begin: time
-    });
+    const newEffect = new EffectAOA({ ...this, duration: this.duration / 1000, begin: time });
 
-    newEffect.apply(params);
     agent.activeEffects.push(newEffect);
 
     agent.log(time, {
@@ -67,12 +54,12 @@ export class Effect extends AbstractEffect {
       effectType: this.type,
       type: HistoryActionTypeEnum.REMOVE
     });
-
-    this.remove(params);
   }
 
   manage(params: EffectParams) {
-    if (this.isExpired(params)) {
+    const { time } = params;
+
+    if (this.isExpired(time)) {
       this.deactivate(params);
     }
   }
@@ -81,14 +68,13 @@ export class Effect extends AbstractEffect {
     const { agent } = params;
 
     const oldEffect = agent.activeEffects.find(
-      (activeEffect) => activeEffect instanceof Effect && activeEffect.apply === this.apply
+      (activeEffect) => activeEffect instanceof EffectAOA && activeEffect.apply === this.apply
     );
 
     return oldEffect;
   }
 
-  private isExpired(params: EffectParams) {
-    const { time } = params;
+  private isExpired(time: number) {
     return time <= this.begin - this.duration;
   }
 }

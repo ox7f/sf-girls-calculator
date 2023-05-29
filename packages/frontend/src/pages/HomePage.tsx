@@ -76,6 +76,14 @@ const items = [
             </strong>
             : Release Version 0.0.1
           </li>
+          <li>
+            <strong>
+              <time dateTime="2023-05-31">{new Date(2023, 4, 31).toLocaleDateString()}</time>
+            </strong>
+            : Includes now Sora X, Yukako X and Sally
+            <br />
+            Shows results, including the increase or decrease compared to the previous result
+          </li>
         </ul>
       </>
     )
@@ -88,9 +96,8 @@ const items = [
           <li>New Target: Ditto</li>
           <li>Seekers</li>
           <li>Runes</li>
-          <li>Rune-Finder Tool</li>
-          <li>Filter Function for Agents</li>
-          <li>UI Overhaul</li>
+          <li>Rune-Finder Tool (Helps you find the best rune-sets)</li>
+          <li>Editable Skill</li>
         </ul>
       </>
     )

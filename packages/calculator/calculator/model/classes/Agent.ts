@@ -1,3 +1,4 @@
+import { ActionType, ApplyResult, HistoryType } from '../types';
 import {
   AttackModeEnum,
   BonusEnum,
@@ -7,8 +8,7 @@ import {
   OrganizationEnum,
   HistoryActionTypeEnum
 } from '../../enums';
-import { Effect, EffectDOT, EvoNode, Fight, NewAgent, Skill, Stats } from '../../model';
-import { ActionType, ApplyResult, HistoryType } from '../types';
+import { Effect, EffectAOA, EffectDOT, EvoNode, Fight, NewAgent, Skill, Stats } from '../../model';
 
 export class Agent {
   index: number;
@@ -23,7 +23,7 @@ export class Agent {
   nodes: EvoNode[];
   nodeEffects: ApplyResult = {};
 
-  activeEffects: Array<Effect | EffectDOT> = [];
+  activeEffects: Array<Effect | EffectDOT | EffectAOA> = [];
   attackMode = AttackModeEnum.NORMAL;
   castingSkill = false;
   history: HistoryType[] = [];
@@ -45,8 +45,6 @@ export class Agent {
     this.skill = new Skill(skill);
     this.nodes = nodes.map((node) => new EvoNode(node));
     this.loggingEnabled = loggingEnabled;
-
-    this.stats.firstAttackTime = this.stats.attackSpeed * 1000;
   }
 
   attack(fight: Fight) {
@@ -59,7 +57,9 @@ export class Agent {
     this.stats.attackCounter++;
     this.stats.lastAttackTime = time;
 
-    // TODO: special case for "Kagawa Matsu" => on each hit, chance to decrease skill cooldown by 2 seconds
+    if (this.hasEffectAOA()) {
+      this.manageEffectAOA(fight);
+    }
 
     this.dealDamage(fight);
   }
@@ -67,24 +67,24 @@ export class Agent {
   private canAttack(fight: Fight) {
     const { target, time } = fight;
 
-    const time_to_attack = (1 / this.stats.attackSpeed) * 1000;
-    const isFirst = target.duration - time === time_to_attack;
-    const canAttack = this.stats.lastAttackTime - time >= time_to_attack || isFirst;
+    const timeToAttack = (1 / this.stats.attackSpeed) * 1000;
+    const isFirst = target.duration - time === timeToAttack;
+    const canAttackNow = this.stats.lastAttackTime - time >= timeToAttack || isFirst;
 
-    return canAttack;
+    return canAttackNow;
   }
 
   private canCastSkill(fight: Fight) {
     const { target, time } = fight;
 
     const isFirst = target.duration - time === 1000;
-    const canCast = time <= this.stats.lastCastTime - this.skill.cooldown || isFirst;
+    const canCastSkillNow = time <= this.stats.lastCastTime - this.skill.cooldown || isFirst;
     const castStart = this.stats.lastCastTime;
     const castEnd = castStart - this.stats.castTime;
 
     this.castingSkill = time <= castStart && time > castEnd;
 
-    return canCast;
+    return canCastSkillNow;
   }
 
   castSkill(fight: Fight) {
@@ -97,32 +97,25 @@ export class Agent {
     this.stats.lastCastTime = time;
     this.stats.lastAttackTime = time;
 
-    this.skill.cast(this, fight);
+    this.skill.cast({ agent: this, ...fight });
   }
 
   private dealDamage(fight: Fight) {
-    const { target, time } = fight;
     const projectileTime = globalThis.projectileInterval * this.stats.projectileNumber;
 
     for (let i = 1; i <= this.stats.projectileNumber; i++) {
-      const logTime = time - (projectileTime - projectileTime / i);
+      const logTime = fight.time - (projectileTime - projectileTime / i);
       const { damage, bonus } = this.getDamage(fight);
-      const damageDealt = target.takeDamage(damage);
+      const damageDealt = fight.target.takeDamage(damage);
 
-      this.stats.totalDamage += damageDealt;
-      this.log(logTime, {
-        attackMode: this.attackMode,
-        bonus,
-        damage: damageDealt,
-        effectType: EffectTypeEnum.NONE,
-        type: HistoryActionTypeEnum.ATTACK
-      });
+      this.updateDamageStatsAndLog(logTime, this.attackMode, bonus, damageDealt);
     }
   }
 
   private getDamage = (fight: Fight) => {
     const { target, time } = fight;
     const { attackCounter, normalAttack, skillDamage, projectileNumber, criticalRate, criticalDamage } = this.stats;
+
     const {
       normalAttack: normalAttackEffect = 0,
       skillDamage: skillDamageEffect = 0,
@@ -184,21 +177,32 @@ export class Agent {
     return { damage, bonus };
   };
 
-  manageEffects(fight: Fight) {
-    if (this.activeEffects.length === 0) {
-      return;
-    }
+  private hasEffectAOA(): boolean {
+    return this.activeEffects.some((effect) => effect instanceof EffectAOA);
+  }
 
+  manageEffects(fight: Fight) {
     this.activeEffects.forEach((effect) => {
-      effect.manage(this, fight);
+      effect.manage({ agent: this, ...fight });
+    });
+  }
+
+  private manageEffectAOA(fight: Fight) {
+    const { time } = fight;
+    const AOAeffects = this.activeEffects.filter((effect) => effect instanceof EffectAOA) as EffectAOA[];
+
+    AOAeffects.forEach((effect) => {
+      effect.apply({ agent: this, ...fight });
+      this.log(time, {
+        attackMode: AttackModeEnum.NONE,
+        damage: 0,
+        effectType: effect.type,
+        type: HistoryActionTypeEnum.USE_SKILL
+      });
     });
   }
 
   manageEvoTree(fight: Fight) {
-    if (this.nodes.length === 0) {
-      return;
-    }
-
     this.nodes.forEach((node) => {
       const result = node.applyNodeEffects({ agent: this, fight, node });
 
@@ -206,6 +210,14 @@ export class Agent {
         this.nodeEffects[key] = (this.nodeEffects[key] || 0) + (value || 0);
       }
     });
+  }
+
+  private updateDamageStatsAndLog(logTime: number, attackMode: string, bonus: BonusEnum[], damage: number) {
+    const type = HistoryActionTypeEnum.ATTACK;
+    const effectType = EffectTypeEnum.NONE;
+
+    this.stats.totalDamage += damage;
+    this.log(logTime, { attackMode, bonus, damage, effectType, type });
   }
 
   log(time: number, action: ActionType) {
@@ -218,7 +230,8 @@ export class Agent {
     if (existingEntry) {
       existingEntry.actions.push(action);
     } else {
-      this.history.push({ time, totalDamage: this.stats.totalDamage, actions: [action] });
+      const newEntry = { time, totalDamage: this.stats.totalDamage, actions: [action] };
+      this.history.push(newEntry);
     }
   }
 }

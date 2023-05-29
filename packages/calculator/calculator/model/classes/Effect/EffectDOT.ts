@@ -1,5 +1,5 @@
 import { AttackModeEnum, BonusEnum, EffectTypeEnum, HistoryActionTypeEnum } from '../../../enums';
-import { Agent, AbstractEffect, Fight, NewEffectDOT, DamageEffectFunction } from '../../../model';
+import { AbstractEffect, NewEffectDOT, DamageEffectFunction, EffectParams } from '../../../model';
 
 export class EffectDOT extends AbstractEffect {
   type: EffectTypeEnum;
@@ -13,39 +13,42 @@ export class EffectDOT extends AbstractEffect {
   constructor({ type, duration, interval, damage, begin = 0 }: NewEffectDOT) {
     super();
     this.type = type;
-    this.duration = duration * 1000;
-    this.interval = interval * 1000;
+    this.duration = duration * 1000; // seconds to ms
+    this.interval = interval * 1000; // seconds to ms
     this.damage = damage;
     this.begin = begin;
 
     this.lastDot = this.begin;
   }
 
-  activate(agent: Agent, fight: Fight) {
-    this.add(agent, fight);
-    agent.log(fight.time, {
+  activate(params: EffectParams) {
+    const { agent, time } = params;
+
+    agent.log(time, {
       attackMode: AttackModeEnum.NONE,
       damage: 0,
       effectType: this.type,
       type: HistoryActionTypeEnum.USE_SKILL
     });
+
+    this.add(params);
   }
 
-  add(agent: Agent, fight: Fight) {
-    const { time } = fight;
-    const { duration, interval } = this;
+  add(params: EffectParams) {
+    const { agent, time } = params;
 
     agent.activeEffects.push(
       new EffectDOT({
         ...this,
-        duration: duration / 1000,
-        interval: interval / 1000,
+        duration: this.duration / 1000,
+        interval: this.interval / 1000,
         begin: time
       })
     );
   }
 
-  deactivate(agent: Agent, fight: Fight) {
+  deactivate(params: EffectParams) {
+    const { agent, time } = params;
     const index = agent.activeEffects.indexOf(this);
 
     if (index === -1) {
@@ -53,7 +56,7 @@ export class EffectDOT extends AbstractEffect {
     }
 
     agent.activeEffects.splice(index, 1);
-    agent.log(fight.time, {
+    agent.log(time, {
       attackMode: AttackModeEnum.NONE,
       damage: 0,
       effectType: this.type,
@@ -61,13 +64,26 @@ export class EffectDOT extends AbstractEffect {
     });
   }
 
-  private dealDamage(agent: Agent, fight: Fight) {
-    const { target, time } = fight;
-    const { damage, bonus } = this.getDamage(agent, fight);
+  manage(params: EffectParams) {
+    const { time } = params;
+
+    if (this.isActive(time)) {
+      this.dealDamage(params);
+    }
+
+    if (this.isExpired(time)) {
+      this.deactivate(params);
+    }
+  }
+
+  private dealDamage(params: EffectParams) {
+    const { agent, target, time } = params;
+    const { damage, bonus } = this.getDamage(params);
     const damageDealt = target.takeDamage(damage);
 
     this.lastDot = time;
     agent.stats.totalDamage += damageDealt;
+
     agent.log(time, {
       attackMode: AttackModeEnum.SKILL,
       bonus,
@@ -77,8 +93,8 @@ export class EffectDOT extends AbstractEffect {
     });
   }
 
-  private getDamage(agent: Agent, fight: Fight) {
-    const { target, team } = fight;
+  private getDamage(params: EffectParams) {
+    const { agent, target } = params;
     const { attackCounter, skillDamage, baseSkillDamage, criticalRate, criticalDamage } = agent.stats;
     const { skillDamage: skillDamageEffect = 0, criticalRate: criticalRateEffect = 0 } = agent.nodeEffects;
 
@@ -88,7 +104,7 @@ export class EffectDOT extends AbstractEffect {
     const totalSkillAttack = skillDamage + skillAttackEffect;
 
     const bonus: BonusEnum[] = [];
-    const baseDamage = this.damage({ agent, target, team }) / baseSkillDamage;
+    const baseDamage = this.damage(params) / baseSkillDamage;
     let damage = baseDamage * totalSkillAttack;
 
     if (Math.random() < criticalRateWithEffect) {
@@ -100,29 +116,14 @@ export class EffectDOT extends AbstractEffect {
   }
 
   private isActive(time: number) {
-    const { begin = 0, duration, interval } = this;
-
-    const hasStarted = time <= begin;
-    const hasStopped = time < begin - duration;
-    const inInterval = this.lastDot - interval >= time;
+    const hasStarted = time <= this.begin;
+    const hasStopped = time < this.begin - this.duration;
+    const inInterval = this.lastDot - this.interval >= time;
 
     return hasStarted && !hasStopped && inInterval;
   }
 
   private isExpired(time: number) {
-    const { begin = 0, duration } = this;
-    return time <= begin - duration;
-  }
-
-  manage(agent: Agent, fight: Fight) {
-    const { time } = fight;
-
-    if (this.isActive(time)) {
-      this.dealDamage(agent, fight);
-    }
-
-    if (this.isExpired(time)) {
-      this.deactivate(agent, fight);
-    }
+    return time <= this.begin - this.duration;
   }
 }

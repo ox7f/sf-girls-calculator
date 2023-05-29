@@ -23,3 +23,9 @@ export interface NewEffectDOT extends NewAbstractEffect {
   damage: DamageEffectFunction;
   begin?: number;
 }
+
+export interface NewEffectAOA extends NewAbstractEffect {
+  duration: number;
+  apply: EffectFunction;
+  begin?: number;
+}

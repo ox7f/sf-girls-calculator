@@ -1,21 +1,22 @@
 import { EffectTypeEnum } from '../../enums';
 import {
-  Agent,
   Effect,
+  EffectAOA,
   EffectDamage,
   EffectDOT,
-  Fight,
+  NewEffectAOA,
   NewEffectDamage,
   NewEffectDOT,
   NewEffect,
-  NewSkill
+  NewSkill,
+  EffectParams
 } from '../../model';
 
 export class Skill {
   name: string;
   description: string;
   cooldown: number;
-  effects: (Effect | EffectDamage | EffectDOT)[];
+  effects: (Effect | EffectDamage | EffectDOT | EffectAOA)[];
 
   constructor({ name, description, effects, cooldown }: NewSkill) {
     this.name = name;
@@ -24,20 +25,22 @@ export class Skill {
     this.effects = this.initializeEffects(effects);
   }
 
-  private initializeEffects(effects: (NewEffect | NewEffectDamage | NewEffectDOT)[]) {
+  private initializeEffects(effects: (NewEffect | NewEffectDamage | NewEffectDOT | NewEffectAOA)[]) {
     return effects.map((effect) => {
       switch (effect.type) {
-        case EffectTypeEnum.DOT:
-          return new EffectDOT(effect as NewEffectDOT);
+        case EffectTypeEnum.AOA:
+          return new EffectAOA(effect as NewEffectAOA);
         case EffectTypeEnum.DAMAGE:
           return new EffectDamage(effect as NewEffectDamage);
+        case EffectTypeEnum.DOT:
+          return new EffectDOT(effect as NewEffectDOT);
         default:
           return new Effect(effect as NewEffect);
       }
     });
   }
 
-  cast(agent: Agent, fight: Fight) {
-    this.effects.forEach((effect) => effect.activate(agent, fight));
+  cast(params: EffectParams) {
+    this.effects.forEach((effect) => effect.activate(params));
   }
 }

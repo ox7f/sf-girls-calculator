@@ -1,6 +1,16 @@
 import { EvoNodes } from '../data';
 import { AttackModeEnum, ClassEnum, CupSizeEnum, EffectTypeEnum, OrganizationEnum } from '../enums';
-import { EffectParams, NewAgent, NewEffectDamage, NewEffectDOT, NewEffect, NewSkill, NewStats } from '../model';
+import {
+  EffectParams,
+  NewAgent,
+  NewEffect,
+  NewEffectAOA,
+  NewEffectDamage,
+  NewEffectDOT,
+  NewSkill,
+  NewStats,
+  Effect
+} from '../model';
 
 export const Yuki = {
   index: 1,
@@ -20,7 +30,7 @@ export const Yuki = {
     criticalDamage: 2.038,
     skillDamage: 927,
     baseSkillDamage: 927,
-    castTime: 1
+    castTime: 1.5
   } as NewStats,
   skill: {
     name: 'Precision Assault',
@@ -3514,10 +3524,208 @@ export const KagawaMatsu = {
           const { agent } = params;
           agent.stats.attackSpeed /= 1.15;
         },
+        duration: 16,
+        isStackable: true
+      } as NewEffect,
+      {
+        type: EffectTypeEnum.AOA,
+        apply: (params: EffectParams) => {
+          const { agent } = params;
+
+          if (Math.random() < 0.5) {
+            agent.stats.lastCastTime += 2 * 2000; // seconds to ms
+          }
+        },
         duration: 16
-      } as NewEffect
+      } as NewEffectAOA
     ],
     cooldown: 10
+  } as NewSkill
+} as NewAgent;
+
+// TODO: currently lvl 1 non evo
+export const Sally = {
+  index: 85,
+  name: 'Sally',
+  title: 'Sergeant',
+  bio: `
+  Living in a small village in the remote area of Santriel, Sally is the only daughter of an unnamed farm in Ponyvillage. Since childhood, she has had a fondness for taking care of animals and has been assisting her father on the farm. In Santriel, it's common to see firearms used in crops trading. With her proficiency in firearms, Sally joined the local self-defense organization as a teenager. However, despite her efforts, the local crime rate showed no signs of decreasing. Through her gradual investigation, she discovered the involvement of the local government in illicit activities.
+  Motivated by her unwavering determination to fight corruption and evil, Sally joined the Santriel Inspection Bureau. With her exceptional marksmanship skills, she keeps a vigilant eye on the activities of the local government, ensuring they don't continue their illegal endeavors. Simultaneously, she monitors the transformation of the underground syndicate into another source of evil. Sally remains committed to upholding justice and safeguarding her community.
+  `,
+  organization: OrganizationEnum.SIB,
+  cupSize: CupSizeEnum.E,
+  class: ClassEnum.GUNNER,
+  nodes: EvoNodes.Gunner_Nodes,
+  stats: {
+    attackSpeed: 0.5,
+    normalAttack: 747,
+    criticalRate: 0.5,
+    criticalDamage: 1.54,
+    skillDamage: 747,
+    baseSkillDamage: 747
+  } as NewStats,
+  skill: {
+    name: 'Yeeeeeehaa',
+    description: `
+    Quickly fire twice with her shotgun, each deals 1494.2 skill damage. Then she dive into Yeehaa mode for 2 seconds, any attack withing Yeehaa will stack 101% damage buff to herself, each stack will last for 1 seconds.
+    Cooldown: 33s.
+    `,
+    effects: [
+      { type: EffectTypeEnum.DAMAGE, damage: () => 1494.2 } as NewEffectDamage,
+      { type: EffectTypeEnum.DAMAGE, damage: () => 1494.2 } as NewEffectDamage,
+      {
+        type: EffectTypeEnum.AOA,
+        apply: (params: EffectParams) => {
+          const { agent, time } = params;
+          const yeehaaEffect = new Effect({
+            type: EffectTypeEnum.SELF_BUFF,
+            duration: 1,
+            begin: time,
+            apply: (params: EffectParams) => {
+              const { agent } = params;
+              agent.stats.normalAttack *= 1.01;
+              agent.stats.skillDamage *= 1.01;
+            },
+            remove: (params: EffectParams) => {
+              const { agent } = params;
+              agent.stats.normalAttack /= 1.01;
+              agent.stats.skillDamage /= 1.01;
+            },
+            isStackable: true
+          });
+          agent.activeEffects.push(yeehaaEffect);
+        },
+        duration: 2
+      } as NewEffectAOA
+    ],
+    cooldown: 33
+  } as NewSkill
+} as NewAgent;
+
+export const SoraX = {
+  index: 86,
+  name: 'Sora X',
+  title: 'Harpy Alpha',
+  bio: `
+  After experiencing numerous battles with the Sky Fleet, Sora transformed into Sora X. She evolved from being timid to becoming a professional, and from being indecisive to displaying bravery. This young talent has become a reliable instructor, and she is now a trusted elf elder who can single-handedly ensure the safety of her comrades.
+  `,
+  organization: OrganizationEnum.GSR,
+  cupSize: CupSizeEnum.G,
+  class: ClassEnum.SUPPORT,
+  nodes: EvoNodes.Support_Nodes,
+  stats: {
+    attackSpeed: 1,
+    normalAttack: 3879,
+    criticalRate: 0.94,
+    criticalDamage: 2.038,
+    skillDamage: 3264,
+    baseSkillDamage: 3264
+  } as NewStats,
+  skill: {
+    name: 'Salvation From Above',
+    description: `
+    Non-stackable self buff for damage x2700% and attack rate x110% for 7s. Heal for a tiny area close-by for total (skill damage x200%). Any successful attack under Salvation will create a stackable buff for attack speed x125% to all teammates, each stack last for 1.5s.
+    Cooldown: 10s.
+    `,
+    effects: [
+      {
+        type: EffectTypeEnum.SELF_BUFF,
+        apply: (params: EffectParams) => {
+          const { agent } = params;
+          agent.stats.attackSpeed *= 1.1;
+          agent.stats.normalAttack *= 27;
+          agent.stats.skillDamage *= 27;
+        },
+        remove: (params: EffectParams) => {
+          const { agent } = params;
+          agent.stats.attackSpeed /= 1.1;
+          agent.stats.normalAttack /= 27;
+          agent.stats.skillDamage /= 27;
+        },
+        duration: 7
+      } as NewEffect,
+      {
+        type: EffectTypeEnum.AOA,
+        apply: (params: EffectParams) => {
+          const { team, time } = params;
+          const salvationEffect = new Effect({
+            type: EffectTypeEnum.TEAM_BUFF,
+            duration: 1.5,
+            begin: time,
+            apply: (params: EffectParams) => {
+              const { agent } = params;
+              agent.stats.attackSpeed *= 1.25;
+            },
+            remove: (params: EffectParams) => {
+              const { agent } = params;
+              agent.stats.attackSpeed /= 1.25;
+            },
+            isStackable: true
+          });
+          team.forEach((agent) => salvationEffect.activate({ ...params, agent }));
+          console.log('HIT effect?', time, team[0].stats.attackSpeed);
+        },
+        duration: 7
+      } as NewEffectAOA
+    ],
+    cooldown: 10
+  } as NewSkill
+} as NewAgent;
+
+// TODO: currently non evo
+export const YukakoX = {
+  index: 87,
+  name: 'Yukako X',
+  title: 'The Ghost: Alpha',
+  bio: `
+  Yukako wasn't accustomed to working in a team and temporarily left the group. However, she later returned and transferred from the Department of Orbital Defense under New Dellum Security to the Special Tactical Strategy team, taking on the role of a technical advisor. With this transition, Yukako experienced a significant increase in her knowledge of alien engineering and biotechnology.
+  Interestingly, her physical appearance underwent some noticeable changes. There is speculation about whether it's a result of secondary growth or the effects of extraterrestrial biotechnology. While her figure has undergone significant alterations, her height remains unchanged.
+  `,
+  organization: OrganizationEnum.NDS,
+  cupSize: CupSizeEnum.H,
+  class: ClassEnum.SUPPORT,
+  nodes: EvoNodes.Support_Nodes,
+  stats: {
+    attackSpeed: 0.5,
+    normalAttack: 5914,
+    criticalRate: 0.84,
+    criticalDamage: 2.038,
+    skillDamage: 5914,
+    baseSkillDamage: 5914
+  } as NewStats,
+  skill: {
+    name: 'Salvation From Above',
+    description: `
+    Deals 53170.9 damage to all enemies. All Gunner agents critical rate gains an additional 30% and critical damage gains an additional 190% for 14 seconds (stackable).
+    Cooldown: 24s.
+    `,
+    effects: [
+      { type: EffectTypeEnum.DAMAGE, damage: () => 53170.9 } as NewEffectDamage,
+      {
+        type: EffectTypeEnum.TEAM_BUFF,
+        apply: (params: EffectParams) => {
+          const { team } = params;
+          team
+            .filter((agent) => agent.class === ClassEnum.GUNNER)
+            .forEach((agent) => {
+              agent.stats.criticalDamage += 1.9;
+              agent.stats.criticalRate += 0.3;
+            });
+        },
+        remove: (params: EffectParams) => {
+          const { team } = params;
+          team
+            .filter((agent) => agent.class === ClassEnum.GUNNER)
+            .forEach((agent) => {
+              agent.stats.criticalDamage + -1.9;
+              agent.stats.criticalRate -= 0.3;
+            });
+        },
+        duration: 14,
+        isStackable: true
+      } as NewEffect
+    ],
+    cooldown: 24
   } as NewSkill
 } as NewAgent;
 
@@ -3582,6 +3790,7 @@ export const Agents = [
   RihoX,
   Rosalie,
   Rui,
+  Sally,
   Sara,
   Sato,
   Sayaka,
@@ -3591,6 +3800,7 @@ export const Agents = [
   Shiko,
   Sizuko,
   Sora,
+  SoraX,
   Toki,
   Tsukiko,
   Tsurumi,
@@ -3603,6 +3813,7 @@ export const Agents = [
   Windy,
   Wu,
   Yukako,
+  YukakoX,
   Yuki,
   Yuuha,
   ZiLong

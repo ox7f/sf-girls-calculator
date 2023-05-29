@@ -1,6 +1,7 @@
 export {
   AbstractEffect,
   Effect,
+  EffectAOA,
   EffectDamage,
   EffectDOT,
   EvoNode,
@@ -13,6 +14,7 @@ export {
 export {
   NewAgent,
   NewEffect,
+  NewEffectAOA,
   NewEffectDamage,
   NewEffectDOT,
   NewEvoNode,

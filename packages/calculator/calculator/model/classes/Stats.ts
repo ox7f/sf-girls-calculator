@@ -11,7 +11,6 @@ export class Stats {
   castTime: number;
 
   attackCounter = 0;
-  firstAttackTime = 0;
   lastAttackTime = 0;
   lastCastTime = 0;
   totalDamage = 0;

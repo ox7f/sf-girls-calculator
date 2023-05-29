@@ -1,5 +1,5 @@
 import { AttackModeEnum, BonusEnum, EffectTypeEnum, HistoryActionTypeEnum } from '../../../enums';
-import { Agent, AbstractEffect, Fight, NewEffectDamage, DamageEffectFunction } from '../../../model';
+import { AbstractEffect, NewEffectDamage, DamageEffectFunction, EffectParams } from '../../../model';
 
 export class EffectDamage extends AbstractEffect {
   type: EffectTypeEnum;
@@ -11,31 +11,41 @@ export class EffectDamage extends AbstractEffect {
     this.damage = damage;
   }
 
-  activate(agent: Agent, fight: Fight) {
-    const { time } = fight;
+  activate(params: EffectParams) {
+    const { agent, time } = params;
+
     agent.log(time, {
       attackMode: AttackModeEnum.NONE,
       damage: 0,
       effectType: this.type,
       type: HistoryActionTypeEnum.USE_SKILL
     });
-    this.dealDamage(agent, fight);
+
+    this.dealDamage(params);
   }
 
-  add() {
-    console.log('implement logic to add effect');
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  add(_params: EffectParams) {
+    // empty
   }
 
-  deactivate() {
-    console.log('implement logic to deactivate effect');
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  deactivate(_params: EffectParams) {
+    // empty
   }
 
-  private dealDamage(agent: Agent, fight: Fight) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  manage(_params: EffectParams) {
+    // empty
+  }
+
+  private dealDamage(params: EffectParams) {
     const {
+      agent,
       target,
       target: { criticalResistance },
       time
-    } = fight;
+    } = params;
 
     const { attackCounter, skillDamage, baseSkillDamage, criticalRate, criticalDamage } = agent.stats;
     const {
@@ -51,7 +61,7 @@ export class EffectDamage extends AbstractEffect {
     const totalSkillAttack = skillDamage + skillAttackEffect;
 
     const bonus: BonusEnum[] = [];
-    const baseDamage = this.damage({ agent, target, team: fight.team }) / baseSkillDamage;
+    const baseDamage = this.damage(params) / baseSkillDamage;
     let damage = baseDamage * totalSkillAttack;
 
     if (Math.random() < criticalRateWithEffect) {
@@ -65,12 +75,13 @@ export class EffectDamage extends AbstractEffect {
     }
 
     if (Math.random() < doubleAttackChance) {
-      this.dealDamage(agent, fight);
+      this.dealDamage(params);
       bonus.push(BonusEnum.RELOAD);
     }
 
     const damageDealt = target.takeDamage(damage);
     agent.stats.totalDamage += damageDealt;
+
     agent.log(time - globalThis.damageDelay, {
       attackMode: AttackModeEnum.SKILL,
       bonus,
@@ -78,9 +89,5 @@ export class EffectDamage extends AbstractEffect {
       effectType: this.type,
       type: HistoryActionTypeEnum.ATTACK
     });
-  }
-
-  manage() {
-    console.log('implement logic to manage effect');
   }
 }
