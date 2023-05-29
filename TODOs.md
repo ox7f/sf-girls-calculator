@@ -1,17 +1,19 @@
 # TODOs
 
-## chatGPT suggestions
-
-- [] Add visual elements: Consider adding graphics, images or videos that relate to your website's theme or content. You could use screenshots of the game, or create custom graphics that showcase the calculator functionality. This will make your website look more visually appealing and engaging. (gif for selecting agents/target, gif for editing agent/target, gif for teamfinder)
-- [] Incorporate social proof: Consider adding social proof, such as the number of people who have used the calculator, or how long it has been in operation. This will help visitors understand that your website is a reputable source of information.
-- [] Add calls to action: Consider adding calls to action, such as "Start Calculating Now", or "Join Our Community", to encourage visitors to engage with your website.
+- [] workflow - draw chart
+- [] pve / pvp mode for calculator (single target (noa bootcamp) vs ditto with enemy team)
+- [] tutorial: how to use calculator (Akina or some sprite with a speech bubble => text written animation) => save in localStorage when closed so it doesn't show another time
 
 ## clean code
 
 - [x] move handle functions inside class -> clean code, follow oop (no stinky code allowed)
 - [x] refactor search component
 - [x] refactor types, each one in a separate file
-- [x] work with initialized objects instead of interfaces
+- [x] work with initialized objects instead of raw data
+
+## game update
+
+- [x] add Sora X and Sally to agents
 
 ## must have
 
@@ -32,9 +34,10 @@
 - [x] fix graph (handle multiple dots on the same position)
 - [x] changelog on entry page
 - [x] unselect all selected agents button
-- [] fill changelog with content
+- [x] fill changelog with content
+- [x] save results and compare them (history?: list where the last result is compared with the current)
+- [x] favorite agents
 - [] add rune finder tool to UI
-- [] save results and compare them (history? (list where the last result is compared with the current - for example +25% damage or -20% damage))
 
 ## nice to have
 
@@ -48,11 +51,13 @@
 - [x] sort table by damage
 - [x] sticky search bar (scrolls with)
 - [x] agent skill/bio inside modal (tabs: bio/stats/skill)
-- [] filter functions in UI
+- [x] zoom function for graph
+- [] filter functions
+- [] sort function
 
 ## UI/UX
 
-- [] adjust width/height of graph
+- [x] adjust width/height of graph
 - [x] good looking evo tree => overhaul
 - [x] show critical hits or other bonuses (e.g. evo node: headshot, instant reload) in graph
 - [x] add images
@@ -62,14 +67,26 @@
 - [x] search bar overhaul
 - [x] calculator overhaul
 - [x] teamfinder overhaul
-- [] graph overhaul
-- [] graph logs overhaul
+- [x] graph overhaul
+- [x] open/close results => accordion
+- [x] star favorites
+- [x] teamfinder change (button for calculation and show results instead of cards + clear button)
+- [x] avatar in agent list
+- [x] search bar: show results in dropdown
+- [] fix spinner => should be centered and sticky
+- [] style the favorite star
+- [] add animations and effects on new elements
+- [] replace percentile height and with with fixed values
 
 ## code changes
 
 - [x] log damage events (is_crit, is_headshot, nodes etc)
 - [x] dots don't crit!
 - [x] move isStackable from Skill to Effect
+- [x] idx holds state of selection and modal
+- [x] apply buffs on attack (Sora X, Kagawa Matsu, Sally)
+- [] adjust/calibrate calculator
+- [] make skill editable
 
 ## feedback
 
@@ -82,3 +99,6 @@
 - [x] chrome => modal not opening with one click, needs two clicks
 - [x] reset filter when changing route or separate them
 - [x] remove projectile number / skill cast time from edit modal
+- [x] only show one graph/table for calculator view
+- [x] teamfinder: overflow when selecting an agent
+- [x] card (onHover) => image should not move upwards / improve animation
