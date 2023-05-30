@@ -203,6 +203,24 @@ a {
   }
 }
 
+.favorite {
+  top: 0.75rem;
+  right: 1rem;
+
+  svg {
+    cursor: pointer;
+  }
+}
+
+.favorite-star {
+  color: white;
+  transition: color 0.3s ease-in-out;
+}
+
+.favorite-star.active {
+  color: gold;
+}
+
 .agent-graph-tooltip {
   .divider {
     padding: 0;
@@ -370,17 +388,6 @@ a {
 .animated.loading::after {
   width: 3rem;
   height: 3rem;
-}
-
-.favorite {
-  top: 0.75rem;
-  right: 1rem;
-
-  svg {
-    cursor: pointer;
-    stroke: black;
-    stroke-width: 0.5rem;
-  }
 }
 
 #agent-list {

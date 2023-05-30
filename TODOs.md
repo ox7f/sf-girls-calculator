@@ -14,6 +14,7 @@
 ## game update
 
 - [x] add Sora X and Sally to agents
+- [x] add Yukako X to agents
 
 ## must have
 
@@ -74,7 +75,7 @@
 - [x] avatar in agent list
 - [x] search bar: show results in dropdown
 - [x] fix spinner => should be centered and sticky
-- [] style the favorite star
+- [x] style the favorite star
 - [] add animations and effects on new elements
 - [] replace percentile height and with with fixed values
 

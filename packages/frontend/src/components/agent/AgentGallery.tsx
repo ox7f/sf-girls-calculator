@@ -70,7 +70,7 @@ export const AgentGallery: FC<AgentGalleryProps> = ({ agents, loading, calculate
               style={{ top: '0.75rem', right: '1rem' }}
               onClick={() => favorite(agent)}
             >
-              <FaStar color={isFavorite ? '#ffdd00' : 'white'} size={20} />
+              <FaStar size={20} className={`favorite-star hover-grow-extreme ${isFavorite ? 'active' : ''}`} />
             </span>
           </div>
           <div className="card__container">

@@ -48,7 +48,12 @@ export const AgentList: FC<AgentListProps> = ({ agents, loading, calculate, favo
   const renderAgentList = () =>
     agents.length ? (
       agents.map((agent, index) => {
-        const isSelected = agent.options[viewName].isSelected;
+        const {
+          options: {
+            isFavorite,
+            [viewName]: { isSelected }
+          }
+        } = agent;
         const className = isSelected ? 'selected animated bounceIn' : '';
         const listElementStyle = {
           height: '100%',
@@ -65,7 +70,7 @@ export const AgentList: FC<AgentListProps> = ({ agents, loading, calculate, favo
               {agent.name}
             </a>
             <span className="u-absolute favorite" onClick={() => favorite(agent)}>
-              <FaStar color={agent.options.isFavorite ? '#ffdd00' : 'white'} />
+              <FaStar className={`favorite-star hover-grow-extreme ${isFavorite ? 'active' : ''}`} />
             </span>
           </li>
         );
