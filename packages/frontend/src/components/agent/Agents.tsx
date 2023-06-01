@@ -1,10 +1,19 @@
 import { useAtomValue, useSetAtom } from 'jotai';
 import { FC, useCallback, useState } from 'react';
+import { Agents as AgentsRaw } from '@sf-girls-calculator/calculator';
 
 import { AgentGallery, AgentList } from './index';
-import { AgentDB, AgentItem, CurrentViewAtom, ResultListAtom, ResultListHistoryAtom, TargetDB } from '../../atoms';
-import { calculateWorker } from '../../webworker';
 import { Portal, Spinner } from '../common';
+import {
+  AgentDB,
+  AgentItem,
+  CurrentViewAtom,
+  FilterAtom,
+  ResultListAtom,
+  ResultListHistoryAtom,
+  TargetDB
+} from '../../atoms';
+import { calculateWorker } from '../../webworker';
 
 const AGENT_COMPONENTS = {
   calculator: AgentList,
@@ -20,6 +29,7 @@ export const Agents: FC = () => {
   const [isLoading, setLoading] = useState(false);
 
   const viewName = useAtomValue(CurrentViewAtom);
+  const filter = useAtomValue(FilterAtom);
   const agents = useAtomValue(AgentDB.values);
   const targets = useAtomValue(TargetDB.values);
 
@@ -28,26 +38,74 @@ export const Agents: FC = () => {
   const setHistory = useSetAtom(ResultListHistoryAtom);
 
   const selectedAgents = agents.filter((agent) => agent.options[viewName].isSelected).map((agent) => agent.name);
-  const selectedTarget = targets.filter((target) => target.options[viewName].isSelected).map((target) => target.name);
+  const selectedTargets = targets.filter((target) => target.options[viewName].isSelected).map((target) => target.name);
 
-  // TODO: sort by filter settings
-  // agents.sort((a: AgentItem, b: AgentItem) =>
-  //   a.isFavorite === b.isFavorite ? a.name.localeCompare(b.name) : a.isFavorite ? -1 : 1
-  // );
+  agents.sort((a: AgentItem, b: AgentItem) => {
+    const agentA = AgentsRaw.Agents.find((agent) => agent.name === a.name);
+    const agentB = AgentsRaw.Agents.find((agent) => agent.name === b.name);
+
+    if (!agentA || !agentB) {
+      return 0;
+    }
+
+    if (a.options.isFavorite && !b.options.isFavorite) {
+      return -1;
+    }
+    if (!a.options.isFavorite && b.options.isFavorite) {
+      return 1;
+    }
+
+    let comparison = 0;
+
+    if (filter[viewName].sortParam === 'rarity') {
+      comparison = agentA.rarity.localeCompare(agentB.rarity);
+    } else if (filter[viewName].sortParam === 'class') {
+      comparison = agentA.class.localeCompare(agentB.class);
+    }
+
+    if (comparison === 0) {
+      comparison = agentA.name.localeCompare(agentB.name);
+    }
+
+    if (filter[viewName].sort === 'descending') {
+      comparison *= -1;
+    }
+
+    return comparison;
+  });
+
+  const filteredAgents = agents.filter((a) => {
+    const agent = AgentsRaw.Agents.find((agent) => agent.name === a.name);
+
+    if (!agent) {
+      return false;
+    }
+
+    const filterClass = filter[viewName].class;
+    const filterRarity = filter[viewName].rarity;
+    const filterSearch = filter[viewName].searchParam;
+
+    const passedFilter =
+      (filterClass.length === 0 || filterClass.includes(agent.class)) &&
+      (filterRarity.length === 0 || filterRarity.includes(agent.rarity)) &&
+      (filterSearch.length === 0 || agent.name.toLocaleLowerCase().includes(filterSearch.toLocaleLowerCase()));
+
+    return passedFilter;
+  });
 
   const workerCall = useCallback(
     async (selectedAgents: string[], selectedTargets: string[]) => {
-      // if (selectedAgents.length > 0 && selectedTargets) {
-      //   const test_results = [];
+      /* if (selectedAgents.length > 0 && selectedTargets) {
+        const test_results = [];
 
-      //   for (let i = 0; i < 100; i++) {
-      //     const test_result = await WORKER_CONFIG[viewName]({ selectedAgents, selectedTargets });
-      //     test_results.push(JSON.parse(test_result)[0]);
-      //   }
+        for (let i = 0; i < 100; i++) {
+          const test_result = await WORKER_CONFIG[viewName]({ selectedAgents, selectedTargets });
+          test_results.push(JSON.parse(test_result)[0]);
+        }
 
-      //   test_results.sort((a, b) => b.totalDamage - a.totalDamage);
-      //   console.log(test_results[0].totalDamage, test_results[test_results.length - 1].totalDamage);
-      // }
+        test_results.sort((a, b) => b.totalDamage - a.totalDamage);
+        console.log(test_results[0].totalDamage, test_results[test_results.length - 1].totalDamage);
+      } */
 
       const newResults = await WORKER_CONFIG[viewName]({ selectedAgents, selectedTargets });
       return JSON.parse(newResults);
@@ -58,7 +116,7 @@ export const Agents: FC = () => {
   const calculate = async () => {
     setLoading(true);
 
-    const newResults = await workerCall(selectedAgents, selectedTarget);
+    const newResults = await workerCall(selectedAgents, selectedTargets);
 
     if (newResults) {
       setResults((prev) => ({ ...prev, [viewName]: newResults }));
@@ -125,7 +183,7 @@ export const Agents: FC = () => {
         </Portal>
       )}
       <AgentComponent
-        agents={agents}
+        agents={filteredAgents}
         loading={isLoading}
         calculate={calculate}
         favorite={onAgentToggleFavorite}

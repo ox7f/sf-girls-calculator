@@ -5,7 +5,7 @@ import { FaStar } from 'react-icons/fa';
 import { Button, Search } from '../common';
 import { Results } from '../result';
 import { AgentStyleMap, ClassTag, getAgentInfo } from '../utils';
-import { AgentItem, CurrentViewAtom } from '../../atoms';
+import { AgentItem, CurrentViewAtom, FilterAtom } from '../../atoms';
 
 type AgentGalleryProps = {
   agents: AgentItem[];
@@ -18,6 +18,7 @@ type AgentGalleryProps = {
 
 export const AgentGallery: FC<AgentGalleryProps> = ({ agents, loading, calculate, favorite, select, toggleModal }) => {
   const viewName = useAtomValue(CurrentViewAtom);
+  const filter = useAtomValue(FilterAtom);
   const [showResults, setShowResults] = useState(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -44,7 +45,7 @@ export const AgentGallery: FC<AgentGalleryProps> = ({ agents, loading, calculate
     });
 
     return () => observer.disconnect();
-  }, [agents]);
+  }, [agents, filter]);
 
   const renderAgentCard = (agent: AgentItem, index: number) => {
     const {

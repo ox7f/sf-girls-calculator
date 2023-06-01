@@ -25,6 +25,12 @@ export enum TabEnum {
   EvoTree = 'Evo Tree'
 }
 
+export type MenuItem = {
+  label: string;
+  sortParam: string;
+  sortDirection: string;
+};
+
 export type ViewName = 'calculator' | 'teamfinder';
 
 /** App Helper */

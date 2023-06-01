@@ -17,11 +17,15 @@ export const ResultListHistoryAtom = atom<ResultType[]>([]);
 export const FilterAtom = atom<FilterType>({
   calculator: {
     class: [],
+    rarity: [],
+    searchParam: '',
     sort: 'ascending',
     sortParam: 'name'
   },
   teamfinder: {
     class: [],
+    rarity: [],
+    searchParam: '',
     sort: 'ascending',
     sortParam: 'name'
   }

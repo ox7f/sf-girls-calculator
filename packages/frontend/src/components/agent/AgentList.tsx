@@ -5,7 +5,7 @@ import { FaAngleRight, FaStar } from 'react-icons/fa';
 import { Search } from '../common';
 import { History, Results } from '../result';
 import { TargetSelect } from '../target';
-import { AgentItem, CurrentViewAtom } from '../../atoms';
+import { AgentItem, CurrentViewAtom, FilterAtom } from '../../atoms';
 
 type AgentListProps = {
   agents: AgentItem[];
@@ -18,6 +18,7 @@ type AgentListProps = {
 
 export const AgentList: FC<AgentListProps> = ({ agents, loading, calculate, favorite, select }) => {
   const viewName = useAtomValue(CurrentViewAtom);
+  const filter = useAtomValue(FilterAtom);
 
   const containerRef = useRef<HTMLUListElement>(null);
   const [loadedIndexes, setLoadedIndexes] = useState<number[]>([]);
@@ -43,7 +44,7 @@ export const AgentList: FC<AgentListProps> = ({ agents, loading, calculate, favo
     });
 
     return () => observer.disconnect();
-  }, [agents]);
+  }, [agents, filter]);
 
   const renderAgentList = () =>
     agents.length ? (
@@ -54,7 +55,7 @@ export const AgentList: FC<AgentListProps> = ({ agents, loading, calculate, favo
             [viewName]: { isSelected }
           }
         } = agent;
-        const className = isSelected ? 'selected animated bounceIn' : '';
+        const className = `u-relative menu-item u-unselectable${isSelected ? ' selected animated bounceIn' : ''}`;
         const listElementStyle = {
           height: '100%',
           backgroundImage: `url(agents/${agent.name.replace(/\s/g, '')}Mini.webp)`,
@@ -62,7 +63,7 @@ export const AgentList: FC<AgentListProps> = ({ agents, loading, calculate, favo
         };
 
         return (
-          <li key={agent.name} className={`u-relative menu-item u-unselectable ${className}`}>
+          <li key={agent.name} className={className}>
             <a className="w-100p u-flex" onClick={() => select(agent)}>
               <div className="avatar avatar--xs bg-white m-0 mr-1">
                 {loadedIndexes.includes(index) && <div style={listElementStyle} />}

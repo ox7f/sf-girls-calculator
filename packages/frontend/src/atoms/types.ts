@@ -1,4 +1,4 @@
-import { ClassEnum, ResultType } from '@sf-girls-calculator/calculator';
+import { ClassEnum, RarityEnum, ResultType } from '@sf-girls-calculator/calculator';
 
 export type ResultListType = {
   calculator: ResultType[];
@@ -8,11 +8,15 @@ export type ResultListType = {
 export type FilterType = {
   calculator: {
     class: ClassEnum[];
+    rarity: RarityEnum[];
+    searchParam: string;
     sort: string;
     sortParam: string;
   };
   teamfinder: {
     class: ClassEnum[];
+    rarity: RarityEnum[];
+    searchParam: string;
     sort: string;
     sortParam: string;
   };

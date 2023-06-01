@@ -121,9 +121,72 @@ a {
 
 /** components **/
 
+.divider::after {
+  background-color: white;
+  margin: 0 !important;
+  top: 0 !important;
+}
+
+#dropdown-teamfinder,
+#dropdown-calculator {
+  animation-duration: 0.5s;
+  animation-name: animate-fade-in;
+}
+
+#dropdown-calculator {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  left: 0;
+  margin-left: 16.75rem;
+  margin-right: -16.75rem;
+}
+
+#dropdown-teamfinder {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  left: 50%;
+}
+
+#search-teamfinder.open {
+  width: calc(50% - 5px);
+}
+
 #search-dropdown {
-  backdrop-filter: blur(8px);
-  background-color: hsla(0, 0%, 100%, 0.9);
+  background-color: white;
+  border: 1px solid #ddd;
+
+  #filter-classes {
+    border: 0;
+    column-count: 2;
+    column-gap: 0rem;
+
+    li {
+      margin: 0 0.25rem 0.25rem 0;
+    }
+  }
+
+  #filter-rarity {
+    border: 0;
+    column-count: 5;
+    column-gap: 0rem;
+
+    li {
+      margin: 0 0.25rem 0.25rem 0;
+    }
+  }
+
+  #filter-sorting {
+    border: 0;
+
+    column-count: 2;
+    column-gap: 0rem;
+
+    li {
+      margin: 0 0.25rem 0.25rem 0;
+    }
+  }
 }
 
 .result-container {
