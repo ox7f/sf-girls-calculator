@@ -1,9 +1,9 @@
 import { useAtomValue, useSetAtom } from 'jotai';
-import { FC, useCallback, useState } from 'react';
+import { FC, MouseEvent, useCallback, useState } from 'react';
 import { Agents as AgentsRaw } from '@sf-girls-calculator/calculator';
 
 import { AgentGallery, AgentList } from './index';
-import { Portal, Spinner } from '../common';
+import { ContextMenu, Portal, Spinner } from '../common';
 import {
   AgentDB,
   AgentItem,
@@ -27,6 +27,13 @@ const WORKER_CONFIG = {
 
 export const Agents: FC = () => {
   const [isLoading, setLoading] = useState(false);
+  const [contextMenuState, setContextMenuState] = useState<{
+    agent?: AgentItem;
+    position: {
+      left: number;
+      top: number;
+    };
+  }>({ agent: undefined, position: { left: 0, top: 0 } });
 
   const viewName = useAtomValue(CurrentViewAtom);
   const filter = useAtomValue(FilterAtom);
@@ -171,10 +178,37 @@ export const Agents: FC = () => {
     });
   };
 
+  const onContextMenu = (event: MouseEvent, agent: AgentItem) => {
+    event.preventDefault();
+    setContextMenuState({
+      agent,
+      position: {
+        left: event.clientX,
+        top: event.clientY
+      }
+    });
+  };
+
   const AgentComponent = AGENT_COMPONENTS[viewName];
 
   return (
     <>
+      {contextMenuState.agent && (
+        <ContextMenu
+          agent={contextMenuState.agent}
+          position={contextMenuState.position}
+          onClose={() =>
+            setContextMenuState((prev) => ({
+              ...prev,
+              agent: undefined
+            }))
+          }
+          favorite={onAgentToggleFavorite}
+          toggleModal={onAgentToggleModal}
+          select={onAgentSelect}
+        />
+      )}
+
       {isLoading && (
         <Portal wrapperId="spinner">
           <div className="u-fixed u-top-50p u-left-50p u-z-10">
@@ -182,6 +216,7 @@ export const Agents: FC = () => {
           </div>
         </Portal>
       )}
+
       <AgentComponent
         agents={filteredAgents}
         loading={isLoading}
@@ -189,6 +224,7 @@ export const Agents: FC = () => {
         favorite={onAgentToggleFavorite}
         toggleModal={onAgentToggleModal}
         select={onAgentSelect}
+        contextMenuHandler={onContextMenu}
       />
     </>
   );

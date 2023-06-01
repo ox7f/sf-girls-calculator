@@ -1,13 +1,14 @@
 import { useAtom } from 'jotai';
-import { FC } from 'react';
+import { FC, MouseEvent } from 'react';
 import { FaCog } from 'react-icons/fa';
 import { ResultType } from '@sf-girls-calculator/calculator';
 
 import { ClassTag, getAgentInfo } from '../utils';
-import { AgentDB } from '../../atoms';
+import { AgentDB, AgentItem } from '../../atoms';
 
 interface TableProps {
   result: ResultType;
+  contextMenuHandler: (event: MouseEvent, agent: AgentItem) => void;
 }
 
 type TableRow = {
@@ -15,9 +16,10 @@ type TableRow = {
   totalDamage: number;
   index: number;
   damage: number;
+  contextMenuHandler: (event: MouseEvent, agent: AgentItem) => void;
 };
 
-const TableRow: FC<TableRow> = ({ agentName, totalDamage, index, damage }) => {
+const TableRow: FC<TableRow> = ({ agentName, totalDamage, index, damage, contextMenuHandler }) => {
   const [agent, setAgent] = useAtom(AgentDB.item(agentName));
   const { className } = getAgentInfo(agentName);
   const percentOfTotalDamage = ((totalDamage / damage) * 100).toFixed(2);
@@ -37,7 +39,7 @@ const TableRow: FC<TableRow> = ({ agentName, totalDamage, index, damage }) => {
   };
 
   return (
-    <tr>
+    <tr onContextMenu={(event: MouseEvent) => contextMenuHandler(event, agent)}>
       <td>{index + 1}</td>
       <td>
         <div className={`tag tag--sm ${ClassTag[className]}`} style={{ cursor: 'default' }}>
@@ -58,7 +60,7 @@ const TableRow: FC<TableRow> = ({ agentName, totalDamage, index, damage }) => {
   );
 };
 
-export const Table: FC<TableProps> = ({ result }) => {
+export const Table: FC<TableProps> = ({ result, contextMenuHandler }) => {
   const renderTableRows = () =>
     result.team.map((agent, index) => (
       <TableRow
@@ -67,6 +69,7 @@ export const Table: FC<TableProps> = ({ result }) => {
         totalDamage={agent.stats.totalDamage}
         index={index}
         damage={result.totalDamage}
+        contextMenuHandler={contextMenuHandler}
       />
     ));
 

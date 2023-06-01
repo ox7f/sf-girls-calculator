@@ -1,5 +1,5 @@
 import { useAtomValue } from 'jotai';
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC, MouseEvent, useEffect, useRef, useState } from 'react';
 import { FaStar } from 'react-icons/fa';
 
 import { Button, Search } from '../common';
@@ -14,9 +14,18 @@ type AgentGalleryProps = {
   favorite: (agent: AgentItem) => void;
   select: (agent: AgentItem) => void;
   toggleModal: (agent: AgentItem) => void;
+  contextMenuHandler: (event: MouseEvent, agent: AgentItem) => void;
 };
 
-export const AgentGallery: FC<AgentGalleryProps> = ({ agents, loading, calculate, favorite, select, toggleModal }) => {
+export const AgentGallery: FC<AgentGalleryProps> = ({
+  agents,
+  loading,
+  calculate,
+  favorite,
+  select,
+  toggleModal,
+  contextMenuHandler
+}) => {
   const viewName = useAtomValue(CurrentViewAtom);
   const filter = useAtomValue(FilterAtom);
   const [showResults, setShowResults] = useState(false);
@@ -64,7 +73,7 @@ export const AgentGallery: FC<AgentGalleryProps> = ({ agents, loading, calculate
 
     return (
       <div key={name} className="col" style={{ minWidth: '350px', maxWidth: '350px' }}>
-        <div className="card card--slide-up">
+        <div className="card card--slide-up" onContextMenu={(event: MouseEvent) => contextMenuHandler(event, agent)}>
           <div className="u-absolute w-5 h-5 u-z-1">
             <span
               className="u-absolute favorite"
@@ -132,7 +141,7 @@ export const AgentGallery: FC<AgentGalleryProps> = ({ agents, loading, calculate
         </div>
 
         {showResults ? (
-          <Results calculate={calculate} loading={loading} />
+          <Results calculate={calculate} loading={loading} contextMenuHandler={contextMenuHandler} />
         ) : (
           <div className="row u-center" ref={containerRef}>
             {agents.length ? agents.map(renderAgentCard) : <p>No results found...</p>}

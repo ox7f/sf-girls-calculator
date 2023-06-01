@@ -74,15 +74,25 @@ const items = [
             <strong>
               <time dateTime="2023-05-15">{new Date(2023, 4, 15).toLocaleDateString()}</time>
             </strong>
-            : Release Version 0.0.1
+            <br />- Release Version 0.0.1.
           </li>
+
           <li>
             <strong>
               <time dateTime="2023-05-31">{new Date(2023, 4, 31).toLocaleDateString()}</time>
             </strong>
-            : Includes now Sora X, Yukako X and Sally
             <br />
-            Shows results, including the increase or decrease compared to the previous result
+            - Includes now Sora X, Yukako X and Sally.
+            <br />- Shows results, including the increase or decrease compared to the previous result.
+          </li>
+
+          <li>
+            <strong>
+              <time dateTime="2023-06-2">{new Date(2023, 5, 2).toLocaleDateString()}</time>
+            </strong>
+            <br />
+            - Added a Custom Context Menu for Agents. Now you can right-click on your agent to access quick actions.
+            <br />- Introducing a new filtering and sorting menu.
           </li>
         </ul>
       </>

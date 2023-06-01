@@ -1,5 +1,5 @@
 import { useAtomValue } from 'jotai';
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC, MouseEvent, useEffect, useRef, useState } from 'react';
 import { FaAngleRight, FaStar } from 'react-icons/fa';
 
 import { Search } from '../common';
@@ -14,9 +14,10 @@ type AgentListProps = {
   favorite: (agent: AgentItem) => void;
   select: (agent: AgentItem) => void;
   toggleModal: (agent: AgentItem) => void;
+  contextMenuHandler: (event: MouseEvent, agent: AgentItem) => void;
 };
 
-export const AgentList: FC<AgentListProps> = ({ agents, loading, calculate, favorite, select }) => {
+export const AgentList: FC<AgentListProps> = ({ agents, loading, calculate, favorite, select, contextMenuHandler }) => {
   const viewName = useAtomValue(CurrentViewAtom);
   const filter = useAtomValue(FilterAtom);
 
@@ -63,7 +64,11 @@ export const AgentList: FC<AgentListProps> = ({ agents, loading, calculate, favo
         };
 
         return (
-          <li key={agent.name} className={className}>
+          <li
+            key={agent.name}
+            className={className}
+            onContextMenu={(event: MouseEvent) => contextMenuHandler(event, agent)}
+          >
             <a className="w-100p u-flex" onClick={() => select(agent)}>
               <div className="avatar avatar--xs bg-white m-0 mr-1">
                 {loadedIndexes.includes(index) && <div style={listElementStyle} />}
@@ -89,6 +94,7 @@ export const AgentList: FC<AgentListProps> = ({ agents, loading, calculate, favo
           <FaAngleRight color="darkgrey" />
         </a>
       </div>
+
       <div className="sidebar-container tree-nav p-0 mr-2" id="sidebar">
         <div className="sidebar-wrapper">
           <div className="sidebar px-3">
@@ -110,7 +116,7 @@ export const AgentList: FC<AgentListProps> = ({ agents, loading, calculate, favo
         <main className="page-layout u-center">
           <section>
             <TargetSelect />
-            <Results calculate={calculate} loading={loading} />
+            <Results calculate={calculate} loading={loading} contextMenuHandler={contextMenuHandler} />
           </section>
 
           <section>

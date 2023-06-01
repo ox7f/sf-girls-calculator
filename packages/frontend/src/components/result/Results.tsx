@@ -1,17 +1,18 @@
 import { useAtomValue } from 'jotai';
-import { FC, useState } from 'react';
+import { FC, MouseEvent, useState } from 'react';
 import { FaChartArea, FaTable } from 'react-icons/fa';
 
 import { Graph, Table } from './index';
 import { Button } from '../common';
-import { CurrentViewAtom, ResultListAtom } from '../../atoms';
+import { AgentItem, CurrentViewAtom, ResultListAtom } from '../../atoms';
 
 type ResultsProps = {
   loading: boolean;
   calculate: () => void;
+  contextMenuHandler: (event: MouseEvent, agent: AgentItem) => void;
 };
 
-export const Results: FC<ResultsProps> = ({ loading, calculate }) => {
+export const Results: FC<ResultsProps> = ({ loading, calculate, contextMenuHandler }) => {
   const [showGraph, setShowGraph] = useState(true);
   const [showTable, setShowTable] = useState(false);
 
@@ -36,7 +37,7 @@ export const Results: FC<ResultsProps> = ({ loading, calculate }) => {
                 Remaining Health: <span className="font-semibold">{remainingHealth}</span>
               </span>
             </p>
-            {showTable && <Table result={result} />}
+            {showTable && <Table result={result} contextMenuHandler={contextMenuHandler} />}
             {showGraph && <Graph result={result} />}
           </div>
         </div>

@@ -55,6 +55,7 @@
 - [x] zoom function for graph
 - [x] filter functions (class, rarity)
 - [x] sort function (ascending, descending by name | class | rarity)
+- [x] custom context-menu (actions: edit, favorite, select, equip runes?)
 
 ## UI/UX
 
