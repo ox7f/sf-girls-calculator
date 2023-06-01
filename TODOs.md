@@ -53,8 +53,8 @@
 - [x] sticky search bar (scrolls with)
 - [x] agent skill/bio inside modal (tabs: bio/stats/skill)
 - [x] zoom function for graph
-- [] filter functions
-- [] sort function
+- [x] filter functions (class, rarity)
+- [x] sort function (ascending, descending by name | class | rarity)
 
 ## UI/UX
 
@@ -86,6 +86,7 @@
 - [x] move isStackable from Skill to Effect
 - [x] idx holds state of selection and modal
 - [x] apply buffs on attack (Sora X, Kagawa Matsu, Sally)
+- [x] add rarity to agents
 - [] adjust/calibrate calculator
 - [] make skill editable
 
