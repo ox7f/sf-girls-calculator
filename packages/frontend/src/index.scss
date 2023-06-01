@@ -527,7 +527,7 @@ a {
     margin-top: 0;
     padding: 0.85rem !important;
 
-    ul > ul {
+    ul > #agent-list {
       height: calc(100vh - 7rem) !important;
       width: 301px;
       overflow-y: auto;
