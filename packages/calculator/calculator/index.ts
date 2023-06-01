@@ -9,7 +9,15 @@ import * as EverythingHelper from './helper';
 export const { Agents, EvoNodes, Targets } = EverythingData;
 export const { bruteforceTeam, calculateAgentTarget, calculateTeam, findBestRuneSets } = EverythingHelper;
 
-export { HistoryActionTypeEnum, BonusEnum, ClassEnum, EffectTypeEnum, OrganizationEnum, CupSizeEnum } from './enums';
+export {
+  BonusEnum,
+  ClassEnum,
+  CupSizeEnum,
+  EffectTypeEnum,
+  HistoryActionTypeEnum,
+  OrganizationEnum,
+  RarityEnum
+} from './enums';
 
 export {
   ActionType,

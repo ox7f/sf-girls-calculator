@@ -6,7 +6,8 @@ import {
   CupSizeEnum,
   EffectTypeEnum,
   OrganizationEnum,
-  HistoryActionTypeEnum
+  HistoryActionTypeEnum,
+  RarityEnum
 } from '../../enums';
 import { Effect, EffectAOA, EffectDOT, EvoNode, Fight, NewAgent, Skill, Stats } from '../../model';
 
@@ -15,6 +16,7 @@ export class Agent {
   name: string;
   title: string;
   bio: string;
+  rarity: RarityEnum;
   organization: OrganizationEnum;
   cupSize: CupSizeEnum;
   class: ClassEnum;
@@ -31,13 +33,14 @@ export class Agent {
   loggingEnabled: boolean;
 
   constructor(
-    { index, name, title, bio, organization, cupSize, class: _class, stats, skill, nodes = [] }: NewAgent,
+    { index, name, title, bio, rarity, organization, cupSize, class: _class, stats, skill, nodes = [] }: NewAgent,
     loggingEnabled = false
   ) {
     this.index = index;
     this.name = name;
     this.title = title;
     this.bio = bio;
+    this.rarity = rarity;
     this.organization = organization;
     this.cupSize = cupSize;
     this.class = _class;

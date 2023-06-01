@@ -5,3 +5,4 @@ export { CupSizeEnum } from './CupSizeEnum';
 export { EffectTypeEnum } from './EffectTypeEnum';
 export { HistoryActionTypeEnum } from './HistoryActionTypeEnum';
 export { OrganizationEnum } from './OrganizationEnum';
+export { RarityEnum } from './RarityEnum';
