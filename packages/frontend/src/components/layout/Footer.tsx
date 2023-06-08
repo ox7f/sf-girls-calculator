@@ -33,7 +33,12 @@ export const Footer: FC = () => {
           ></path>
         </svg>
         {' by '}
-        <a className="utb utb-OLR" href="https://github.com/ox7f" target="_blank" rel="noopener noreferrer">
+        <a
+          className="utb utb-OLR"
+          href="https://discordapp.com/users/382197237842837514"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Dalberg
         </a>
       </p>
