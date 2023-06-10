@@ -102,20 +102,25 @@ export const Agents: FC = () => {
 
   const workerCall = useCallback(
     async (selectedAgents: string[], selectedTargets: string[]) => {
-      /* if (selectedAgents.length > 0 && selectedTargets) {
-        const test_results = [];
+      // if (selectedAgents.length > 0 && selectedTargets) {
+      //   const test_results = [];
 
-        for (let i = 0; i < 100; i++) {
-          const test_result = await WORKER_CONFIG[viewName]({ selectedAgents, selectedTargets });
-          test_results.push(JSON.parse(test_result)[0]);
-        }
+      //   for (let i = 0; i < 100; i++) {
+      //     const test_result = await WORKER_CONFIG[viewName]({ selectedAgents, selectedTargets });
+      //     test_results.push(JSON.parse(test_result)[0]);
+      //   }
 
-        test_results.sort((a, b) => b.totalDamage - a.totalDamage);
-        console.log(test_results[0].totalDamage, test_results[test_results.length - 1].totalDamage);
-      } */
+      //   test_results.sort((a, b) => b.totalDamage - a.totalDamage);
+      //   console.log({
+      //     max: test_results[0].totalDamage,
+      //     min: test_results[test_results.length - 1].totalDamage
+      //   });
+      // }
 
       const newResults = await WORKER_CONFIG[viewName]({ selectedAgents, selectedTargets });
-      return JSON.parse(newResults);
+      const parsedResults = JSON.parse(newResults);
+
+      return parsedResults;
     },
     [viewName]
   );

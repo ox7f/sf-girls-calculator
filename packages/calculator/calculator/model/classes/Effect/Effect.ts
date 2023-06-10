@@ -88,7 +88,6 @@ export class Effect extends AbstractEffect {
   }
 
   private isExpired(params: EffectParams) {
-    const { time } = params;
-    return time <= this.begin - this.duration;
+    return params.time <= this.begin - this.duration;
   }
 }

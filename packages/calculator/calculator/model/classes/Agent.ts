@@ -68,10 +68,10 @@ export class Agent {
   }
 
   private canAttack(fight: Fight) {
-    const { target, time } = fight;
+    const { time } = fight;
 
     const timeToAttack = (1 / this.stats.attackSpeed) * 1000;
-    const isFirst = target.duration - time === timeToAttack;
+    const isFirst = this.stats.lastAttackTime === 0;
     const canAttackNow = this.stats.lastAttackTime - time >= timeToAttack || isFirst;
 
     return canAttackNow;
@@ -80,7 +80,18 @@ export class Agent {
   private canCastSkill(fight: Fight) {
     const { target, time } = fight;
 
-    const isFirst = target.duration - time === 1000;
+    let isFirst = false;
+
+    if (this.stats.lastCastTime === 0) {
+      if (this.stats.attackSpeed <= 0.5 && target.duration - time === 1000) {
+        isFirst = true;
+      } else if (this.stats.attackSpeed <= 1 && target.duration - time === 2000) {
+        isFirst = true;
+      } else if (this.stats.attackSpeed > 1 && target.duration - time === 1250) {
+        isFirst = true;
+      }
+    }
+
     const canCastSkillNow = time <= this.stats.lastCastTime - this.skill.cooldown || isFirst;
     const castStart = this.stats.lastCastTime;
     const castEnd = castStart - this.stats.castTime;
@@ -104,10 +115,8 @@ export class Agent {
   }
 
   private dealDamage(fight: Fight) {
-    const projectileTime = globalThis.projectileInterval * this.stats.projectileNumber;
-
     for (let i = 1; i <= this.stats.projectileNumber; i++) {
-      const logTime = fight.time - (projectileTime - projectileTime / i);
+      const logTime = fight.time;
       const { damage, bonus } = this.getDamage(fight);
       const damageDealt = fight.target.takeDamage(damage);
 
@@ -166,7 +175,7 @@ export class Agent {
         begin: time,
         duration: 1,
         interval: 0.25,
-        damage: () => normalAttack * dotDamageEffect
+        damage: () => (normalAttack / 4 / this.stats.projectileNumber) * dotDamageEffect
       });
 
       if (Math.random() < doubleAttackChance) {
@@ -185,23 +194,20 @@ export class Agent {
   }
 
   manageEffects(fight: Fight) {
-    this.activeEffects.forEach((effect) => {
-      effect.manage({ agent: this, ...fight });
+    const activeEffects = [...this.activeEffects];
+
+    activeEffects.forEach((effect) => {
+      effect.manage({ ...fight, agent: this });
     });
   }
 
   private manageEffectAOA(fight: Fight) {
-    const { time } = fight;
-    const AOAeffects = this.activeEffects.filter((effect) => effect instanceof EffectAOA) as EffectAOA[];
+    const AOAeffects = this.activeEffects.filter((effect) => {
+      return effect instanceof EffectAOA;
+    }) as EffectAOA[];
 
     AOAeffects.forEach((effect) => {
-      effect.apply({ agent: this, ...fight });
-      this.log(time, {
-        attackMode: AttackModeEnum.NONE,
-        damage: 0,
-        effectType: effect.type,
-        type: HistoryActionTypeEnum.USE_SKILL
-      });
+      effect.apply({ ...fight, agent: this });
     });
   }
 

@@ -1,7 +1,4 @@
 globalThis.Interval = 1;
-globalThis.damageDelay = 100;
-globalThis.projectileSpeed = 100;
-globalThis.projectileInterval = 100;
 
 import * as EverythingData from './data';
 import * as EverythingHelper from './helper';

@@ -7,6 +7,7 @@ type EvoNodeItem = {
   children: EvoNodeItem[];
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function convertStats({ baseSkillDamage, castTime, projectileNumber, ...rest }: NewStats): AgentStats {
   return rest;
 }

@@ -65,13 +65,11 @@ export class EffectDOT extends AbstractEffect {
   }
 
   manage(params: EffectParams) {
-    const { time } = params;
-
-    if (this.isActive(time)) {
+    if (this.isActive(params)) {
       this.dealDamage(params);
     }
 
-    if (this.isExpired(time)) {
+    if (this.isExpired(params)) {
       this.deactivate(params);
     }
   }
@@ -115,7 +113,8 @@ export class EffectDOT extends AbstractEffect {
     return { damage, bonus };
   }
 
-  private isActive(time: number) {
+  private isActive(params: EffectParams) {
+    const { time } = params;
     const hasStarted = time <= this.begin;
     const hasStopped = time < this.begin - this.duration;
     const inInterval = this.lastDot - this.interval >= time;
@@ -123,7 +122,7 @@ export class EffectDOT extends AbstractEffect {
     return hasStarted && !hasStopped && inInterval;
   }
 
-  private isExpired(time: number) {
-    return time <= this.begin - this.duration;
+  private isExpired(params: EffectParams) {
+    return params.time <= this.begin - this.duration;
   }
 }

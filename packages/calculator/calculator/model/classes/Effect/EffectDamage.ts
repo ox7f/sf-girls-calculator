@@ -3,11 +3,13 @@ import { AbstractEffect, NewEffectDamage, DamageEffectFunction, EffectParams } f
 
 export class EffectDamage extends AbstractEffect {
   type: EffectTypeEnum;
+  numberOfHits: number;
   damage: DamageEffectFunction;
 
-  constructor({ type, damage }: NewEffectDamage) {
+  constructor({ type, damage, numberOfHits = 1 }: NewEffectDamage) {
     super();
     this.type = type;
+    this.numberOfHits = numberOfHits;
     this.damage = damage;
   }
 
@@ -60,34 +62,36 @@ export class EffectDamage extends AbstractEffect {
     const skillAttackEffect = skillDamage * skillDamageEffect * limitedAttackCounter;
     const totalSkillAttack = skillDamage + skillAttackEffect;
 
-    const bonus: BonusEnum[] = [];
-    const baseDamage = this.damage(params) / baseSkillDamage;
-    let damage = baseDamage * totalSkillAttack;
+    for (let i = 0; i < this.numberOfHits; i++) {
+      const bonus: BonusEnum[] = [];
+      const baseDamage = this.damage(params) / baseSkillDamage;
+      let damage = baseDamage * totalSkillAttack;
 
-    if (Math.random() < criticalRateWithEffect) {
-      damage *= criticalDamage;
-      bonus.push(BonusEnum.CRITICAL);
+      if (Math.random() < criticalRateWithEffect) {
+        damage *= criticalDamage;
+        bonus.push(BonusEnum.CRITICAL);
+      }
+
+      if (Math.random() < doubleDamageChance) {
+        damage *= 2;
+        bonus.push(BonusEnum.HEADSHOT);
+      }
+
+      if (Math.random() < doubleAttackChance) {
+        this.dealDamage(params);
+        bonus.push(BonusEnum.RELOAD);
+      }
+
+      const damageDealt = target.takeDamage(damage);
+      agent.stats.totalDamage += damageDealt;
+
+      agent.log(time - 50, {
+        attackMode: AttackModeEnum.SKILL,
+        bonus,
+        damage: damageDealt,
+        effectType: this.type,
+        type: HistoryActionTypeEnum.ATTACK
+      });
     }
-
-    if (Math.random() < doubleDamageChance) {
-      damage *= 2;
-      bonus.push(BonusEnum.HEADSHOT);
-    }
-
-    if (Math.random() < doubleAttackChance) {
-      this.dealDamage(params);
-      bonus.push(BonusEnum.RELOAD);
-    }
-
-    const damageDealt = target.takeDamage(damage);
-    agent.stats.totalDamage += damageDealt;
-
-    agent.log(time - globalThis.damageDelay, {
-      attackMode: AttackModeEnum.SKILL,
-      bonus,
-      damage: damageDealt,
-      effectType: this.type,
-      type: HistoryActionTypeEnum.ATTACK
-    });
   }
 }

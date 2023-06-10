@@ -15,6 +15,7 @@ export interface NewEffect extends NewAbstractEffect {
 
 export interface NewEffectDamage extends NewAbstractEffect {
   damage: DamageEffectFunction;
+  numberOfHits?: number;
 }
 
 export interface NewEffectDOT extends NewAbstractEffect {

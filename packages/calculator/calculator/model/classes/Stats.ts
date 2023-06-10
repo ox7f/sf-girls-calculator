@@ -23,7 +23,7 @@ export class Stats {
     skillDamage,
     baseSkillDamage,
     projectileNumber = 1,
-    castTime = 0
+    castTime = 1
   }: NewStats) {
     this.attackSpeed = attackSpeed;
     this.normalAttack = normalAttack;

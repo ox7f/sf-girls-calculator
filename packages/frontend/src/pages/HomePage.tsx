@@ -94,6 +94,13 @@ const items = [
             - Added a Custom Context Menu for Agents. Now you can right-click on your agent to access quick actions.
             <br />- Introducing a new filtering and sorting menu.
           </li>
+
+          <li>
+            <strong>
+              <time dateTime="2023-06-11">{new Date(2023, 5, 11).toLocaleDateString()}</time>
+            </strong>
+            <br />- Adjusted some agents for a more accurate result
+          </li>
         </ul>
       </>
     )

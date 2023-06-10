@@ -1,5 +1,5 @@
 import { AttackModeEnum, EffectTypeEnum, HistoryActionTypeEnum } from '../../../enums';
-import { AbstractEffect, EffectFunction, NewEffectAOA, EffectParams } from '../..';
+import { AbstractEffect, EffectFunction, NewEffectAOA, EffectParams } from '../../../model';
 
 export class EffectAOA extends AbstractEffect {
   begin: number;
@@ -27,7 +27,12 @@ export class EffectAOA extends AbstractEffect {
 
   add(params: EffectParams) {
     const { agent, time } = params;
-    const newEffect = new EffectAOA({ ...this, duration: this.duration / 1000, begin: time });
+
+    const newEffect = new EffectAOA({
+      ...this,
+      duration: this.duration / 1000,
+      begin: time
+    });
 
     agent.activeEffects.push(newEffect);
 
@@ -57,9 +62,7 @@ export class EffectAOA extends AbstractEffect {
   }
 
   manage(params: EffectParams) {
-    const { time } = params;
-
-    if (this.isExpired(time)) {
+    if (this.isExpired(params)) {
       this.deactivate(params);
     }
   }
@@ -74,7 +77,7 @@ export class EffectAOA extends AbstractEffect {
     return oldEffect;
   }
 
-  private isExpired(time: number) {
-    return time <= this.begin - this.duration;
+  private isExpired(params: EffectParams) {
+    return params.time <= this.begin - this.duration;
   }
 }
