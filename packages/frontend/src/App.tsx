@@ -1,5 +1,7 @@
 import { FC } from 'react';
 import { Outlet } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
+
 import { AgentModal } from './components/agent';
 import { Footer, Header } from './components/layout';
 
@@ -12,6 +14,8 @@ export const App: FC = () => {
         <Outlet />
       </div>
       <Footer />
+
+      <Analytics />
     </div>
   );
 };

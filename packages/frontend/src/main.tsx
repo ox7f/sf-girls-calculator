@@ -5,12 +5,9 @@ import { Provider } from 'jotai';
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { inject } from '@vercel/analytics';
 
 import { App } from './App';
 import { Calculator, ErrorBoundary, Home, Teamfinder } from './pages';
-
-inject();
 
 const router = createBrowserRouter([
   {
