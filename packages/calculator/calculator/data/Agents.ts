@@ -3741,6 +3741,84 @@ export const YukakoX = {
   } as NewSkill
 } as NewAgent;
 
+export const Astraea = {
+  index: 88,
+  name: 'Astraea',
+  title: '?',
+  bio: `?`,
+  rarity: RarityEnum.FIVE,
+  organization: OrganizationEnum.NONE,
+  cupSize: CupSizeEnum.H,
+  class: ClassEnum.ARTILLERY,
+  nodes: EvoNodes.Artillery_Nodes,
+  stats: {
+    attackSpeed: 1,
+    normalAttack: 1,
+    criticalRate: 0.84,
+    criticalDamage: 2.038,
+    skillDamage: 1,
+    baseSkillDamage: 1
+  } as NewStats,
+  skill: {
+    name: '?',
+    description: `?`,
+    effects: [],
+    cooldown: 100
+  } as NewSkill
+} as NewAgent;
+
+export const Raphael = {
+  index: 89,
+  name: 'Raphael',
+  title: '?',
+  bio: `?`,
+  rarity: RarityEnum.FIVE,
+  organization: OrganizationEnum.NONE,
+  cupSize: CupSizeEnum.H,
+  class: ClassEnum.SUPPORT,
+  nodes: EvoNodes.Support_Nodes,
+  stats: {
+    attackSpeed: 1,
+    normalAttack: 1,
+    criticalRate: 0.84,
+    criticalDamage: 2.038,
+    skillDamage: 1,
+    baseSkillDamage: 1
+  } as NewStats,
+  skill: {
+    name: '?',
+    description: `?`,
+    effects: [],
+    cooldown: 100
+  } as NewSkill
+} as NewAgent;
+
+export const EmberX = {
+  index: 90,
+  name: 'Ember X',
+  title: '?',
+  bio: `?`,
+  rarity: RarityEnum.FIVE,
+  organization: OrganizationEnum.NONE,
+  cupSize: CupSizeEnum.G,
+  class: ClassEnum.GUNNER,
+  nodes: EvoNodes.Gunner_Nodes,
+  stats: {
+    attackSpeed: 0.5,
+    normalAttack: 5914,
+    criticalRate: 0.84,
+    criticalDamage: 2.038,
+    skillDamage: 5914,
+    baseSkillDamage: 5914
+  } as NewStats,
+  skill: {
+    name: '?',
+    description: `?`,
+    effects: [],
+    cooldown: 100
+  } as NewSkill
+} as NewAgent;
+
 export const Agents = [
   Akari,
   Akina,
@@ -3748,6 +3826,7 @@ export const Agents = [
   Amikam,
   Aoi,
   Ari,
+  Astraea,
   Ayu,
   Bia,
   Cadence,
@@ -3759,6 +3838,7 @@ export const Agents = [
   Denka,
   Eiko,
   Ember,
+  EmberX,
   Eri,
   Feme,
   GaiGai,
@@ -3795,6 +3875,7 @@ export const Agents = [
   Noa,
   O,
   Pan,
+  Raphael,
   Rei,
   ReiJK,
   Reika,
