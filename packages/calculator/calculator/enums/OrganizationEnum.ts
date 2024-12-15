@@ -10,6 +10,7 @@ export enum OrganizationEnum {
   NDS = 'New Dellum Security',
   RSA = 'Rising Sun Association',
   SIB = 'Santriel Inspection Bureau',
+  SUS = 'Santriel Underground Syndicate',
   TAP = 'Trajectory Academic Parliament',
   WIO = 'Wartime Intelligence Office',
   ZETH = 'Zeth',

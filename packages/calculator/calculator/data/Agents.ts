@@ -430,7 +430,7 @@ export const Noa = {
 export const Neugena = {
   index: 14,
   name: 'Neugena',
-  title: 'bucktail',
+  title: 'Bucktail',
   bio: `
   No one is really certain of Neugena's origins, nor do they have a clear understanding of how she acquired her exceptional hunting skills. Nevertheless, no one dares to inquire further, particularly when she frequently discusses her enjoyment of killing for sport. No one wishes to become her next target.
   `,
@@ -3744,11 +3744,14 @@ export const YukakoX = {
 export const Astraea = {
   index: 88,
   name: 'Astraea',
-  title: '?',
-  bio: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+  title: 'Star Night',
+  bio: `
+  No one knows where Astraea was born, but she spent her childhood in Santriel. Santriel—a city even worse than Sin City. Plague, turmoil, corruption, and unchecked desires had driven most of its inhabitants away.
+  In response to what they saw as the shameful failure and incompetence of the local authorities, a group of residents united to take their destiny into their own hands. Astraea was one of them. Her philosophy was simple: all corruption must be burned away, for hope can only be reborn from the ashes of destruction.
+  `,
   rarity: RarityEnum.FIVE,
-  organization: OrganizationEnum.NONE,
-  cupSize: CupSizeEnum.H,
+  organization: OrganizationEnum.SUS,
+  cupSize: CupSizeEnum.F,
   class: ClassEnum.ARTILLERY,
   nodes: EvoNodes.Artillery_Nodes,
   stats: {
@@ -3760,21 +3763,24 @@ export const Astraea = {
     baseSkillDamage: 1
   } as NewStats,
   skill: {
-    name: 'Skill Name',
-    description: `Skill Description`,
+    name: 'Chaos Flame',
+    description: `Astraea ignites herself with her flames, increasing her attack speed by 200 % for 7 seconds. Additionally, her flames gain the ability to penetrate targets and ignite enemies for 5 seconds, dealing 109156.8 burn damage every second. When her stored flames overflow, she can launch the moon, causing 10495.8 skill damage upon impact with the ground.`,
     effects: [],
-    cooldown: 100
+    cooldown: 10
   } as NewSkill
 } as NewAgent;
 
 export const Raphael = {
   index: 89,
   name: 'Raphael',
-  title: '?',
-  bio: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+  title: 'Healer',
+  bio: `
+  As a doctor, her compassion is unmatched. Despite facing countless patients and casualties of war, her dedication to helping others remains unwavering. Physically and mentally exhausted, she is determined to join the revolution to save the country and its people.
+  Raphael works at the Santriel Regional Hospital and also serves as a medical officer for the Santriel Underground Syndicate. While she utilizes the power of the Syndicate to eradicate the corrupt regime, she also works to save and rescue people from their suffering.
+  `,
   rarity: RarityEnum.FIVE,
-  organization: OrganizationEnum.NONE,
-  cupSize: CupSizeEnum.H,
+  organization: OrganizationEnum.SUS,
+  cupSize: CupSizeEnum.K,
   class: ClassEnum.SUPPORT,
   nodes: EvoNodes.Support_Nodes,
   stats: {
@@ -3786,10 +3792,10 @@ export const Raphael = {
     baseSkillDamage: 1
   } as NewStats,
   skill: {
-    name: 'Skill Name',
-    description: `Skill Description`,
+    name: 'Gjallarhorn',
+    description: `Cast an instant heal (Skill damage x9600%) for friendly unit closeby. Cast another H.O.T healing total (Skill damage x3200%) for 8s. During Ghallarhorn, all attack adds stun for 1.2 sec and (Normal damage x1200%) will heal all friendly units. Gjallarhorn last for 16s`,
     effects: [],
-    cooldown: 100
+    cooldown: 19
   } as NewSkill
 } as NewAgent;
 
@@ -3797,9 +3803,11 @@ export const EmberX = {
   index: 90,
   name: 'Ember X',
   title: '?',
-  bio: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+  bio: `
+  Ember, who has fought in numerous battles against alien monsters, has become increasingly unstable. Upon the commander's suggestion, she decides to explore non-combat pursuits. Joining the nameless circus, Ember's mental state starts to shift subtly. However, she soon uncovers the truth that the circus is actually a front for Revolution Strategic Consulting - The Dawn, and it is linked to the Santriel Underground Syndicate. There are countless hidden connections, even with powerful individuals in Santriel. Recognizing the malicious intent, Ember returns to the commander to share her findings.
+  `,
   rarity: RarityEnum.FIVE,
-  organization: OrganizationEnum.NONE,
+  organization: OrganizationEnum.GAA,
   cupSize: CupSizeEnum.G,
   class: ClassEnum.GUNNER,
   nodes: EvoNodes.Gunner_Nodes,
@@ -3812,10 +3820,10 @@ export const EmberX = {
     baseSkillDamage: 5914
   } as NewStats,
   skill: {
-    name: 'Skill Name',
-    description: `Skill Description`,
+    name: 'Chaos Flame',
+    description: `Fully release her gattling, bullets will be penetrate targets and non-stackable self buff damage 150% for 19s. Non-stackable self buff attack speed 1080% for 10s. CD: 20s`,
     effects: [],
-    cooldown: 100
+    cooldown: 20
   } as NewSkill
 } as NewAgent;
 
