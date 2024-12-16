@@ -3827,6 +3827,121 @@ export const EmberX = {
   } as NewSkill
 } as NewAgent;
 
+export const Ora = {
+  index: 91,
+  name: 'Ora',
+  title: '?',
+  bio: `
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  `,
+  rarity: RarityEnum.FIVE,
+  organization: OrganizationEnum.NONE,
+  cupSize: CupSizeEnum.C,
+  class: ClassEnum.STRIKER,
+  nodes: EvoNodes.Striker_Nodes,
+  stats: {
+    attackSpeed: 0.5,
+    normalAttack: 1,
+    criticalRate: 0,
+    criticalDamage: 1,
+    skillDamage: 1,
+    baseSkillDamage: 1
+  } as NewStats,
+  skill: {
+    name: 'Unknown',
+    description: `Unknown`,
+    effects: [],
+    cooldown: 100
+  } as NewSkill
+} as NewAgent;
+
+export const Minami_Aizawa = {
+  index: 92,
+  name: 'Minami Aizawa',
+  title: 'Kanae Naoe',
+  bio: `
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  `,
+  rarity: RarityEnum.FIVE,
+  organization: OrganizationEnum.NONE,
+  cupSize: CupSizeEnum.C,
+  class: ClassEnum.SUPPORT,
+  nodes: EvoNodes.Support_Nodes,
+  stats: {
+    attackSpeed: 0.5,
+    normalAttack: 4548,
+    criticalRate: 0.1,
+    criticalDamage: 1.65,
+    skillDamage: 4548,
+    baseSkillDamage: 4548
+  } as NewStats,
+  skill: {
+    name: '政宗への金的 (Blow to Masamune?)',
+    description: `10秒間ガンナーの攻撃範囲2.5アップ、ダメージ140%になる。命中する場合、味方モンスターのHPが（相沢みなみのダメージ*4%）回復。CD24秒
+    (For 10 seconds, the gunner's attack range increases by 2.5, and their damage increases to 140%.
+    If the attack hits, the HP of allied monsters is restored by (Minami Aizawa's damage * 4%).
+    Cooldown: 24 seconds.)`,
+    effects: [],
+    cooldown: 24
+  } as NewSkill
+} as NewAgent;
+
+export const Fondant_Chocolate = {
+  index: 93,
+  name: 'Fondant Chocolate',
+  title: '?',
+  bio: `
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  `,
+  rarity: RarityEnum.FIVE,
+  organization: OrganizationEnum.NONE,
+  cupSize: CupSizeEnum.A,
+  class: ClassEnum.SUPPORT,
+  nodes: EvoNodes.Support_Nodes,
+  stats: {
+    attackSpeed: 0.5,
+    normalAttack: 1,
+    criticalRate: 0,
+    criticalDamage: 1,
+    skillDamage: 1,
+    baseSkillDamage: 1
+  } as NewStats,
+  skill: {
+    name: 'Skill Name',
+    description: `Skill Description`,
+    effects: [],
+    cooldown: 100
+  } as NewSkill
+} as NewAgent;
+
+export const Blancmage = {
+  index: 94,
+  name: 'Blancmage',
+  title: '?',
+  bio: `
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  `,
+  rarity: RarityEnum.FIVE,
+  organization: OrganizationEnum.NONE,
+  cupSize: CupSizeEnum.B,
+  class: ClassEnum.SUPPORT,
+  nodes: EvoNodes.Support_Nodes,
+  stats: {
+    attackSpeed: 0.5,
+    normalAttack: 1,
+    criticalRate: 0,
+    criticalDamage: 1,
+    skillDamage: 1,
+    baseSkillDamage: 1
+  } as NewStats,
+  skill: {
+    name: 'Skill Name',
+    description: `Skill Description`,
+    effects: [],
+    cooldown: 100
+  } as NewSkill
+} as NewAgent;
+
 export const Agents = [
   Akari,
   Akina,
@@ -3917,5 +4032,10 @@ export const Agents = [
   YukakoX,
   Yuki,
   Yuuha,
-  ZiLong
+  ZiLong,
+
+  Ora,
+  Minami_Aizawa,
+  Fondant_Chocolate,
+  Blancmage
 ] as NewAgent[];
