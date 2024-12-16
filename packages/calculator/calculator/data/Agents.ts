@@ -3855,7 +3855,7 @@ export const Ora = {
   } as NewSkill
 } as NewAgent;
 
-export const Minami_Aizawa = {
+export const MinamiAizawa = {
   index: 92,
   name: 'Minami Aizawa',
   title: 'Kanae Naoe',
@@ -3886,7 +3886,7 @@ export const Minami_Aizawa = {
   } as NewSkill
 } as NewAgent;
 
-export const Fondant_Chocolate = {
+export const FondantChocolate = {
   index: 93,
   name: 'Fondant Chocolate',
   title: '?',
@@ -4035,7 +4035,7 @@ export const Agents = [
   ZiLong,
 
   Ora,
-  Minami_Aizawa,
-  Fondant_Chocolate,
+  MinamiAizawa,
+  FondantChocolate,
   Blancmage
 ] as NewAgent[];
