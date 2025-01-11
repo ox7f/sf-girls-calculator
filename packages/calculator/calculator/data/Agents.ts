@@ -3855,9 +3855,9 @@ export const Ora = {
   } as NewSkill
 } as NewAgent;
 
-export const MinamiAizawa = {
+export const AizawaMinami = {
   index: 92,
-  name: 'Minami Aizawa',
+  name: 'Aizawa Minami',
   title: 'Kanae Naoe',
   bio: `
   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -3886,9 +3886,9 @@ export const MinamiAizawa = {
   } as NewSkill
 } as NewAgent;
 
-export const FondantChocolate = {
+export const Choco = {
   index: 93,
-  name: 'Fondant Chocolate',
+  name: 'Choco',
   title: '?',
   bio: `
   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -3914,9 +3914,9 @@ export const FondantChocolate = {
   } as NewSkill
 } as NewAgent;
 
-export const Blancmage = {
+export const Blancmange = {
   index: 94,
-  name: 'Blancmage',
+  name: 'Blancmange',
   title: '?',
   bio: `
   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -4032,10 +4032,9 @@ export const Agents = [
   YukakoX,
   Yuki,
   Yuuha,
-  ZiLong,
-
-  Ora,
-  MinamiAizawa,
-  FondantChocolate,
-  Blancmage
+  ZiLong
+  // Ora,
+  // AizawaMinami,
+  // Choco,
+  // Blancmange
 ] as NewAgent[];
