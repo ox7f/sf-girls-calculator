@@ -100,7 +100,7 @@ export const AgentList: FC<AgentListProps> = ({ agents, loading, calculate, favo
           <div className="sidebar px-3">
             <ul className="menu m-0">
               <div className="sidebar__title font-bold uppercase text-gray-600">Agents</div>
-              <li className="menu-item">
+              <li>
                 <Search />
               </li>
               <ul ref={containerRef} id="agent-list" className="menu mb-3">
