@@ -54,8 +54,8 @@ export const Header: FC = () => {
         </div>
 
         <div className="nav-right">
-          <div className="nav-item ">
-            <Link to="https://www.buymeacoffee.com/ox7f" target="_blank">
+          <div className="nav-item">
+            <Link to="https://www.buymeacoffee.com/ox7f" target="_blank" style={{ padding: '0 0.5rem' }}>
               <img src="/buymeacoffee.png" alt="Buy Me A Coffee" style={{ height: '36px', width: '130px' }} />
             </Link>
           </div>
