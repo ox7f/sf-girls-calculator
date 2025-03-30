@@ -1,33 +1,68 @@
-# SF-GIRLS-CALCULATOR
+# SF-Girls Calculator
 
-Here you'll find an easy-to-use calculator that is designed to make experimenting with different teams in SF Girls easy and accessible.
+## Overview
 
-Finally, please note that specific data on most agents and game mechanics may not be available or accurate. As such, the results provided should be taken as a rough guide.
+The **SF-Girls Calculator** is a web-based tool designed to help players experiment with different team compositions in **SF Girls**. It allows users to test various agent setups, evaluate potential outcomes, and optimize their strategies.
 
-If you have any feedback or suggestions, please don't hesitate to contact us.
+## Features
 
-<!-- TODO: fill out stuff below -->
+- **Team Composition Testing** – Experiment with different agents and formations
+- **Stat Calculations** – Estimate team performance based on available data
+- **User-Friendly Interface** – Simple and intuitive design for easy navigation
+- **Real-Time Adjustments** – Update values and see instant results
+- **Open-Source** – Contributions welcome for improvements and feature enhancements
 
-Project Title: Give your project a clear and concise title that describes its purpose, such as "Game Calculator for [Game Name]."
+## Installation
 
-Project Description: Provide a brief overview of your application, explaining its main functionalities and how it can be useful for players of the game.
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/ox7f/sf-girls-calculator
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd sf-girls-calculator
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Run the application:
+   ```bash
+   npm start
+   ```
+5. Open your browser and go to `http://localhost:3000` to access the calculator.
 
-Project Features: List the key features and functionalities of your calculator, such as calculating in-game currency conversions, item stats, or character builds.
+## Requirements
 
-Installation: Include step-by-step instructions on how to install and run the application locally. This should cover any prerequisites, dependencies, and commands needed to set up the project.
+- **Node.js** (Latest LTS version recommended)
+- **NPM or Yarn** for package management
+- **Modern Web Browser** (Chrome, Firefox, Edge, etc.)
 
-Usage: Provide instructions on how to use the calculator. Explain how users can input data, select options, and interpret the results.
+## Usage
 
-Technologies Used: Mention the main technologies, frameworks, and libraries utilized in your project, such as Vite, React, TypeScript, and any additional packages or APIs.
+1. Select agents and input relevant stats.
+2. Adjust parameters to see potential results.
+3. Analyze team performance and make informed decisions.
 
-Screenshots: Add relevant screenshots or GIFs showcasing the calculator's interface and functionality. This can help users visualize what to expect from your application.
+## Technologies Used
 
-Code Examples: Include code snippets or examples demonstrating how to use specific features or solve common calculations within your application. This can assist developers who want to extend or modify your project.
+- **React** – Frontend framework for UI development
+- **TypeScript** – Ensures type safety and better maintainability
+- **Vite** – Fast build tool for frontend development
+- **CSS Modules** – Styles for a modular design
 
-Development Setup: Provide instructions for developers who wish to contribute to your project. Explain how to set up a development environment, run tests, and submit pull requests.
+## Disclaimer
 
-License: Specify the license under which your project is distributed. This lets users know the permissions and restrictions regarding the usage and modification of your code.
+This calculator is a **fan-made** tool and is **not affiliated** with or endorsed by the developers of **SF Girls**. All assets and game data belong to their respective owners. The calculator is provided as a **guideline** and does not guarantee accuracy due to potential changes in game mechanics.
 
-Credits: Acknowledge any external resources, libraries, or contributors that have influenced or assisted your project. This can include links to relevant websites, documentation, or repositories.
+## License
 
-Contact Information: Optionally, provide your contact information or a link to your personal website or GitHub profile. This allows users to get in touch with you if they have questions, feedback, or suggestions.
+This project is for **personal and educational use only**. Redistribution or commercial use is not permitted.
+
+## Contact
+
+For issues, suggestions, or contributions, feel free to create an **issue** or reach out via GitHub.
+
+---
+
+Happy calculating! 🎮
