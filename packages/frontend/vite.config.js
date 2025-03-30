@@ -14,7 +14,7 @@ export default defineConfig({
     port: 5173
   },
   worker: {
-    plugins: [comlink()]
+    plugins: () => [comlink()]
   },
   build: {
     cssCodeSplit: false,

@@ -14,13 +14,13 @@ export default defineConfig({
     port: 5173
   },
   worker: {
-    plugins: [comlink()]
+    plugins: () => [comlink()]
   },
   build: {
     cssCodeSplit: false,
     rollupOptions: {
       output: {
-        manualChunks(id) {
+        manualChunks: function(id) {
           if (id.includes('node_modules')) {
             return id.toString().split('node_modules/')[1].split('/')[0].toString();
           }
