@@ -26,9 +26,12 @@
   },
   "dependencies": {
     "@sf-girls-calculator/calculator": "^0.0.1",
+    "@typescript-eslint/eslint-plugin": "6.15.0",
+    "@typescript-eslint/parser": "6.15.0",
     "@vercel/analytics": "^1.4.1",
-    "cirrus-ui": "^0.7.2",
+    "cirrus-ui": "^0.7.0",
     "comlink": "^4.4.1",
+    "eslint": "10.0.1",
     "idb": "^7.1.1",
     "jotai": "^2.0.4",
     "jotai-minidb": "^0.0.6",
